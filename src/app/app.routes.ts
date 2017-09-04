@@ -4,16 +4,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Route } from '@angular/router';
 import {LandingComponent} from './landing/landing.component';
+import {PostEditComponent} from './post-edit/post-edit.component';
+
 //import {LoginNewComponent} from "app/app-login/login-new/login-new.component";
-//import {PostEditComponent} from './post-edit/post-edit.component';
+
 
 const fallBackRoute: Route = {path: '**', redirectTo: '/guest'};
 
 const routes: Routes = [
   {path: '', redirectTo: '/guest', pathMatch: 'full'},
   {path: 'guest', component: LandingComponent},
-  {path: 'guest/:login', component: LandingComponent},
-  {path: 'join-us', loadChildren: 'app/app-login/login.module#LoginModule'},
+ // {path: 'guest/:login', component: LandingComponent},
+ // {path: 'join-us', loadChildren: 'app/app-login/login.module#LoginModule'},
   // {path:'join-us', loadChildren: 'app/app-login/login.module#LoginModule', outlet: 'slideRight'},
 //  {path: 'user-edit', loadChildren: 'app/user-edit/user-edit.module#UserEditModule'},
   // {path: 'home',  loadChildren: 'app/home/home.module#HomeModule'},
@@ -24,9 +26,9 @@ const routes: Routes = [
  //  {path: 'search-posts', loadChildren: 'app/search-posts/search-post.module#SearchPostModule'},
  // {path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule'},
 
- // {path: 'post-edit', component: PostEditComponent, outlet: 'slideRight'},
-  //{path: 'post-edit/:id', component: PostEditComponent, outlet: 'slideRight'},
- // {path: 'post-edit/:id/:type', component: PostEditComponent, outlet: 'slideRight'},
+   {path: 'post-edit', component: PostEditComponent, outlet: 'slideRight'},
+ {path: 'post-edit/:id', component: PostEditComponent, outlet: 'slideRight'},
+  {path: 'post-edit/:id/:type', component: PostEditComponent, outlet: 'slideRight'},
 
   // {path: 'post-edit', component: PostEditComponent, outlet: 'slideRight', data:{animation:{value:'post-edit'}}},
   // {path: 'post-edit', loadChildren: 'app/post-edit/post-edit.module#PostEditModule'},

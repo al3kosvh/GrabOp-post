@@ -2,7 +2,7 @@
  * Created by Vlad on 12/24/2016.
  */
 import {Injectable} from "@angular/core";
-import {AuthHttpMy} from "../services/auth-http";
+import {AuthHttpMy} from "./auth-http";
 import {Observable}     from 'rxjs/Observable';
 import {Subject}    from 'rxjs/Subject';
 import {VOPost, VOResult, VOSettings} from "../models/vos";

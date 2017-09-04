@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VOPost} from '../../models/vos';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MyPostsService} from '../my-posts.service';
+import {MyPostsService} from '../../services/my-posts.service';
 import {AuthHttpMy} from '../../services/auth-http';
 import {VOUserExt} from '../../app-login/vouser';
 

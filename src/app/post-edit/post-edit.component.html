@@ -1,0 +1,50 @@
+<md-card>
+<div class="post-edit-main">
+
+  <md-grid-list cols="10" rowHeight="70px">
+    <md-grid-tile [colspan]="9"><h4><strong>Update your Service and Alliance {{model.type}}</strong></h4></md-grid-tile>
+    <md-grid-tile><button md-button (click)="onCloseClick()">X</button></md-grid-tile>
+    <!--<md-grid-tile><a (click)="onCloseClick()" class="btn">X</a></md-grid-tile>-->
+  </md-grid-list>
+
+  <!--<h4><strong>Update your Service and Alliance {{model.type}}</strong></h4>-->
+  <md-tab-group>
+    <md-tab>
+      <ng-template md-tab-label>
+        Basic
+      </ng-template>
+                        <app-post-edit-basic [model]="model"></app-post-edit-basic>
+    </md-tab>
+    <md-tab>
+      <ng-template md-tab-label>
+        Business Style
+      </ng-template>
+                        <app-post-edit-style [model]="model"></app-post-edit-style>
+    </md-tab>
+    <md-tab>
+      <ng-template md-tab-label>
+        Photo/Video
+      </ng-template>
+                        <app-post-edit-media [model]="model"></app-post-edit-media>
+    </md-tab>
+    <md-tab>
+      <ng-template md-tab-label>
+        Alliance
+      </ng-template>
+                        <app-post-edit-alliance [model]="model"></app-post-edit-alliance>
+    </md-tab>
+  </md-tab-group>
+  <button md-raised-button
+          color="accent"
+          (click)="onCloseClick()">close</button>
+  <button *ngIf="model.id"
+          md-raised-button
+          color="primary"
+          (click)="onSaveClick()">update</button>
+  <button *ngIf="!model.id"
+          md-raised-button
+          color="primary"
+
+          (click)="onSaveClick()">save</button>
+</div>
+</md-card>

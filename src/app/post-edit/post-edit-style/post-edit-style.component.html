@@ -1,0 +1,127 @@
+<div>
+    <h6 class="text-sm-right">Offering:Service Title</h6>
+    <form #f="ngForm" class="form-horizontal">
+      <section>
+          <md-checkbox [(ngModel)]="model.isPartnership" name="partnership">Business Partnership</md-checkbox>
+          <md-checkbox [(ngModel)]="model.isExchange" name="exchange">Exchange</md-checkbox>
+          <md-checkbox [(ngModel)]="model.isDonate" name="donate">Donate</md-checkbox>
+          <md-checkbox [(ngModel)]="model.isInternship" name="internship">Internship</md-checkbox>
+          <md-checkbox [(ngModel)]="model.isMoney" name="money">Money</md-checkbox>
+      </section>
+
+      <md-input-container>
+          <input mdInput
+                 [(ngModel)]="model.fixedRateFrom"
+                 name="fixedFrom"
+                 type="text"
+                 class="form-control"
+                 color="form"
+                 placeholder="Fixes $">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="model.fixedRateTo"
+               name="fixedTo"
+               type="text"
+               class="form-control"
+               color="form"
+               placeholder="to">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="model.hourlyRateFrom"
+               name="hourlyRateFrom"
+               type="text"
+               class="form-control"
+               color="form"
+               placeholder="Hourly $">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="model.hourlyRateTo"
+               name="hourlyRateTo"
+               type="text"
+               class="form-control"
+               color="form"
+               placeholder="to">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="model.commissionFrom"
+               name="commissionFrom"
+               type="text"
+               class="form-control"
+               color="form"
+               placeholder="Commission $">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               [(ngModel)]="model.commissionTo"
+               name="commissionTo"
+               type="text"
+               class="form-control"
+               color="form"
+               placeholder="to">
+      </md-input-container>
+
+        <!--<div>-->
+            <!--<div class="form-group has-success">-->
+                <!--<label class="custom-control custom-checkbox col-sm-offset-2">-->
+                    <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.partnership" name="partnership">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">Business Partnership</span>-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <!--<div class="form-group has-warning">-->
+                <!--<label class="custom-control custom-checkbox col-sm-offset-2">-->
+                    <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.exchange" name="exchange">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">Exchange</span>-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <!--<div class="form-group has-danger m-b-0">-->
+                <!--<label class="custom-control custom-checkbox col-sm-offset-2">-->
+                    <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.donate" name="donate">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">Donate</span>-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <!--<div class="form-group has-warning">-->
+                <!--<label class="custom-control custom-checkbox col-sm-offset-2">-->
+                    <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.internship" name="internship">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">Internship</span>-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <!--<div class="form-group has-danger m-b-0">-->
+                <!--<label class="custom-control custom-checkbox col-sm-offset-2">-->
+                    <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.money" name="money">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">Money</span>-->
+                <!--</label>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div>-->
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-6 control-label">Fixes $</label>-->
+                <!--<input [(ngModel)]="model.fixed" name="name">-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-6 control-label">Hourly $</label>-->
+                <!--<input [(ngModel)]="model.hourlyRate" name="country" >-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-6 control-label">Commission $</label>-->
+                <!--<input  [(ngModel)]="model.commission" type="text"  name="province">-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="debug">{{ model | json }}</div>
+    </form>
+</div>

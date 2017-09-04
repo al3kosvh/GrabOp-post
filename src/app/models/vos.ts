@@ -206,6 +206,7 @@ export class VOPost {
   isOpenToAllianace: boolean;
   isVisibleToPublic: boolean;
 
+
   type: string;
   selected:boolean;
 

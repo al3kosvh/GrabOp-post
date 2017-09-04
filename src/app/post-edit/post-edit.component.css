@@ -1,0 +1,13 @@
+:host {
+    /*background: #1a2580;*/
+    color: #fff;
+    position: fixed;
+    left: auto;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    min-width: 450px;
+    z-index: 9999;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}

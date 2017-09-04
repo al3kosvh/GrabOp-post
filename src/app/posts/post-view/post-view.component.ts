@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {VOPost} from '../../models/vos';
-import {PostsService} from '../posts.service';
+import {PostsService} from '../../services/posts.service';
 import {ActivatedRoute} from '@angular/router';
-import {MyPostsService} from '../my-posts.service';
+import {MyPostsService} from '../../services/my-posts.service';
 import {VOUserExt} from '../../app-login/vouser';
 import {ProfileService} from '../../services/profile.service';
 

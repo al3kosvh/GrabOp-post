@@ -24,7 +24,7 @@ import {LandingAllianceComponent } from './landing/landing-alliance/landing-alli
 */
 
 
-import {MyPostsService} from './posts/my-posts.service';
+import {MyPostsService} from './services/my-posts.service';
 import {AuthHttpMy} from './services/auth-http';
 import {UploadService} from './services/upload.service';
 
@@ -51,7 +51,7 @@ import {PipesModule} from './pipes/pipes.module';
 import {PostsFilterPipe} from './pipes/posts-filter.pipe';
 import {PostsModule} from './posts/posts.module';
 import {LandingModule} from './landing/landing.module';
-// import {PostEditModule} from './post-edit/post-edit.module';
+import {PostEditModule} from './post-edit/post-edit.module';
 // import {PostEditComponent} from './post-edit/post-edit.component';
 
 
@@ -64,6 +64,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
+import {ConnectionService} from './services/connection.service';
+import {PostsService} from './services/posts.service';
 
 
 @NgModule({
@@ -92,18 +94,15 @@ import 'rxjs/add/operator/toPromise';
     // HomeModule,
     MySharedModule,
     PipesModule,
-   // PostEditModule
+    PostEditModule
     // PipesModule.forRoot()
   ],
   providers: [
     AuthHttpMy,
     UploadService,
-    //  LoginNewService,
-  //  UserEditService,
-   //  ModalWindowService,
-  //  SearchAdvancedService,
+    ConnectionService,
     MyPostsService,
-    // UploadService,
+    PostsService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [
