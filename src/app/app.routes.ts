@@ -5,9 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Route } from '@angular/router';
 import {LandingComponent} from './landing/landing.component';
 import {PostEditComponent} from './post-edit/post-edit.component';
-
-//import {LoginNewComponent} from "app/app-login/login-new/login-new.component";
-
+import {HomeComponent} from './home/home.component';
 
 const fallBackRoute: Route = {path: '**', redirectTo: '/guest'};
 
@@ -18,7 +16,8 @@ const routes: Routes = [
  // {path: 'join-us', loadChildren: 'app/app-login/login.module#LoginModule'},
   // {path:'join-us', loadChildren: 'app/app-login/login.module#LoginModule', outlet: 'slideRight'},
 //  {path: 'user-edit', loadChildren: 'app/user-edit/user-edit.module#UserEditModule'},
-  // {path: 'home',  loadChildren: 'app/home/home.module#HomeModule'},
+   //{path: 'home',  loadChildren: 'app/home/home.module#HomeModule'},
+  {path: 'home',  component: HomeComponent},
  // {path:'join-us',component:LoginNewComponent},
  // {path: 'settings',  loadChildren: 'app/settings/settings.module#SettingsModule'},
  //  {path: 'connections',  loadChildren: 'app/connection/connection.module#ConnectionModule'},

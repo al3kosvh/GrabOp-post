@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import {LandingComponent} from "./landing.component";
 import {MySharedModule} from '../shared/shared.module';
 import {MaterialModuleApp} from '../shared/material-app.module';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
   imports: [
     CommonModule,
     MySharedModule,
-    MaterialModuleApp
+    MaterialModuleApp,
+    RouterModule
   ],
   declarations: [
     LandingComponent

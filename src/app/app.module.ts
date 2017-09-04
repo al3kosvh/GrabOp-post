@@ -14,16 +14,6 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app.routes';
 
-
-
-/*
-import {LandingComponent } from './landing/landing.component';
-import {LandingHeaderComponent } from './landing/landing-header/landing-header.component';
-import {LandingSummaryComponent } from './landing/landing-summary/landing-summary.component';
-import {LandingAllianceComponent } from './landing/landing-alliance/landing-alliance.component';
-*/
-
-
 import {MyPostsService} from './services/my-posts.service';
 import {AuthHttpMy} from './services/auth-http';
 import {UploadService} from './services/upload.service';
@@ -66,6 +56,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import {ConnectionService} from './services/connection.service';
 import {PostsService} from './services/posts.service';
+import {HomeModule} from './home/home.module';
 
 
 @NgModule({
@@ -91,7 +82,7 @@ import {PostsService} from './services/posts.service';
     NavModule,
     PostsModule,
     LandingModule,
-    // HomeModule,
+    HomeModule,
     MySharedModule,
     PipesModule,
     PostEditModule
