@@ -15,7 +15,7 @@ import {
   mapGetPost,
   mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSend_UpdateNeed,
   mapPostSend_UpdateOffer
-} from '../models/map-functions';
+} from '../utils/map-functions';
 
 import {AuthHttpMy} from '../services/auth-http';
 import {MyPostsService} from '../services/my-posts.service';

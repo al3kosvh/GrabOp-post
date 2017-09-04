@@ -7,7 +7,7 @@ import {Observable}     from 'rxjs/Observable';
 import {Subject}    from 'rxjs/Subject';
 import {VOPost, VOResult, VOSettings} from "../models/vos";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {mapGetMyPosts, mapGetPost} from '../models/map-functions';
+import {mapGetMyPosts, mapGetPost} from '../utils/map-functions';
 
 @Injectable()
 export class PostsService{

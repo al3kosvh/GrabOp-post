@@ -4,7 +4,7 @@ import {VOSettings} from '../models/vos';
 import {Observable} from 'rxjs/Observable';
 import {VOUserExt} from '../app-login/vouser';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {mapGetPerson} from '../models/map-functions';
+import {mapGetPerson} from '../utils/map-functions';
 
 
 @Injectable()

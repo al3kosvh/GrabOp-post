@@ -1,10 +1,10 @@
-import {VOAlliance, VOAllianceMember, VOPost, VOpost_attachment} from './vos';
+import {VOAlliance, VOAllianceMember, VOPost, VOpost_attachment} from '../models/vos';
 import {
   SOaccount_expanded, SOservice_expanded, Need_CreateNeed, Need_UpdateNeed,
   Offer_CreateOffer, Offer_UpdateOffer, SOv_account, SOalliance, SOalliance_member,
   SOupdate_profile_req, SOattachment
-} from './server-objects';
-import {SONeedUpdateNeed} from './sos';
+} from '../models/server-objects';
+import {SONeedUpdateNeed} from '../models/sos';
 import {VOUserExt, VOUser} from '../app-login/vouser';
 
 // private mapPostSend(post:VOPost): SONeed_UpdateNeed {
@@ -237,7 +237,7 @@ export function mapAlliance(alliance: SOalliance): VOAlliance{
 export function mapGetPost(res): any {
 
   let service: SOservice_expanded = res.json();
-  console.log('mapGetMyPost res.json', res.json());
+//  console.log('mapGetMyPost res.json', res.json());
 
   let alliance: VOAlliance;
   let allianceMember: VOAllianceMember[];
@@ -299,7 +299,7 @@ export function mapGetMyPosts(res): any[] {
 
   let services: SOservice_expanded[] = res.json();
   // let posts: any = res.json();
-  console.log('mapGetMyPosts res.json', res.json());
+ // console.log('mapGetMyPosts res.json', res.json());
   return  services.map(function (service) {
       // console.log('remap posts 2', service);
     let alliance: VOAlliance;
@@ -408,7 +408,7 @@ export function mapGetMyPosts(res): any[] {
 export function mapGetPerson(res): VOUserExt {
 
   let account: SOaccount_expanded = res.json();
-  console.log('mapGetPerson res.json', res.json());
+//  console.log('mapGetPerson res.json', res.json());
   return {
       id: account.id.toString(),
       // sessionId: account,

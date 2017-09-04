@@ -7,7 +7,7 @@ import {Observable}     from 'rxjs/Observable';
 import {Subject}    from 'rxjs/Subject';
 import {VOPost, VOResult, VOSettings} from "../models/vos";
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {mapGetMyPosts} from '../models/map-functions';
+import {mapGetMyPosts} from '../utils/map-functions';
 
 
 @Injectable()
@@ -42,7 +42,7 @@ export class MyPostsService{
     console.log('updatePost', url);
 
     this.auth.put(url, post).subscribe(res => {
-      console.log('updatePost res', res);
+     // console.log('updatePost res', res);
       this.myPosts.forEach(function(item, i, arr){
         if (item.id === post.id) {
           arr[i] = post;
@@ -73,7 +73,7 @@ export class MyPostsService{
 
 
   private filterPostById(id: number): VOPost {
-    console.log('filterPostById', this.myPosts);
+   // console.log('filterPostById', this.myPosts);
     let arr = this.myPosts.filter(function (item) {
       return item.id === id;
     });
@@ -83,18 +83,18 @@ export class MyPostsService{
   private selectedMyPostId: number;
 
   getMyPostById(id: number): Observable<VOPost> {
-    console.log('select post  ' + id);
+   // console.log('select post  ' + id);
     this.selectedMyPostId = id;
     let sub: Subject<VOPost> = new Subject();
     // let posts: VOPost[] =  this.myPostsSub.getValue();
-    console.log('MY posts', this.myPosts);
+  //  console.log('MY posts', this.myPosts);
     if(this.myPosts){
       let post: VOPost = this.filterPostById(id);
       this.selectedMyPostSub.next(post);
     }else{
       this.getMyPosts()
         .subscribe(res => {
-          console.log('getMyPostById', res);
+       //   console.log('getMyPostById', res);
           // this.setPosts(res);
           this.selectedMyPost = this.filterPostById(id);
           sub.next(this.selectedMyPost);
@@ -120,14 +120,14 @@ export class MyPostsService{
   getMyPosts(): Observable<VOPost[]> {
   // getMyPosts():void {
     let url:string = VOSettings.getMyPosts;
-    console.log(' loading posts '+ url);
+   /// console.log(' loading posts '+ url);
     this.auth.get(url)
     // .map(res => console.log('res MAP', res))
     //   .map(res => mapGetMyPosts(res))
       .map(mapGetMyPosts)
       // .catch(this.handleError)
       .subscribe(res => {
-        console.log('getMyPosts ', res);
+   //     console.log('getMyPosts ', res);
         this.myPosts = res;
         this.broadcastMyPosts();
       });

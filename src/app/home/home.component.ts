@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
     this.userService.user$.subscribe(user =>{
+      if(!user) return;
       this.myUser = user;
       console.log('this.myUser.id', this.myUser);
       this.connectionService.getProfileConnectionsCount(this.myUser.id).subscribe(res => {
@@ -51,7 +52,8 @@ export class HomeComponent implements OnInit, OnChanges{
     // this.myPostsService.getMyPosts().subscribe(posts => {
     // this.myPostsService.getMyPosts();
     this.myPostsService.myPosts$.subscribe(posts => {
-      console.log('posts', posts);
+     // console.log('posts', posts);
+      if(!posts) return;
       this.myPosts = posts;
       // this.filterPosts(posts);
       // let ar1 =[];

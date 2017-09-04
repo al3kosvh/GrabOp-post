@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {mapUploadRes} from '../models/map-functions';
+import {mapUploadRes} from '../utils/map-functions';
 import {VOpost_attachment} from '../models/vos';
 
 @Injectable()
