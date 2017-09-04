@@ -1,0 +1,65 @@
+<div id="post-details">
+  <md-grid-list cols="4" rowHeight="70px">
+    <md-grid-tile colspan="4">
+      <h3>Title of Post: {{post?.title}}</h3>
+    </md-grid-tile>
+  </md-grid-list>
+
+  <md-grid-list cols="4" rowHeight="20px">
+    <md-grid-tile colspan="2">
+      <h5>City, Province: {{post?.city}}, {{post?.province}}</h5>
+    </md-grid-tile>
+    <!--<md-grid-tile colspan="1" rowspan="1">-->
+    <md-grid-tile></md-grid-tile>
+    <!--<md-grid-tile colspan="1" rowspan="1">-->
+    <md-grid-tile>
+      <h4>Page Views: {{post?.visitCount}}</h4>
+    </md-grid-tile>
+  </md-grid-list>
+
+  <div *ngIf="post && post.attachments.length">
+    <div id="postImages" *ngFor="let image of post.attachments; let i=index">
+      <md-grid-list *ngIf="i == 0" cols="4" rowHeight="200px">
+        <md-grid-tile>
+          <img  src="https://res.cloudinary.com/al3kosvh/image/upload/t_large/{{image.prefix}}/{{image.name}}" alt="POST IMG"/>
+        </md-grid-tile>
+      </md-grid-list>
+
+      <md-grid-list *ngIf="i>0 && i<4" cols="4" rowHeight="50px">
+        <md-grid-tile>
+          <img  src="https://res.cloudinary.com/al3kosvh/image/upload/t_medium/{{image.prefix}}/{{image.name}}" alt="POST IMG"/>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </div>
+
+  <div *ngIf="!post || !post.attachments.length">
+    <md-grid-list cols="4" rowHeight="200px">
+      <md-grid-tile>
+        IMG
+      </md-grid-tile>
+    </md-grid-list>
+
+    <md-grid-list cols="4" rowHeight="50px">
+      <md-grid-tile>
+        IMG
+      </md-grid-tile>
+      <md-grid-tile>
+        IMG
+      </md-grid-tile>
+      <md-grid-tile>
+        IMG
+      </md-grid-tile>
+      <md-grid-tile>
+        IMG
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+
+  <md-grid-list cols="4" rowHeight="50px">
+    <md-grid-tile>
+      post description:
+      {{post?.description}}
+    </md-grid-tile>
+  </md-grid-list>
+</div>

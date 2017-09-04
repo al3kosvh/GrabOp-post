@@ -1,0 +1,15 @@
+<!--<h4>{{message}}</h4>-->
+<md-list>
+  <md-list-item>
+    <md-input-container>
+      <textarea mdInput
+                [(ngModel)]="messageRes"
+                name="message"
+                placeholder="{{message}}"></textarea>
+    </md-input-container>
+  </md-list-item>
+  <md-list-item>
+    <button md-raised-button color="primary" (click)="clickOk()">OK</button>
+    <button md-raised-button color="accent" (click)="clickCancel()">CANCEL</button>
+  </md-list-item>
+</md-list>

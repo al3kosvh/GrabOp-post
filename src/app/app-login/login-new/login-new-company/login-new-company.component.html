@@ -1,0 +1,76 @@
+<div>
+    <form #f="ngForm"  autocomplete="off" novalidate>
+        <div>
+            <div>
+                <label>Job Title</label>
+                <input name="jobtitle"
+                       [(ngModel)]="person.jobtitle"
+                       required
+                       minlength="3"
+                       #jobtitle="ngModel"/>
+            </div>
+
+            <div>
+                <label>Company</label>
+                <input [(ngModel)]="person.company" type="text" class="form-control" name="company" />
+            </div>
+
+            <div>
+                <label>Occupation</label>
+                <input name="occupation"
+                       [(ngModel)]="person.occupation"
+                       type="radio"
+                       value="company"
+                       checked/>
+            </div>
+
+            <div>
+                <label>Self Employed</label>
+                <input name="occupation"
+                       [(ngModel)]="person.occupation"
+                       type="radio"
+                       value="selfemployed"/>
+            </div>
+
+            <div>
+                <label>Seeking an Opportunity</label>
+                <input name="occupation"
+                       [(ngModel)]="person.occupation"
+                       type="radio"
+                       value="seeling"/>
+            </div>
+
+            <div>
+                <label>Other</label>
+                <input name="occupation"
+                       [(ngModel)]="person.occupation"
+                       type="radio"
+                       value="other"/>
+            </div>
+
+            <!--<div>-->
+                <!--<img class="card-img-top s70x70" [src]="person.resume?'img/docx.png':''">-->
+                <!--<p class="card-text" *ngIf="person.resume">resume</p>-->
+
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label>upload resume</label>-->
+                <!--<input type="file" nane="file" (change)="onAddResumeChange($event)" />-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label>Skills</label>-->
+
+                <!--&lt;!&ndash; <div *ngFor="let skill of person.skillset; let i=index; trackBy:trackBySkills">-->
+                     <!--<a class="fa fa-minus-circle btn" (click)="onDeleteClick(i)"></a>-->
+                     <!--&lt;!&ndash;<input  [(ngModel)]="skill" name="skill"/> cannot assign to a reference or variable&ndash;&gt;-->
+                     <!--<input  [(ngModel)]="person.skillset[i]" [ngModelOptions]="{standalone: true}"/>-->
+                 <!--</div>&ndash;&gt;-->
+                <!--<a (click)="onAddClick()"></a>-->
+            <!--</div>-->
+        </div>
+        <button (click)="onSubmit()" [class.disabled]="(!f.valid)" class="valign blue col s3 right waves-effect waves-light btn">Update</button>
+    </form>
+    <a routerLink="../username" routerLinkActive="active">Username</a>
+    <a routerLink="../personal" routerLinkActive="active">Personal</a>
+    <div class="debug">{{ person | json }}</div>
+</div>

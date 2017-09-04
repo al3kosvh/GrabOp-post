@@ -1,0 +1,50 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="over">
+        <md-list>
+            <a md-list-item routerLink='/guest'>Guest</a>
+            <a md-list-item routerLink='/home'>Home</a>
+            <a md-list-item routerLink="/profile/17">Profile</a>
+            <a md-list-item routerLink="/search-advanced">Search</a>
+            <a md-list-item routerLink="/settings">Settings</a>
+            <a md-list-item routerLink="">Manage Services</a>
+            <a md-list-item routerLink="/connections">Connections hub</a>
+            <a md-list-item routerLink="">Manage Projects</a>
+            <a md-list-item routerLink="messages">Messages</a>
+            <a md-list-item routerLink="/user-edit">User Edit</a>
+            <a md-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]">Post Edit</a>
+            <!--<a md-list-item routerLink="/post-edit/7">Post Edit</a>-->
+            <a md-list-item routerLink="/opportunity/overview">Opportunity overview</a>
+            <a md-list-item routerLink="/opportunity/negotiation/7/5">Opportunity negotiation</a>
+            <a md-list-item routerLink="/posts/my-preview/7">My Post View</a>
+            <a md-list-item routerLink="/posts/person-preview/47/17">Post View</a>
+            <!--<a md-list-item [routerLink]="[{outlets: {'slideRight': null}}]">Post Edit Close</a>-->
+        </md-list>
+    </md-sidenav>
+
+
+    <md-toolbar  *ngIf="isLoggedIn$ | async">
+        <div class='nav-wrapper'>
+            <a class="fa fa-bars" (click)="sidenav.open()"> </a>
+            <app-nav></app-nav>
+        </div>
+    </md-toolbar>
+
+    <router-outlet></router-outlet>
+
+    <router-outlet name="slideRight"></router-outlet>
+
+    <!--<div [@routerAnimationRight]="prepareRouter(outlet)">-->
+    <!--<router-outlet name="slideRight" #outlet="outlet"></router-outlet>-->
+    <!--</div>-->
+
+    <router-outlet name="slideTop"></router-outlet>
+    <router-outlet name="slideBottom"></router-outlet>
+
+    <!--<div [@slideRightInOut]="prepareRouteTransition(r)">-->
+    <!--<router-outlet #r="slideRight" name="slideRight"></router-outlet>-->
+    <!--</div>-->
+
+
+    <app-grabop-footer></app-grabop-footer>
+
+</md-sidenav-container>

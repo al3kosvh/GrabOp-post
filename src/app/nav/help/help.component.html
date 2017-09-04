@@ -1,0 +1,43 @@
+<form (ngSubmit)="onSubmit()">
+  <md-grid-list cols="12" rowHeight="4:5">
+    <md-grid-tile></md-grid-tile>
+    <md-grid-tile [colspan]="10">
+      <h3> Oops, did we miss something?</h3>
+    </md-grid-tile>
+    <md-grid-tile></md-grid-tile>
+  </md-grid-list>
+  <md-grid-list cols="12" rowHeight="1:3">
+    <md-grid-tile [colspan]="1"></md-grid-tile>
+    <md-grid-tile [colspan]="10">
+      <md-input-container class="full-width">
+        <textarea [(ngModel)]="comment" name="comment" mdInput
+                  placeholder="Let us know and well make it right!"></textarea>
+      </md-input-container>
+    </md-grid-tile>
+  </md-grid-list>
+  <md-grid-tile [colspan]="2"></md-grid-tile>
+  <md-grid-list cols="12" rowHeight="5:6">
+    <md-grid-tile [colspan]="1"></md-grid-tile>
+    <md-grid-tile [colspan]="4">
+      <input type="file" hidden (change)="this.comment_file=$event" name="file" #file/>
+      <button type="button" md-button (click)="file.click()">
+        <md-icon>attachment</md-icon>
+        Add Files
+      </button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="6">
+      <input type="file" hidden (change)="this.comment_image=$event" name="image" #image/>
+      <button type="button" md-button (click)="image.click()">
+        <md-icon>add_a_photo</md-icon>
+        Add Photos
+      </button>
+    </md-grid-tile>
+
+    <md-grid-tile [colspan]="6">
+      <button type="button" md-button color="primary" (click)="onCloseClick()"> cancel</button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="4">
+      <button type="submit" md-raised-button color="primary"> send</button>
+    </md-grid-tile>
+  </md-grid-list>
+</form>

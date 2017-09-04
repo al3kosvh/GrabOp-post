@@ -1,0 +1,67 @@
+<!--<md-grid-list cols="1" rowHeight="250px">-->
+  <!--<md-grid-tile colspan="1">-->
+    <!--<md-list>-->
+      <!--<md-list-item>-->
+        <!--posted by:-->
+      <!--</md-list-item>-->
+      <!--<md-list-item>-->
+        <!--<small md-line>-->
+          <!--&lt;!&ndash;<img *ngIf="person.profile_pic"  src="https://res.cloudinary.com/al3kosvh/image/upload/t_round/{{person.profile_pic}}"/>&ndash;&gt;-->
+          <!--&lt;!&ndash;<img src="https://res.cloudinary.com/al3kosvh/image/upload/t_round/publicimages/zcccxyporoknp3vsebhl.jpg"/>&ndash;&gt;-->
+          <!--<img src="https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/publicimages/zcccxyporoknp3vsebhl.jpg"/>-->
+          <!--&lt;!&ndash;{{person?.profile_pic}}&ndash;&gt;-->
+          <!--{{person?.displayName}}-->
+        <!--</small>-->
+        <!--&lt;!&ndash;<small md-line>&ndash;&gt;-->
+          <!--&lt;!&ndash;{{person?.username}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</small>&ndash;&gt;-->
+        <!--<small md-line>-->
+          <!--{{person?.city}}, {{person?.province}}-->
+        <!--</small>-->
+      <!--</md-list-item>-->
+      <!--<md-list-item>-->
+        <!--posted on: {{post?.createdDate}}-->
+      <!--</md-list-item>-->
+      <!--<md-list-item>-->
+        <!--post info-->
+      <!--</md-list-item>-->
+      <!--<md-list-item>-->
+        <!--<small md-line>-->
+          <!--Comm: ${{post?.commissionFrom}} to {{post?.commissionTo}}-->
+        <!--</small>-->
+        <!--<small md-line>-->
+          <!--Fixed rate: ${{post?.fixedRateFrom}} to {{post?.fixedRateTo}}-->
+        <!--</small>-->
+        <!--<small md-line>-->
+          <!--Hourly rate: ${{post?.hourlyRateFrom}} to {{post?.hourlyRateTo}}-->
+        <!--</small>-->
+      <!--</md-list-item>-->
+    <!--</md-list>-->
+  <!--</md-grid-tile>-->
+<!--</md-grid-list>-->
+
+<md-grid-list cols="1" rowHeight="35px">
+  <md-grid-tile>
+    posted by:
+    <img src="https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/publicimages/zcccxyporoknp3vsebhl.jpg"/>
+    {{person?.displayName}}
+  </md-grid-tile>
+  <md-grid-tile>
+    {{person?.city}}, {{person?.province}}
+  </md-grid-tile>
+  <md-grid-tile>
+    posted on: {{post?.createdDate | date:'longDate'}}
+  </md-grid-tile>
+  <md-grid-tile>
+    post info:
+  </md-grid-tile>
+  <md-grid-tile>
+    Comm: ${{post?.commissionFrom}} to {{post?.commissionTo}}
+  </md-grid-tile>
+  <md-grid-tile>
+    Fixed rate: ${{post?.fixedRateFrom}} to {{post?.fixedRateTo}}
+  </md-grid-tile>
+  <md-grid-tile>
+    Hourly rate: ${{post?.hourlyRateFrom}} to {{post?.hourlyRateTo}}
+  </md-grid-tile>
+</md-grid-list>

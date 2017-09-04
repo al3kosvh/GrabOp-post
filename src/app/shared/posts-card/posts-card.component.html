@@ -1,0 +1,47 @@
+<md-card [class.selected]="post.isSelected">
+            <div class="image-container-{{size}}">
+                <img md-card-image class="image-{{size}}" src="{{urlIMG}}" />
+              <md-chip-list>
+                <md-chip color="accent" selected>{{post?.id}}</md-chip>
+                <!--<md-chip *ngIf="editButton"><a md-raised-button [routerLink]="['/post-edit/'+ post.id]">Edit</a></md-chip>-->
+                <md-chip *ngIf="editButton"><a md-raised-button [routerLink]="['',{outlets: {'slideRight': ['post-edit', post.id]}}]">Edit</a></md-chip>
+                <md-chip *ngIf="viewDetailsButton"><a md-raised-button [routerLink]="['/posts/person-preview/'+ post.id + '/' + idPerson]">view details</a></md-chip>
+                <md-chip *ngIf="viewMyDetailsButton"><a md-raised-button [routerLink]="['/posts/my-preview/'+ post.id]">view details</a></md-chip>
+              </md-chip-list>
+                <div [userClass]="'accountIMG'" [my-md-image]="imgURL" [size]="'70x70'"> </div>
+            </div>
+          <md-grid-list cols="12" rowHeight="1:3">
+            <md-grid-tile [colspan]="12">
+                <div class="deviceText-{{size}}">
+                    <span>{{post?.title}}</span>
+                </div>
+            </md-grid-tile>
+                <md-grid-tile class='vdivide' [colspan]="6">
+                  <md-list dense>
+                                <md-list-item>
+                                  <small>{{post?.city}},{{post?.province}}</small>
+                                </md-list-item>
+                              <md-list-item>
+                                <md-icon *ngFor="let icon of ['swap_horizontal', 'account_box','favorite','school']">
+                                  {{icon}}
+                                </md-icon>
+                              </md-list-item>
+                  </md-list>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="6">
+                  <md-list>
+                   <md-list-item>
+                     <small md-line>
+                      Comm: ${{post?.commissionFrom}} to {{post?.commissionTo}}
+                     </small>
+                     <small md-line>
+                      Fixed rate: ${{post?.fixedRateFrom}} to {{post?.fixedRateTo}}
+                     </small>
+                     <small md-line>
+                       Hourly rate: ${{post?.hourlyRateFrom}} to {{post?.hourlyRateTo}}
+                     </small>
+                   </md-list-item>
+                  </md-list>
+                </md-grid-tile>
+    </md-grid-list>
+</md-card>

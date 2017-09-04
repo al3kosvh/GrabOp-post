@@ -1,0 +1,52 @@
+<md-input-container><input mdInput placeholder="search"/></md-input-container>
+
+<a md-button routerLink='/home'>
+  <img src="assets/img/transparent_logo.png">
+</a>
+<a md-button [mdMenuTriggerFor]="exploreDropdown">
+  <md-icon>person_pin_circle</md-icon>
+</a>
+<md-menu #exploreDropdown="mdMenu" [overlapTrigger]="false">
+  <h5 class='black-text'>Business style</h5>
+  <div *ngFor='let option of ["Business Partnership","Exchange","Internship","Donate","Money"]'>
+    <button md-menu-item>
+      <a>{{option}}</a>
+    </button>
+  </div>
+  <h5 class='black-text'>Category</h5>
+  <div *ngFor='let option of ["Entertainment","Fashion","Finance"]'>
+    <button md-menu-item>
+      <a>{{option}}</a>
+    </button>
+  </div>
+</md-menu>
+<a md-button modal (click)='openHelp()'>
+  <md-icon>info</md-icon>
+</a>
+<a md-button [mdMenuTriggerFor]="appPost">
+  <md-icon>add_circle</md-icon>
+</a>
+<md-menu #appPost="mdMenu" [overlapTrigger]="false">
+  <!--<a md-menu-item [routerLink]="['/post-edit',{type:'need'}]">Post need</a>-->
+  <!--<a md-menu-item [routerLink]="['/post-edit',{type:'offer'}]">Post offer</a>-->
+
+  <!--<a md-menu-item [routerLink]="['/post-edit/-1/need']">Post need</a>-->
+  <!--<a md-menu-item [routerLink]="['/post-edit/-1/offer']">Post offer</a>-->
+
+  <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','need']}}]">Post need</a>
+  <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','offer']}}]">Post offer</a>
+</md-menu>
+<a md-button routerLink='/profile'>
+  <img width='30'
+       src='http://res.cloudinary.com/al3kosvh/image/upload/v1468698749/r_max/publicimages/zcccxyporoknp3vsebhl.jpg'/>
+</a>
+<a md-button [mdMenuTriggerFor]="appMenu">
+  <md-icon>list</md-icon>
+</a>
+<md-menu #appMenu="mdMenu" [overlapTrigger]="false">
+  <button md-menu-item routerLink='/settings'>Settings</button>
+  <button md-menu-item>How it Works</button>
+  <button md-menu-item>Feedback</button>
+  <button md-menu-item>Terms of Use</button>
+  <button md-menu-item routerLink='/guest'>Sign out</button>
+</md-menu>

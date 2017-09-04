@@ -1,0 +1,11 @@
+.heart-img{
+    content: url('./heart.png');
+}
+
+.download-android-img{
+    content: url('./download_android.png');
+}
+
+footer{
+  background-color: #d3d4d0;
+}
