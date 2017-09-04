@@ -15,7 +15,7 @@ import {MdDialog} from '@angular/material';
 })
 export class LandingComponent implements OnInit {
 
-  isLoggedIn$:Observable<boolean>;
+  isLoggedIn$: Observable<boolean>;
 
   summaryData: any[] = [
     {
@@ -38,39 +38,48 @@ export class LandingComponent implements OnInit {
   ];
 
 
-  postNeed:VOPost[] = [];
+  postNeed: VOPost[] = [];
 
   constructor(
               private route: ActivatedRoute,
               private modal: ModalWindowService,
-              private auth:AuthHttpMy,
-              private dialog:MdDialog
+              private auth: AuthHttpMy,
+              private dialog: MdDialog
   ) {
     this.isLoggedIn$ = auth.isLogedIn$;
   }
 
   ngOnInit() {
 
-    let login = this.route.snapshot.params.login;
-    if(login){
+    const login = this.route.snapshot.params.login;
+    if (!!login) {
       console.log('login', login);
       this.modal.openWindow(LoginPanelComponent, (res) => {
         console.log('LoginPanelComponent  ', res);
-      })
+      });
     }
   }
 
 
-  loginClick(){
+  loginClick() {
 
-    this.dialog.open(LoginPanelComponent, {
-      width:'400px',
-      height:'400px'
-    })
+    let ref = this.dialog.open(LoginPanelComponent, {
+      width: '400px',
+      height: '400px'
+    });
+
+    LoginPanelComponent.loggedIn = res=>{
+      console.log(res);
+      //if(res) {
+        setTimeout(()=>ref.close(), 2000);
+
+     // }
+
+    }
   }
 
-  logOutClick(){
-    this.auth.logout()
+  logOutClick() {
+    this.auth.logout();
   }
 
 }
