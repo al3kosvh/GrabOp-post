@@ -1,5 +1,5 @@
 ﻿<md-sidenav-container>
-    <md-sidenav #sidenav mode="over" (open)="true">
+    <md-sidenav #sidenav>
         <md-list>
             <a md-list-item routerLink='/guest'>Guest</a>
             <a md-list-item routerLink='/home'>Home</a>
@@ -22,7 +22,7 @@
     </md-sidenav>
 
 
-    <md-toolbar *ngIf="isLoggedIn$ | async">
+    <md-toolbar *ngIf="isLoggedIn | async">
         <div class='nav-wrapper'>
             <a class="fa fa-bars" (click)="sidenav.open()"> </a>
             <app-nav></app-nav>
@@ -31,14 +31,14 @@
 
     <router-outlet></router-outlet>
 
-    <router-outlet name="slideRight"></router-outlet>
+    <!--<router-outlet name="slideRight"></router-outlet>-->
 
     <!--<div [@routerAnimationRight]="prepareRouter(outlet)">-->
     <!--<router-outlet name="slideRight" #outlet="outlet"></router-outlet>-->
     <!--</div>-->
 
-    <router-outlet name="slideTop"></router-outlet>
-    <router-outlet name="slideBottom"></router-outlet>
+    <!--<router-outlet name="slideTop"></router-outlet>-->
+    <!--<router-outlet name="slideBottom"></router-outlet>-->
 
     <!--<div [@slideRightInOut]="prepareRouteTransition(r)">-->
     <!--<router-outlet #r="slideRight" name="slideRight"></router-outlet>-->
