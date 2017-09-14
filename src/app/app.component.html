@@ -1,5 +1,5 @@
-<md-sidenav-container>
-    <md-sidenav #sidenav mode="over">
+﻿<md-sidenav-container>
+    <md-sidenav #sidenav mode="over" (open)="true">
         <md-list>
             <a md-list-item routerLink='/guest'>Guest</a>
             <a md-list-item routerLink='/home'>Home</a>
@@ -22,7 +22,7 @@
     </md-sidenav>
 
 
-    <md-toolbar  *ngIf="isLoggedIn$ | async">
+    <md-toolbar *ngIf="isLoggedIn$ | async">
         <div class='nav-wrapper'>
             <a class="fa fa-bars" (click)="sidenav.open()"> </a>
             <app-nav></app-nav>
