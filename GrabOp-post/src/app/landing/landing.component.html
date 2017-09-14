@@ -1,63 +1,60 @@
-<div>
-    <div id='banner'>
-        <md-grid-list cols="12">
-            <md-grid-tile [colspan]="3">
-                <img class='transparent_logo'>
-            </md-grid-tile>
-            <md-grid-tile [colspan]="5"></md-grid-tile>
-            <div *ngIf="isLoggedIn$ | async">
-                <md-grid-tile><a md-raised-button color="primary" routerLink="/home">HOME</a></md-grid-tile>
-                <md-grid-tile><a md-raised-button color="accent" (click)="logOutClick($event)">Logout</a></md-grid-tile>
-            </div>
-            <div *ngIf="!(isLoggedIn$ | async)">
-                <md-grid-tile><a md-raised-button color="accent" routerLink="/join-us">JOIN US</a></md-grid-tile>
-                <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
-                <md-grid-tile>
-                    <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
-                </md-grid-tile>
-            </div>
+﻿<div>
+  <div id='banner'>
+    <md-grid-list cols="12">
+      <md-grid-tile [colspan]="3">
+        <img class='transparent_logo'>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="5"></md-grid-tile>
+      <div *ngIf="isLoggedIn$ | async">
+        <md-grid-tile><a md-raised-button color="primary" routerLink="/home">HOME</a></md-grid-tile>
+        <md-grid-tile><a md-raised-button color="accent" (click)="logOutClick($event)">Logout</a></md-grid-tile>
+      </div>
+      <div *ngIf="!(isLoggedIn$ | async)">
+        <md-grid-tile><a md-raised-button color="accent" routerLink="/join-us">JOIN US</a></md-grid-tile>
+        <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
+        <md-grid-tile>
+          <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+        </md-grid-tile>
+      </div>
+    </md-grid-list>
+    <md-grid-list cols="12" rowHeight="1:16">
+      <md-grid-tile [colspan]="4"></md-grid-tile>
+      <md-grid-tile [colspan]="2">
+        <md-input-container color="info">
+          <input mdInput placeholder="start your search here" />
+        </md-input-container>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="2">
+        <a md-raised-button color="primary" routerLink='/search'>
+          <md-icon>search</md-icon>
+          Search
+        </a>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
 
+  <h2 class="heading">Do These Cool Things With GrapOp</h2>
+  <md-grid-list cols="4">
+    <md-grid-tile *ngFor="let item of summaryData">
+      <img src='{{item.Image}}' />
+    </md-grid-tile>
+    <md-grid-tile cols="4" *ngFor="let item of summaryData">
+      <p>
+        {{item.Text}}
+      </p>
+    </md-grid-tile>
+  </md-grid-list>
 
+  <md-grid-list cols="2" rowHeight="9:10">
 
-        </md-grid-list>
-        <md-grid-list cols="12" rowHeight="1:16">
-            <md-grid-tile [colspan]="4"></md-grid-tile>
-            <md-grid-tile [colspan]="2">
-                <md-input-container color="info">
-                    <input mdInput placeholder="start your search here"/>
-                </md-input-container>
-            </md-grid-tile>
-            <md-grid-tile [colspan]="2">
-                <a md-raised-button color="primary" routerLink='/search'>
-                    <md-icon>search</md-icon>
-                    Search
-                </a>
-            </md-grid-tile>
-        </md-grid-list>
+    <h2 class="heading">Featured Services</h2>
+
+    <div *ngFor="let item of postNeed; let i=index">
+      <md-grid-tile *ngIf="i<4">
+        <app-posts-card [post]="item"></app-posts-card>
+      </md-grid-tile>
     </div>
-
-    <h2 class="heading">Do These Cool Things With GrapOp</h2>
-    <md-grid-list cols="4">
-        <md-grid-tile *ngFor="let item of summaryData">
-            <img src='{{item.Image}}'/>
-        </md-grid-tile>
-        <md-grid-tile cols="4" *ngFor="let item of summaryData">
-            <p>
-                {{item.Text}}
-            </p>
-        </md-grid-tile>
-    </md-grid-list>
-
-    <md-grid-list cols="2" rowHeight="9:10">
-
-        <h2 class="heading">Featured Services</h2>
-
-        <div *ngFor="let item of postNeed; let i=index">
-            <md-grid-tile *ngIf="i<4">
-                <app-posts-card  [post]="item"></app-posts-card>
-            </md-grid-tile>
-        </div>
-    </md-grid-list>
+  </md-grid-list>
 
 
 </div>

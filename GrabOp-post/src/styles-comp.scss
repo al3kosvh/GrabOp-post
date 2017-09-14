@@ -1,7 +1,5 @@
-
+﻿
 /* You can add global styles to this file, and also import other style files */
-/*
-
 
 @import '~@angular/material/theming';
 
@@ -9,9 +7,9 @@
 
 $grab-app-primary: mat-palette($mat-blue);
 
-$grab-app-accent: mat-palette($mat-orange, A200, A100, A400);
+$grab-app-accent: mat-palette($mat-light-blue);
 
-$grab-app-warn: mat-palette($mat-deep-orange);
+$grab-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $grab-app-theme: mat-light-theme($grab-app-primary, $grab-app-accent, $grab-app-warn);
@@ -20,19 +18,3 @@ $grab-app-theme: mat-light-theme($grab-app-primary, $grab-app-accent, $grab-app-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($grab-app-theme);
-
-.form-theme {
-  $grab-alt-primary: mat-palette($mat-teal);
-  $grab-alt-accent: mat-palette($mat-amber);
-
-
-  $grab-alt-theme: mat-light-theme($grab-alt-primary, $grab-alt-accent);
-
-  @include angular-material-theme($grab-alt-theme);
-
-}
-
-.vdivide {
-  border-right: 1px solid grey;
-}
-*/
