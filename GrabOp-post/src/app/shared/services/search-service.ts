@@ -1,20 +1,17 @@
+﻿import { Injectable, EventEmitter } from '@angular/core';
+import { Http, Response, } from '@angular/http';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
-
-import {Injectable, EventEmitter} from '@angular/core';
-import {Http, Response,} from '@angular/http';
-import {Observable}     from 'rxjs';
-import {Subject}    from 'rxjs';
-
-import {VOSettings, VOService, VOResult, VOPost, VOImage, VOCategory, VOSearch} from "../models/vos";
-
+import { VOSettings, VOService, VOResult, VOPost, VOImage, VOCategory, VOSearch } from "../../models/vos";
 
 @Injectable()
 export class SearchService {
 
     posts$: Observable<VOPost[]>;
     private postSub: Subject<VOPost[]>;
-    posts: VOPost[] ;
-    allPosts: VOPost[] ;
+    posts: VOPost[];
+    allPosts: VOPost[];
 
     private __posts: VOService[];
     private _currentService: VOService;

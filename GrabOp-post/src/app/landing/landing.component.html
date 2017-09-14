@@ -1,6 +1,22 @@
 ﻿<div>
   <div id='banner'>
-    <md-grid-list cols="12">
+    <div fxLayout="row">
+      <div>
+        <img class='transparent_logo' fxLayoutAlign="space-between">
+      </div>
+      <div>
+        <div *ngIf="isLoggedIn | async">
+          <button md-raised-button color="primary" routerLink="/home">HOME</button>
+          <button md-raised-button color="accent" (click)="logOutClick($event)">Logout</button>
+        </div>
+        <div *ngIf="!(isLoggedIn | async)">
+          <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
+          <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
+          <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+        </div>
+      </div>
+    </div>
+    <!--<md-grid-list cols="12">
       <md-grid-tile [colspan]="3">
         <img class='transparent_logo'>
       </md-grid-tile>
@@ -11,7 +27,7 @@
       </div>
       <div *ngIf="!(isLoggedIn$ | async)">
         <md-grid-tile><a md-raised-button color="accent" routerLink="/join-us">JOIN US</a></md-grid-tile>
-        <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
+        <md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>
         <md-grid-tile>
           <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
         </md-grid-tile>
@@ -30,7 +46,7 @@
           Search
         </a>
       </md-grid-tile>
-    </md-grid-list>
+    </md-grid-list>-->
   </div>
 
   <h2 class="heading">Do These Cool Things With GrapOp</h2>

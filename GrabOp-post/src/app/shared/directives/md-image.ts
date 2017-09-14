@@ -1,5 +1,4 @@
-import {Directive, Input, OnChanges, ElementRef, OnInit, Renderer} from "@angular/core";
-
+﻿import {Directive, Input, OnChanges, ElementRef, OnInit, Renderer} from "@angular/core";
 
 @Directive({
     selector: '[my-md-image]'
@@ -10,7 +9,7 @@ import {Directive, Input, OnChanges, ElementRef, OnInit, Renderer} from "@angula
     }
 })
 
-export class MyMdImage implements OnInit {
+export class MdImage implements OnInit {
 
     @Input("my-md-image") url: string;
     @Input() shape: string = 'round';
@@ -18,7 +17,6 @@ export class MyMdImage implements OnInit {
     @Input("userClass") userClass: string = '';
 
     classNames: string;
-
 
     constructor(private el: ElementRef, private renderer: Renderer) {
     }
@@ -30,11 +28,8 @@ export class MyMdImage implements OnInit {
         // this.renderer.setElementClass(this.el.nativeElement,this.size,false);
         // this.renderer.setElementClass(this.el.nativeElement,this.shape,true);
 
-
         // console.log(this.classNames )
-
     }
-
 
 }
 

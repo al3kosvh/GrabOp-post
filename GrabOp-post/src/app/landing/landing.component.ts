@@ -1,85 +1,85 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ModalWindowService} from '../services/modal-window.service';
-import {LoginPanelComponent} from '../app-login/login-panel/login-panel.component';
-import {Observable} from 'rxjs/Observable';
-import {AuthHttpMy} from '../services/auth-http';
-import {VOPost} from '../models/vos';
-import {MdDialog} from '@angular/material';
+﻿import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ModalWindowService } from '../services/modal-window.service';
+import { LoginPanelComponent } from '../app-login/login-panel/login-panel.component';
+import { Observable } from 'rxjs/Observable';
+import { AuthHttpMy } from '../services/auth-http';
+import { VOPost } from '../models/vos';
+import { MdDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],
-  providers: []
+    selector: 'app-landing',
+    templateUrl: './landing.component.html',
+    styleUrls: ['./landing.component.css'],
+    providers: []
 })
 export class LandingComponent implements OnInit {
 
-  isLoggedIn$: Observable<boolean>;
+    isLoggedIn$: Observable<boolean>;
 
-  summaryData: any[] = [
-    {
-      Image: 'assets/img/search-opportunities.png',
-      Text: 'Find jobs, products, services and talent'
-    },
-    {
-      Image: 'assets/img/promote-yourself.png',
-      Text: 'Post your offers and your needs'
-    },
-    {
-      Image: 'assets/img/create-alliances.png',
-      Text: 'Join forces with other members to expand opportunities'
-    },
-    {
-      Image: 'assets/img/do-it-your-way.png',
-      Text: 'Join forces with other members to expand opportunities'
-    },
+    summaryData: any[] = [
+        {
+            Image: 'assets/img/search-opportunities.png',
+            Text: 'Find jobs, products, services and talent'
+        },
+        {
+            Image: 'assets/img/promote-yourself.png',
+            Text: 'Post your offers and your needs'
+        },
+        {
+            Image: 'assets/img/create-alliances.png',
+            Text: 'Join forces with other members to expand opportunities'
+        },
+        {
+            Image: 'assets/img/do-it-your-way.png',
+            Text: 'Join forces with other members to expand opportunities'
+        },
 
-  ];
+    ];
 
 
-  postNeed: VOPost[] = [];
+    postNeed: VOPost[] = [];
 
-  constructor(
-              private route: ActivatedRoute,
-              private modal: ModalWindowService,
-              private auth: AuthHttpMy,
-              private dialog: MdDialog
-  ) {
-    this.isLoggedIn$ = auth.isLogedIn$;
-  }
-
-  ngOnInit() {
-
-    const login = this.route.snapshot.params.login;
-    if (!!login) {
-      console.log('login', login);
-      this.modal.openWindow(LoginPanelComponent, (res) => {
-        console.log('LoginPanelComponent  ', res);
-      });
+    constructor(
+        private route: ActivatedRoute,
+        private modal: ModalWindowService,
+        private auth: AuthHttpMy,
+        private dialog: MdDialog
+    ) {
+        this.isLoggedIn$ = auth.isLogedIn$;
     }
-  }
 
+    ngOnInit() {
 
-  loginClick() {
-
-    let ref = this.dialog.open(LoginPanelComponent, {
-      width: '400px',
-      height: '400px'
-    });
-
-    LoginPanelComponent.loggedIn = res=>{
-      console.log(res);
-      //if(res) {
-        setTimeout(()=>ref.close(), 2000);
-
-     // }
-
+        const login = this.route.snapshot.params.login;
+        if (!!login) {
+            console.log('login', login);
+            this.modal.openWindow(LoginPanelComponent, (res) => {
+                console.log('LoginPanelComponent  ', res);
+            });
+        }
     }
-  }
 
-  logOutClick() {
-    this.auth.logout();
-  }
+
+    loginClick() {
+
+        let ref = this.dialog.open(LoginPanelComponent, {
+            width: '400px',
+            height: '400px'
+        });
+
+        LoginPanelComponent.loggedIn = res => {
+            console.log(res);
+            //if(res) {
+            setTimeout(() => ref.close(), 2000);
+
+            // }
+
+        }
+    }
+
+    logOutClick() {
+        this.auth.logout();
+    }
 
 }

@@ -1,8 +1,8 @@
-#banner{
+﻿#banner{
     /*background: url('app/img/home_page/landing.jpg') no-repeat center center;*/
     background: url('./landing.jpg') no-repeat center center;
-    background-size:cover;
-    height:700px;
+    /*background-size:cover;*/
+    height:550px;
 }
 
 .transparent_logo{
