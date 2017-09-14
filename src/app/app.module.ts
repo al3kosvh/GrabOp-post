@@ -6,11 +6,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-/*import {
-  MaterialModule, MdSidenavModule, MdMenuModule, MdButtonModule, MdCheckboxModule, MdRadioModule,
-  MdCardModule, MdDialog, MdGridListModule, MdListModule, MdIconModule
-} from '@angular/material';*/
-
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
