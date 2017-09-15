@@ -15,10 +15,6 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="src\app\shared\components\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <NgProjectAssetsFile Condition="'$(ProjectAssetsFile)' != ''">$(ProjectAssetsFile)</NgProjectAssetsFile>
     <NgProjectAssetsFile Condition="'$(NgProjectAssetsFile)' == ''">$(BaseIntermediateOutputPath)/project.assets.json</NgProjectAssetsFile>

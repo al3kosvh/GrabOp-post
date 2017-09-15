@@ -9,7 +9,7 @@
     }
 })
 
-export class MdImage implements OnInit {
+export class MdImageDirective implements OnInit {
 
     @Input("my-md-image") url: string;
     @Input() shape: string = 'round';

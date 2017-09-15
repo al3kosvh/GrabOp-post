@@ -25,7 +25,7 @@ import { PostEditModule } from './post-edit/post-edit.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { LoginPanelComponent } from './app-login/login-panel/login-panel.component';
-import { GrabopFooterComponent } from "./shared/grabop-footer/grabop-footer.component";
+import { GrabopFooterComponent } from "./shared/components/grabop-footer/grabop-footer.component";
 
 // Services
 import { MyPostsService } from './services/my-posts.service';

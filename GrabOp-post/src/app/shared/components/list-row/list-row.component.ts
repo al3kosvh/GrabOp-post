@@ -5,18 +5,16 @@ import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
     selector: 'list-row',
-    template: `
-<div>      
-      <li><span>{{tiitle}}</span> <span>{{total}}</span></li>
-</div>
-`
+    templateUrl: './list-row.component.html',
+    styleUrls: ['./list-row.component.css']
 })
-export class ListRow implements OnInit {
-    @Input() my_item: any;
+export class ListRowComponent implements OnInit {
+
+    @Input() myItem: any;
     size: number = 256;
     title: string;
-    total: number
-    tiitle: string;
+    total: number;
+
     constructor() {
 
     }
