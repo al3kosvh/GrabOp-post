@@ -31,7 +31,6 @@ const homeRoute: Routes = [
     }
 ];
 
-
 @NgModule({
     imports: [
         CommonModule,

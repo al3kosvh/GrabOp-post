@@ -1,8 +1,8 @@
-import { PostsFilterAlliancePipe } from './posts-filter-alliance.pipe';
+﻿import { PostsFilterAlliancePipe } from './posts-filter-alliance.pipe';
 
 describe('PostsFilterAlliancePipe', () => {
-  it('create an instance', () => {
-    const pipe = new PostsFilterAlliancePipe();
-    expect(pipe).toBeTruthy();
-  });
+    it('create an instance', () => {
+        const pipe = new PostsFilterAlliancePipe();
+        expect(pipe).toBeTruthy();
+    });
 });

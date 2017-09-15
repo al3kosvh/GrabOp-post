@@ -1,10 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalWindowService } from '../services/modal-window.service';
-import { LoginPanelComponent } from '../app-login/login-panel/login-panel.component';
+import { ModalWindowService } from '../../../shared/services/modal-window.service';
+import { LoginPanelComponent } from '../../../app-login/login-panel/login-panel.component';
 import { Observable } from 'rxjs/Observable';
-import { AuthHttpMy } from '../services/auth-http';
-import { VOPost } from '../models/vos';
+import { AuthHttpMy } from '../../../services/auth-http';
+import { VOPost } from '../../../models/vos';
 import { MdDialog } from '@angular/material';
 
 @Component({

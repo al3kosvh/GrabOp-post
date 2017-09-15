@@ -8,7 +8,7 @@ import { VOUserExt } from '../../vouser';
 import { confirmPassword } from '../../login-validators/confirmPassword';
 import { CheckEmailDirective } from '../../login-validators/check-email.directive';
 
-import { ModalWindowService } from '../../../services/modal-window.service';
+import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { MdDialog } from '@angular/material';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 import { UploadService } from '../../../services/upload.service';

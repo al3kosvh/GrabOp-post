@@ -1,31 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {LoginNewService} from '../login-new/login-new.service';
-import {ModalWindowService} from '../../services/modal-window.service';
-import {LoginNewComponent} from '../login-new/login-new.component';
+﻿import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
+import { LoginNewService } from '../login-new/login-new.service';
+import { ModalWindowService } from '../../shared/services/modal-window.service';
+import { LoginNewComponent } from '../login-new/login-new.component';
 
 @Component({
-  selector: 'app-login-new-button',
-  templateUrl: './login-new-button.component.html',
-  styleUrls: ['./login-new-button.component.css']
+    selector: 'app-login-new-button',
+    templateUrl: './login-new-button.component.html',
+    styleUrls: ['./login-new-button.component.css']
 })
 export class LoginNewButtonComponent implements OnInit {
 
-  selectedOption: string;
+    selectedOption: string;
 
-  constructor(
-    private dialog: MdDialog,
-    loginNewService: LoginNewService,
-    private modal: ModalWindowService
-  ) { }
+    constructor(
+        private dialog: MdDialog,
+        loginNewService: LoginNewService,
+        private modal: ModalWindowService
+    ) { }
 
-  ngOnInit() {  }
+    ngOnInit() { }
 
-  loginClick(evt) {
-    this.modal.openWindow(LoginNewComponent, (res) => {
-      console.log('LoginNewComponent  ', res);
-    });
-  }
+    loginClick(evt) {
+        this.modal.openWindow(LoginNewComponent, (res) => {
+            console.log('LoginNewComponent  ', res);
+        });
+    }
 
 }
 //

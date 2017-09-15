@@ -1,4 +1,4 @@
-<md-grid-list cols="3" rowHeight="70px">
+﻿<md-grid-list cols="3" rowHeight="70px">
   <md-grid-tile colspan="3">
     <h2>POST VIEW</h2>
   </md-grid-tile>
@@ -11,31 +11,28 @@
         <app-post-details [post]="post"></app-post-details>
       </md-grid-tile>
       <!--<md-grid-tile>-->
-        <!--<md-grid-list cols="1" rowHeight="200px" style="width: 100%">-->
-
-          <!--<md-grid-tile>-->
-            <!--<md-grid-list cols="2" rowHeight="300px" style="width: 100%">-->
-              <!--<h3>Posts need</h3>-->
-              <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'need'; let i=index">-->
-                <!--<md-grid-tile *ngIf="i<4">-->
-                  <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
-                <!--</md-grid-tile>-->
-              <!--</div>-->
-            <!--</md-grid-list>-->
-          <!--</md-grid-tile>-->
-
-          <!--<md-grid-tile>-->
-            <!--<md-grid-list cols="2"  rowHeight="200px" style="width: 100%">-->
-              <!--<h3>Posts offer</h3>-->
-              <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">-->
-                <!--<md-grid-tile *ngIf="i<4">-->
-                  <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
-                <!--</md-grid-tile>-->
-              <!--</div>-->
-            <!--</md-grid-list>-->
-          <!--</md-grid-tile>-->
-
-        <!--</md-grid-list>-->
+      <!--<md-grid-list cols="1" rowHeight="200px" style="width: 100%">-->
+      <!--<md-grid-tile>-->
+      <!--<md-grid-list cols="2" rowHeight="300px" style="width: 100%">-->
+      <!--<h3>Posts need</h3>-->
+      <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'need'; let i=index">-->
+      <!--<md-grid-tile *ngIf="i<4">-->
+      <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
+      <!--</md-grid-tile>-->
+      <!--</div>-->
+      <!--</md-grid-list>-->
+      <!--</md-grid-tile>-->
+      <!--<md-grid-tile>-->
+      <!--<md-grid-list cols="2"  rowHeight="200px" style="width: 100%">-->
+      <!--<h3>Posts offer</h3>-->
+      <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">-->
+      <!--<md-grid-tile *ngIf="i<4">-->
+      <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
+      <!--</md-grid-tile>-->
+      <!--</div>-->
+      <!--</md-grid-list>-->
+      <!--</md-grid-tile>-->
+      <!--</md-grid-list>-->
       <!--</md-grid-tile>-->
     </md-grid-list>
   </md-grid-tile>
@@ -69,20 +66,20 @@
 </md-grid-list>
 
 
-  <md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
-    <h3>Posts need</h3>
-    <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
-      <md-grid-tile *ngIf="i<4">
-        <app-posts-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></app-posts-card>
-      </md-grid-tile>
-    </div>
-  </md-grid-list>
+<md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
+  <h3>Posts need</h3>
+  <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
+    <md-grid-tile *ngIf="i<4">
+      <app-posts-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></app-posts-card>
+    </md-grid-tile>
+  </div>
+</md-grid-list>
 
-  <md-grid-list cols="2"  rowHeight="4:5" style="width: 100%">
-    <h3>Posts offer</h3>
-    <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
-      <md-grid-tile *ngIf="i<4">
-        <app-posts-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></app-posts-card>
-      </md-grid-tile>
-    </div>
-  </md-grid-list>
+<md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
+  <h3>Posts offer</h3>
+  <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
+    <md-grid-tile *ngIf="i<4">
+      <app-posts-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></app-posts-card>
+    </md-grid-tile>
+  </div>
+</md-grid-list>

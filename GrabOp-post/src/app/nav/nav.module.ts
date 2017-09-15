@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavComponent } from './nav.component';
 import { HelpComponent } from './help/help.component';
-import { ModalWindowService } from "../services/modal-window.service";
+import { ModalWindowService } from "../shared/services/modal-window.service";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from '../shared/shared.module';
 

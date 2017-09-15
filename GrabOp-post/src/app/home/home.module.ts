@@ -1,5 +1,4 @@
-﻿
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
@@ -11,8 +10,7 @@ import { UserBioComponent } from './user-bio/user-bio.component';
 import { ProfileProgressComponent } from './profile-progress/profile-progress.component';
 import { UserCommentsComponent } from './user-comments/user-comments.component';
 import { SharedModule } from '../shared/shared.module';
-import { MdButtonModule, MdGridListModule, MdListModule } from '@angular/material';
-import { ModalWindowService } from '../services/modal-window.service';
+import { ModalWindowService } from '../shared/services/modal-window.service';
 import { MyPostsService } from '../services/my-posts.service';
 import { PostsFilterPipe } from '../pipes/posts-filter.pipe';
 import { PipesModule } from '../pipes/pipes.module';
@@ -29,10 +27,7 @@ export const homeRouting = RouterModule.forChild(homeRoute);
         homeRouting,
         CommonModule,
         SharedModule,
-        PipesModule,
-        MdGridListModule,
-        MdButtonModule,
-        MdListModule,
+        PipesModule
     ],
     declarations: [
         HomeComponent,
@@ -41,11 +36,9 @@ export const homeRouting = RouterModule.forChild(homeRoute);
         UserCommentsComponent
         // PostsFilterPipe
     ],
-
     providers: [
         HomeService
     ],
-
     entryComponents: [UserCommentsComponent]
 })
 export class HomeModule { }

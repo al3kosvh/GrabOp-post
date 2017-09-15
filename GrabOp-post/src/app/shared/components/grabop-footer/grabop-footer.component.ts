@@ -23,7 +23,6 @@ export class GrabopFooterComponent implements OnInit {
         this.isLoggedIn$ = auth.isLogedIn$;
     }
 
-
     ngOnInit() { }
 
     loginClick() {

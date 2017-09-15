@@ -2,8 +2,10 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { LandingComponent } from "./landing.component";
 import { SharedModule } from '../shared/shared.module';
+
+// Components
+import { LandingComponent } from "./components/landing/landing.component";
 
 @NgModule({
     imports: [

@@ -1,19 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {VOPost} from '../../models/vos';
+﻿import { Component, Input, OnInit } from '@angular/core';
+import { VOPost } from '../../models/vos';
 
 @Component({
-  selector: 'app-post-details',
-  templateUrl: './post-details.component.html',
-  styleUrls: ['./post-details.component.css']
+    selector: 'app-post-details',
+    templateUrl: './post-details.component.html',
+    styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
 
-  @Input() post: VOPost;
+    @Input() post: VOPost;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-    console.log('post-details', this.post);
-  }
+    ngOnInit() {
+        console.log('post-details', this.post);
+    }
 
 }

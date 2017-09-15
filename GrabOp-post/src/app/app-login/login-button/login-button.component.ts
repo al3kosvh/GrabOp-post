@@ -1,38 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {LoginPanelComponent} from '../login-panel/login-panel.component';
+﻿import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
+import { LoginPanelComponent } from '../login-panel/login-panel.component';
 // import {ModalWindowService} from '../../services/modal-window.service';
 
 
 @Component({
-  selector: 'app-login-button',
-  templateUrl: './login-button.component.html',
-  styleUrls: ['./login-button.component.css']
+    selector: 'app-login-button',
+    templateUrl: './login-button.component.html',
+    styleUrls: ['./login-button.component.css']
 })
 export class LoginButtonComponent implements OnInit {
 
-  selectedOption: string;
+    selectedOption: string;
 
-  constructor(
-    private dialog: MdDialog
-   // private modal: ModalWindowService
-  ) { }
+    constructor(
+        private dialog: MdDialog
+        // private modal: ModalWindowService
+    ) { }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+    }
 
-  loginClick(evt){
+    loginClick(evt) {
 
-    this.dialog.open(LoginPanelComponent, {
-      width:'400px',
-      height:'400px'
-    })
+        this.dialog.open(LoginPanelComponent, {
+            width: '400px',
+            height: '400px'
+        })
 
 
-    /*this.modal.openWindow(LoginPanelComponent, (res) => {
-      console.log('LoginPanelComponent  ', res);
-    });*/
-  }
+        /*this.modal.openWindow(LoginPanelComponent, (res) => {
+          console.log('LoginPanelComponent  ', res);
+        });*/
+    }
 
 }
