@@ -1,64 +1,43 @@
-<footer>
-    <md-grid-list cols="12">
-        <md-grid-tile [colspan]="12">
-            <h4 class='col s12 center'>Get started today, it's free!</h4>
-        </md-grid-tile>
-
-        <div *ngIf="!(isLoggedIn$ | async)">
-            <md-grid-tile><a md-raised-button color="accent" routerLink="/join-us">JOIN US</a></md-grid-tile>
-            <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
-            <md-grid-tile>
-                <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
-            </md-grid-tile>
+﻿<footer>
+  <div fxLayout="column">    
+    <div *ngIf="!(isLoggedIn | async)" fxLayout="column" fxLayoutAlign="center center">
+      <div fxLayout="row">
+        <h2>Get started today, it's free!</h2>
+      </div>
+      <div>
+        <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
+        <!--<button md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</button>-->
+        <button md-raised-button color="accent" (click)="loginClick($event)">SIGN IN</button>
+      </div>
+    </div>
+    <div class="info" fxLayout="row" fxLayoutAlign="space-around">
+      <div class="social" fxLayout="column" fxLayoutAlign="center center">
+        <b>Connect with us</b>
+        <div fxLayout="row">
+          <button md-icon-button><md-icon color="primary" svgIcon="facebook"></md-icon></button>
+          <button md-icon-button><md-icon color="primary" svgIcon="twitter"></md-icon></button>
         </div>
-
-        <md-grid-tile [colspan]="12">
-            <div class='col s6 m4 offset-s3 offset-m8 pull-m4'>
-
-            </div>
-        </md-grid-tile>
-    </md-grid-list>
-    <md-grid-list cols="12" rowHeight="1:3">
-        <md-grid-tile [colspan]="4">
-            <p class=" col s6 m3 center">Connect with us</p>
-            <p class=" col s6 m3 center">email info@grabop.com</p>
-        </md-grid-tile>
-        <md-grid-tile [colspan]="4">
-            <div class="col s12 m3">
-                <p class='col s12 center'>Location</p>
-                <div class='col s12'>
-                    <p class='col s12 m4 center'>made with</p>
-                    <img class="responsive-img col s4 offset-s4 m4 heart-img">
-                    <p class='col s12 m4 center'>in Toronto Canada</p>
-                </div>
-            </div>
-        </md-grid-tile>
-        <md-grid-tile [colspan]="4">
-            <div class='col s12 m3'>
-                <p class='col s12 center'>GrabOp mobile coming soon</p>
-
-                <a class='col s4 offset-s4 m8 offset-m2' href="#">
-                    <img class="responsive-img download-android-img">
-                </a>
-            </div>
-        </md-grid-tile>
-    </md-grid-list>
-    <md-grid-list cols="12">
-        <md-grid-tile [colspan]="12">
-
-            <div class='divider'></div>
-            <div class='row fix-m'>
-                <div class="center-align">
-                    <p>
-                        Copyright ©
-                        <b>GrabOp</b>. All rights reserved.
-
-                        <a md-button href="#">About Us</a>
-                        |
-                        <a md-button href="#">TERMS OF USE</a>
-                    </p>
-                </div>
-            </div>
-        </md-grid-tile>
-    </md-grid-list>
+      </div>
+      <div class="email" fxLayout="column" fxLayoutAlign="top center">
+        <b>Email</b>
+        <span>info@grabop.com</span>
+      </div>
+      <div class="location" fxLayout="column" fxLayoutAlign="top center">
+        <b>Location</b>
+        <div fxLayout="row">
+          <span>made with</span><md-icon color="warn" svgIcon="heart"></md-icon><span>in Toronto Canada</span>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="top center">
+        <b>GrabOp mobile coming soon</b>
+        <img class="responsive-img download-android-img">
+      </div>
+    </div>
+    <md-divider color="primary"></md-divider>
+    <div class="about" fxLayout="row" fxLayoutAlign="center center">
+      <p>
+        Copyright © <b>GrabOp</b>. All rights reserved.  <a href="#">About Us</a> | <a href="#">TERMS OF USE</a>
+      </p>
+    </div>
+  </div>
 </footer>

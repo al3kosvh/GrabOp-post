@@ -1,11 +1,62 @@
-.heart-img{
-    content: url('./heart.png');
+﻿.heart-img {
+  content: url('./heart.png');
 }
 
-.download-android-img{
-    content: url('./download_android.png');
+.download-android-img {
+  content: url('./download_android.png');
 }
 
-footer{
+footer {
   background-color: #d3d4d0;
 }
+
+  footer b {
+    color: dimgrey;
+  }
+
+  footer a {
+    color: #2196f3;
+    text-decoration: none;
+  }
+
+div.info {
+  margin: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: gray;
+}
+
+  div.info b {
+    font-weight: 800;
+  }
+
+div.location md-icon {
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 16px;
+  width: 16px;
+}
+
+div.email b, div.location b {
+  margin-bottom: 5px;
+}
+
+div.about {
+  font-size: 12px;
+  font-weight: 600;
+  color: gray;
+}
+
+  div.about b {
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  div.about :nth-child(2) {
+    margin-left: 10px;
+  }
+
+  div.about a {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
