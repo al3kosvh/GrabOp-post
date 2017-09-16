@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Route } from '@angular/router';
 import { LandingComponent } from './landing/components/landing/landing.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/components/home/home.component';
 
 const fallBackRoute: Route = { path: '**', redirectTo: '/guest' };
 

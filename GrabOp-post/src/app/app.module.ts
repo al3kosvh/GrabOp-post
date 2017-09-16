@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-import { NavModule } from "./nav/nav.module";
+import { ToolbarModule } from "./toolbar/toolbar.module";
 import { SharedModule } from "./shared/shared.module";
 import { PipesModule } from './pipes/pipes.module';
 import { PostsFilterPipe } from './pipes/posts-filter.pipe';
@@ -57,7 +57,7 @@ import { HomeModule } from './home/home.module';
         RouterModule,
         AppRoutingModule,
         //  UserEditModule,
-        NavModule,
+        ToolbarModule,
         PostsModule,
         LandingModule,
         HomeModule,

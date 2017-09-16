@@ -39,7 +39,7 @@ export class AppComponent {
         this.isLoggedIn = auth.isLogedIn;       
 
         auth.user$.subscribe(user => {
-            if (!user) return;
+            if (!user) return;            
             //this.user = user
         });
 

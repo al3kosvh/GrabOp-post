@@ -1,0 +1,17 @@
+﻿md-sidenav {
+  margin-top: 64px;
+}
+
+md-sidenav {
+  background-color: #272727;
+}
+
+md-sidenav md-list a {
+  color: white;
+  text-decoration: none;
+}
+
+md-sidenav-container, .mat-sidenav-container {
+  margin-top: -64px;
+  padding-top: 64px;
+}
