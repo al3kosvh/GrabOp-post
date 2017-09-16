@@ -1,0 +1,61 @@
+﻿md-toolbar {
+  position: relative;
+  z-index: 10;
+}
+
+span.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+span {
+  font-size: 14px;
+  font-weight: 500;
+  color: gray;
+}
+
+a.app-logo {
+  margin-left: 10px;
+}
+
+  a.app-logo img {
+    width: 128px;
+    height: 40px;
+    margin-top: 10px;
+  }
+
+img.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+span.username {
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+span.separator {
+  width: 10%;
+}
+
+#img-proficon {
+  margin-top: 15px;
+}
+
+md-icon {
+  color: grey;
+}
+
+  md-icon:hover {
+    color: dimgrey;
+  }
+
+span.menu-section {
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: dimgrey;
+}
