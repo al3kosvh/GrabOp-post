@@ -1,18 +1,29 @@
 ﻿<div>
   <div id='banner'>
-    <div fxLayout="row">
-      <div>
-        <img class='transparent_logo' fxLayoutAlign="space-between">
-      </div>
-      <div>
-        <div *ngIf="isLoggedIn | async">
-          <button md-raised-button color="primary" routerLink="/home">HOME</button>
-          <button md-raised-button color="accent" (click)="logOutClick($event)">Logout</button>
+    <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div class="logo-container">
+          <img class='logo'>
+          <div class="announce-beta">Currently in private Beta</div>
         </div>
-        <div *ngIf="!(isLoggedIn | async)">
-          <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
-          <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
-          <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+        <div class="options">
+          <div *ngIf="isLoggedIn | async">
+            <button md-raised-button color="primary" routerLink="/home">HOME</button>
+            <button md-raised-button color="accent" (click)="logOutClick($event)">Logout</button>
+          </div>
+          <div *ngIf="!(isLoggedIn | async)">
+            <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
+            <!--<md-grid-tile><a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a></md-grid-tile>-->
+            <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div class="search-container" fxFlexOffset="35" fxFlexOffset.xs="25" fxFlex>
+          <md-form-field floatPlaceholder="never" fxFlex="40" fxFlex.xs="60">
+            <md-icon mdPrefix>search</md-icon>
+            <input mdInput placeholder="star your search here">
+          </md-form-field>
         </div>
       </div>
     </div>
