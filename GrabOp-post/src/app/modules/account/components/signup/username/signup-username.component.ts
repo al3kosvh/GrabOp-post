@@ -1,29 +1,29 @@
 ﻿import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
-import { VOProfileSettings } from '../../../models/vos';
+import { VOProfileSettings } from '../../../../../models/vos';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginNewService } from '../login-new.service';
-import { VOUserExt } from '../../vouser';
-import { confirmPassword } from '../../login-validators/confirmPassword';
-import { CheckEmailDirective } from '../../login-validators/check-email.directive';
+import { SignupService } from '../../../services/signup.service';
+import { VOUserExt } from '../../../models/vouser';
+import { confirmPassword } from '../validators/confirmPassword';
+import { CheckEmailDirective } from '../validators/check-email.directive';
 
-import { ModalWindowService } from '../../../shared/services/modal-window.service';
+import { ModalWindowService } from '../../../services/modal-window.service';
 import { MdDialog } from '@angular/material';
-import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
-import { UploadService } from '../../../services/upload.service';
+import { ModalAlertComponent } from '../../../../../shared/components/modal-alert/modal-alert.component';
+import { UploadService } from '../../../../../services/upload.service';
 import { RequestOptions } from '@angular/http';
 import { AuthHttpMy } from '../../../services/auth-http';
 
 
 @Component({
-    selector: 'app-login-new-username',
-    templateUrl: './login-new-username.component.html',
-    styleUrls: ['./login-new-username.component.css']
+    selector: 'signup-username',
+    templateUrl: './signup-username.component.html',
+    styleUrls: ['./signup-username.component.css']
     ,
     providers: [UploadService]
 })
-export class LoginNewUsernameComponent implements OnInit, OnDestroy {
+export class SignupUsernameComponent implements OnInit, OnDestroy {
 
     @ContentChild(CheckEmailDirective)
     input: CheckEmailDirective;
@@ -50,7 +50,7 @@ export class LoginNewUsernameComponent implements OnInit, OnDestroy {
         private dialog: MdDialog,
         private uploadService: UploadService,
         private modal: ModalWindowService,
-        private loginNewService: LoginNewService
+        private signupService: SignupService
     ) {
         //this.person = authHttpMy.userExt;
 
@@ -69,7 +69,7 @@ export class LoginNewUsernameComponent implements OnInit, OnDestroy {
     }
 
     onSubmit(): void {
-        /* this.loginNewService.register(this.person).subscribe(res => {
+        /* this.signupService.register(this.person).subscribe(res => {
            if (res.id) {
              console.log('onSubmit register res ', res);
              this.dialog.open(ModalAlertComponent, {data: 'Go to email confirm'});
@@ -188,7 +188,7 @@ export class LoginNewUsernameComponent implements OnInit, OnDestroy {
 
     // onNextClick(): void {
     //
-    //   this.loginNewService.createAccount(this.person).then(
+    //   this.signupService.createAccount(this.person).then(
     //     (res:any) => {
     //       if (!res.error) {
     //         localStorage.setItem('account', JSON.stringify(res));

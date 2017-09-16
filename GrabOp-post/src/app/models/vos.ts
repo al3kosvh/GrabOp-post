@@ -1,5 +1,5 @@
 ﻿
-import { VOUser, VOUserExt } from '../app-login/vouser';
+import { VOUser, VOUserExt } from '../modules/account/models/vouser';
 /**
  * Created by Vlad on 9/6/2016.
  */

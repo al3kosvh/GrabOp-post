@@ -1,21 +1,21 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthHttpMy } from '../../../services/auth-http';
-import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
+import { ModalAlertComponent } from '../../../../../shared/components/modal-alert/modal-alert.component';
 import { MdDialog } from '@angular/material';
 //import {UserEditService} from '../../../user-edit/user-edit.service';
-import { LoginNewService } from '../login-new.service';
+import { SignupService } from '../../../services/signup.service';
 
 @Component({
-    selector: 'app-login-new-confirm',
-    templateUrl: './login-new-confirm.component.html',
-    styleUrls: ['./login-new-confirm.component.css']
+    selector: 'signup-confirm',
+    templateUrl: './signup-confirm.component.html',
+    styleUrls: ['./signup-confirm.component.css']
 })
-export class LoginNewConfirmComponent implements OnInit {
+export class SignupConfirmComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         private router: Router,
-        private loginNewService: LoginNewService,
+        private signupService: SignupService,
         private dialog: MdDialog) { }
 
     ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginNewConfirmComponent implements OnInit {
     }
 
     verifyEmail(token) {
-        this.loginNewService.verifyEmail(token).subscribe(res => {
+        this.signupService.verifyEmail(token).subscribe(res => {
             console.log('Registration confirmed ', res);
             let dialogRef = this.dialog.open(ModalAlertComponent, { data: 'Registration confirmed' });
             dialogRef.afterClosed().subscribe(res => {

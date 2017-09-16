@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by Vlad on 9/9/2016.
  */
 
@@ -6,16 +6,16 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {Http, Response, URLSearchParams,} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import { VOSettings, VOResult, VOProfileSettings} from "../../models/vos";
+import { VOSettings, VOResult, VOProfileSettings } from "../../../models/vos";
 import {FormControl} from "@angular/forms";
-import {SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse} from "../../models/sos";
-import {VOUser, VOUserExt} from '../vouser';
-import {AuthHttpMy} from '../../services/auth-http';
+import { SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse } from "../../../models/sos";
+import {VOUser, VOUserExt} from '../models/vouser';
+import {AuthHttpMy} from './auth-http';
 import {Router} from '@angular/router';
 
 
 @Injectable()
-export class LoginNewService {
+export class SignupService {
 
 
   // userExt:VOUserExt = new VOUserExt({});

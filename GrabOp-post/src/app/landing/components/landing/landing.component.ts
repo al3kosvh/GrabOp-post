@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
-import { LoginPanelComponent } from '../../../app-login/login-panel/login-panel.component';
+import { SigninComponent } from '../../../modules/account/components/signin/signin.component';
 import { Observable } from 'rxjs/Observable';
 import { AuthHttpMy } from '../../../services/auth-http';
 import { VOPost } from '../../../models/vos';
@@ -54,8 +54,8 @@ export class LandingComponent implements OnInit {
         const login = this.route.snapshot.params.login;
         if (!!login) {
             console.log('login', login);
-            this.modal.openWindow(LoginPanelComponent, (res) => {
-                console.log('LoginPanelComponent  ', res);
+            this.modal.openWindow(SigninComponent, (res) => {
+                console.log('SigninComponent  ', res);
             });
         }
     }
@@ -63,12 +63,12 @@ export class LandingComponent implements OnInit {
 
     loginClick() {
 
-        let ref = this.dialog.open(LoginPanelComponent, {
+        let ref = this.dialog.open(SigninComponent, {
             width: '400px',
             height: '400px'
         });
 
-        LoginPanelComponent.loggedIn = res => {
+        SigninComponent.loggedIn = res => {
             console.log(res);
             //if(res) {
             setTimeout(() => ref.close(), 2000);

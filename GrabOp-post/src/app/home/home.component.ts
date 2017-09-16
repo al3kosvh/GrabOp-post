@@ -2,7 +2,7 @@
 import { HomeService } from './home-service';
 // import {PostsService} from '../posts/posts.service';
 
-import { VOUserExt } from '../app-login/vouser';
+import { VOUserExt } from '../modules/account/models//vouser';
 import { VOPost } from '../models/vos';
 import { UserCommentsComponent } from './user-comments/user-comments.component';
 import { ModalWindowService } from '../shared/services/modal-window.service';

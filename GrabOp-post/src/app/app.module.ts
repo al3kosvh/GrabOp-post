@@ -24,7 +24,7 @@ import { PostEditModule } from './post-edit/post-edit.module';
 // Components
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
-import { LoginPanelComponent } from './app-login/login-panel/login-panel.component';
+import { SigninComponent } from './modules/account/components/signin/signin.component';
 import { GrabopFooterComponent } from "./shared/components/grabop-footer/grabop-footer.component";
 
 // Services
@@ -35,7 +35,7 @@ import { ConnectionService } from './services/connection.service';
 import { PostsService } from './services/posts.service';
 
 // import { LoginButtonComponent } from './app-login/login-button/login-button.component';
-// import { LoginPanelComponent } from './app-login/login-panel/login-panel.component';
+// import { LoginPanelComponent } from './modules/account/components/signin/signin.component';
 // import { ModalWindowService} from "./services/modal-window.service";
 // import { LogoutButtonComponent } from './app-login/logout-button/logout-button.component';
 // import { LoginNewService } from './app-login/login-new/login-new.service';
@@ -69,7 +69,7 @@ import { HomeModule } from './home/home.module';
     declarations: [
         AppComponent,
         GrabopFooterComponent,
-        LoginPanelComponent
+        SigninComponent
         // LogoutButtonComponent,
         // PostEditComponent
         // ModalAlertComponent,
@@ -84,7 +84,7 @@ import { HomeModule } from './home/home.module';
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
     entryComponents: [
-        LoginPanelComponent
+        SigninComponent
         // UserEditComponent
     ],
     bootstrap: [AppComponent]

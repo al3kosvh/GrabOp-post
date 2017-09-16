@@ -1,6 +1,6 @@
 ﻿import { Component, Directive } from '@angular/core';
 import { AuthHttpMy } from './services/auth-http';
-import { VOUserExt } from './app-login/vouser';
+import { VOUserExt } from './modules/account/models/vouser';
 import { Observable } from 'rxjs/Observable';
 //import {trigger, state, style, transition, animate, keyframes, group} from '@angular/animations';
 

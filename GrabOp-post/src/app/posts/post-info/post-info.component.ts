@@ -1,6 +1,6 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
 import { VOPost } from '../../models/vos';
-import { VOUserExt } from '../../app-login/vouser';
+import { VOUserExt } from '../../modules/account/models//vouser';
 
 @Component({
     selector: 'app-post-info',

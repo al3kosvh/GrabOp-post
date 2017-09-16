@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
-import { VOUserExt } from '../../app-login/vouser';
+import { VOUserExt } from '../../modules/account/models//vouser';
 //import {UserCommentsComponent} from '../user-comments/user-comments.component';
 import { ModalWindowService } from '../../shared/services/modal-window.service';
 

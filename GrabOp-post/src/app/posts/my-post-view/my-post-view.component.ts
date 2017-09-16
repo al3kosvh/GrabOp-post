@@ -3,7 +3,7 @@ import { VOPost } from '../../models/vos';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyPostsService } from '../../services/my-posts.service';
 import { AuthHttpMy } from '../../services/auth-http';
-import { VOUserExt } from '../../app-login/vouser';
+import { VOUserExt } from '../../modules/account/models//vouser';
 
 @Component({
     selector: 'app-my-post-view',

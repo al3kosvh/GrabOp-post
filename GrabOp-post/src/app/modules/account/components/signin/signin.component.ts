@@ -1,21 +1,21 @@
 ﻿import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
-import { SOAuthenticateResponse } from '../../models/sos';
+import { SOAuthenticateResponse } from '../../../../models/sos';
 // import {LoginService} from '../login.service';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { VOUser } from '../vouser';
+import { VOUser } from '../../models/vouser';
 import { AuthHttpMy } from '../../services/auth-http';
 
 
 @Component({
-    selector: 'app-login-panel',
-    templateUrl: './login-panel.component.html',
-    styleUrls: ['./login-panel.component.css']
+    selector: 'account-signin',
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.css']
 })
-export class LoginPanelComponent implements OnInit {
+export class SigninComponent implements OnInit {
 
     @Output() close: EventEmitter<null> = new EventEmitter();
     showPass = false; /// TODO false
@@ -54,7 +54,7 @@ export class LoginPanelComponent implements OnInit {
         this.loginService.login(this.login.username, this.login.password).subscribe(res => {
             if (res) {
                 this.fullName = res.firstName + ' ' + res.lastName;
-                if (LoginPanelComponent.loggedIn) LoginPanelComponent.loggedIn();
+                if (SigninComponent.loggedIn) SigninComponent.loggedIn();
                 // setTimeout(()=>this.modal.closeWindow('login success'), 3000);
             }
             else console.error(' error login');

@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { AuthHttpMy } from '../../../services/auth-http';
 import { MdDialog } from '@angular/material';
-import { LoginPanelComponent } from '../../../app-login/login-panel/login-panel.component';
+import { SigninComponent } from '../../../modules/account/components/signin/signin.component';
 
 @Component({
     selector: 'app-grabop-footer',
@@ -27,7 +27,7 @@ export class GrabopFooterComponent implements OnInit {
 
     loginClick() {
 
-        this.dialog.open(LoginPanelComponent, {
+        this.dialog.open(SigninComponent, {
             width: '400px',
             height: '400px'
         })

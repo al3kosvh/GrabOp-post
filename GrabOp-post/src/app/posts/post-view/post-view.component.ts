@@ -3,7 +3,7 @@ import { VOPost } from '../../models/vos';
 import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
 import { MyPostsService } from '../../services/my-posts.service';
-import { VOUserExt } from '../../app-login/vouser';
+import { VOUserExt } from '../../modules/account/models//vouser';
 import { ProfileService } from '../../services/profile.service';
 
 @Component({
