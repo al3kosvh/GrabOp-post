@@ -15,9 +15,10 @@ import { MdDialog } from '@angular/material';
 })
 export class LandingComponent implements OnInit {
 
-    isLoggedIn$: Observable<boolean>;
+    private isLoggedIn: Observable<boolean>;
+    private postNeed: VOPost[] = [];
 
-    summaryData: any[] = [
+    private summaryData: any[] = [
         {
             Image: 'assets/img/search-opportunities.png',
             Text: 'Find jobs, products, services and talent'
@@ -37,16 +38,13 @@ export class LandingComponent implements OnInit {
 
     ];
 
-
-    postNeed: VOPost[] = [];
-
     constructor(
         private route: ActivatedRoute,
         private modal: ModalWindowService,
         private auth: AuthHttpMy,
         private dialog: MdDialog
     ) {
-        this.isLoggedIn$ = auth.isLogedIn$;
+        this.isLoggedIn = auth.isLogedIn;
     }
 
     ngOnInit() {

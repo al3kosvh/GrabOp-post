@@ -1,7 +1,7 @@
 ﻿#banner {
   /*background: url('app/img/home_page/landing.jpg') no-repeat center center;*/
   background: url('./landing.jpg') no-repeat center center;
-  /*background-size:cover;*/
+  background-size: cover;
   height: 550px;
 }
 
@@ -27,8 +27,8 @@ div.announce-beta {
 /*div.search-container input {
   min-width: 400px;
 }*/
-  
-  md-form-field md-icon {
+
+md-form-field md-icon {
   position: relative;
   top: 7px;
 }
