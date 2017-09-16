@@ -7,27 +7,33 @@
 }
 
 footer {
-  background-color: #d3d4d0;
+  background-color: #DDDDDD;
 }
+
 
   footer b {
     color: dimgrey;
   }
 
   footer a {
-    color: #2196f3;
+    color: #03a9f4;
     text-decoration: none;
   }
+
+div.options {
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
 
 div.info {
   margin: 10px;
   font-size: 12px;
   font-weight: 600;
-  color: gray;
+  color: lightslategray;
 }
 
   div.info b {
-    font-weight: 800;
+    font-weight: 700;
   }
 
 div.location md-icon {
@@ -44,12 +50,12 @@ div.email b, div.location b {
 div.about {
   font-size: 12px;
   font-weight: 600;
-  color: gray;
+  color: lightslategray;
 }
 
   div.about b {
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 700;
   }
 
   div.about :nth-child(2) {

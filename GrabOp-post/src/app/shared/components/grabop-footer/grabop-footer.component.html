@@ -4,7 +4,7 @@
       <div fxLayout="row">
         <h2>Get started today, it's free!</h2>
       </div>
-      <div>
+      <div class="options">
         <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
         <!--<button md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</button>-->
         <button md-raised-button color="accent" (click)="loginClick($event)">SIGN IN</button>
@@ -14,8 +14,8 @@
       <div class="social" fxLayout="column" fxLayoutAlign="center center">
         <b>Connect with us</b>
         <div fxLayout="row">
-          <button md-icon-button><md-icon color="primary" svgIcon="facebook"></md-icon></button>
-          <button md-icon-button><md-icon color="primary" svgIcon="twitter"></md-icon></button>
+          <button md-icon-button><md-icon color="accent" svgIcon="facebook"></md-icon></button>
+          <button md-icon-button><md-icon color="accent" svgIcon="twitter"></md-icon></button>
         </div>
       </div>
       <div class="email" fxLayout="column" fxLayoutAlign="top center">
