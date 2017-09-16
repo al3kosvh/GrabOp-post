@@ -1,6 +1,6 @@
-{
+﻿{
   "/api": {
-    "target": "http://grabop2api-dev.us-west-2.elasticbeanstalk.com",
+    "target": "http://localhost:53822",
     "secure": false
   }
 }
