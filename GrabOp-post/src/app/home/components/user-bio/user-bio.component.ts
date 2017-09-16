@@ -1,7 +1,9 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
-import { VOUserExt } from '../../app-login/vouser';
+import { VOUserExt } from '../../../app-login/vouser';
 //import {UserCommentsComponent} from '../user-comments/user-comments.component';
-import { ModalWindowService } from '../../shared/services/modal-window.service';
+
+// Services
+import { ModalWindowService } from '../../../shared/services/modal-window.service';
 
 @Component({
     selector: 'app-user-bio',
@@ -11,7 +13,6 @@ import { ModalWindowService } from '../../shared/services/modal-window.service';
 export class UserBioComponent implements OnInit {
 
     @Input() myUser: VOUserExt = new VOUserExt();
-
 
     constructor(public modal: ModalWindowService) {
     }

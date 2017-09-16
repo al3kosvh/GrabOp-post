@@ -1,0 +1,67 @@
+﻿div.first-row {
+  margin: 40px;
+}
+
+div.second-row {
+  margin: 40px;
+}
+
+div.announce {
+  width: 300px;
+}
+
+div.announce button {
+  margin-right: 5px;
+}
+
+span.title {
+    margin-top: 30px;
+    font-weight: 600;
+  }
+
+div.comments-info {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+a.comments-count {
+  color: #03a9f4;
+  text-decoration: none;  
+}
+
+span.comments {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+div.table {
+  border: 1px solid #BBBBBB;
+  margin: 10px;
+}
+
+div.title {
+  text-align: center;
+  background-color: #C3C3C3;
+  border-bottom: 1px solid #BBBBBB;
+  color: white;
+  padding: 5px 20px 5px 20px;
+}
+
+div.body {
+  text-align: center;
+  padding: 20px 0px 20px 0px;
+  color: #3F48CB;
+  font-weight: 600;
+}
+
+span.posts-title {
+  margin: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: grey;
+}
+
+div.posts {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

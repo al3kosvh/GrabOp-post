@@ -1,14 +1,18 @@
 ﻿import { Component, OnChanges, OnInit } from '@angular/core';
-import { HomeService } from './home-service';
+import { HomeService } from '../../services/home.service';
 // import {PostsService} from '../posts/posts.service';
 
-import { VOUserExt } from '../app-login/vouser';
-import { VOPost } from '../models/vos';
-import { UserCommentsComponent } from './user-comments/user-comments.component';
-import { ModalWindowService } from '../shared/services/modal-window.service';
-import { MyPostsService } from '../services/my-posts.service';
-import { AuthHttpMy } from '../services/auth-http';
-import { ConnectionService } from '../services/connection.service';
+import { VOUserExt } from '../../../app-login/vouser';
+import { VOPost } from '../../../models/vos';
+
+// Components
+import { UserCommentsComponent } from '../user-comments/user-comments.component';
+
+// Services
+import { ModalWindowService } from '../../../shared/services/modal-window.service';
+import { MyPostsService } from '../../../services/my-posts.service';
+import { AuthHttpMy } from '../../../services/auth-http';
+import { ConnectionService } from '../../../services/connection.service';
 
 
 @Component({

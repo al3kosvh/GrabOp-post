@@ -1,0 +1,24 @@
+﻿img.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+div.info {
+  margin-left: 20px;
+}
+
+span.firstName {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+span.city {
+  margin-bottom: 20px;
+}
+
+div.info small {
+  margin-bottom: 5px;
+}
