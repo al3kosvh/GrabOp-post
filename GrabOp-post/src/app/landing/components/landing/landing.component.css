@@ -11,7 +11,6 @@ div.logo-container {
 }
 
 img.logo {
-  content: url('./Go_logo.png');
   width: 160px;
   height: 50px;
 }
@@ -35,4 +34,13 @@ md-form-field md-icon {
 
 div.options {
   margin: 25px;
+}
+
+div.info div.video {
+  margin-right: 40px;
+  background-color: grey;
+}
+
+div.info span {
+  font-weight: 600;
 }
