@@ -8,18 +8,17 @@
         </div>
         <div class="options">
           <div>
-            <button md-raised-button color="primary" routerLink="/home">HOME</button>
-            <button md-raised-button color="accent" (click)="logOutClick($event)">LOGOUT</button>
+            <button md-raised-button color="accent" routerLink="/home">HOME</button>
+            <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
           </div>
           <!--<div *ngIf="!(isLoggedIn | async)">
             <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
-            <a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a>
-            <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+            <a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a>            
           </div>-->
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="center">        
-          <md-form-field floatPlaceholder="never" fxFlex="40" fxFlex.xs="60">
+          <md-form-field floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
             <md-icon mdPrefix>search</md-icon>
             <input mdInput placeholder="star your search here">
           </md-form-field>        
