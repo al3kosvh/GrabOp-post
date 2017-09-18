@@ -1,11 +1,5 @@
-﻿/**
- * Created by Vlad on 12/21/2016.
- */
-import { Injectable, EventEmitter } from '@angular/core';
-import {
-    Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy,
-    ResponseContentType,
-} from '@angular/http';
+﻿import { Injectable, EventEmitter } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { SOAuthenticateResponse, SOUser, VOUser, VOUserExt } from "../modules/account/models/vouser";
@@ -15,33 +9,35 @@ import { VOSettings } from "../models/vos";
 @Injectable()
 export class AuthHttpMy {
 
-    headers: Headers;
-
-    isLogedIn$: Observable<boolean>;
     private userSub: BehaviorSubject<VOUserExt>;
-    user$: Observable<VOUserExt>;
     private user: VOUserExt;
 
-    constructor(private http: Http) {
+    public headers: Headers;
+    public isLogedIn: Observable<boolean>;
+    public user$: Observable<VOUserExt>;
+
+    constructor(
+        private http: Http
+    ) {
 
         //this.isLogedInSub = new BehaviorSubject(false);
 
+        this.autoLogin();
 
         this.userSub = new BehaviorSubject<VOUserExt>(this.user);
         this.user$ = this.userSub.asObservable();
-        this.isLogedIn$ = this.user$.map(user => !!user);
-
-        this.autoLogin();
+        this.isLogedIn = this.user$.map(user => !!user);
+        
     }
 
     autoLogin(): void {
-        /* let user: VOUser = this.getUser();
-         //TODO if expired error
-         console.log('autologin ', user);
-         if(!this.user){
-           return;
-         }
-     */
+        let user: VOUser = this.getUser();
+
+        console.log('autologin ', user);
+        if (!this.user) {
+            return;
+        }
+
         this.getUsersExtended().subscribe(user => {
 
             console.log(user);

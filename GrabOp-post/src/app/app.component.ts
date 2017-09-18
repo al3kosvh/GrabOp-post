@@ -2,6 +2,8 @@
 import { AuthHttpMy } from './services/auth-http';
 import { VOUserExt } from './modules/account/models/vouser';
 import { Observable } from 'rxjs/Observable';
+import { MdIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser'
 //import {trigger, state, style, transition, animate, keyframes, group} from '@angular/animations';
 
 
@@ -23,21 +25,29 @@ import { Observable } from 'rxjs/Observable';
      ]*/
 })
 export class AppComponent {
-    title = 'AppComponent ';
-    showMe: boolean = true;
-    isLoggedIn: Observable<boolean>;
 
-    user: VOUserExt;
+    private isLoggedIn: Observable<boolean>;
+    private user: VOUserExt;
+    private state: string = 'out';
 
-    state: string = 'out';
+    constructor(
+        private auth: AuthHttpMy,
+        private mdIconRegistry: MdIconRegistry,
+        private sanitizer: DomSanitizer
+    ) {
 
-    constructor(auth: AuthHttpMy) {
+        this.isLoggedIn = auth.isLogedIn;       
 
-        this.isLoggedIn = auth.isLogedIn$;
         auth.user$.subscribe(user => {
-            if (!user) return;
-            // this.user = user
+            if (!user) return;            
+            //this.user = user
         });
+
+        // Register Icons
+        mdIconRegistry
+            .addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/facebook.svg'))
+            .addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/twitter.svg'))
+            .addSvgIcon('heart', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/heart.svg'))
 
         // console.log('appp');
     }

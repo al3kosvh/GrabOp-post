@@ -7,6 +7,8 @@
 })
 export class ProfileProgressComponent implements OnInit {
 
+    private percent: number = 0;
+
     constructor() { }
 
     ngOnInit() {

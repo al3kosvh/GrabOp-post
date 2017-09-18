@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ModalWindowService } from '../../shared/services/modal-window.service';
+import { ModalWindowService } from '../../../shared/services/modal-window.service';
 
 @Component({
     selector: 'app-help',

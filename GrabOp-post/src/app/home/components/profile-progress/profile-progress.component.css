@@ -1,0 +1,21 @@
+﻿span.title {
+  margin-top: 20px;
+  font-weight: 600;
+  color: gray;
+}
+
+img.star {
+  margin: 5px;
+  width: 100px;
+}
+
+span.star {
+  position: relative; 
+  top: -60px;
+  font-size: 14px;
+}
+
+a {
+  color: #03a9f4;
+  text-decoration: none;
+}
