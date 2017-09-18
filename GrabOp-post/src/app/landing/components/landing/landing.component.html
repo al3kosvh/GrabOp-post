@@ -14,7 +14,9 @@
           <div *ngIf="!(isLoggedIn | async)">
             <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
             <!--<a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a>-->
-            <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+            <!--button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button-->
+			
+            <signin-button></signin-button>
           </div>
         </div>
       </div>
