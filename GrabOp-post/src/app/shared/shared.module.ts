@@ -16,8 +16,8 @@ import { ListRowComponent } from "./components/list-row/list-row.component";
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
 import { ModalPromptComponent } from './components/modal-prompt/modal-prompt.component';
 import { MembersListComponent } from './components/member-list/members-list.component';
-import { LoginButtonComponent } from '../app-login/login-button/login-button.component';
-import { LoginNewButtonComponent } from '../app-login/login-new-button/login-new-button.component';
+import { SigninButtonComponent } from '../modules/account/components/signin/button/signin-button.component';
+import { SignupButtonComponent } from '../modules/account/components/signup/button/signup-button.component';
 
 // Services
 import { PostsService } from '../services/posts.service';
@@ -46,8 +46,8 @@ import { MdImageDirective } from "./directives/md-image.directive";
         ListRowComponent,
         ModalAlertComponent,
         ModalPromptComponent,
-        LoginButtonComponent,
-        LoginNewButtonComponent
+        SigninButtonComponent,
+        SignupButtonComponent
     ],
     declarations: [
         PostsCardComponent,
@@ -56,8 +56,8 @@ import { MdImageDirective } from "./directives/md-image.directive";
         ModalAlertComponent,
         ModalPromptComponent,
         MembersListComponent,
-        LoginButtonComponent,
-        LoginNewButtonComponent
+        SigninButtonComponent,
+        SignupButtonComponent
     ],
     providers: [
         // PostEditService,

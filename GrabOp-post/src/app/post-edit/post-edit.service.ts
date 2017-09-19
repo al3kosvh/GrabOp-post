@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { VOSettings, VOService, VOResult, VOPost, VOImage, VOCategory, VOSearch } from '../models/vos';
 import { BehaviorSubject } from 'rxjs';
 // import {SONeed_CreateNeed, SONeed_UpdateNeed, SOOffer_CreateOffer, SOOffer_UpdateOffer} from '../models/sos';
-import { VOUserExt } from '../app-login/vouser';
+import { VOUserExt } from '../modules/account/models//vouser';
 
 import {
     mapGetPost,

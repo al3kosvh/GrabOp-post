@@ -1,15 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { LoginPanelComponent } from '../login-panel/login-panel.component';
+import { SigninComponent } from '../signin.component';
 // import {ModalWindowService} from '../../services/modal-window.service';
 
 
 @Component({
-    selector: 'app-login-button',
-    templateUrl: './login-button.component.html',
-    styleUrls: ['./login-button.component.css']
+    selector: 'signin-button',
+    templateUrl: './signin-button.component.html',
+    styleUrls: ['./signin-button.component.css']
 })
-export class LoginButtonComponent implements OnInit {
+export class SigninButtonComponent implements OnInit {
 
     selectedOption: string;
 
@@ -24,14 +24,14 @@ export class LoginButtonComponent implements OnInit {
 
     loginClick(evt) {
 
-        this.dialog.open(LoginPanelComponent, {
+        this.dialog.open(SigninComponent, {
             width: '400px',
             height: '400px'
         })
 
 
-        /*this.modal.openWindow(LoginPanelComponent, (res) => {
-          console.log('LoginPanelComponent  ', res);
+        /*this.modal.openWindow(SigninComponent, (res) => {
+          console.log('SigninComponent  ', res);
         });*/
     }
 

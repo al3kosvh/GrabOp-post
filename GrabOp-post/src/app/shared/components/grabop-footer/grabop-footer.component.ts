@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { AuthHttpMy } from '../../../services/auth-http';
 import { MdDialog } from '@angular/material';
-import { LoginPanelComponent } from '../../../app-login/login-panel/login-panel.component';
+import { SigninComponent } from '../../../modules/account/components/signin/signin.component';
 import { MdIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser'
 
@@ -18,18 +18,18 @@ export class GrabopFooterComponent implements OnInit {
 
     constructor(
         private auth: AuthHttpMy,
-        private dialog: MdDialog        
+        private dialog: MdDialog
     ) {
         this.isLoggedIn = this.auth.isLogedIn;
     }
 
     ngOnInit() {
-        
+
     }
 
     loginClick() {
 
-        this.dialog.open(LoginPanelComponent, {
+        this.dialog.open(SigninComponent, {
             width: '400px',
             height: '400px'
         })

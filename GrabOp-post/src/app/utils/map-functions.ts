@@ -5,7 +5,7 @@ import {
     SOupdate_profile_req, SOattachment
 } from '../models/server-objects';
 import { SONeedUpdateNeed } from '../models/sos';
-import { VOUserExt, VOUser } from '../app-login/vouser';
+import { VOUserExt, VOUser } from '../modules/account/models/vouser';
 
 // private mapPostSend(post:VOPost): SONeed_UpdateNeed {
 // export function mapPostSend(post: VOPost): any {
