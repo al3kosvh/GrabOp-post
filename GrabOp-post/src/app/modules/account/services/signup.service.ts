@@ -1,28 +1,24 @@
-﻿/**
- * Created by Vlad on 9/9/2016.
- */
-
-import {Injectable, EventEmitter} from '@angular/core';
-import {Http, Response, URLSearchParams,} from '@angular/http';
-import {Observable}     from 'rxjs/Observable';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import { Injectable, EventEmitter } from '@angular/core';
+import { Http, Response, URLSearchParams, } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { VOSettings, VOResult, VOProfileSettings } from "../../../models/vos";
-import {FormControl} from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse } from "../../../models/sos";
-import {VOUser, VOUserExt} from '../models/vouser';
-import {AuthHttpMy} from './auth-http';
-import {Router} from '@angular/router';
+import { VOUser, VOUserExt } from '../models/vouser';
+import { AuthHttpService } from './auth-http.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class SignupService {
 
 
-  // userExt:VOUserExt = new VOUserExt({});
+    // userExt:VOUserExt = new VOUserExt({});
 
     constructor(public http: Http) {
 
-      // http.user$.subscribe(res=>this.userExt = res);
+        // http.user$.subscribe(res=>this.userExt = res);
     }
 
     /*isUserExists(value: any, column: string): Promise<VOResult> {
@@ -35,34 +31,34 @@ export class SignupService {
         )
     }*/
 
- /* register(newUser: VOUserExt): Observable<VOUserExt> {
-    // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/register?format=json';
-    let url: string = VOSettings.register;;
+    /* register(newUser: VOUserExt): Observable<VOUserExt> {
+       // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/register?format=json';
+       let url: string = VOSettings.register;;
+   
+       return this.http.post(url, newUser).map(res => {
+         console.log('register post res ', res);
+         let resp: SOAuthenticateResponse = res.json();
+   
+         let user: VOUser = new VOUser();
+           user.id = resp.UserId;
+           user.username = newUser.username;
+           user.password = newUser.password;
+         return user;
+       }).catch(this.handleError);
+     }*/
 
-    return this.http.post(url, newUser).map(res => {
-      console.log('register post res ', res);
-      let resp: SOAuthenticateResponse = res.json();
+    verifyEmail(token: string) {
+        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
+        let url: string = VOSettings.verifyemail;
 
-      let user: VOUser = new VOUser();
-        user.id = resp.UserId;
-        user.username = newUser.username;
-        user.password = newUser.password;
-      return user;
-    }).catch(this.handleError);
-  }*/
-
-  verifyEmail(token: string){
-    // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
-    let url: string = VOSettings.verifyemail;
-
-    return this.http.post(url, token).map(res => {
-      console.log('verifyEmail post res ', res);
-      return res;
-    }).catch(this.handleError);
-  }
+        return this.http.post(url, token).map(res => {
+            console.log('verifyEmail post res ', res);
+            return res;
+        }).catch(this.handleError);
+    }
 
 
-  // confirmPassword(password: string, ctrl: FormControl) {
+    // confirmPassword(password: string, ctrl: FormControl) {
     //
     //     return password === ctrl.value ? null : {confirmPassword: false};
     //

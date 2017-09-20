@@ -1,5 +1,5 @@
-﻿import { Component, Directive } from '@angular/core';
-import { AuthHttpMy } from './services/auth-http';
+import { Component, Directive } from '@angular/core';
+import { AuthHttpService } from './modules/account/services/auth-http.service';
 import { VOUserExt } from './modules/account/models/vouser';
 import { Observable } from 'rxjs/Observable';
 import { MdIconRegistry } from '@angular/material';
@@ -31,12 +31,12 @@ export class AppComponent {
     private state: string = 'out';
 
     constructor(
-        private auth: AuthHttpMy,
+        private auth: AuthHttpService,
         private mdIconRegistry: MdIconRegistry,
         private sanitizer: DomSanitizer
     ) {
 
-        this.isLoggedIn = auth.isLogedIn;       
+        this.isLoggedIn = auth.isLogedIn;
 
         auth.user$.subscribe(user => {
             if (!user) return;            

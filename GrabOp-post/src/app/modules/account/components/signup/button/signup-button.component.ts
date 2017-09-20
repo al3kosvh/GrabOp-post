@@ -1,7 +1,7 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { SignupService } from '../../../services/signup.service';
-import { ModalWindowService } from '../../../services/modal-window.service';
+import { ModalWindowService } from '../../../../shared/services/modal-window.service';
 import { SignupComponent } from '../signup.component';
 
 @Component({

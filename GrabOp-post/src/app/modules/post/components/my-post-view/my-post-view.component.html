@@ -1,0 +1,86 @@
+<md-grid-list cols="3" rowHeight="70px">
+  <md-grid-tile colspan="3">
+    <h2>MY POST VIEW</h2>
+  </md-grid-tile>
+</md-grid-list>
+
+<!--<md-grid-list cols="3" rowHeight="900px">-->
+<md-grid-list cols="3" rowHeight="500px">
+  <md-grid-tile [colspan]="2">
+    <md-grid-list cols="1" rowHeight="500px" style="width: 100%">
+      <md-grid-tile>
+        <app-post-details id="post-details" [post]="myPost"></app-post-details>
+      </md-grid-tile>
+      <!--<md-grid-tile>-->
+        <!--<md-grid-list cols="2" rowHeight="4:5" style="width: 100%">-->
+          <!--<h3>Posts need</h3>-->
+          <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'need'; let i=index">-->
+            <!--<md-grid-tile *ngIf="i<4">-->
+              <!--<app-posts-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></app-posts-card>-->
+            <!--</md-grid-tile>-->
+          <!--</div>-->
+        <!--</md-grid-list>-->
+
+        <!--<md-grid-list cols="2"  rowHeight="4:5" style="width: 100%">-->
+          <!--<h3>Posts offer</h3>-->
+          <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">-->
+            <!--<md-grid-tile *ngIf="i<4">-->
+              <!--<app-posts-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></app-posts-card>-->
+            <!--</md-grid-tile>-->
+          <!--</div>-->
+        <!--</md-grid-list>-->
+      <!--</md-grid-tile>-->
+    </md-grid-list>
+  </md-grid-tile>
+
+  <md-grid-tile [colspan]="1">
+    <md-grid-list cols="1" rowHeight="250px" style="width: 100%">
+    <!--<md-grid-list cols="1" style="width: 100%">-->
+      <md-grid-tile>
+        <md-list>
+          <md-list-item>
+            <button md-raised-button color="primary" (click)="onEditClick()">edit</button>
+          </md-list-item>
+          <md-list-item>
+            <button md-raised-button color="primary" (click)="onDuplicateClick()">duplicate</button>
+          </md-list-item>
+          <md-list-item>
+            <button md-raised-button color="primary" (click)="onShareClick()">share</button>
+          </md-list-item>
+          <md-list-item>
+            <button md-raised-button color="primary" (click)="onHideClick()">hide post</button>
+          </md-list-item>
+          <md-list-item>
+            <button md-raised-button color="primary" (click)="onDeleteClick()">delete post</button>
+          </md-list-item>
+        </md-list>
+      </md-grid-tile>
+      <md-grid-tile>
+        <app-post-info [post]="myPost" [person]="myUser"></app-post-info>
+      </md-grid-tile>
+    </md-grid-list>
+  </md-grid-tile>
+</md-grid-list>
+
+<!--<md-grid-list cols="3">-->
+  <!--<md-grid-tile [colspan]="3">-->
+  <!--<md-grid-tile>-->
+    <md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
+      <h3>Posts need</h3>
+      <div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
+        <md-grid-tile *ngIf="i<4">
+          <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+        </md-grid-tile>
+      </div>
+    </md-grid-list>
+
+    <md-grid-list cols="2"  rowHeight="4:5" style="width: 100%">
+      <h3>Posts offer</h3>
+      <div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">
+        <md-grid-tile *ngIf="i<4">
+          <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+        </md-grid-tile>
+      </div>
+    </md-grid-list>
+  <!--</md-grid-tile>-->
+<!--</md-grid-list>-->

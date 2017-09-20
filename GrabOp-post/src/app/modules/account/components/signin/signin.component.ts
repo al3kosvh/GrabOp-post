@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
 import { SOAuthenticateResponse } from '../../../../models/sos';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { VOUser } from '../../models/vouser';
-import { AuthHttpMy } from '../../services/auth-http';
+import { AuthHttpService } from '../../services/auth-http.service';
 
 
 @Component({
@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
 
 
     constructor(
-        private loginService: AuthHttpMy,
+        private loginService: AuthHttpService,
 
     ) {
         this.user$ = loginService.user$;

@@ -1,19 +1,21 @@
-﻿import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
+import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
 import { VOProfileSettings } from '../../../../../models/vos';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../../services/signup.service';
 import { VOUserExt } from '../../../models/vouser';
-import { confirmPassword } from '../validators/confirmPassword';
-import { CheckEmailDirective } from '../validators/check-email.directive';
 
-import { ModalWindowService } from '../../../services/modal-window.service';
+// Directives
+import { confirmPassword } from '../../../directives/confirmPassword';
+import { CheckEmailDirective } from '../../../directives/check-email.directive';
+
+import { ModalWindowService } from '../../../../shared/services/modal-window.service';
 import { MdDialog } from '@angular/material';
-import { ModalAlertComponent } from '../../../../../shared/components/modal-alert/modal-alert.component';
-import { UploadService } from '../../../../../services/upload.service';
+import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
+import { UploadService } from '../../../services/upload.service';
 import { RequestOptions } from '@angular/http';
-import { AuthHttpMy } from '../../../services/auth-http';
+import { AuthHttpService } from '../../../services/auth-http.service';
 
 
 @Component({
@@ -25,8 +27,7 @@ import { AuthHttpMy } from '../../../services/auth-http';
 })
 export class SignupUsernameComponent implements OnInit, OnDestroy {
 
-    @ContentChild(CheckEmailDirective)
-    input: CheckEmailDirective;
+    @ContentChild(CheckEmailDirective) input: CheckEmailDirective;
 
     person: VOUserExt;
     // myForm:FormGroup;
@@ -46,7 +47,7 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private authHttpMy: AuthHttpMy,
+        private authHttpMy: AuthHttpService,
         private dialog: MdDialog,
         private uploadService: UploadService,
         private modal: ModalWindowService,

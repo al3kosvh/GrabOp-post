@@ -1,7 +1,6 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthHttpMy } from '../../../services/auth-http';
-import { ModalAlertComponent } from '../../../../../shared/components/modal-alert/modal-alert.component';
+import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
 import { MdDialog } from '@angular/material';
 //import {UserEditService} from '../../../user-edit/user-edit.service';
 import { SignupService } from '../../../services/signup.service';
@@ -13,10 +12,12 @@ import { SignupService } from '../../../services/signup.service';
 })
 export class SignupConfirmComponent implements OnInit {
 
-    constructor(private route: ActivatedRoute,
+    constructor(
+        private route: ActivatedRoute,
         private router: Router,
         private signupService: SignupService,
-        private dialog: MdDialog) { }
+        private dialog: MdDialog
+    ) { }
 
     ngOnInit() {
         let token = this.route.snapshot.params.token;
