@@ -23,6 +23,7 @@ import { PostModule } from './modules/post/post.module';
 import { LandingModule } from './modules/landing/landing.module';
 import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
+import { OpportunityModule } from './modules/opportunity/opportunity.module';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
@@ -52,7 +53,8 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostEditModule,
-        ConnectionModule       
+        ConnectionModule,
+        OpportunityModule
     ],
     declarations: [
         AppComponent,
