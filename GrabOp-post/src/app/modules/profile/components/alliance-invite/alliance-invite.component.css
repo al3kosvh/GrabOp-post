@@ -1,0 +1,26 @@
+:host {
+    /*background: #1a2580;*/
+    color: #fff;
+    position: fixed;
+    left: auto;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    min-width: 250px;
+    z-index: 9999;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.radio-button {
+    margin: 5px;
+}
+
+.selected-value {
+    margin: 15px 0;
+}

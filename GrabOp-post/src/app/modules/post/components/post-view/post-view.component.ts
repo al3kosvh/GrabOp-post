@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { VOPost } from '../../../../models/vos';
-import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { VOPost } from '../../../../models/vos';
+import { PostService } from '../../services/post.service';
 import { MyPostsService } from '../../services/my-posts.service';
 import { VOUserExt } from '../../../account/models/vouser';
-import { ProfileService } from '../../../account/services/profile.service';
+import { ProfileService } from '../../../profile/services/profile.service';
 
 @Component({
     selector: 'app-post-view',
@@ -20,10 +21,12 @@ export class PostViewComponent implements OnInit {
     // myPosts: VOPost[];
     personPosts: VOPost[];
 
-    constructor(private postsService: PostsService,
+    constructor(
+        private postService: PostService,
         private profileService: ProfileService,
         // private myPostsService: MyPostsService,
-        private aroute: ActivatedRoute) { }
+        private aroute: ActivatedRoute
+    ) { }
 
     ngOnInit() {
         // this.myPostsService.myPosts$.subscribe(posts => {
@@ -31,7 +34,7 @@ export class PostViewComponent implements OnInit {
         //   this.myPosts = posts;
         // });
 
-        this.postsService.selectedPost$.subscribe(post => {
+        this.postService.selectedPost$.subscribe(post => {
             console.log('Post', post);
             this.post = post;
             // this.profileService.getProfileById(post.ownerId);
@@ -49,7 +52,7 @@ export class PostViewComponent implements OnInit {
                 console.error(' please provide ID for person to view');
                 return;
             }
-            this.postsService.getPostById(this.idPost);
+            this.postService.getPostById(this.idPost);
             //   .subscribe(post => {
             //   this.profileService.getProfileById(post.ownerId);
             //   this.profileService.person$.subscribe(res => this.person = res);
@@ -58,8 +61,8 @@ export class PostViewComponent implements OnInit {
 
             this.profileService.person$.subscribe(res => this.person = res);
 
-            this.postsService.getPersonPosts(this.idPerson);
-            this.postsService.posts$.subscribe(posts => {
+            this.postService.getPersonPosts(this.idPerson);
+            this.postService.posts$.subscribe(posts => {
                 console.log('Person posts', posts);
                 this.personPosts = posts;
             });
@@ -67,7 +70,7 @@ export class PostViewComponent implements OnInit {
     }
 
     onClickItem(item: VOPost) {
-        this.postsService.setSelectedPost(item);
+        this.postService.setSelectedPost(item);
     }
 
     onRequestClick() { }
