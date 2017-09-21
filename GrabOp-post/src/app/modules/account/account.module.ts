@@ -10,6 +10,8 @@ import { SignupConfirmComponent } from './components/signup/confirm/signup-confi
 import { AccountRecoverComponent } from './components/recover/recover.component';
 import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { SigninDialogComponent } from './components/signin/dialog/signin-dialog.component';
+
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -40,11 +42,13 @@ const homeRoute: Routes = [
     ],
     exports: [
         SigninComponent,
+        SigninDialogComponent,
         SignupComponent
     ],
     declarations: [
         SignupComponent,
         SigninComponent,
+        SigninDialogComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
         AccountRecoverComponent,

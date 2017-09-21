@@ -7,6 +7,7 @@ import { VOPost } from '../../../../models/vos';
 
 // Components
 import { SigninComponent } from '../../../account/components/signin/signin.component';
+import { SigninDialogComponent } from '../../../account/components/signin/dialog/signin-dialog.component';
 
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';

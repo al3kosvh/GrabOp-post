@@ -49,7 +49,7 @@ export class SigninComponent implements OnInit {
     openDialog(): void {
         let dialogRef = this.dialog.open(SigninDialogComponent, {
             width: '250px',
-            data: { username: this.signinData.username, password: this.signinData.password }
+            data: { username: '', password: '' }
         });
 
         dialogRef.afterClosed().subscribe(result => {
