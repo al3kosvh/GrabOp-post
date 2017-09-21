@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { PostModule } from '../post/post.module';
 
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
+import { AccountModule } from '../account/account.module';
 
 const routes: Routes = [
     { path: 'guest', component: LandingComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         SharedModule,
-        PostModule
+        PostModule,
+        AccountModule
     ],
     declarations: [
         LandingComponent

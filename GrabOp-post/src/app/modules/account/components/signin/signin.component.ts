@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+﻿import { Component, Inject, EventEmitter, OnInit, Output } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { SOAuthenticateResponse } from '../../../../models/sos';
 // import {LoginService} from '../login.service';
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { VOUser } from '../../models/vouser';
 import { AuthHttpService } from '../../services/auth-http.service';
+
+import { SigninDialogComponent } from './dialog/signin-dialog.component';
 
 
 @Component({
@@ -23,19 +25,19 @@ export class SigninComponent implements OnInit {
     fullName: string;
     static loggedIn: Function;
 
-
-    login = { username: 'al3kosvh@gmail.com', password: 'mio,mio' };
+    signinData: Models.SignIn = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
 
 
     // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
 
-    signUp() {
-        console.log('Sign Up Data:', this.login);
+    signIn() {
+        console.log('Sign In Data:', this.signinData);
     }
 
 
     constructor(
         private loginService: AuthHttpService,
+        public dialog: MdDialog
 
     ) {
         this.user$ = loginService.user$;
@@ -44,14 +46,21 @@ export class SigninComponent implements OnInit {
     ngOnInit() {
     }
 
-    onCloseClick() {
-        // this.modal.closeWindow('close button clicked '); // parameter just for testing
+    openDialog(): void {
+        let dialogRef = this.dialog.open(SigninDialogComponent, {
+            width: '250px',
+            data: { username: this.signinData.username, password: this.signinData.password }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('dialog closed');
+            this.signinData.username = result.username;
+            this.signinData.password = result.password;
+        });
     }
 
     onSubmit(): void {
-
-
-        this.loginService.login(this.login.username, this.login.password).subscribe(res => {
+        this.loginService.login(this.signinData.username, this.signinData.password).subscribe(res => {
             if (res) {
                 this.fullName = res.firstName + ' ' + res.lastName;
                 if (SigninComponent.loggedIn) SigninComponent.loggedIn();
@@ -59,7 +68,6 @@ export class SigninComponent implements OnInit {
             }
             else console.error(' error login');
         });
-
     }
 
 

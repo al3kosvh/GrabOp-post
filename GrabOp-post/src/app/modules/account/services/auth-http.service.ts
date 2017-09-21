@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+﻿import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -27,7 +27,7 @@ export class AuthHttpService {
 
         this.isLogedIn = this.user$.map(user => !!user);
 
-        this.autoLogin();
+        //this.autoLogin();
     }
 
     autoLogin(): void {

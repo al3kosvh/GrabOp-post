@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -18,6 +18,7 @@ import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { PostModule } from '../post/post.module';
+import { AccountModule } from '../account/account.module';
 
 const homeRoute: Routes = [
     { path: '', component: HomeComponent },
@@ -30,7 +31,8 @@ const homeRoute: Routes = [
         CommonModule,
         SharedModule,
         PostModule,
-        PipesModule
+        PipesModule,
+        AccountModule
     ],
     declarations: [
         HomeComponent,

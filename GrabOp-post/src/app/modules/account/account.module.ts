@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,8 +39,13 @@ const homeRoute: Routes = [
         RouterModule.forChild(homeRoute),
         SharedModule
     ],
+    exports: [
+        SigninComponent,
+        SignupComponent
+    ],
     declarations: [
         SignupComponent,
+        SigninComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
         AccountRecoverComponent,
