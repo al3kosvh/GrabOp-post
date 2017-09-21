@@ -1,0 +1,33 @@
+<div id="OpprtunityOverview">
+  <md-grid-list cols="1" rowHeight="200px">
+    <md-grid-tile>
+      <md-tab-group>
+        <md-tab label="Pending">
+          <h3>Opportunities Pending</h3>
+          <div *ngFor="let item of opportunitiesPending">
+            <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+          </div>
+        </md-tab>
+        <md-tab label="Active">
+          <h3>Opportunities Active</h3>
+          <div *ngFor="let item of opportunitiesActive">
+            <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+          </div>
+        </md-tab>
+        <md-tab label="Complete">
+          <h3>Opportunities Complete</h3>
+          <div *ngFor="let item of opportunitiesComplete">
+            <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+          </div>
+        </md-tab>
+      </md-tab-group>
+    </md-grid-tile>
+  </md-grid-list>
+
+  <!--<nav md-tab-nav-bar>-->
+    <!--<a md-tab-link [routerLink]="pending" routerLinkActive #rla="routerLinkActive">Pending</a>-->
+    <!--<a md-tab-link [routerLink]="active" routerLinkActive #rla="routerLinkActive">Active</a>-->
+    <!--<a md-tab-link [routerLink]="complete" routerLinkActive #rla="routerLinkActive">Complete</a>-->
+  <!--</nav>-->
+  <!--<router-outlet></router-outlet>-->
+</div>

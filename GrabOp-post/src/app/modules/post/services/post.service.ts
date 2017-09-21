@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { mapGetMyPosts, mapGetPost } from '../../../utils/map-functions';
 
 @Injectable()
-export class PostsService {
+export class PostService {
     posts$: Observable<VOPost[]>;
     private postsSub: BehaviorSubject<VOPost[]>;
     private posts: VOPost[];

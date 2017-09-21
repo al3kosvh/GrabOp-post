@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { VOSettings } from '../../../models/vos';
-import { AuthHttpService } from './auth-http.service';
+import { AuthHttpService } from '../../account/services/auth-http.service';
 
 @Injectable()
 export class ConnectionService {

@@ -18,7 +18,6 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 // Services
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
-import { ConnectionService } from './services/connection.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -55,8 +54,7 @@ const homeRoute: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService,
-        ConnectionService
+        AuthHttpService
     ]
 })
 export class AccountModule { }

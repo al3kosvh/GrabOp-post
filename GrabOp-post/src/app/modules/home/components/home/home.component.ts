@@ -9,7 +9,7 @@ import { UserCommentsComponent } from '../user-comments/user-comments.component'
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { MyPostsService } from '../../../post/services/my-posts.service';
 import { AuthHttpService } from '../../../account/services/auth-http.service';
-import { ConnectionService } from '../../../account/services/connection.service';
+import { ConnectionService } from '../../../connection/services/connection.service';
 
 @Component({
     selector: 'app-home',
