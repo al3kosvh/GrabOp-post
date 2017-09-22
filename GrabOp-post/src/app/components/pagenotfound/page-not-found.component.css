@@ -1,0 +1,17 @@
+span.error {
+    font-size: 1.5em;
+    font-weight: bold;
+    -webkit-margin-before: 2em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+span.error-message {
+    font-weight: bold;
+    -webkit-margin-after: 1em;
+}
+
+div {
+  height: 50%;
+}
