@@ -71,18 +71,19 @@ export class AuthHttpService {
 
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/auth?format=json';
         let url: string = VOSettings.authenticateUrl;
-        console.log(url, username, password);
-        this.http.post(url, { username: username, password: password }).map(res => {
-            let r: SOAuthenticateResponse = res.json();
-            console.log(r);
+        
+        this.http.post(url, { username: username, password: password }).map(response => {
+            let authResponse: SOAuthenticateResponse = response.json();            
 
             let user: VOUser = new VOUser();
-            user.id = r.UserId;
-            user.sessionId = r.SessionId;
+            user.id = authResponse.user_id;
+            user.sessionId = authResponse.session_id;
+            user.displayName = authResponse.display_name;
             user.username = username;
             user.password = password;
-            user.token = r.SessionId;
+            user.token = authResponse.session_id;
             return user;
+            
         }).catch(this.handleError).subscribe(user => {
             ///TODO make sure user is valid
             //this.loginUser(user);

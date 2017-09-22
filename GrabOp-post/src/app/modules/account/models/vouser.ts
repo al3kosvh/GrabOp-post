@@ -101,12 +101,12 @@ export class SOAuthenticate{
 }
 
 export class SOAuthenticateResponse{
-  UserId: string;
-  SessionId: string;
-  UserName: string;
-  DisplayName: string;
-  BearerToken: string;
-  ResponseStatus: SOResponseStatus;
+  user_id: string;
+  session_id: string;
+  user_name: string;
+  display_name: string;
+  bearer_token: string;
+  response_status: SOResponseStatus;
   constructor(obj: any){ for(let str in obj) this[str] = obj[str];}
 }
 
