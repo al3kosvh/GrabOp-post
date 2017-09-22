@@ -304,8 +304,9 @@ export class VOOpportunity {
 
 export class VOSettings {
     // static server: string = 'http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1';
-    static server: string = '/api/v1';
+    static server: string = 'http://localhost:53822/api/v1';
 
+    static authenticateUrl = VOSettings.server + '/auth?format=json';
     static register: string = VOSettings.server + '/register?format=json';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
     static getMyPosts: string = VOSettings.server + '/services/myservices?format=json';

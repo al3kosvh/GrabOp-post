@@ -70,7 +70,7 @@ export class AuthHttpService {
         let sub: Subject<VOUserExt> = new Subject();
 
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/auth?format=json';
-        let url: string = VOSettings.server + '/auth?format=json';
+        let url: string = VOSettings.authenticateUrl;
         console.log(url, username, password);
         this.http.post(url, { username: username, password: password }).map(res => {
             let r: SOAuthenticateResponse = res.json();
@@ -86,14 +86,15 @@ export class AuthHttpService {
         }).catch(this.handleError).subscribe(user => {
             ///TODO make sure user is valid
             //this.loginUser(user);
+            console.log(user);
             this.saveUser(user);
 
-            this.getUsersExtended().subscribe(
+            /*this.getUsersExtended().subscribe(
                 user => {
                     sub.next(user);
                     this.userSub.next(user);
                 }
-            )
+            )*/
 
         });
 
@@ -136,7 +137,7 @@ export class AuthHttpService {
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        //  console.error(error);
+        console.error(error);
         //return error;;
         return Observable.throw(errMsg);
     }
