@@ -19,8 +19,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { PostModule } from '../post/post.module';
 
-const homeRoute: Routes = [
-    { path: '', component: HomeComponent },
+const homeRoute: Routes = [    
     { path: 'home', component: HomeComponent }
 ];
 

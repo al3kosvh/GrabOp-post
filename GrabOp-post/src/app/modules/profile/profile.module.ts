@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+// Shared Modules
 import { SharedModule } from '../shared/shared.module';
+import { PostModule } from '../post/post.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
@@ -20,16 +22,17 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 
 const routes: Routes = [
-    { path: ':id', component: ProfileComponent }
+    { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule.forChild(routes),        
         FormsModule,
         SharedModule,
         PipesModule,
-        RouterModule.forChild(routes)
+        PostModule        
     ],
     declarations: [
         ProfileComponent,

@@ -24,6 +24,7 @@ import { LandingModule } from './modules/landing/landing.module';
 import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
@@ -34,10 +35,11 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { SigninComponent } from './modules/account/components/signin/signin.component';
 import { FooterComponent } from "./components/footer/footer.component";
+import { PageNotFoundComponent } from './components/pagenotfound/page-not-found.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
-    { path: '**', redirectTo: '/guest' }
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -54,15 +56,17 @@ const routes: Routes = [
         PipesModule,
         PostEditModule,
         ConnectionModule,
-        OpportunityModule
+        OpportunityModule,
+        ProfileModule
     ],
     declarations: [
         AppComponent,
         ToolbarComponent,
-        FooterComponent        
+        FooterComponent,
+        PageNotFoundComponent
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        //{ provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
     bootstrap: [AppComponent]
 })

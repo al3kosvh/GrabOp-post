@@ -20,11 +20,11 @@ import { SharedModule } from '../shared/shared.module';
 // import {UploadService} from '../services/upload.service';
 
 const routes: Routes = [
-    { path: ':id', component: PostEditComponent },
-    { path: ':id/:type', component: PostEditComponent },
-    { path: 'post-edit', component: PostEditComponent, outlet: 'slideRight' },
-    { path: 'post-edit/:id', component: PostEditComponent, outlet: 'slideRight' },
-    { path: 'post-edit/:id/:type', component: PostEditComponent, outlet: 'slideRight' },
+    //{ path: ':id', component: PostEditComponent },
+    //{ path: ':id/:type', component: PostEditComponent },
+    //{ path: 'post-edit', component: PostEditComponent, outlet: 'slideRight' },
+    //{ path: 'post-edit/:id', component: PostEditComponent, outlet: 'slideRight' },
+    //{ path: 'post-edit/:id/:type', component: PostEditComponent, outlet: 'slideRight' },
 ];
 
 @NgModule({
