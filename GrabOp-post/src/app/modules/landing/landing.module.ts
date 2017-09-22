@@ -8,7 +8,6 @@ import { PostModule } from '../post/post.module';
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
 import { AccountModule } from '../account/account.module';
-import { SigninDialogComponent } from '../account/components/signin/dialog/signin-dialog.component';
 
 const routes: Routes = [
     { path: 'guest', component: LandingComponent },
@@ -24,7 +23,6 @@ const routes: Routes = [
     ],
     declarations: [
         LandingComponent
-    ],
-    entryComponents: [SigninDialogComponent]
+    ]
 })
 export class LandingModule { }
