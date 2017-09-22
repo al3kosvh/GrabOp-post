@@ -8,7 +8,7 @@
   </md-grid-tile>
 </md-grid-list>
 
-<div md-dialog-content>
+<div>
   <form #f="ngForm" autocomplete="off" novalidate>
     <md-list>
 
@@ -38,7 +38,7 @@
 
       <md-list-item>
         <div class='row'>
-          <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="onSubmit()">
+          <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="onSubmit()" >
             Sign In
           </button>
           <h5 class="col s12 center">OR</h5>
