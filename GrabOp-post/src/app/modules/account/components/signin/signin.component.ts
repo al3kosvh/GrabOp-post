@@ -55,13 +55,12 @@ export class SigninDialogComponent {
     }
 
     onSubmit(): void {
-        console.log(this.signinData);
         this.loginService.login(this.signinData.username, this.signinData.password).subscribe(response => {
-            if (response) {
-                console.error(response); 
+            console.log(response);
+            if (response) {                
                 this.dialogRef.close();
                 //if (SigninComponent.loggedIn) SigninComponent.loggedIn();
-                // setTimeout(()=>this.modal.closeWindow('login success'), 3000);
+                setTimeout(()=>this.dialogRef.close('login success'), 3000);
             }
             else {                 
                 this.errorMessage = 'Error login';
