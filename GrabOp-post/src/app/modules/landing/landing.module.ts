@@ -8,7 +8,6 @@ import { AccountModule } from '../account/account.module';
 
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
-import { AccountModule } from '../account/account.module';
 
 const routes: Routes = [
     { path: 'guest', component: LandingComponent },

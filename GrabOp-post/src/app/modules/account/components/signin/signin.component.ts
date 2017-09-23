@@ -1,13 +1,9 @@
-﻿import { Component, Inject, EventEmitter, Output } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+﻿import { Component, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
-import { SOAuthenticateResponse } from '../../../../models/sos';
-// import {LoginService} from '../login.service';
-import { Router } from '@angular/router';
-
-import { Observable } from 'rxjs/Observable';
-import { VOUser } from '../../models/vouser';
+// Services
 import { AuthHttpService } from '../../services/auth-http.service';
+import { SigninDialogComponent } from '../dialogs/signin-dialog.component';
 
 @Component({
     selector: 'account-signin',
@@ -16,16 +12,17 @@ import { AuthHttpService } from '../../services/auth-http.service';
 })
 export class SigninComponent {
 
-    // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
-
-    constructor(public dialog: MdDialog) {
-
-    }
+    constructor(
+        public dialog: MdDialog
+    ) { }
 
     openDialog(): void {
-        let dialogRef = this.dialog.open(SigninDialogComponent, {
 
-        });
+        let config: MdDialogConfig = {
+            width: '350px',
+        }
+
+        let dialogRef = this.dialog.open(SigninDialogComponent, config);
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
@@ -34,42 +31,4 @@ export class SigninComponent {
         });
     }
 
-}
-
-
-@Component({
-    selector: 'signin-dialog',
-    templateUrl: 'signin-dialog.component.html',
-})
-export class SigninDialogComponent {
-
-    user$: Observable<VOUser>;
-    signinData: Models.SignIn = { username: '', password: '', rememberMe: false };
-    errorMessage: string;
-
-    constructor(
-        public dialogRef: MdDialogRef<SigninDialogComponent>,
-        private loginService: AuthHttpService
-    ) {
-        this.user$ = loginService.user$;
-    }
-
-    onSubmit(): void {
-        this.loginService.login(this.signinData.username, this.signinData.password).subscribe(response => {
-            console.log(response);
-            if (response) {                
-                this.dialogRef.close();
-                //if (SigninComponent.loggedIn) SigninComponent.loggedIn();
-                setTimeout(()=>this.dialogRef.close('login success'), 3000);
-            }
-            else {                 
-                this.errorMessage = 'Error login';
-                console.error(response);
-            }
-        });
-    }
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
 }

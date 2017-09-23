@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="src\app\modules\account\components\signin\signin-dialog.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AfominDotCom.NgProjectTemplate.Server" Version="1.0.4" />
   </ItemGroup>
 
@@ -14,6 +18,10 @@
     <None Include=".gitignore" />
     <None Include="README.md" />
     
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\modules\account\components\dialogs\signin-dialog.component.ts" />
   </ItemGroup>
 
   <PropertyGroup>
