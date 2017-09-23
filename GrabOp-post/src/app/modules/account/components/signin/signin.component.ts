@@ -19,19 +19,10 @@ export class SigninComponent {
     // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
 
     constructor(public dialog: MdDialog) {
-
     }
 
     openDialog(): void {
-        let dialogRef = this.dialog.open(SigninDialogComponent, {
-
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-            /*this.signinData.username = result.username;
-            this.signinData.password = result.password;*/
-        });
+        let dialogRef = this.dialog.open(SigninDialogComponent, {});
     }
 
 }
@@ -43,30 +34,25 @@ export class SigninComponent {
 })
 export class SigninDialogComponent {
 
-    user$: Observable<VOUser>;
     signinData: Models.SignIn = { username: '', password: '', rememberMe: false };
     errorMessage: string;
 
     constructor(
         public dialogRef: MdDialogRef<SigninDialogComponent>,
-        private loginService: AuthHttpService
+        private authenticationService: AuthHttpService
     ) {
-        this.user$ = loginService.user$;
+
     }
 
     onSubmit(): void {
-        this.loginService.login(this.signinData.username, this.signinData.password).subscribe(response => {
-            console.log(response);
-            if (response) {                
+        this.authenticationService.login(this.signinData)
+            .subscribe(
+            data => {
                 this.dialogRef.close();
-                //if (SigninComponent.loggedIn) SigninComponent.loggedIn();
-                setTimeout(()=>this.dialogRef.close('login success'), 3000);
-            }
-            else {                 
-                this.errorMessage = 'Error login';
-                console.error(response);
-            }
-        });
+            },
+            error => {
+                this.errorMessage = 'Username or password is incorrect';
+            });
     }
 
     onNoClick(): void {
