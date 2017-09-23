@@ -1,5 +1,5 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
-<md-sidenav-container>
+<md-sidenav-container [ngClass]="(isLoggedIn | async) ? 'withToolbar' : ''">
   <md-sidenav #sidenav>
     <md-list>
       <a md-list-item routerLink='/guest'>Guest</a>
@@ -24,7 +24,7 @@
 
   <router-outlet></router-outlet>
 
-  <!--<router-outlet name="slideRight"></router-outlet>-->
+  <router-outlet name="slideRight"></router-outlet>
   <!--<div [@routerAnimationRight]="prepareRouter(outlet)">-->
   <!--<router-outlet name="slideRight" #outlet="outlet"></router-outlet>-->
   <!--</div>-->

@@ -29,6 +29,7 @@ export class AppComponent {
     private isLoggedIn: Observable<boolean>;
     private user: VOUserExt;
     private state: string = 'out';
+    private withToolbar
 
     constructor(
         private auth: AuthHttpService,

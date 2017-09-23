@@ -1,0 +1,126 @@
+div.profile {
+  background-color: #f5f5f5;
+}
+
+div.profile-banner {
+  height: 350px;
+  background: no-repeat center center;
+  background-size: cover;
+}
+
+div.profile-container {
+  margin-top: -260px;
+}
+
+div.profile-banner-info {
+  color: white;
+  font-size: 1.6em;
+  margin-bottom: 30px;
+}
+
+  div.profile-banner-info span.city {
+    font-size: 0.8em;
+  }
+
+div.separator {
+  border: 1px solid white;
+  width: 100%;
+  margin: 5px;
+}
+
+div.profile-card {
+  width: 180px;
+  height: 230px;
+  margin-left: 60px;
+  background-color: white;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
+  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
+}
+
+div.profile-photo {
+  width: 160px;
+  height: 160px;
+  margin: 10px;
+}
+
+  div.profile-photo img {
+    width: 160px;
+    height: 160px;
+  }
+
+div.profile-inner {
+  background-color: white;
+  margin-top: -24px;
+  height: 600px;
+}
+
+div.profile-name {
+  margin-top: -5px;
+}
+
+div.profile-info {
+  font-size: 14px;
+}
+
+div.profile-inner-stats {
+  padding: 20px;
+  font-size: 12px;
+  background-color: white;
+  font-weight: 600;
+}
+
+  div.profile-inner-stats span {
+    color: darkorange;
+    position: relative;
+    font-size: 14px;
+    top: 1px;
+  }
+
+div.profile-inner-info {
+  padding: 20px;
+}
+
+div.profile-inner-site {  
+  font-family: Segoe Script, cursive;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+  div.profile-inner-site span {
+    float: right;
+    font-size: 0.7em;
+    margin-right: 20px;
+  }
+
+div.profile-inner-connections {
+  background: no-repeat center center;
+  padding-top: 60px;
+  height: 350px;
+}
+
+div.connections-title {
+  margin-top: -5px;
+  margin-bottom: 10px;
+  margin-left: -60px;
+  color: #03a9f4;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+div.profile-inner-connections img.bracket {
+  width: 14px;
+  height: 70px;
+}
+
+div.profile-inner-connections img.user {
+  width: 50px;
+  height: 50px;
+  margin: 6px;
+  border-radius: 50%;
+}

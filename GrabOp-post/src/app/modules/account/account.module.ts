@@ -18,6 +18,7 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 // Services
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
+import { SignupService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -25,9 +26,15 @@ import { SharedModule } from '../shared/shared.module';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
 const homeRoute: Routes = [
-   { path: 'username', component: SignupUsernameComponent },
-   { path: 'confirm/:token', component: SignupConfirmComponent },
-   { path: 'resetpassword/:token', component: AccountRecoverComponent },
+
+    ////path: '', component: SignupComponent, outlet: 'slideRight',
+    //children: [
+    //    { path: 'join-us', component: SignupComponent, outlet: 'slideRight'},
+    //    { path: 'username', component: SignupUsernameComponent },
+    //    { path: 'confirm/:token', component: SignupConfirmComponent },
+    //    { path: 'resetpassword/:token', component: AccountRecoverComponent },
+    //]
+
 ];
 
 @NgModule({
@@ -39,6 +46,7 @@ const homeRoute: Routes = [
         SharedModule
     ],
     declarations: [
+        SigninComponent,
         SignupComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
@@ -49,7 +57,11 @@ const homeRoute: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService
+        AuthHttpService,
+        SignupService
+    ],
+    entryComponents: [
+        SigninComponent
     ]
 })
 export class AccountModule { }

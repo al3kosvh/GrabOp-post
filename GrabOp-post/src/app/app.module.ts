@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -45,6 +46,7 @@ const routes: Routes = [
 @NgModule({
     imports: [
         BrowserModule,
+        CommonModule,
         FormsModule,
         HttpModule,
         RouterModule.forRoot(routes),
@@ -66,7 +68,7 @@ const routes: Routes = [
         PageNotFoundComponent
     ],
     providers: [
-        //{ provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
     bootstrap: [AppComponent]
 })
