@@ -20,19 +20,12 @@ export class SigninComponent implements OnInit {
     @Output() close: EventEmitter<null> = new EventEmitter();
     showPass = false; /// TODO false
     user$: Observable<VOUser>;
-    fullName: string;
     static loggedIn: Function;
-
 
     login = { username: 'al3kosvh@gmail.com', password: 'mio,mio' };
 
 
     // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
-
-    signUp() {
-        console.log('Sign Up Data:', this.login);
-    }
-
 
     constructor(
         private loginService: AuthHttpService,
@@ -45,15 +38,13 @@ export class SigninComponent implements OnInit {
     }
 
     onCloseClick() {
-        // this.modal.closeWindow('close button clicked '); // parameter just for testing
+        //this.modal.closeWindow('close button clicked '); // parameter just for testing
     }
 
-    onSubmit(): void {
+    submit(): void {
 
-
-        this.loginService.login(this.login.username, this.login.password).subscribe(res => {
-            if (res) {
-                this.fullName = res.firstName + ' ' + res.lastName;
+        this.loginService.login(this.login.username, this.login.password).subscribe(res => {            
+            if (res) {                
                 if (SigninComponent.loggedIn) SigninComponent.loggedIn();
                 // setTimeout(()=>this.modal.closeWindow('login success'), 3000);
             }
@@ -62,5 +53,8 @@ export class SigninComponent implements OnInit {
 
     }
 
+    signUp() {
+        console.log('Sign Up Data:', this.login);
+    }
 
 }
