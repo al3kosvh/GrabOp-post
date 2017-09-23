@@ -32,7 +32,7 @@ import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 // Components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { SigninComponent } from './modules/account/components/signin/signin.component';
+import { SignInComponent } from './modules/account/components/signin/signin.component';
 import { FooterComponent } from "./components/footer/footer.component";
 
 const routes: Routes = [

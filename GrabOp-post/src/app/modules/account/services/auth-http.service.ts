@@ -52,18 +52,16 @@ export class AuthHttpService {
         this.http.post(url, {}).toPromise().then(res => console.log('session-to-token:', res));
     }
 
-    logout() {
+    signOut() {
         let url: string = VOSettings.server + '/auth/logout?format=json';
-        console.log(url);
-        this.get(url).map(res => res.json()).subscribe(res => {
-            console.log(res);
+        this.get(url).map(res => res.json()).subscribe(response => {
             this.user = null;
             this.userSub.next(null);
         });
     }
 
 
-    login(authData: Models.SignIn) {
+    signIn(authData: Models.SignIn) {
 
         let userExt: Subject<VOUserExt> = new Subject();
 

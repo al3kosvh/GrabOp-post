@@ -14,7 +14,7 @@ import { AuthHttpService } from '../../services/auth-http.service';
     templateUrl: './signin.component.html',
     styleUrls: ['./signin.component.css']
 })
-export class SigninComponent {
+export class SignInComponent {
 
     // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
 
@@ -22,7 +22,7 @@ export class SigninComponent {
     }
 
     openDialog(): void {
-        let dialogRef = this.dialog.open(SigninDialogComponent, {});
+        let dialogRef = this.dialog.open(SignInDialogComponent, {});
     }
 
 }
@@ -32,26 +32,30 @@ export class SigninComponent {
     selector: 'signin-dialog',
     templateUrl: 'signin-dialog.component.html',
 })
-export class SigninDialogComponent {
+export class SignInDialogComponent {
 
     signinData: Models.SignIn = { username: '', password: '', rememberMe: false };
     errorMessage: string;
+    loading: boolean = false;
 
     constructor(
-        public dialogRef: MdDialogRef<SigninDialogComponent>,
+        public dialogRef: MdDialogRef<SignInDialogComponent>,
         private authenticationService: AuthHttpService
     ) {
 
     }
 
     onSubmit(): void {
-        this.authenticationService.login(this.signinData)
+        this.loading = true;
+        this.authenticationService.signIn(this.signinData)
             .subscribe(
             data => {
                 this.dialogRef.close();
+                this.loading = false;
             },
             error => {
                 this.errorMessage = 'Username or password is incorrect';
+                this.loading = false;
             });
     }
 

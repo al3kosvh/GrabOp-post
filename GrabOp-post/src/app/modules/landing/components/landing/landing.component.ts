@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { VOPost } from '../../../../models/vos';
 
 // Components
-import { SigninComponent } from '../../../account/components/signin/signin.component';
+import { SignInComponent } from '../../../account/components/signin/signin.component';
 
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
@@ -82,7 +82,7 @@ export class LandingComponent implements OnInit {
     }
 
     logOutClick() {
-        this.auth.logout();
+        this.auth.signOut();
     }
 
 }

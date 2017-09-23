@@ -10,8 +10,9 @@ import { SignupUsernameComponent } from './components/signup/username/signup-use
 import { SignupConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 import { AccountRecoverComponent } from './components/recover/recover.component';
 import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
-import { SigninComponent } from './components/signin/signin.component';
-import { SigninDialogComponent } from './components/signin/signin.component';
+import { SignInComponent } from './components/signin/signin.component';
+import { SignInDialogComponent } from './components/signin/signin.component';
+import { SignOutComponent } from './components/signout/signout.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -30,6 +31,7 @@ const homeRoute: Routes = [
    { path: 'username', component: SignupUsernameComponent },
    { path: 'confirm/:token', component: SignupConfirmComponent },
    { path: 'resetpassword/:token', component: AccountRecoverComponent },
+   { path: 'signout', component: SignOutComponent, canActivate: [IsLoggedIn] },
 ];
 
 @NgModule({
@@ -42,14 +44,14 @@ const homeRoute: Routes = [
         MdDialogModule        
     ],
     exports: [
-        SigninComponent,
+        SignInComponent,
         SignupComponent,
         MdDialogModule
     ],
     declarations: [
         SignupComponent,
-        SigninComponent,
-        SigninDialogComponent,
+        SignInComponent,
+        SignInDialogComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
         AccountRecoverComponent,
@@ -61,6 +63,6 @@ const homeRoute: Routes = [
         UploadService,
         AuthHttpService
     ],
-    entryComponents: [SigninDialogComponent]
+    entryComponents: [SignInDialogComponent]
 })
 export class AccountModule { }
