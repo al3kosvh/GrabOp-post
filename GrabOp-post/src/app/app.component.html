@@ -24,10 +24,10 @@
 
   <router-outlet></router-outlet>
 
-  <router-outlet name="slideRight"></router-outlet>
-  <!--<div [@routerAnimationRight]="prepareRouter(outlet)">-->
-  <!--<router-outlet name="slideRight" #outlet="outlet"></router-outlet>-->
-  <!--</div>-->
+  <!--<router-outlet name="slideRight"></router-outlet>-->
+  <div [@routerAnimationRight]="prepareRouter(outlet)">
+    <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
+  </div>
   <!--<router-outlet name="slideTop"></router-outlet>-->
   <!--<router-outlet name="slideBottom"></router-outlet>-->
   <!--<div [@slideRightInOut]="prepareRouteTransition(r)">-->

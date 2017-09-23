@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,16 +20,23 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 // Services
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
+import { SignupService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
 // import {SigninButtonComponent} from './login-button/button.component';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
-const homeRoute: Routes = [
-   { path: 'username', component: SignupUsernameComponent },
-   { path: 'confirm/:token', component: SignupConfirmComponent },
-   { path: 'resetpassword/:token', component: AccountRecoverComponent },
+const routes: Routes = [
+    {
+        path: '', component: SignupComponent,
+        children: [
+            { path: 'join-us', component: SignupComponent },
+            { path: 'username', component: SignupUsernameComponent },
+            { path: 'confirm/:token', component: SignupConfirmComponent },
+            { path: 'resetpassword/:token', component: AccountRecoverComponent },
+        ]
+    }
 ];
 
 @NgModule({
@@ -37,9 +44,9 @@ const homeRoute: Routes = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule.forChild(homeRoute),
+        RouterModule.forChild(routes),
         SharedModule,
-        MdDialogModule        
+        MdDialogModule
     ],
     exports: [
         SigninComponent,
@@ -59,7 +66,8 @@ const homeRoute: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService
+        AuthHttpService,
+        SignupService
     ],
     entryComponents: [SigninDialogComponent]
 })

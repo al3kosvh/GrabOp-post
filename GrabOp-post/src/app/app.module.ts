@@ -39,7 +39,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/pagenotfound/page-not-found.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/guest', pathMatch: 'full' },
+    { path: '', redirectTo: '/guest', pathMatch: 'full' },    
     { path: '**', component: PageNotFoundComponent }
 ];
 

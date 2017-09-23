@@ -1,4 +1,4 @@
-﻿<div>
+<div>
   <div id='banner'>
     <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
       <div fxLayout="row" fxLayoutAlign="space-between">
@@ -11,7 +11,7 @@
             <button md-raised-button color="accent" routerLink="/home">HOME</button>
             <button md-raised-button color="accent" routerLink="/logout">LOGOUT</button>
           </div>
-          <div *ngIf="!(isLoggedIn | async)">            
+          <div *ngIf="!(isLoggedIn | async)">
             <a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a>
             <account-signin></account-signin>
           </div>
