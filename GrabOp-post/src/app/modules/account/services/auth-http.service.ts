@@ -63,41 +63,37 @@ export class AuthHttpService {
     }
 
 
-    login(username: string, password: string): Observable<VOUserExt> {
+    login(authData: Models.SignIn) {
 
         let userExt: Subject<VOUserExt> = new Subject();
 
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/auth?format=json';
         let url: string = VOSettings.authenticateUrl;
-        
-        this.http.post(url, { username: username, password: password }).map(response => {
-            let authResponse: SOAuthenticateResponse = response.json();            
+
+        return this.post(url, authData).map(response => {
+            let authResponse: SOAuthenticateResponse = response.json();
+
+            console.log('login response: ', authResponse);
 
             let user: VOUser = new VOUser();
             user.id = authResponse.user_id;
             user.sessionId = authResponse.session_id;
             user.displayName = authResponse.display_name;
-            user.username = username;
-            user.password = password;
+            user.username = authData.username;
+            user.password = authData.password;
             user.token = authResponse.session_id;
-            return user;
-
-        }).catch(this.handleError).subscribe(user => {
-            ///TODO make sure user is valid
-            //this.loginUser(user);
-            console.log(user);
             this.saveUser(user);
 
-            this.getUsersExtended().subscribe(
+            /*this.getUsersExtended().subscribe(
                 user => {
                     userExt.next(user);
                     this.userSub.next(user);
                 }
-            )
+            );*/
 
         });
-
-        return userExt.asObservable();
+        //console.log('login: ', 'return');
+        //return userExt.asObservable();
 
     }
 
@@ -106,7 +102,7 @@ export class AuthHttpService {
         let url: string = VOSettings.myProfile;
         return this.get(url)
             .map(response => {
-                //console.log(res);
+                console.log('getUsersExtended: ', response);
                 let jsonResponse: any = response.json();
                 let vouser: VOUser = this.mapUserExt(jsonResponse);
 
@@ -115,7 +111,6 @@ export class AuthHttpService {
             .catch(this.handleError)
 
     }
-
 
     private mapUserExt(user: SOUser): VOUser {
         //console.log('mapUserExt', user);
@@ -136,7 +131,7 @@ export class AuthHttpService {
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        console.error(error);
+        console.error('handleError: ', error);
         //return error;;
         return Observable.throw(errMsg);
     }
@@ -163,7 +158,7 @@ export class AuthHttpService {
         return user ? user.token : null;
     }
 
-    getHeaders(): any {
+    getHeaders(): Headers {
         if (!this.headers) {
             this.headers = new Headers();
             let token: string = this.getToken();
@@ -171,7 +166,7 @@ export class AuthHttpService {
 
             if (token) {
                 this.headers.append('Authorization', token);
-                // this.headers.append('token', token);
+                //this.headers.append('token', token);
             }
             // this.headers.append('withCredentials','true');
         }
@@ -189,14 +184,16 @@ export class AuthHttpService {
     }
 
 
-    addHeaders(options: any): any {
+    addHeaders(options: RequestOptions): RequestOptions {
         if (options) options.headers ? options.headers.append('Authorization', this.getToken()) : options.headers = this.getHeaders();
-        else options = { headers: this.getHeaders(), withCredentials: true };
+        else options = new RequestOptions({ headers: this.getHeaders(), withCredentials: true });
+        console.log(options);
         // console.log(options);
         return options;
     }
 
     public get(url: string, options?: RequestOptions): Observable<Response> {
+
         return this.http.get(url, this.addHeaders(options));
     }
 
