@@ -1,0 +1,54 @@
+﻿
+<md-grid-list cols="10" rowHeight="70px">
+  <md-grid-tile [colspan]="9">
+    <h1 md-dialog-title>Sign In</h1>
+  </md-grid-tile>
+  <md-grid-tile>
+    <button md-button (click)="onNoClick()">X</button>
+  </md-grid-tile>
+</md-grid-list>
+
+<div>
+  <div *ngIf="errorMessage">errorMessage</div>
+  <form #f="ngForm" autocomplete="off" novalidate>
+    <md-list>
+
+      <md-list-item>
+        <md-form-field class="signin-username">
+          <input mdInput name="username" placeholder="Username" [(ngModel)]="signinData.username" #username="ngModel" required>
+        </md-form-field>
+      </md-list-item>
+
+      <md-list-item>
+        <md-form-field class="signin-username">
+          <input mdInput
+                 placeholder="Password"
+                 name="password"
+                 [(ngModel)]="signinData.password"
+                 required
+                 #password="ngModel"
+                 [type]="showPass ? 'text': 'password'"
+                 style="width: 100%" />
+        </md-form-field>
+      </md-list-item>
+      <!--  <md-checkbox [ngModelOptions]="{standalone: true}" [(ngModel)]="showPass">Show password</md-checkbox>-->
+
+      <md-list-item>
+        <md-checkbox name="rememberMe" [(ngModel)]="signinData.rememberMe">Remember Me</md-checkbox>
+      </md-list-item>
+
+      <md-list-item>
+        <div class='row'>
+          <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="onSubmit()" >
+            Sign In
+          </button>
+          <h5 class="col s12 center">OR</h5>
+          <div class=" col s12 btn blue">
+            <span>Login with Facebook</span>
+          </div>
+        </div>
+      </md-list-item>
+
+    </md-list>
+  </form>
+</div>

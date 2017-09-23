@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
+﻿import { Component, Inject, EventEmitter, Output } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { SOAuthenticateResponse } from '../../../../models/sos';
 // import {LoginService} from '../login.service';
@@ -9,52 +9,67 @@ import { Observable } from 'rxjs/Observable';
 import { VOUser } from '../../models/vouser';
 import { AuthHttpService } from '../../services/auth-http.service';
 
-
 @Component({
     selector: 'account-signin',
     templateUrl: './signin.component.html',
     styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
-
-    @Output() close: EventEmitter<null> = new EventEmitter();
-    showPass = false; /// TODO false
-    user$: Observable<VOUser>;
-    static loggedIn: Function;
-
-    login = { username: 'al3kosvh@gmail.com', password: 'mio,mio' };
-
+export class SigninComponent {
 
     // confirm = new FormControl('', [confirmPassword.bind(undefined, this.signup)]);
 
-    constructor(
-        private loginService: AuthHttpService,
+    constructor(public dialog: MdDialog) {
 
+    }
+
+    openDialog(): void {
+        let dialogRef = this.dialog.open(SigninDialogComponent, {
+
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            /*this.signinData.username = result.username;
+            this.signinData.password = result.password;*/
+        });
+    }
+
+}
+
+
+@Component({
+    selector: 'signin-dialog',
+    templateUrl: 'signin-dialog.component.html',
+})
+export class SigninDialogComponent {
+
+    user$: Observable<VOUser>;
+    signinData: Models.SignIn = { username: '', password: '', rememberMe: false };
+    errorMessage: string;
+
+    constructor(
+        public dialogRef: MdDialogRef<SigninDialogComponent>,
+        private loginService: AuthHttpService
     ) {
         this.user$ = loginService.user$;
     }
 
-    ngOnInit() {
-    }
-
-    onCloseClick() {
-        //this.modal.closeWindow('close button clicked '); // parameter just for testing
-    }
-
-    submit(): void {
-
-        this.loginService.login(this.login.username, this.login.password).subscribe(res => {            
-            if (res) {                
-                if (SigninComponent.loggedIn) SigninComponent.loggedIn();
-                // setTimeout(()=>this.modal.closeWindow('login success'), 3000);
+    onSubmit(): void {
+        this.loginService.login(this.signinData.username, this.signinData.password).subscribe(response => {
+            console.log(response);
+            if (response) {                
+                this.dialogRef.close();
+                //if (SigninComponent.loggedIn) SigninComponent.loggedIn();
+                setTimeout(()=>this.dialogRef.close('login success'), 3000);
             }
-            else console.error(' error login');
+            else {                 
+                this.errorMessage = 'Error login';
+                console.error(response);
+            }
         });
-
     }
 
-    signUp() {
-        console.log('Sign Up Data:', this.login);
+    onNoClick(): void {
+        this.dialogRef.close();
     }
-
 }

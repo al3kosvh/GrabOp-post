@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
@@ -54,20 +54,21 @@ export class LandingComponent implements OnInit {
 
     ngOnInit() {
 
-        const login = this.route.snapshot.params.login;
-        //if (!!login) {
-        //    console.log('login', login);
-        //    this.modal.openWindow(SigninComponent, (res) => {
-        //        console.log('SigninComponent  ', res);
-        //    });
-        //}
+        /*const login = this.route.snapshot.params.login;
+        if (!!login) {
+            console.log('login', login);
+            this.modal.openWindow(SigninComponent, (res) => {
+                console.log('SigninComponent  ', res);
+            });
+        }*/
     }
 
 
     loginClick() {
 
-        let ref = this.dialog.open(SigninComponent, {
-            width: '400px',         
+        /*let ref = this.dialog.open(SigninComponent, {
+            width: '400px',
+            height: '400px'
         });
 
         SigninComponent.loggedIn = res => {
@@ -77,7 +78,7 @@ export class LandingComponent implements OnInit {
 
             // }
 
-        }
+        }*/
     }
 
     logOutClick() {

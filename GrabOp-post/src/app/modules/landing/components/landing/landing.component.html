@@ -1,4 +1,4 @@
-<div>
+﻿<div>
   <div id='banner'>
     <div *ngIf="!(isLoggedIn | async)" fxLayout="column" fxLayoutAlign="space-between" fxFlex>
       <div fxLayout="row" fxLayoutAlign="space-between">
@@ -8,8 +8,8 @@
         </div>
         <div class="options">
           <div>
-            <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
-            <button md-raised-button color="accent" (click)="loginClick($event)">LOGIN</button>
+            <button md-raised-button color="accent" routerLink="/home">HOME</button>
+            <account-signin></account-signin>
           </div>
           <!--<div *ngIf="!(isLoggedIn | async)">
             

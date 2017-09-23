@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MdDialogModule } from '@angular/material';
 
 // Components
 import { SignupComponent } from './components/signup/signup.component';
@@ -10,6 +11,7 @@ import { SignupConfirmComponent } from './components/signup/confirm/signup-confi
 import { AccountRecoverComponent } from './components/recover/recover.component';
 import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { SigninDialogComponent } from './components/signin/signin.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -18,7 +20,6 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 // Services
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
-import { SignupService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -26,15 +27,9 @@ import { SharedModule } from '../shared/shared.module';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
 const homeRoute: Routes = [
-
-    ////path: '', component: SignupComponent, outlet: 'slideRight',
-    //children: [
-    //    { path: 'join-us', component: SignupComponent, outlet: 'slideRight'},
-    //    { path: 'username', component: SignupUsernameComponent },
-    //    { path: 'confirm/:token', component: SignupConfirmComponent },
-    //    { path: 'resetpassword/:token', component: AccountRecoverComponent },
-    //]
-
+   { path: 'username', component: SignupUsernameComponent },
+   { path: 'confirm/:token', component: SignupConfirmComponent },
+   { path: 'resetpassword/:token', component: AccountRecoverComponent },
 ];
 
 @NgModule({
@@ -43,11 +38,18 @@ const homeRoute: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(homeRoute),
-        SharedModule
+        SharedModule,
+        MdDialogModule        
     ],
-    declarations: [
+    exports: [
         SigninComponent,
         SignupComponent,
+        MdDialogModule
+    ],
+    declarations: [
+        SignupComponent,
+        SigninComponent,
+        SigninDialogComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
         AccountRecoverComponent,
@@ -57,11 +59,8 @@ const homeRoute: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService,
-        SignupService
+        AuthHttpService
     ],
-    entryComponents: [
-        SigninComponent
-    ]
+    entryComponents: [SigninDialogComponent]
 })
 export class AccountModule { }

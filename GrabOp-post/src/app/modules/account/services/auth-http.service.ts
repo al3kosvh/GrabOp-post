@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+﻿import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -27,7 +27,7 @@ export class AuthHttpService {
 
         this.isLogedIn = this.user$.map(user => !!user);
 
-        this.autoLogin();
+        //this.autoLogin();
     }
 
     autoLogin(): void {
@@ -48,13 +48,11 @@ export class AuthHttpService {
     }
 
     convertSessionToToken() {
-
         let url: string = VOSettings.server + 'session-to-token?format=json';
         this.http.post(url, {}).toPromise().then(res => console.log('session-to-token:', res));
     }
 
     logout() {
-
         let url: string = VOSettings.server + '/auth/logout?format=json';
         console.log(url);
         this.get(url).map(res => res.json()).subscribe(res => {
@@ -67,37 +65,39 @@ export class AuthHttpService {
 
     login(username: string, password: string): Observable<VOUserExt> {
 
-        let sub: Subject<VOUserExt> = new Subject();
+        let userExt: Subject<VOUserExt> = new Subject();
 
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/auth?format=json';
-        let url: string = VOSettings.server + '/auth?format=json';
-        console.log(url, username, password);
-        this.http.post(url, { username: username, password: password }).map(res => {
-            let r: SOAuthenticateResponse = res.json();
-            console.log(r);
+        let url: string = VOSettings.authenticateUrl;
+        
+        this.http.post(url, { username: username, password: password }).map(response => {
+            let authResponse: SOAuthenticateResponse = response.json();            
 
             let user: VOUser = new VOUser();
-            user.id = r.UserId;
-            user.sessionId = r.SessionId;
+            user.id = authResponse.user_id;
+            user.sessionId = authResponse.session_id;
+            user.displayName = authResponse.display_name;
             user.username = username;
             user.password = password;
-            user.token = r.SessionId;
+            user.token = authResponse.session_id;
             return user;
+
         }).catch(this.handleError).subscribe(user => {
             ///TODO make sure user is valid
             //this.loginUser(user);
+            console.log(user);
             this.saveUser(user);
 
             this.getUsersExtended().subscribe(
                 user => {
-                    sub.next(user);
+                    userExt.next(user);
                     this.userSub.next(user);
                 }
             )
 
         });
 
-        return sub.asObservable();
+        return userExt.asObservable();
 
     }
 
@@ -105,12 +105,12 @@ export class AuthHttpService {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/profiles/me?format=json';
         let url: string = VOSettings.myProfile;
         return this.get(url)
-            .map(res => {
+            .map(response => {
                 //console.log(res);
-                let r: any = res.json();
-                let out: VOUser = this.mapUserExt(r);
+                let jsonResponse: any = response.json();
+                let vouser: VOUser = this.mapUserExt(jsonResponse);
 
-                return out;
+                return vouser;
             })
             .catch(this.handleError)
 
@@ -136,7 +136,7 @@ export class AuthHttpService {
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        //  console.error(error);
+        console.error(error);
         //return error;;
         return Observable.throw(errMsg);
     }

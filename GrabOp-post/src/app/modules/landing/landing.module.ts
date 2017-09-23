@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { AccountModule } from '../account/account.module';
 
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
+import { AccountModule } from '../account/account.module';
 
 const routes: Routes = [
     { path: 'guest', component: LandingComponent },
