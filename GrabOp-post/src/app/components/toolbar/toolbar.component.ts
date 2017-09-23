@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdSidenav } from '@angular/material';
+import { Location } from '@angular/common';
 
 // Components
 import { HelpComponent } from '../help/help.component';
@@ -20,15 +21,20 @@ export class ToolbarComponent implements OnInit {
 
     constructor(
         private authHttp: AuthHttpService,
-        public modal: ModalWindowService
-    ) {
-    }
+        public modal: ModalWindowService,
+        private location: Location
+    ) {  }
 
     ngOnInit() {
+        
         this.authHttp.user$.subscribe(user => {
             if (!user) return;
             this.profile_pic = user.profile_pic;
         });
+    }
+
+    canShow(): boolean {
+        return this.location.path() == '/guest' ? false : true;
     }
 
     openHelp() {
