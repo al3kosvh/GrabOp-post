@@ -6,10 +6,10 @@
   <div *ngIf="errorMessage">{{ errorMessage }}</div>
   <form #f="ngForm" autocomplete="off" novalidate fxLayout="column">
     <md-form-field>
-      <input mdInput placeholder="Username" name="username" [(ngModel)]="signinData.username" required minlength="6" #username="ngModel" />
+      <input mdInput placeholder="Username" name="username" [(ngModel)]="signinData.username" required #username="ngModel" />
     </md-form-field>
     <md-form-field>
-      <input mdInput placeholder="Password" name="password" [(ngModel)]="signinData.password" required minlength="6" #password="ngModel" />
+      <input mdInput placeholder="Password" name="password" [(ngModel)]="signinData.password" required #password="ngModel" />
     </md-form-field>
     <div fxLayout="column" fxLayoutGap="10px">
       <md-checkbox name="rememberMe" [(ngModel)]="signinData.rememberMe">Remember Me</md-checkbox>
