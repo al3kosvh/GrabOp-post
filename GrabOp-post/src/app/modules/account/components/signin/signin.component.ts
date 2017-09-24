@@ -3,7 +3,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
 // Services
 import { AuthHttpService } from '../../services/auth-http.service';
-import { SigninDialogComponent } from '../dialogs/signin-dialog.component';
+import { SignInDialogComponent } from './dialog/signin-dialog.component';
 
 @Component({
     selector: 'account-signin',
@@ -12,12 +12,8 @@ import { SigninDialogComponent } from '../dialogs/signin-dialog.component';
 })
 export class SignInComponent {
 
-    constructor(
-        public dialog: MdDialog
-    ) { }
+    constructor(public dialog: MdDialog) { }
 
-    constructor(public dialog: MdDialog) {
-    }
 
     openDialog(): void {
         let config: MdDialogConfig = {
