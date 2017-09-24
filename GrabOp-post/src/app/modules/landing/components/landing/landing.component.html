@@ -1,41 +1,39 @@
 ﻿<div>
   <div id='banner'>
-    <div *ngIf="!(isLoggedIn | async)" fxLayout="column" fxLayoutAlign="space-between" fxFlex>
+    <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
       <div fxLayout="row" fxLayoutAlign="space-between">
         <div class="logo-container">
           <img class='logo' src="assets/img/home_page/GO_logo.png">
           <div class="announce-beta">Currently in private Beta</div>
         </div>
-        
         <div class="options">
-          <div *ngIf="(isLoggedIn | async)">
+          <div *ngIf="isLoggedIn | async">
             <button md-raised-button color="accent" routerLink="/home">HOME</button>
-            <a md-raised-button color="accent" [routerLink]="['/signout']">Sign Out</a>
+            <button md-raised-button color="accent" routerLink="/logout">LOGOUT</button>
           </div>
-          <div *ngIf="!(isLoggedIn | async)">
+          <div *ngIf="!(isLoggedIn | async)">            
+            <a md-raised-button color="accent" [routerLink]="['/', {outlets: {'slideRight': ['join-us']}}]">JOIN US</a>
             <account-signin></account-signin>
-            <button md-raised-button color="accent" routerLink="/join-us">JOIN US</button>
           </div>
         </div>
-
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <md-form-field floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
-          <md-icon mdPrefix>search</md-icon>
-          <input mdInput placeholder="star your search here">
-        </md-form-field>
+      <div fxLayout="row" fxLayoutAlign="center">        
+          <md-form-field floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
+            <md-icon mdPrefix>search</md-icon>
+            <input mdInput placeholder="star your search here">
+          </md-form-field>        
       </div>
-    </div>
+    </div>    
   </div>
   <div fxLayout="row" fxLayoutAlign="center">
     <h2 class="heading">Do These Cool Things With GrapOp</h2>
-  </div>
+  </div>  
   <md-grid-list cols="4">
     <md-grid-tile *ngFor="let item of summaryData">
       <img src='{{item.Image}}' />
     </md-grid-tile>
-    <md-grid-tile cols="4" *ngFor="let item of summaryData">
-      {{item.Text}}
+    <md-grid-tile cols="4" *ngFor="let item of summaryData">      
+        {{item.Text}}      
     </md-grid-tile>
   </md-grid-list>
 

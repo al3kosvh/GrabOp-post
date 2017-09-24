@@ -4,10 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
+import { AccountModule } from '../account/account.module';
 
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
-import { AccountModule } from '../account/account.module';
 
 const routes: Routes = [
     { path: 'guest', component: LandingComponent },

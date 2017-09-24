@@ -20,8 +20,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { PostModule } from '../post/post.module';
 import { AccountModule } from '../account/account.module';
 
-const homeRoute: Routes = [
-    { path: '', component: HomeComponent },
+const homeRoute: Routes = [    
     { path: 'home', component: HomeComponent }
 ];
 

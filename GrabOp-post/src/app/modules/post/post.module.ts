@@ -15,8 +15,8 @@ import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { ProfileService } from '../profile/services/profile.service';
 
 const myRoute: Routes = [
-    { path: 'my-preview/:idMyPost', component: MyPostViewComponent },
-    { path: 'person-preview/:idPost/:idPerson', component: PostViewComponent },
+    //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
+    //{ path: 'person-preview/:idPost/:idPerson', component: PostViewComponent },
     // {path: 'person-preview/:idPost', component: PostViewComponent}
 
     // {path: 'my-selected/:idSelectedMyPost', component: MyPostViewComponent}

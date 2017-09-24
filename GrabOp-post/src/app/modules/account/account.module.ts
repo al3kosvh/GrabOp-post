@@ -10,8 +10,8 @@ import { SignupUsernameComponent } from './components/signup/username/signup-use
 import { SignupConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 import { AccountRecoverComponent } from './components/recover/recover.component';
 import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
-import { SignInComponent } from './components/signin/signin.component';
-import { SignInDialogComponent } from './components/signin/signin.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SigninDialogComponent } from './components/dialogs/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
 
 // Directives

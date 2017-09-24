@@ -1,30 +1,30 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
-<md-sidenav-container>
+<md-sidenav-container [ngClass]="(isLoggedIn | async) ? 'withToolbar' : ''">
   <md-sidenav #sidenav>
     <md-list>
-      <a md-list-item routerLink='/guest'>Guest</a>
-      <a md-list-item routerLink='/home'>Home</a>
-      <a md-list-item routerLink="/profile/17">Profile</a>
-      <a md-list-item routerLink="/search-advanced">Search</a>
-      <a md-list-item routerLink="/settings">Settings</a>
-      <a md-list-item routerLink="">Manage Services</a>
-      <a md-list-item routerLink="/connections">Connections hub</a>
-      <a md-list-item routerLink="">Manage Projects</a>
-      <a md-list-item routerLink="messages">Messages</a>
-      <a md-list-item routerLink="/user-edit">User Edit</a>
-      <a md-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]">Post Edit</a>
+      <a md-list-item routerLink='/guest' (click)="sidenav.toggle()">Guest</a>
+      <a md-list-item routerLink='/home' (click)="sidenav.toggle()">Home</a>
+      <a md-list-item routerLink="/profile" (click)="sidenav.toggle()">Profile</a>
+      <a md-list-item routerLink="/search-advanced" (click)="sidenav.toggle()">Search</a>
+      <a md-list-item routerLink="/settings" (click)="sidenav.toggle()">Settings</a>
+      <a md-list-item routerLink="" (click)="sidenav.toggle()">Manage Services</a>
+      <a md-list-item routerLink="/connections" (click)="sidenav.toggle()">Connections hub</a>
+      <a md-list-item routerLink="" (click)="sidenav.toggle()">Manage Projects</a>
+      <a md-list-item routerLink="messages" (click)="sidenav.toggle()">Messages</a>
+      <a md-list-item routerLink="/user-edit" (click)="sidenav.toggle()">User Edit</a>
+      <a md-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]" (click)="sidenav.toggle()">Post Edit</a>
       <!--<a md-list-item routerLink="/post-edit/7">Post Edit</a>-->
-      <a md-list-item routerLink="/opportunity/overview">Opportunity overview</a>
-      <a md-list-item routerLink="/opportunity/negotiation/7/5">Opportunity negotiation</a>
-      <a md-list-item routerLink="/posts/my-preview/7">My Post View</a>
-      <a md-list-item routerLink="/posts/person-preview/47/17">Post View</a>
+      <a md-list-item routerLink="/opportunity/overview" (click)="sidenav.toggle()">Opportunity overview</a>
+      <a md-list-item routerLink="/opportunity/negotiation/7/5" (click)="sidenav.toggle()">Opportunity negotiation</a>
+      <a md-list-item routerLink="/posts/my-preview/7" (click)="sidenav.toggle()">My Post View</a>
+      <a md-list-item routerLink="/posts/person-preview/47/17" (click)="sidenav.toggle()">Post View</a>
       <!--<a md-list-item [routerLink]="[{outlets: {'slideRight': null}}]">Post Edit Close</a>-->
     </md-list>
   </md-sidenav>
 
   <router-outlet></router-outlet>
 
-  <!--<router-outlet name="slideRight"></router-outlet>-->
+  <router-outlet name="slideRight"></router-outlet>
   <!--<div [@routerAnimationRight]="prepareRouter(outlet)">-->
   <!--<router-outlet name="slideRight" #outlet="outlet"></router-outlet>-->
   <!--</div>-->

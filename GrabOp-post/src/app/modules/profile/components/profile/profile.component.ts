@@ -50,23 +50,23 @@ export class ProfileComponent implements OnInit {
         private connectionService: ConnectionService,
         private dialog: MdDialog
     ) {
-        this.id = this.route.snapshot.params.id;
-        profileService.getProfileById(this.id);
+        //this.id = this.route.snapshot.params.id;
+        //profileService.getProfileById(this.id);
 
-        profileService.person$.subscribe(res => this.person = res);
-        connectionService.getProfileConnectionsCount(this.id).subscribe(res => {
-            this.profileConnectionsCount = res;
-            console.log('profileConnectionsCount ', res);
-        });
+        //profileService.person$.subscribe(res => this.person = res);
+        //connectionService.getProfileConnectionsCount(this.id).subscribe(res => {
+        //    this.profileConnectionsCount = res;
+        //    console.log('profileConnectionsCount ', res);
+        //});
     }
 
     ngOnInit() {
         this.userService.user$.subscribe(res => this.myUser = res);
-        this.postService.getPersonPosts(this.id);
-        this.postService.posts$.subscribe(posts => {
-            console.log('Person posts', posts);
-            this.personPosts = posts;
-        });
+        //this.postService.getPersonPosts(this.id);
+        //this.postService.posts$.subscribe(posts => {
+        //    console.log('Person posts', posts);
+        //    this.personPosts = posts;
+        //});
     }
 
     setConnection() {

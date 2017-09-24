@@ -15,9 +15,9 @@ import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
 
 const route: Routes = [
-    { path: 'negotiation', component: OpportunityNegotiationComponent },
-    { path: 'negotiation/:idNeedPost/:idOfferPost', component: OpportunityNegotiationComponent },
-    { path: 'overview', component: OpportunityOverviewComponent }
+    //{ path: 'negotiation', component: OpportunityNegotiationComponent },
+    //{ path: 'negotiation/:idNeedPost/:idOfferPost', component: OpportunityNegotiationComponent },
+    //{ path: 'overview', component: OpportunityOverviewComponent }
 ];
 
 @NgModule({

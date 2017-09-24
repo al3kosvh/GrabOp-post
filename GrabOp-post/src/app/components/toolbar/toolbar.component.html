@@ -1,4 +1,4 @@
-﻿<md-toolbar>
+<md-toolbar *ngIf="canShow()">
   <button md-icon-button (click)="toggleSideNav()">
     <md-icon>menu</md-icon>
   </button>
