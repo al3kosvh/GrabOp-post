@@ -13,7 +13,7 @@ export class AuthHttpService {
     private headers: Headers;
     public isLogedIn: Observable<boolean>;
     private userSub: BehaviorSubject<VOUserExt>;
-    
+
     private userS: BehaviorSubject<VOUser>;
     public userS$: Observable<VOUser>;
     private usr: VOUser;
@@ -28,13 +28,13 @@ export class AuthHttpService {
         //this.isLogedInSub = new BehaviorSubject(false);
 
         this.userSub = new BehaviorSubject<VOUserExt>(this.user);
-        
+
         this.userS = new BehaviorSubject<VOUser>(this.usr);
         this.userS$ = this.userS.asObservable();
 
         this.user$ = this.userSub.asObservable();
 
-        this.isLogedIn = this.userS$.map(user => !!user);
+        this.isLogedIn = this.user$.map(user => !!user);
 
         //this.autoLogin();
     }
@@ -43,13 +43,12 @@ export class AuthHttpService {
 
         let user: VOUser = this.getUser();
         //TODO if expired error
-        console.log('autologin ', user);
+        console.log('AuthService - Autologin: ', user);
         if (!this.user) {
             return;
         }
 
-        this.getUsersExtended().subscribe(user => {
-            console.log(user);
+        this.getUserExtended().subscribe(user => {
             this.user = user;
             this.userSub.next(this.user);
         });
@@ -80,7 +79,7 @@ export class AuthHttpService {
         return this.post(url, authData).map(response => {
             let authResponse: SOAuthenticateResponse = response.json();
 
-            console.log('login response: ', authResponse);
+            console.log('AuthService - SignInResponse: ', authResponse);
 
             let user: VOUser = new VOUser();
             user.id = authResponse.user_id;
@@ -90,14 +89,14 @@ export class AuthHttpService {
             user.password = authData.password;
             user.token = authResponse.session_id;
             this.saveUser(user);
-            
-            this.userS.next(user);
-            /*this.getUsersExtended().subscribe(
+
+            //this.userS.next(user);
+            this.getUserExtended().subscribe(
                 user => {
                     userExt.next(user);
                     this.userSub.next(user);
                 }
-            );*/
+            );
 
         });
         //console.log('login: ', 'return');
@@ -105,12 +104,12 @@ export class AuthHttpService {
 
     }
 
-    getUsersExtended() {
+    getUserExtended() {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/profiles/me?format=json';
         let url: string = VOSettings.myProfile;
         return this.get(url)
             .map(response => {
-                console.log('getUsersExtended: ', response);
+                console.log('AuthService - GetUserExtended: ', response);
                 let jsonResponse: any = response.json();
                 let vouser: VOUser = this.mapUserExt(jsonResponse);
 
@@ -139,7 +138,7 @@ export class AuthHttpService {
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        console.error('handleError: ', error);
+        console.error('AuthService - HandleError: ', error);
         //return error;;
         return Observable.throw(errMsg);
     }
@@ -195,13 +194,11 @@ export class AuthHttpService {
     addHeaders(options: RequestOptions): RequestOptions {
         if (options) options.headers ? options.headers.append('Authorization', this.getToken()) : options.headers = this.getHeaders();
         else options = new RequestOptions({ headers: this.getHeaders(), withCredentials: true });
-        console.log(options);
-        // console.log(options);
+        console.log('AuthService - Headers: ', options);
         return options;
     }
 
     public get(url: string, options?: RequestOptions): Observable<Response> {
-
         return this.http.get(url, this.addHeaders(options));
     }
 
