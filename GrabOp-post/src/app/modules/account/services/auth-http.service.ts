@@ -55,9 +55,9 @@ export class AuthHttpService {
 
     }
 
-    convertSessionToToken() {
-        let url: string = VOSettings.server + 'session-to-token?format=json';
-        this.http.post(url, {}).toPromise().then(res => console.log('session-to-token:', res));
+    convertSessionToToken(): Observable<any> {
+        let url: string = VOSettings.server + '/session-to-token?format=json';
+        return this.http.post(url, {}).map(res => console.log('session-to-token: ', res));
     }
 
     signOut() {
@@ -90,6 +90,14 @@ export class AuthHttpService {
             user.token = authResponse.session_id;
             this.saveUser(user);
 
+            /*this.convertSessionToToken().subscribe(
+                value => {
+                    console.log('session to ok: ', value);
+                },
+                error=>{
+                    console.error('session to token error: ', error);
+                }
+            );*/
             //this.userS.next(user);
             this.getUserExtended().subscribe(
                 user => {
@@ -194,7 +202,7 @@ export class AuthHttpService {
     addHeaders(options: RequestOptions): RequestOptions {
         if (options) options.headers ? options.headers.append('Authorization', this.getToken()) : options.headers = this.getHeaders();
         else options = new RequestOptions({ headers: this.getHeaders(), withCredentials: true });
-        console.log('AuthService - Headers: ', options);
+        console.log('AuthService - Headers: ', JSON.stringify(options));
         return options;
     }
 
