@@ -2,6 +2,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from "rxjs/Observer"
 
 import { VOPost } from '../../../../models/vos';
 

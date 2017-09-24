@@ -21,6 +21,7 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 // Services
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
+import { AuthGuard } from './services/auth.guard';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -31,7 +32,7 @@ const homeRoute: Routes = [
    { path: 'username', component: SignupUsernameComponent },
    { path: 'confirm/:token', component: SignupConfirmComponent },
    { path: 'resetpassword/:token', component: AccountRecoverComponent },
-   { path: 'signout', component: SignOutComponent, canActivate: [IsLoggedIn] },
+   { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -46,11 +47,13 @@ const homeRoute: Routes = [
     exports: [
         SignInComponent,
         SignupComponent,
+        SignOutComponent,
         MdDialogModule
     ],
     declarations: [
         SignupComponent,
         SignInComponent,
+        SignOutComponent,
         SignInDialogComponent,
         SignupUsernameComponent,
         SignupConfirmComponent,
@@ -61,7 +64,8 @@ const homeRoute: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService
+        AuthHttpService,
+        AuthGuard,
     ],
     entryComponents: [SignInDialogComponent]
 })
