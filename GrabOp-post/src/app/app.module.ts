@@ -34,23 +34,23 @@ import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 // Components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
-import { SigninComponent } from './modules/account/components/signin/signin.component';
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/pagenotfound/page-not-found.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/guest', pathMatch: 'full' },    
+    { path: '', redirectTo: '/guest', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(routes),
         AccountModule,
+        RouterModule.forRoot(routes),        
         PostModule,
         LandingModule,
         HomeModule,
@@ -68,7 +68,7 @@ const routes: Routes = [
         PageNotFoundComponent
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
     bootstrap: [AppComponent]
 })

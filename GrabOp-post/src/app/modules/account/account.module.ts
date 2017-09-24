@@ -29,9 +29,9 @@ import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     {
-        path: '', component: SignupComponent,
+        path: 'join-us', component: SignupComponent, outlet: 'slideRight', data: { animation: 'in' },
         children: [
-            { path: 'join-us', component: SignupComponent },
+            { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
             { path: 'resetpassword/:token', component: AccountRecoverComponent },
@@ -48,11 +48,6 @@ const routes: Routes = [
         SharedModule,
         MdDialogModule
     ],
-    exports: [
-        SigninComponent,
-        SignupComponent,
-        MdDialogModule
-    ],
     declarations: [
         SignupComponent,
         SigninComponent,
@@ -63,6 +58,9 @@ const routes: Routes = [
         ValidateEmailDirective,
         CheckEmailDirective,
         SignupCompanyComponent
+    ],
+    exports: [
+        SigninComponent,
     ],
     providers: [
         UploadService,

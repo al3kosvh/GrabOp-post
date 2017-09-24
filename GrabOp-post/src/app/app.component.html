@@ -1,33 +1,34 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
+<div class="slideRight" [@routerAnimationRight]="getRouteAnimation(outlet)">
+  <div fxFlex></div>
+  <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
+</div>
 <md-sidenav-container [ngClass]="(isLoggedIn | async) ? 'withToolbar' : ''">
   <md-sidenav #sidenav>
     <md-list>
-      <a md-list-item routerLink='/guest' (click)="sidenav.toggle()">Guest</a>
-      <a md-list-item routerLink='/home' (click)="sidenav.toggle()">Home</a>
-      <a md-list-item routerLink="/profile" (click)="sidenav.toggle()">Profile</a>
-      <a md-list-item routerLink="/search-advanced" (click)="sidenav.toggle()">Search</a>
-      <a md-list-item routerLink="/settings" (click)="sidenav.toggle()">Settings</a>
-      <a md-list-item routerLink="" (click)="sidenav.toggle()">Manage Services</a>
-      <a md-list-item routerLink="/connections" (click)="sidenav.toggle()">Connections hub</a>
-      <a md-list-item routerLink="" (click)="sidenav.toggle()">Manage Projects</a>
-      <a md-list-item routerLink="messages" (click)="sidenav.toggle()">Messages</a>
-      <a md-list-item routerLink="/user-edit" (click)="sidenav.toggle()">User Edit</a>
-      <a md-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]" (click)="sidenav.toggle()">Post Edit</a>
+      <a md-list-item routerLink='/guest' routerLinkActive="active" (click)="sidenav.toggle()">Guest</a>
+      <a md-list-item routerLink='/home' routerLinkActive="active" (click)="sidenav.toggle()">Home</a>
+      <a md-list-item routerLink="/profile" routerLinkActive="active" (click)="sidenav.toggle()">Profile</a>
+      <a md-list-item routerLink="/search-advanced" routerLinkActive="active" (click)="sidenav.toggle()">Search</a>
+      <a md-list-item routerLink="/settings" routerLinkActive="active" (click)="sidenav.toggle()">Settings</a>
+      <a md-list-item routerLink="" routerLinkActive="active" (click)="sidenav.toggle()">Manage Services</a>
+      <a md-list-item routerLink="/connections" routerLinkActive="active" (click)="sidenav.toggle()">Connections hub</a>
+      <a md-list-item routerLink="" routerLinkActive="active" (click)="sidenav.toggle()">Manage Projects</a>
+      <a md-list-item routerLink="messages" routerLinkActive="active" (click)="sidenav.toggle()">Messages</a>
+      <a md-list-item routerLink="/user-edit" routerLinkActive="active" (click)="sidenav.toggle()">User Edit</a>
+      <a md-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]" routerLinkActive="active" (click)="sidenav.toggle()">Post Edit</a>
       <!--<a md-list-item routerLink="/post-edit/7">Post Edit</a>-->
-      <a md-list-item routerLink="/opportunity/overview" (click)="sidenav.toggle()">Opportunity overview</a>
-      <a md-list-item routerLink="/opportunity/negotiation/7/5" (click)="sidenav.toggle()">Opportunity negotiation</a>
-      <a md-list-item routerLink="/posts/my-preview/7" (click)="sidenav.toggle()">My Post View</a>
-      <a md-list-item routerLink="/posts/person-preview/47/17" (click)="sidenav.toggle()">Post View</a>
+      <a md-list-item routerLink="/opportunity/overview" routerLinkActive="active" (click)="sidenav.toggle()">Opportunity overview</a>
+      <a md-list-item routerLink="/opportunity/negotiation/7/5" routerLinkActive="active" (click)="sidenav.toggle()">Opportunity negotiation</a>
+      <a md-list-item routerLink="/posts/my-preview/7" routerLinkActive="active" (click)="sidenav.toggle()">My Post View</a>
+      <a md-list-item routerLink="/posts/person-preview/47/17" routerLinkActive="active" (click)="sidenav.toggle()">Post View</a>
       <!--<a md-list-item [routerLink]="[{outlets: {'slideRight': null}}]">Post Edit Close</a>-->
     </md-list>
   </md-sidenav>
 
   <router-outlet></router-outlet>
 
-  <!--<router-outlet name="slideRight"></router-outlet>-->
-  <div [@routerAnimationRight]="prepareRouter(outlet)">
-    <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
-  </div>
+
   <!--<router-outlet name="slideTop"></router-outlet>-->
   <!--<router-outlet name="slideBottom"></router-outlet>-->
   <!--<div [@slideRightInOut]="prepareRouteTransition(r)">-->
