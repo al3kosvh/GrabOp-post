@@ -14,24 +14,31 @@ import { AuthHttpService } from '../../../services/auth-http.service';
 export class SignInDialogComponent {
 
     private user: Observable<VOUser>;
-    private signinData: Models.SignIn = { username: '', password: '', rememberMe: false };
+    private signinData: Models.SignIn;
     private errorMessage: string;
+    private loading: boolean;
 
     constructor(
         public dialogRef: MdDialogRef<SignInDialogComponent>,
         private authenticationService: AuthHttpService
     ) {
         this.user = authenticationService.user$;
+        this.signinData = { username: '', password: '', rememberMe: false };
+        this.loading = false;
     }
 
     onSubmit(): void {
+        this.loading = true;
         this.authenticationService.signIn(this.signinData)
             .subscribe(
-            data => {
+            value => {
                 this.dialogRef.close();
             },
             error => {
                 this.errorMessage = 'Username or password is incorrect';
+            },
+            () => {
+                this.loading = false;
             });
     }
 
