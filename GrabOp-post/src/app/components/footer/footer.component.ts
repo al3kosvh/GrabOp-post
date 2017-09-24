@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 
 // Components
-import { SigninComponent } from '../../modules/account/components/signin/signin.component';
+import { SignInComponent } from '../../modules/account/components/signin/signin.component';
 
 // Services
 import { AuthHttpService } from '../../modules/account/services/auth-http.service';
@@ -31,7 +31,7 @@ export class FooterComponent implements OnInit {
 
     loginClick() {
 
-        this.dialog.open(SigninComponent, {
+        this.dialog.open(SignInComponent, {
             width: '400px',
             height: '400px'
         })

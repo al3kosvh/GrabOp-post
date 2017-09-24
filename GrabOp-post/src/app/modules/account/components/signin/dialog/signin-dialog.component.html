@@ -1,15 +1,15 @@
-<div fxLayout="column">
+﻿<div fxLayout="column">
   <div fxLayout="row-reverse">
     <button class="close" md-icon-button (click)="onClose()"><md-icon>close</md-icon></button>
   </div>
   <h3>Sign In</h3>
-  <div *ngIf="errorMessage">errorMessage</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
   <form #f="ngForm" autocomplete="off" novalidate fxLayout="column">
     <md-form-field>
-      <input mdInput placeholder="Username" name="username" [(ngModel)]="signinData.username" required minlength="6" #username="ngModel" />
+      <input mdInput placeholder="Username" name="username" [(ngModel)]="signinData.username" required #username="ngModel" />
     </md-form-field>
     <md-form-field>
-      <input mdInput placeholder="Password" name="password" [(ngModel)]="signinData.password" required minlength="6" #password="ngModel" />
+      <input mdInput placeholder="Password" name="password" [(ngModel)]="signinData.password" required #password="ngModel" />
     </md-form-field>
     <div fxLayout="column" fxLayoutGap="10px">
       <md-checkbox name="rememberMe" [(ngModel)]="signinData.rememberMe">Remember Me</md-checkbox>
