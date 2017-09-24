@@ -22,6 +22,7 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
 import { AuthGuard } from './services/auth.guard';
+import { SignupService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -71,6 +72,7 @@ const routes: Routes = [
         UploadService,
         AuthHttpService,
         AuthGuard,
+        SignupService
     ],
     entryComponents: [SignInDialogComponent]
 })
