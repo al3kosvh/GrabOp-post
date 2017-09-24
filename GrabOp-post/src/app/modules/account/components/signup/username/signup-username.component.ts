@@ -113,8 +113,8 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         //this.person = this.authHttpMy.userExt;
-        this.password = this.person.password;
-        this.confirm = new FormControl(this.password, [(fc) => this.areEqual(this.password, fc)]);
+        //this.password = this.person.password;
+        //this.confirm = new FormControl(this.password, [(fc) => this.areEqual(this.password, fc)]);
     }
 
     ngOnDestroy(): void {
