@@ -71,9 +71,6 @@ export class AuthHttpService {
 
     signIn(authData: Models.SignIn) {
 
-        let userExt: Subject<VOUserExt> = new Subject();
-
-        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/auth?format=json';
         let url: string = VOSettings.authenticateUrl;
 
         return this.post(url, authData).map(response => {
@@ -88,28 +85,11 @@ export class AuthHttpService {
             user.username = authData.username;
             user.password = authData.password;
             user.token = authResponse.session_id;
-            this.saveUser(user);
-
-            /*this.convertSessionToToken().subscribe(
-                value => {
-                    console.log('session to ok: ', value);
-                },
-                error=>{
-                    console.error('session to token error: ', error);
-                }
-            );*/
-            //this.userS.next(user);
-            this.getUserExtended().subscribe(
-                user => {
-                    userExt.next(user);
-                    this.userSub.next(user);
-                }
-            );
-
+            //this.saveUser(user);
+            return user;
+        }).flatMap(result => {
+            return this.getUserExtended();
         });
-        //console.log('login: ', 'return');
-        //return userExt.asObservable();
-
     }
 
     getUserExtended() {
@@ -120,14 +100,13 @@ export class AuthHttpService {
                 console.log('AuthService - GetUserExtended: ', response);
                 let jsonResponse: any = response.json();
                 let vouser: VOUser = this.mapUserExt(jsonResponse);
-
+                this.userSub.next(vouser);
+                this.saveUser(vouser);
                 return vouser;
-            })
-            .catch(this.handleError)
-
+            });
     }
 
-    private mapUserExt(user: SOUser): VOUser {
+    private mapUserExt(user: SOUser): VOUserExt {
         //console.log('mapUserExt', user);
         return {
             id: user.id,
