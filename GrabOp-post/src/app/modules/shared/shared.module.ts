@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 // Shared  Modules
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import {PostsList} from "./posts-list";
 
@@ -22,14 +21,12 @@ import { MdImageDirective } from "./directives/md-image.directive";
 import { ModalWindowService } from './services/modal-window.service';
 
 @NgModule({
-    imports: [
-        BrowserAnimationsModule,
+    imports: [        
         FormsModule,
         MaterialModule,
         FlexLayoutModule,
     ],
-    exports: [
-        BrowserAnimationsModule,
+    exports: [        
         MaterialModule,
         FlexLayoutModule,
         MdImageDirective,

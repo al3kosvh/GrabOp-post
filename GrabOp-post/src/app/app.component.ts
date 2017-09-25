@@ -1,34 +1,54 @@
 import { Component, Directive } from '@angular/core';
-import { AuthHttpService } from './modules/account/services/auth-http.service';
-import { VOUserExt } from './modules/account/models/vouser';
 import { Observable } from 'rxjs/Observable';
+import { RouterOutlet } from '@angular/router';
 import { MdIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser'
-//import {trigger, state, style, transition, animate, keyframes, group} from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes, group, query } from '@angular/animations';
 
+import { VOUserExt } from './modules/account/models/vouser';
+
+// Services
+import { AuthHttpService } from './modules/account/services/auth-http.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    /* animations: [
-       trigger('routerAnimationRight', [
-         state('in', style({
-           transform: 'translate3d(0, 0, 0)'
-         })),
-         state('out', style({
-           transform: 'translate3d(100%, 0, 0)'
-         })),
-         transition('in => out', animate('400ms ease-in-out')),
-         transition('out => in', animate('400ms ease-in-out'))
-       ]),
-     ]*/
+    animations: [
+        trigger('routerAnimationRight', [
+            state('*', style({
+                // the view covers the whole screen with a semi tranparent background
+                position: 'fixed',                
+            })),
+
+            state('in', style({
+                position: 'fixed',
+                //top: 0,
+                //left: 0,
+                right: '17px',
+                //bottom: 0,
+                paddingTop: '80px',
+                //backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            })),
+
+            transition('* => in', [
+                style({
+                    position: 'fixed',
+                    paddingTop: '80px',
+                  //top: '80px',
+                    right: '-400px',                  
+                }),
+                animate('400ms ease-in-out')
+            ])
+
+            //transition('* => in', animate('400ms ease-in-out')),
+        ]),
+    ]
 })
 export class AppComponent {
 
     private isLoggedIn: Observable<boolean>;
     private user: VOUserExt;
-    private state: string = 'out';
     private withToolbar
 
     constructor(
@@ -40,7 +60,7 @@ export class AppComponent {
         this.isLoggedIn = auth.isLogedIn;
 
         auth.user$.subscribe(user => {
-            if (!user) return;            
+            if (!user) return;
             //this.user = user
         });
 
@@ -53,14 +73,14 @@ export class AppComponent {
         // console.log('appp');
     }
 
-    // prepareRouter(outlet){
-    //const animation = outlet.activatedRouteData['animation'] || {};
-    // return animation['value'] || null;
-    // let a = r.activeRoute ? r.activeRoute.config.animations : '';
-    // console.log('prepareRouter', a);
-    // return a;
-    // return r.activeRoute ? r.activeRoute.config.animations : '';
-    // }
+    public getRouteAnimation(outlet: RouterOutlet): any {
+        return outlet.activatedRouteData.animation;
+
+        //let a = r.activeRoute ? r.activeRoute.config.animations : '';
+        //console.log('prepareRouter', a);
+        //return a;
+        //return r.activeRoute ? r.activeRoute.config.animations : '';
+    }
 
     // prepareRouteTransition(r) {
     //   const animation = r.activatedRouteData['animation'] || {};

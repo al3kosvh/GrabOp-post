@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,17 +22,23 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
 import { AuthGuard } from './services/auth.guard';
+import { SignupService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
 // import {SigninButtonComponent} from './login-button/button.component';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
-const homeRoute: Routes = [
-   { path: 'username', component: SignupUsernameComponent },
-   { path: 'confirm/:token', component: SignupConfirmComponent },
-   { path: 'resetpassword/:token', component: AccountRecoverComponent },
-   { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
+const routes: Routes = [
+    {
+        path: 'join-us', component: SignupComponent, outlet: 'slideRight', data: { animation: 'in' },
+        children: [
+            { path: '', redirectTo: 'username', pathMatch: 'full' },
+            { path: 'username', component: SignupUsernameComponent },
+            { path: 'confirm/:token', component: SignupConfirmComponent },
+            { path: 'resetpassword/:token', component: AccountRecoverComponent },
+        ]
+    }
 ];
 
 @NgModule({
@@ -40,9 +46,9 @@ const homeRoute: Routes = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule.forChild(homeRoute),
+        RouterModule.forChild(routes),
         SharedModule,
-        MdDialogModule        
+        MdDialogModule
     ],
     exports: [
         SignInComponent,
@@ -66,6 +72,7 @@ const homeRoute: Routes = [
         UploadService,
         AuthHttpService,
         AuthGuard,
+        SignupService
     ],
     entryComponents: [SignInDialogComponent]
 })

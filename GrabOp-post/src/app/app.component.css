@@ -1,4 +1,4 @@
-﻿md-sidenav {
+md-sidenav {
   margin-top: 64px;
 }
 
@@ -14,4 +14,9 @@ md-sidenav md-list a {
 md-sidenav-container.withToolbar {
   margin-top: -64px;
   padding-top: 64px;
+}
+
+div.slideRight {
+  position: fixed;
+  z-index: 1000;
 }
