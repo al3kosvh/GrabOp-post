@@ -48,7 +48,7 @@ export class VOUser {
 
 }
 
-/**TODO remove optional operators, keep phoneVisible */
+
 export class VOUserExt extends VOUser {
   background_pic?: string;
   video?: string;
