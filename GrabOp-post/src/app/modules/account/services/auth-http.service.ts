@@ -1,8 +1,12 @@
 ﻿import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
 import { VOSettings } from "../../../models/vos";
 import { VOUserExt, VOUser, SOAuthenticateResponse, SOUser } from "../models/vouser";
 
