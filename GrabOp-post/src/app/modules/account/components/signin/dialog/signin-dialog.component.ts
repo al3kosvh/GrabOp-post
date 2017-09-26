@@ -29,17 +29,20 @@ export class SignInDialogComponent {
 
     onSubmit(): void {
         this.loading = true;
-        this.authenticationService.signIn(this.signinData)
-            .subscribe(
+        this.authenticationService.signIn(this.signinData).subscribe(
             value => {
                 this.dialogRef.close();
+                this.loading = false;
             },
             error => {
+                console.log('onSubmit error: ', error);
                 this.errorMessage = 'Username or password is incorrect';
+                this.loading = false;
             },
             () => {
                 this.loading = false;
-            });
+            }
+        );
     }
 
     onClose(): void {
