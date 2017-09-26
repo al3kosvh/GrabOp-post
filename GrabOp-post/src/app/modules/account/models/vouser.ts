@@ -48,29 +48,30 @@ export class VOUser {
 
 }
 
+/**TODO remove optional operators, keep phoneVisible */
 export class VOUserExt extends VOUser {
-  background_pic: string;
-  video: string;
-  resume: string;
-  province: string;
-  city: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-  skillset: string[];
-  interests: string[];
-  profile_pic: string;
-  jobtitle: string;
-  company: string;
-  occupation: number;
-  url: string;
-  description: string;
-  phoneNumber: string;
+  background_pic?: string;
+  video?: string;
+  resume?: string;
+  province?: string;
+  city?: string;
+  country?: string;
+  latitude?: number;
+  longitude?: number;
+  skillset?: string[];
+  interests?: string[];
+  profile_pic?: string;
+  jobtitle?: string;
+  company?: string;
+  occupation?: number;
+  url?: string;
+  description?: string;
+  phoneNumber?: string;
   phoneVisible?: boolean;
-  distance: number;
-  offers: number;
-  needs: number;
-  numberOfOpps: number;
+  distance?: number;
+  offers?: number;
+  needs?: number;
+  numberOfOpps?: number;
 }
 
 export class SOResponseStatus{
