@@ -27,14 +27,14 @@ import { AuthHttpService } from './modules/account/services/auth-http.service';
                 //left: 0,
                 right: '17px',
                 //bottom: 0,
-                paddingTop: '80px',
+                top: '80px',
                 //backgroundColor: 'rgba(0, 0, 0, 0.8)',
             })),
 
             transition('* => in', [
                 style({
                     position: 'fixed',
-                    paddingTop: '80px',
+                    top: '80px',
                   //top: '80px',
                     right: '-400px',                  
                 }),

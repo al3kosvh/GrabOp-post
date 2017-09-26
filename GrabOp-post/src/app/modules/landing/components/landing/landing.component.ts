@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
@@ -26,20 +26,20 @@ export class LandingComponent implements OnInit {
 
     private summaryData: any[] = [
         {
-            Image: 'assets/img/search-opportunities.png',
-            Text: 'Find jobs, products, services and talent'
+            image: 'assets/img/search-opportunities.png',
+            text: 'Find jobs, products, services and talent'
         },
         {
-            Image: 'assets/img/promote-yourself.png',
-            Text: 'Post your offers and your needs'
+            image: 'assets/img/promote-yourself.png',
+            text: 'Post your offers and your needs'
         },
         {
-            Image: 'assets/img/create-alliances.png',
-            Text: 'Join forces with other members to expand opportunities'
+            image: 'assets/img/create-alliances.png',
+            text: 'Join forces with other members to expand opportunities'
         },
         {
-            Image: 'assets/img/do-it-your-way.png',
-            Text: 'Join forces with other members to expand opportunities'
+            image: 'assets/img/do-it-your-way.png',
+            text: 'Join forces with other members to expand opportunities'
         },
 
     ];

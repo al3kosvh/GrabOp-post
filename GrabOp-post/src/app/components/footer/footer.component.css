@@ -1,4 +1,4 @@
-﻿.heart-img {
+.heart-img {
   content: url('./heart.png');
 }
 
@@ -7,7 +7,7 @@
 }
 
 footer {
-  background-color: #DDDDDD;
+  background-color: rgba(0,0,0,0.05);
 }
 
 

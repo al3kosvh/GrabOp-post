@@ -1,4 +1,4 @@
-﻿#banner {
+#banner {
   /*background: url('app/img/home_page/landing.jpg') no-repeat center center;*/
   background: url('./landing.jpg') no-repeat center center;
   background-size: cover;
@@ -44,3 +44,40 @@ div.info div.video {
 div.info span {
   font-weight: 600;
 }
+
+div.search-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: white;
+  -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
+  -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
+  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
+}
+
+  div.search-container md-form-field {
+    margin-top: -10px;
+    margin-bottom: -17px;
+  }
+
+  div.search-container /deep/ div.mat-input-underline.mat-form-field-underline {
+    display: none;
+  }
+
+div.landing-video {
+  background-color: rgba(0,0,0,0.05);
+  padding: 10px;
+}
+
+div.landing-things {
+  margin-bottom: 40px;
+}
+
+div.landing-things p {
+  text-align: center;
+}
+
+md-card img {
+}
+

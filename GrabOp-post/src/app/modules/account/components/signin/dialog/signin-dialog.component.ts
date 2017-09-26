@@ -1,4 +1,4 @@
-﻿import { Component, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { VOUser } from '../../../models/vouser';
@@ -23,7 +23,7 @@ export class SignInDialogComponent {
         private authenticationService: AuthHttpService
     ) {
         this.user = authenticationService.user$;
-        this.signinData = { username: '', password: '', rememberMe: false };
+        this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
         this.loading = false;
     }
 

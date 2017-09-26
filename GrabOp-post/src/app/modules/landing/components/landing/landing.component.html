@@ -17,27 +17,29 @@
           </div>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">        
-          <md-form-field floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
+      <div fxLayout="row" fxLayoutAlign="center">
+        <div class="search-container" fxFlex="35" fxFlex.xs="60">
+          <md-form-field floatPlaceholder="never" fxFlex>
             <md-icon mdPrefix>search</md-icon>
             <input mdInput placeholder="star your search here">
-          </md-form-field>        
+          </md-form-field>
+        </div>
       </div>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center">
     <h2 class="heading">Do These Cool Things With GrapOp</h2>
-  </div>  
-  <md-grid-list cols="4">
-    <md-grid-tile *ngFor="let item of summaryData">
-      <img src='{{item.Image}}' />
-    </md-grid-tile>
-    <md-grid-tile cols="4" *ngFor="let item of summaryData">      
-        {{item.Text}}      
-    </md-grid-tile>
-  </md-grid-list>
+  </div>
+  <div class="landing-things" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around">
+    <div *ngFor="let item of summaryData" fxFlex="20" fxLayout="column" fxLayoutAlign="center center">      
+        <img src="{{item.image}}" alt="Photo of a Shiba Inu">   
+      <p>
+        {{item.text}}
+      </p>
+    </div>
+  </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-around">
+  <div class="landing-video" fxLayout="row" fxLayoutAlign="space-around">
     <div class="info" fxLayout="row">
       <div class="video">
         <video></video>
