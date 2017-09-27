@@ -3,7 +3,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // Shared  Modules
-import { MaterialModule } from '@angular/material';
+import {
+    MatInputModule, MatListModule, MatGridListModule, MatChipsModule, MatSlideToggleModule, MatRadioModule, MatMenuModule,
+    MdIconRegistry, MatIconModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatCardModule, MatCheckboxModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -22,13 +25,40 @@ import { ModalWindowService } from './services/modal-window.service';
 
 @NgModule({
     imports: [        
-        FormsModule,
-        MaterialModule,
+        FormsModule,        
         FlexLayoutModule,
+        // Material modules
+        MatInputModule,
+        MatListModule,
+        MatGridListModule,
+        MatChipsModule,
+        MatSlideToggleModule,
+        MatRadioModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
     ],
-    exports: [        
-        MaterialModule,
+    exports: [
         FlexLayoutModule,
+        // Export Material modules
+        MatInputModule,
+        MatListModule,
+        MatGridListModule,
+        MatChipsModule,
+        MatSlideToggleModule,
+        MatRadioModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+
         MdImageDirective,
         MembersListComponent,        
         ListRowComponent,
@@ -43,7 +73,8 @@ import { ModalWindowService } from './services/modal-window.service';
         MembersListComponent
     ],
     providers: [
-        ModalWindowService
+        ModalWindowService,
+        MdIconRegistry
     ],
     entryComponents: [
         ModalAlertComponent,
