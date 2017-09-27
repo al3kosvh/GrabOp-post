@@ -37,6 +37,7 @@ const routes: Routes = [
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
             { path: 'resetpassword/:token', component: AccountRecoverComponent },
+            { path: 'signout', component: SignOutComponent, canActivate:[AuthGuard] },
         ]
     }
 ];
