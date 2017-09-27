@@ -63,27 +63,4 @@ export class LandingComponent implements OnInit {
             });
         }*/
     }
-
-
-    loginClick() {
-
-        /*let ref = this.dialog.open(SigninComponent, {
-            width: '400px',
-            height: '400px'
-        });
-
-        SigninComponent.loggedIn = res => {
-            console.log(res);
-            //if(res) {
-            setTimeout(() => ref.close(), 2000);
-
-            // }
-
-        }*/
-    }
-
-    logOutClick() {
-        this.auth.signOut();
-    }
-
 }
