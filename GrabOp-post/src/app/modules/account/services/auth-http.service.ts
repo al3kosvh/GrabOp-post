@@ -31,7 +31,11 @@ export class AuthHttpService {
 
         this.user$ = this.userSub.asObservable();
 
-        this.isLogedIn = this.user$.map(user => !!user);
+        this.isLogedIn = this.user$.map(user => {
+            return true;
+        }, error => {
+            return false;
+        });
 
         //this.autoLogin();
     }
