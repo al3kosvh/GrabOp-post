@@ -1,8 +1,12 @@
 ﻿import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
 import { VOSettings } from "../../../models/vos";
 import { VOUserExt, VOUser, SOAuthenticateResponse, SOUser } from "../models/vouser";
 
@@ -69,7 +73,7 @@ export class AuthHttpService {
     }
 
 
-    signIn(authData: Models.SignIn) {
+    signIn(authData: Models.SignIn): Observable<VOUserExt> {
 
         let url: string = VOSettings.authenticateUrl;
 
@@ -87,12 +91,15 @@ export class AuthHttpService {
             user.token = authResponse.session_id;
             //this.saveUser(user);
             return user;
-        }).flatMap(result => {
-            return this.getUserExtended();
+        }).flatMap((user: VOUser) => {
+            return this.getUserExtended().map((userExt: VOUserExt) => {
+                this.saveUser(user);
+                return userExt;
+            });
         });
     }
 
-    getUserExtended() {
+    getUserExtended(): Observable<VOUserExt> {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/profiles/me?format=json';
         let url: string = VOSettings.myProfile;
         return this.get(url)
