@@ -9,7 +9,7 @@
         <div class="options">
           <div *ngIf="isLoggedIn | async">
             <button md-raised-button color="accent" routerLink="/home">HOME</button>
-            <button md-raised-button color="accent" routerLink="/logout">LOGOUT</button>
+            <button md-raised-button color="accent" [routerLink]="['/signout']">SIGN OUT</button>
           </div>
           <div *ngIf="!(isLoggedIn | async)">
             <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>
