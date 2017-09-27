@@ -1,12 +1,12 @@
 <!--<h4>{{message}}</h4>-->
 <md-list>
   <md-list-item>
-    <md-input-container>
+    <md-form-field>
       <textarea mdInput
                 [(ngModel)]="messageRes"
                 name="message"
                 placeholder="{{message}}"></textarea>
-    </md-input-container>
+    </md-form-field>
   </md-list-item>
   <md-list-item>
     <button md-raised-button color="primary" (click)="clickOk()">OK</button>
