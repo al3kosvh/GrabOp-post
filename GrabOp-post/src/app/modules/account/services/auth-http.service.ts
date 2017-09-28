@@ -18,10 +18,6 @@ export class AuthHttpService {
     public isLogedIn: Observable<boolean>;
     private userSub: BehaviorSubject<VOUserExt>;
 
-    private userS: BehaviorSubject<VOUser>;
-    public userS$: Observable<VOUser>;
-    private usr: VOUser;
-
     public user$: Observable<VOUserExt>;
     private user: VOUserExt;
 
@@ -33,12 +29,13 @@ export class AuthHttpService {
 
         this.userSub = new BehaviorSubject<VOUserExt>(this.user);
 
-        this.userS = new BehaviorSubject<VOUser>(this.usr);
-        this.userS$ = this.userS.asObservable();
-
         this.user$ = this.userSub.asObservable();
 
-        this.isLogedIn = this.user$.map(user => !!user);
+        this.isLogedIn = this.user$.map(user => {
+            return true;
+        }, error => {
+            return false;
+        });
 
         //this.autoLogin();
     }

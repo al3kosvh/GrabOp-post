@@ -49,41 +49,9 @@ export class LandingComponent implements OnInit {
         private modal: ModalWindowService,
         private auth: AuthHttpService,
         private dialog: MdDialog
-    ) {
-        this.isLoggedIn = auth.isLogedIn;
-    }
+    ) { }
 
     ngOnInit() {
-
-        /*const login = this.route.snapshot.params.login;
-        if (!!login) {
-            console.log('login', login);
-            this.modal.openWindow(SigninComponent, (res) => {
-                console.log('SigninComponent  ', res);
-            });
-        }*/
+        this.isLoggedIn = this.auth.isLogedIn;
     }
-
-
-    loginClick() {
-
-        /*let ref = this.dialog.open(SigninComponent, {
-            width: '400px',
-            height: '400px'
-        });
-
-        SigninComponent.loggedIn = res => {
-            console.log(res);
-            //if(res) {
-            setTimeout(() => ref.close(), 2000);
-
-            // }
-
-        }*/
-    }
-
-    logOutClick() {
-        this.auth.signOut();
-    }
-
 }
