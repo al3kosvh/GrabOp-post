@@ -51,13 +51,24 @@
           </md-radio-button>
         </md-radio-group>
 
-        <button md-raised-button color="accent" class="container-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-          <input type="file" accept="application/pdf, application/msword" />
-          Upload Resume
-        </button>
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img [src]="iconFileResume">
+            <!--<span>{{ fileResume.name }}</span>-->
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <button md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)"/>
+              Upload Resume
+            </button>
+          </div>
+        </div>
+
       </md-tab>
 
-      <!--<md-tab label="Photo/Video">Content 2</md-tab>-->
+      <md-tab label="Photo/Video">
+
+      </md-tab>
     </md-tab-group>
 
     <div fxLayout="column" fxLayoutGap="10px">

@@ -5,6 +5,7 @@ import {VOUserExt} from '../../../../account/models/vouser';
 
 // Services
 import {ProfileService} from '../../../services/profile.service';
+import {UploadService} from '../../../../account/services/upload.service';
 
 @Component({
   selector: 'edit-profile-dialog',
@@ -22,26 +23,31 @@ export class EditProfileDialogComponent {
     {value: 2, name: "Seeking an Opportunity"},
     {value: 3, name: "Other"},
   ];
+  iconFileResume = "assets/img/docx.png";
+  fileResume: object;
 
-
-  constructor(public dialogRef: MdDialogRef<EditProfileDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any, private profileService: ProfileService) {
+  constructor(
+    public dialogRef: MdDialogRef<EditProfileDialogComponent>,
+    @Inject(MD_DIALOG_DATA) public data: any,
+    private profileService: ProfileService, private uploadService: UploadService) {
     this.loading = false;
     this.person = data;
   }
 
   onSubmit(): void {
     this.loading = true;
-    this.profileService.editProfile(this.person, [
+    this.profileService.editProfile(this.person).subscribe(
       success => {
-        console.log("EditProfileDialog success", success)
+        console.log("EditProfileDialog success", success);
+        this.fileResume = success;
       },
       err => {
         console.log("EditProfileDialog err: ", err)
       },
       () => {
-      this.loading = false;
+        this.loading = false;
       }
-    ])
+    )
   }
 
   onClose(): void {
@@ -54,8 +60,18 @@ export class EditProfileDialogComponent {
     }
   }
 
-  onUpLoadFile(): void {
+  onUpLoadFile(event): void {console.log(event)
+    this.uploadService.upload(event).subscribe(
+      dataFile => {
+        console.log("EditProfileDialog dataFile: ", dataFile)
+      },
+      err => {
+        console.log("EditProfileDialog err: ", err.json())
+      },
+      () => {
 
+      }
+    )
   }
 
 }
