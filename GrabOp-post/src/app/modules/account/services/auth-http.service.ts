@@ -32,7 +32,7 @@ export class AuthHttpService {
         this.user$ = this.userSub.asObservable();
 
         this.isLogedIn = this.user$.map(user => {
-            return true;
+            return user ? true : false;
         }, error => {
             return false;
         });
