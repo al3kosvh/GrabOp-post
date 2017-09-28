@@ -1,78 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Injectable} from '@angular/core';
 
 // Services
-import { AuthHttpService } from '../../account/services/auth-http.service';
+import {AuthHttpService} from '../../account/services/auth-http.service';
 
-import { VOSettings } from '../../../models/vos';
-import { VOUserExt } from '../../account/models/vouser';
-import { mapGetPerson } from '../../../utils/map-functions';
+import {VOSettings} from '../../../models/vos';
+import {mapGetPerson} from '../../../utils/map-functions';
+import {VOUserExt} from "../../account/models/vouser";
 
 @Injectable()
 export class ProfileService {
 
-    person$: Observable<VOUserExt>;
-    private personSub: BehaviorSubject<VOUserExt>;
-    private person: VOUserExt = new VOUserExt();
+  constructor(private authHttpService: AuthHttpService) {
+  }
 
-    myPerson$: Observable<VOUserExt>;
-    private myPersonSub: BehaviorSubject<VOUserExt>;
-    private myPerson: VOUserExt = new VOUserExt();
+  getProfileById(id: string, subscribe): void {
+    subscribe = [
+      subscribe[0] || (value => {}), subscribe[1] || (err => {}), subscribe[2] || (() => {})
+    ];
+    const urlProfilePerson = VOSettings.profile.replace(<any>'{{id}}', id);
+    this.authHttpService.get(urlProfilePerson)
+      .map(mapGetPerson)
+      .share()
+      .subscribe(subscribe[0], subscribe[1], subscribe[2]);
+  }
 
-    constructor(
-        private http: AuthHttpService
-    ) {
-        this.personSub = new BehaviorSubject(new VOUserExt());
-        this.person$ = this.personSub.asObservable();
+  editProfile(person: VOUserExt, subscribe): void {
+    subscribe = [
+      subscribe[0] || (value => {}), subscribe[1] || (err => {}), subscribe[2] || (() => {})
+    ];
+    const urlProfilePerson = VOSettings.updateProfile.replace(<any>'{{id}}', person.id);
+    this.authHttpService.post(urlProfilePerson, person)
+      .map(res => res.json)
+      .share()
+      .subscribe(subscribe[0], subscribe[1], subscribe[2]);
+  }
 
-        // this.getProfileById();
-    }
-
-    getProfileById(id: string): void {
-        let url = VOSettings.profile.replace(<any>'{{id}}', id);
-        this.http.get(url)
-            // .map(res => {
-            //   return new VOUserExt(res.json());
-            // })
-            .map(mapGetPerson)
-            .subscribe(result => {
-                this.person = result;
-                this.personSub.next(result);
-                console.log('getProfileById', result);
-            })
-        // .catch(this.handleError)
-    }
-
-    getMyProfile(): void {
-        let url = VOSettings.myProfile;
-        this.http.get(url)
-            // .map(res => {
-            //   return new VOUserExt(res.json());
-            // })
-            .map(mapGetPerson)
-            .subscribe(result => {
-                this.person = result;
-                this.personSub.next(result);
-                console.log('getMyProfile', result);
-            })
-        // .catch(this.handleError)
-    }
-
-    // getProfile():void{
-    //
-    //   let url = VOSettings.myProfile;
-    //   this.http.get(url).map(res=>{
-    //     return res.json()
-    //
-    //   }).subscribe(res=>{
-    //     console.log(res);
-    //   })
-    // }
-
-    private handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            console.error(error);
-        return Observable.throw(errMsg);
-    }
 }

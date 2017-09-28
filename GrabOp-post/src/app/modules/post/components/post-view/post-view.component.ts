@@ -57,9 +57,9 @@ export class PostViewComponent implements OnInit {
             //   this.profileService.getProfileById(post.ownerId);
             //   this.profileService.person$.subscribe(res => this.person = res);
             // });
-            this.profileService.getProfileById(this.idPerson);
+            this.profileService.getProfileById(this.idPerson, [res => this.person = res]);
 
-            this.profileService.person$.subscribe(res => this.person = res);
+            // this.profileService.person$.subscribe(res => this.person = res);
 
             this.postService.getPersonPosts(this.idPerson);
             this.postService.posts$.subscribe(posts => {
