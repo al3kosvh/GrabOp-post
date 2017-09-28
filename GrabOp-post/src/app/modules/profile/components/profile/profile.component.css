@@ -30,7 +30,7 @@ div.separator {
 
 div.profile-card {
   width: 180px;
-  height: 230px;
+  /*height: 230px;*//*in case the user not make visible the email and/or phone number, then the card most be resize*/
   margin-left: 60px;
   background-color: white;
   -webkit-transform: rotate(-10deg);
@@ -86,7 +86,7 @@ div.profile-inner-info {
   padding: 20px;
 }
 
-div.profile-inner-site {  
+div.profile-inner-site {
   font-family: Segoe Script, cursive;
   font-size: 1.3em;
   margin-bottom: 20px;
@@ -123,4 +123,32 @@ div.profile-inner-connections img.user {
   height: 50px;
   margin: 6px;
   border-radius: 50%;
+}
+
+div.profile-inner-info .skill-set {
+  width: 100%;
+  text-align: center;
+}
+
+div.profile-inner-info .skill-set .skill-title {
+  color: grey;
+}
+
+div.profile-inner-info .skill-set ul {
+  border: 1px solid #dbdada;
+  color: grey;
+  border-radius: 2px;
+  list-style: none;
+  padding: 4px;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+div.btn-action-container button {
+  font-size: 1.2em;
+}
+
+div.btn-action-container button small {
+  font-size: x-small;
 }
