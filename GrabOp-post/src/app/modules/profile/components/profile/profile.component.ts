@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
     myUser: VOUserExt = new VOUserExt();
     person: VOUserExt = new VOUserExt();
+
     profileConnectionsCount: number;
     id: string;
     isMyProfile = false;
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
     personPosts: VOPost[];
     shortName: string;
     backgroundPic = "#969696";
+    private profileContainerMarginTop = -212;
 
     constructor(
         private userService: AuthHttpService,
@@ -54,7 +56,7 @@ export class ProfileComponent implements OnInit {
         private connectionService: ConnectionService,
         private dialog: MdDialog
     ) {
-
+        
     }
 
     ngOnInit() {
@@ -82,15 +84,29 @@ export class ProfileComponent implements OnInit {
             //    }
             //])
 
+            this.fixProfileContainerLayout();
+
         } else {
             // get my profile
             this.isMyProfile = true;
             this.profileService.getProfile().subscribe(profile => {
                 console.log(profile);
+                this.fixProfileContainerLayout();
             });
         }
-
         
+    }
+
+    private fixProfileContainerLayout(): void {
+        if (this.shortName) {
+            this.profileContainerMarginTop += -18;
+        }
+        if (this.person.phoneVisible) {
+            this.profileContainerMarginTop += -13;
+        }
+        if (this.person.emailVisible) {
+            this.profileContainerMarginTop += -13;
+        }
     }
 
     editProfile(): void {

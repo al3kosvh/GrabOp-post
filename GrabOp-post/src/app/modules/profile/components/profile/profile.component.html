@@ -19,8 +19,8 @@
       </div>
     </div>
   </div>
-  <div class="profile-container" fxLayout="row" fxLayoutAlign="space-around">
-    <div fxLayout="column" fxFlex="60">
+  <div class="profile-container" [style.margin-top.px]="profileContainerMarginTop" fxLayout="row" fxLayoutAlign="space-around">
+    <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
       <div class="profile-card">
         <div class="profile-photo">
           <img [alt]="person.firstName + ' ' + person.lastName" [src]="person.profile_pic || 'assets/img/temp-users-img/6.jpg'"/>
@@ -29,10 +29,10 @@
           <span>{{ shortName }}</span>
         </div>
         <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-          <small *ngIf="true">Phone: {{ person.phoneNumber }}</small>
+          <small *ngIf="person.phoneVisible">Phone: {{ person.phoneNumber }}</small>
         </div>
-        <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-          <small *ngIf="true">Email: {{ person.primaryEmail }}</small>
+        <div class="profile-info email" fxLayout="row" fxLayoutAlign="center">
+          <small *ngIf="person.emailVisible">Email: {{ person.primaryEmail }}</small>
         </div>
       </div>
       <div class="profile-inner">
@@ -51,7 +51,7 @@
               <img class="bracket" src="assets/img/my-resumen.png"/>
               <div class="skill-set">
                 <span class="skill-title">My Skills</span>
-                <ul>
+                <ul *ngIf="person.skillset">
                   <li *ngFor="let skill of person.skillset">{{ skill }}</li>
                 </ul>
               </div>
