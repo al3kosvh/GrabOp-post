@@ -25,7 +25,8 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 
 const routes: Routes = [
-    { path: 'profile', component: ProfileComponent }
+    { path: 'profile', component: ProfileComponent },
+    { path: 'profile/:id', component: ProfileComponent }
 ];
 
 @NgModule({
@@ -36,7 +37,7 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostModule,
-        MdTableModule        
+        MdTableModule
     ],
     declarations: [
         ProfileComponent,
