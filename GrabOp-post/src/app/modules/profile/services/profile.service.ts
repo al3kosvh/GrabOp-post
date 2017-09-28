@@ -18,9 +18,7 @@ export class ProfileService {
     }
 
     public getProfile(): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.myProfile).map((response: Response) => {
-            return response.json();
-        })
+        return this.authHttpService.get(VOSettings.myProfile).map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -31,8 +29,8 @@ export class ProfileService {
     }
 
     public editProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.updateProfile.replace(<any>'{{id}}', person.id))
-          .map(res => res.json)
+        return this.authHttpService.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), person)
+          .map(res => res.json())
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 

@@ -10,42 +10,42 @@
       <md-tab label="Basics">
         <div class="demo-tab-content">
           <md-form-field>
-            <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="person.firstName" required #firstName="ngModel"/>
+            <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="profile.firstName" required #firstName="ngModel"/>
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="person.lastName" required #lastName="ngModel"/>
+            <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="profile.lastName" required #lastName="ngModel"/>
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="person.phoneNumber" required #phoneNumber="ngModel"/>
+            <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="profile.phoneNumber" required #phoneNumber="ngModel"/>
           </md-form-field>
-          <md-checkbox name="phoneVisible" [(ngModel)]="person.phoneVisible">Make Visible</md-checkbox>
+          <md-checkbox name="phoneVisible" [(ngModel)]="profile.phoneVisible">Make Visible</md-checkbox>
           <md-form-field>
-            <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="person.primaryEmail" required #primaryEmail="ngModel"/>
+            <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="profile.primaryEmail" required #primaryEmail="ngModel"/>
           </md-form-field>
-          <md-checkbox name="emailVisible" [(ngModel)]="person.emailVisible">Make Visible</md-checkbox>
+          <md-checkbox name="emailVisible" [(ngModel)]="profile.emailVisible">Make Visible</md-checkbox>
           <md-form-field>
-            <input mdInput placeholder="Country" name="country" [(ngModel)]="person.country" required #country="ngModel"/>
-          </md-form-field>
-          <md-form-field>
-            <input mdInput placeholder="Province" name="province" [(ngModel)]="person.province" required #province="ngModel"/>
+            <input mdInput placeholder="Country" name="country" [(ngModel)]="profile.country" required #country="ngModel"/>
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="City" name="city" [(ngModel)]="person.city" required #city="ngModel"/>
+            <input mdInput placeholder="Province" name="province" [(ngModel)]="profile.province" required #province="ngModel"/>
           </md-form-field>
           <md-form-field>
-            <textarea mdInput placeholder="Personal Statement" name="resume" [(ngModel)]="person.resume" required #resume="ngModel"></textarea>
+            <input mdInput placeholder="City" name="city" [(ngModel)]="profile.city" required #city="ngModel"/>
+          </md-form-field>
+          <md-form-field>
+            <textarea mdInput placeholder="Personal Statement" name="resume" [(ngModel)]="profile.resume" required #resume="ngModel"></textarea>
           </md-form-field>
         </div>
       </md-tab>
 
       <md-tab label="Professional">
         <md-form-field>
-          <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="person.jobtitle" required #jobtitle="ngModel"/>
+          <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel"/>
         </md-form-field>
-        <md-form-field *ngIf="person.occupation === 0">
-          <input mdInput placeholder="Company" name="company" [(ngModel)]="person.company" required #company="ngModel"/>
+        <md-form-field *ngIf="profile.occupation === 0">
+          <input mdInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel"/>
         </md-form-field>
-        <md-radio-group class="radio-group" name="occupation" [(ngModel)]="person.occupation">
+        <md-radio-group class="radio-group" name="occupation" [(ngModel)]="profile.occupation">
           <md-radio-button class="radio-button" *ngFor="let occupation of occupations" [value]="occupation.value" (click)="resetCompany()">
             {{occupation.name}}
           </md-radio-button>

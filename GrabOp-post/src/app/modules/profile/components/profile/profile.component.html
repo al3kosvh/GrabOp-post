@@ -1,12 +1,10 @@
 <div class="profile" fxLayout="column">
-  <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse" id="backgroundPicProfile">
+  <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse">
     <div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
       <div class="profile-banner-info" fxLayout="column" fxLayoutAlign="center center">
-        <span>Make-Up Artist</span>
-        <span>Copiter</span>
+        <span>{{ profile.jobtitle }}</span>
         <div class="separator"></div>
-        {{ person.background_pic }}
-        <span class="city">Toronto Ontario</span>
+        <span class="city">{{ profile.city }}</span>
       </div>
       <div class="btn-action-container">
         <button *ngIf="isMyProfile" md-raised-button color="accent" (click)="editProfile()">edit profile</button>
@@ -23,16 +21,16 @@
     <div fxLayout="column" fxFlex="60">
       <div class="profile-card">
         <div class="profile-photo">
-          <img [alt]="person.firstName + ' ' + person.lastName" [src]="person.profile_pic || 'assets/img/temp-users-img/6.jpg'"/>
+          <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic"/>
         </div>
         <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
-          <span>{{ shortName }}</span>
+          <span>{{ shortName | uppercase }}</span>
         </div>
         <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-          <small *ngIf="true">Phone: {{ person.phoneNumber }}</small>
+          <small *ngIf="(profile.phoneVisible || isMyProfile)">Phone: {{ profile.phoneNumber }}</small>
         </div>
         <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-          <small *ngIf="true">Email: {{ person.primaryEmail }}</small>
+          <small *ngIf="(profile.emailVisible || isMyProfile)">Email: {{ profile.primaryEmail }}</small>
         </div>
       </div>
       <div class="profile-inner">
@@ -52,13 +50,13 @@
               <div class="skill-set">
                 <span class="skill-title">My Skills</span>
                 <ul>
-                  <li *ngFor="let skill of person.skillset">{{ skill }}</li>
+                  <li *ngFor="let skill of profile.skillset">{{ skill }}</li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="profile-inner-connections" [ngStyle]="{'background-image':'url(./assets/img/map.png)'}" fxLayout="column" fxFlex="50">
-            <div fxlayout="row" fxLayoutAlign="center" class="connections-title">1644 connection</div>
+            <div fxlayout="row" fxLayoutAlign="center" class="connections-title">{{ profileConnectionsCount }} connection</div>
             <div fxlayout="row" fxLayoutAlign="center">
               <img class="bracket" src="assets/img/left-bracket.png"/>
               <img class="user" src="assets/img/1x.jpg"/>
@@ -69,6 +67,16 @@
             </div>
           </div>
         </div>
+
+        <div class="posts" fxLayout="row">
+          <div class="title">offering service</div>
+          <div fxLayout="row" xLayoutAlign="space-around">
+            <div *ngFor="let item of profilePosts | postsFilter:'offer'; let i=index">
+              <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

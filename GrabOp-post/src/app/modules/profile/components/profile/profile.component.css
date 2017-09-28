@@ -40,7 +40,7 @@ div.profile-card {
   transform: rotate(-10deg);
   -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
   -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
-  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);  
+  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
 }
 
 div.profile-photo {
@@ -155,4 +155,14 @@ div.btn-action-container button {
 
 div.btn-action-container button small {
   font-size: x-small;
+}
+
+div.posts {
+  padding: 0 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.posts .title {
+  color: grey;
 }
