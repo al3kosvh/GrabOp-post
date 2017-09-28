@@ -17,11 +17,11 @@ export class PostCardComponent implements OnInit {
 
     @Input() idPerson: string;
 
-    urlIMG = 'assets/img/pic05-300x195.jpg';
-    imgURL = 'url(assets/img/ingeniero.jpg)';
+    private postImage = 'assets/img/pic05-300x195.jpg';
+    private accountImage = 'assets/img/temp-users-img/6.jpg';
+
     accountIMG = '';
     // imgURL = 'url(img/img-girl.jpg)';
-    size = 256;
     constructor(
         // private postsService: PostsService,
         // router: Router,
