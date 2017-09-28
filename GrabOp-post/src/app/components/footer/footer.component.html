@@ -1,15 +1,15 @@
 <footer>
-  <div fxLayout="column">    
+  <div fxLayout="column">
     <div *ngIf="!(isLoggedIn | async)" fxLayout="column" fxLayoutAlign="center center">
       <div fxLayout="row">
         <h2>Get started today, it's free!</h2>
       </div>
       <div class="options">
-        <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>        
+        <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>
         <account-signin></account-signin>
       </div>
     </div>
-    <div class="info" fxLayout="row" fxLayoutAlign="space-around">
+    <div class="info" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
       <div class="social" fxLayout="column" fxLayoutAlign="center center">
         <b>Connect with us</b>
         <div fxLayout="row">
@@ -33,10 +33,8 @@
       </div>
     </div>
     <md-divider color="primary"></md-divider>
-    <div class="about" fxLayout="row" fxLayoutAlign="center center">
-      <p>
-        Copyright © <b>GrabOp</b>. All rights reserved.  <a href="#">About Us</a> | <a href="#">TERMS OF USE</a>
-      </p>
+    <div class="about" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+      <div>Copyright © <b>GrabOp</b>. All rights reserved. </div> <div><a href="#">About Us</a> | <a href="#">TERMS OF USE</a></div>
     </div>
   </div>
 </footer>

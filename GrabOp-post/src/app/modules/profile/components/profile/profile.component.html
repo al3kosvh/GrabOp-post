@@ -17,8 +17,8 @@
       </div>
     </div>
   </div>
-  <div class="profile-container" fxLayout="row" fxLayoutAlign="space-around">
-    <div fxLayout="column" fxFlex="60">
+  <div class="profile-container" [style.margin-top.px]="profileContainerMarginTop" fxLayout="row" fxLayoutAlign="space-around">
+    <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
       <div class="profile-card">
         <div class="profile-photo">
           <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic"/>
@@ -49,8 +49,8 @@
               <img class="bracket" src="assets/img/my-resumen.png"/>
               <div class="skill-set">
                 <span class="skill-title">My Skills</span>
-                <ul>
-                  <li *ngFor="let skill of profile.skillset">{{ skill }}</li>
+                <ul *ngIf="person.skillset">
+                  <li *ngFor="let skill of person.skillset">{{ skill }}</li>
                 </ul>
               </div>
             </div>

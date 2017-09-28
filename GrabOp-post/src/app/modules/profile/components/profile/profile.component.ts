@@ -43,10 +43,11 @@ export class ProfileComponent implements OnInit {
 
   allianceInviteState: string = 'out';
 
-  profilePosts: VOPost[];
-  shortName: string;
-  backgroundPic = "#969696";
-  profilePic = "";
+    profilePosts: VOPost[];
+    shortName: string;
+    backgroundPic = "#969696";
+    profilePic = "";
+    private profileContainerMarginTop = -212;
 
   constructor(private userService: AuthHttpService,
               private myPostsService: MyPostsService,
@@ -100,6 +101,7 @@ export class ProfileComponent implements OnInit {
           }
         }
       );
+      this.fixProfileContainerLayout();
     }
   }
 
@@ -113,5 +115,17 @@ export class ProfileComponent implements OnInit {
 
   allianceInvite() {
     this.allianceInviteState = this.allianceInviteState === 'out' ? 'in' : 'out';
+  }
+
+  private fixProfileContainerLayout(): void {
+      if (this.shortName) {
+          this.profileContainerMarginTop += -18;
+      }
+      if (this.person.phoneVisible) {
+          this.profileContainerMarginTop += -13;
+      }
+      if (this.person.emailVisible) {
+          this.profileContainerMarginTop += -13;
+      }
   }
 }
