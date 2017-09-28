@@ -29,6 +29,7 @@ export class SignInDialogComponent {
 
     onSubmit(): void {
         this.loading = true;
+        this.errorMessage = '';
         this.authenticationService.signIn(this.signinData).subscribe(
             value => {
                 this.dialogRef.close();
