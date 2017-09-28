@@ -36,10 +36,10 @@ const routes: Routes = [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
-            { path: 'resetpassword/:token', component: AccountRecoverComponent },
-            { path: 'signout', component: SignOutComponent, canActivate:[AuthGuard] },
+            { path: 'resetpassword/:token', component: AccountRecoverComponent }            
         ]
-    }
+    },
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

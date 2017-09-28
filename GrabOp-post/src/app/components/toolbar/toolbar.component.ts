@@ -28,7 +28,10 @@ export class ToolbarComponent implements OnInit {
         private router: Router
     ) {
         this.router.events.subscribe(event => {
-            if (event instanceof NavigationStart) this.visible.emit((event.url == '/guest') ? false : true)
+            let self = this;
+            setTimeout(function () {
+                if (event instanceof NavigationStart) self.visible.emit((event.url == '/guest') ? false : true)
+            }, 1);
         });
     }
 

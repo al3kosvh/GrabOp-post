@@ -40,7 +40,7 @@ div.profile-card {
   transform: rotate(-10deg);
   -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
   -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
-  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);
+  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.75);  
 }
 
 div.profile-photo {
@@ -61,11 +61,15 @@ div.profile-inner {
 }
 
 div.profile-name {
-  margin-top: -5px;
+  /*margin-top: -5px;*/
 }
 
 div.profile-info {
   font-size: 14px;
+}
+
+div.profile-inner {
+  /*margin-top: 30px;*/
 }
 
 div.profile-inner-stats {

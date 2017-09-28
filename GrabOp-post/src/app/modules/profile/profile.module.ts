@@ -36,8 +36,7 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostModule,
-        MdTableModule,
-      BrowserAnimationsModule
+        MdTableModule        
     ],
     declarations: [
         ProfileComponent,

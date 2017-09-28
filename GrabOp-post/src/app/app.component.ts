@@ -49,7 +49,7 @@ export class AppComponent {
 
     private isLoggedIn: Observable<boolean>;
     private user: VOUserExt;
-    private fixedLayout: string;
+    private fixedLayout: string = null;
 
     constructor(
         private auth: AuthHttpService,
@@ -75,14 +75,9 @@ export class AppComponent {
 
     public getRouteAnimation(outlet: RouterOutlet): any {
         return outlet.activatedRouteData.animation;
-
-        //let a = r.activeRoute ? r.activeRoute.config.animations : '';
-        //console.log('prepareRouter', a);
-        //return a;
-        //return r.activeRoute ? r.activeRoute.config.animations : '';
     }
 
-    private fixSidenavContainer(event) {        
+    private fixSidenavContainer(event) {       
         this.fixedLayout = event ? 'fixed' : null;
     }
 

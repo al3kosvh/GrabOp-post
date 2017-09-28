@@ -1,4 +1,4 @@
-﻿import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -64,8 +64,7 @@ export class AuthHttpService {
     signOut() {
         let url: string = VOSettings.server + '/auth/logout?format=json';
         this.get(url).map(res => res.json()).subscribe(response => {
-            this.user = null;
-            this.userSub.next(null);
+            this.removeAuthentication();
         });
     }
 
@@ -170,8 +169,6 @@ export class AuthHttpService {
         }
         return this.headers;
     }
-
-
 
     removeAuthentication(): void {
         this.user = null;
