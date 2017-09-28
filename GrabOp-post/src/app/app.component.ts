@@ -49,7 +49,7 @@ export class AppComponent {
 
     private isLoggedIn: Observable<boolean>;
     private user: VOUserExt;
-    private withToolbar
+    private fixedLayout: string;
 
     constructor(
         private auth: AuthHttpService,
@@ -80,6 +80,10 @@ export class AppComponent {
         //console.log('prepareRouter', a);
         //return a;
         //return r.activeRoute ? r.activeRoute.config.animations : '';
+    }
+
+    private fixSidenavContainer(event) {        
+        this.fixedLayout = event ? 'fixed' : null;
     }
 
     // prepareRouteTransition(r) {

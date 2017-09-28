@@ -11,7 +11,7 @@ md-sidenav md-list a {
   text-decoration: none;
 }
 
-md-sidenav-container.withToolbar {
+md-sidenav-container.fixed {
   margin-top: -64px;
   padding-top: 64px;
 }
