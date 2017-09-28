@@ -6,6 +6,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { LocalStorageService } from './local-storage.service';
 
 import { VOSettings } from "../../../models/vos";
 import { VOUserExt, VOUser, SOAuthenticateResponse, SOUser } from "../models/vouser";
@@ -15,27 +16,23 @@ import { VOUserExt, VOUser, SOAuthenticateResponse, SOUser } from "../models/vou
 export class AuthHttpService {
 
     private headers: Headers;
-    public isLogedIn: Observable<boolean>;
     private userSub: BehaviorSubject<VOUserExt>;
-
-    public user$: Observable<VOUserExt>;
     private user: VOUserExt;
 
-    constructor(
-        private http: Http
-    ) {
+    public user$: Observable<VOUserExt>;
+    public isLoggedIn: Observable<boolean>;
 
+    constructor(
+        private http: Http,
+        private storage: LocalStorageService
+    ) {
         //this.isLogedInSub = new BehaviorSubject(false);
 
         this.userSub = new BehaviorSubject<VOUserExt>(this.user);
 
         this.user$ = this.userSub.asObservable();
 
-        this.isLogedIn = this.user$.map(user => {
-            return user ? true : false;
-        }, error => {
-            return false;
-        });
+        this.isLoggedIn = this.user$.map(user => !!user);
 
         //this.autoLogin();
     }
@@ -128,26 +125,19 @@ export class AuthHttpService {
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        console.error('AuthService - HandleError: ', error);
-        //return error;;
+        console.error('AuthService - HandleError: ', error);        
         return Observable.throw(errMsg);
     }
 
 
     private getUser(): VOUser {
-        if (!this.user) {
-            let str = localStorage.getItem('authentication');
-            try {
-                if (str) this.user = JSON.parse(atob(str));  //   new VOUser(JSON.parse(atob(str)));
-            } catch (e) {
-                this.removeAuthentication();
-            }
-        }
+        this.user = this.storage.getItem('authentication');
+        if (!this.user) this.removeAuthentication();
         return this.user;
     }
 
     saveUser(user: VOUser): void {
-        localStorage.setItem('authentication', btoa(JSON.stringify(user)));
+        this.storage.setItem('authentication', user);
     }
 
     getToken(): string {
@@ -159,13 +149,9 @@ export class AuthHttpService {
         if (!this.headers) {
             this.headers = new Headers();
             let token: string = this.getToken();
-            // console.log('token' , token);
-
             if (token) {
                 this.headers.append('Authorization', token);
-                //this.headers.append('token', token);
             }
-            // this.headers.append('withCredentials','true');
         }
         return this.headers;
     }
@@ -173,9 +159,7 @@ export class AuthHttpService {
     removeAuthentication(): void {
         this.user = null;
         this.userSub.next(null);
-        // this.isLogedInSub.next(false);
-        //this.authenticatedSub.next(false);
-        localStorage.removeItem('authentication');
+        this.storage.remove('authentication');
     }
 
 
