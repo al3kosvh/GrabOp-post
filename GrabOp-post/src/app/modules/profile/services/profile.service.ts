@@ -24,26 +24,16 @@ export class ProfileService {
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    public getProfileById(id: string, subscribe): void {
-        subscribe = [
-            subscribe[0] || (value => { }), subscribe[1] || (err => { }), subscribe[2] || (() => { })
-        ];
-        const urlProfilePerson = VOSettings.profile.replace(<any>'{{id}}', id);
-        this.authHttpService.get(urlProfilePerson)
-            .map(mapGetPerson)
-            .share()
-            .subscribe(subscribe[0], subscribe[1], subscribe[2]);
+    public getProfileById(id: string): Observable<VOUserExt> {
+        return this.authHttpService.get(VOSettings.profile.replace(<any>'{{id}}', id))
+          .map(mapGetPerson)
+        .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    public editProfile(person: VOUserExt, subscribe): void {
-        subscribe = [
-            subscribe[0] || (value => { }), subscribe[1] || (err => { }), subscribe[2] || (() => { })
-        ];
-        const urlProfilePerson = VOSettings.updateProfile.replace(<any>'{{id}}', person.id);
-        this.authHttpService.post(urlProfilePerson, person)
-            .map(res => res.json)
-            .share()
-            .subscribe(subscribe[0], subscribe[1], subscribe[2]);
+    public editProfile(person: VOUserExt): Observable<VOUserExt> {
+        return this.authHttpService.get(VOSettings.updateProfile.replace(<any>'{{id}}', person.id))
+          .map(res => res.json)
+        .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
 }
