@@ -57,7 +57,7 @@ export class AppComponent {
         private sanitizer: DomSanitizer
     ) {
 
-        this.isLoggedIn = auth.isLogedIn;
+        this.isLoggedIn = auth.isLoggedIn;
 
         auth.user$.subscribe(user => {
             if (!user) return;

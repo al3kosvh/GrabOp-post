@@ -52,6 +52,6 @@ export class LandingComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.isLoggedIn = this.auth.isLogedIn;
+        this.isLoggedIn = this.auth.isLoggedIn;
     }
 }
