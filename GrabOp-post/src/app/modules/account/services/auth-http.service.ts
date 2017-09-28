@@ -15,7 +15,7 @@ import { VOUserExt, VOUser, SOAuthenticateResponse, SOUser } from "../models/vou
 export class AuthHttpService {
 
     private headers: Headers;
-    public isLoggedIn: Observable<boolean>;
+    public isLogedIn: Observable<boolean>;
     private userSub: BehaviorSubject<VOUserExt>;
 
     public user$: Observable<VOUserExt>;
@@ -31,8 +31,8 @@ export class AuthHttpService {
 
         this.user$ = this.userSub.asObservable();
 
-        this.isLoggedIn = this.user$.map(user => {
-            return true;
+        this.isLogedIn = this.user$.map(user => {
+            return user ? true : false;
         }, error => {
             return false;
         });
