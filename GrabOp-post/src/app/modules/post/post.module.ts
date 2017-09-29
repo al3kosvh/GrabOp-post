@@ -12,7 +12,6 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
-import { ProfileService } from '../profile/services/profile.service';
 
 const myRoute: Routes = [
     //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
@@ -44,7 +43,6 @@ const myRoute: Routes = [
     providers: [
         MyPostsService,
         PostService,
-        ProfileService
     ]
 })
 export class PostModule { }

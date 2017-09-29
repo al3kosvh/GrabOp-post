@@ -17,7 +17,6 @@ import { AllianceInviteComponent } from './components/alliance-invite/alliance-i
 
 // Services
 import { ProfileService } from './services/profile.service';
-import { ConnectionService } from '../connection/services/connection.service';
 
 // Pipes
 import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
@@ -48,7 +47,6 @@ const routes: Routes = [
     ],
     providers: [
         ProfileService,
-        ConnectionService
     ],
     entryComponents: [EditProfileDialogComponent]
 })

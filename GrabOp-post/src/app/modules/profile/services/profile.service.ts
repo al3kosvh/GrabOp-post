@@ -14,8 +14,7 @@ export class ProfileService {
 
     constructor(
         private authHttpService: AuthHttpService
-    ) {
-    }
+    ) { }
 
     public getProfile(): Observable<VOUserExt> {
         return this.authHttpService.get(VOSettings.myProfile).map(mapGetPerson)
