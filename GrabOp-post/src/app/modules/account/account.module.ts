@@ -20,8 +20,9 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
-import { AuthHttpService } from './services/auth-http.service';
-import { LocalStorageService } from './services/local-storage.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AccountStorageService } from './services/account-storage.service';
+import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
 
@@ -37,7 +38,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
-            { path: 'resetpassword/:token', component: AccountRecoverComponent }            
+            { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
     },
     { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] }
@@ -72,10 +73,11 @@ const routes: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService,
+        AuthenticationService,
         AuthGuard,
         SignupService,
-        LocalStorageService
+        AccountStorageService,
+        HttpService
     ],
     entryComponents: [SignInDialogComponent]
 })
