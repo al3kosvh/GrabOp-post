@@ -75,6 +75,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.getProfileById(id).subscribe(
             profile => {
                 this.initProfile(profile);
+                this.isMyProfile = false;
             },
             err => {
                 console.log("Error charging profile: ", err)

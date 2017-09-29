@@ -13,7 +13,7 @@
         <div *ngSwitchCase="false">
           <button md-raised-button color="accent">connect</button>
           <button md-raised-button color="accent">message</button>
-          <button md-raised-button color="accent"><small>invite to</small>aliance</button>
+          <button md-raised-button color="accent"><small>invite to</small> aliance</button>
         </div>        
       </div>
     </div>
@@ -69,15 +69,12 @@
           </div>
         </div>
 
-        <div class="posts" fxLayout="row">
-          <div class="title">offering service</div>
-          <div fxLayout="row" xLayoutAlign="space-around">
+        <div class="title">Offering Services</div>
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap> 
             <div *ngFor="let item of profilePosts | postsFilter:'offer'; let i=index">
               <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
             </div>
-          </div>
         </div>
-
       </div>
     </div>
   </div>
