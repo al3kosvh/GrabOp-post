@@ -74,4 +74,18 @@ export class EditProfileDialogComponent {
     )
   }
 
+  addSkill(): void {
+    this.profile.skillset = this.profile.skillset ? this.profile.skillset : [];
+    this.profile.skillset.push("");
+  }
+
+  deleteSkill(index): void {
+    this.profile.skillset.splice(index, 1);
+  }
+
+  onchangeSkill(event, index): void {
+    event.preventDefault();
+    this.profile.skillset[index] = event.target.value;
+  }
+
 }

@@ -63,6 +63,21 @@
           </div>
         </div>
 
+        <div class="container-skill">
+            Skills
+          <div *ngFor="let skill of profile.skillset; let i = index">
+            <button md-raised-button color="primary" (click)="deleteSkill(i)">
+              -
+            </button>
+            <input placeholder="" name="skill" value="{{ profile.skillset[i] }}" (change)="onchangeSkill($event, i)" required/>
+            <br><br>
+          </div>
+
+          <button md-raised-button color="primary" (click)="addSkill()">
+            +
+          </button>
+        </div>
+
       </md-tab>
 
       <md-tab label="Photo/Video">

@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
     private profile: VOUserExt = new VOUserExt();
     private profileConnectionsCount = 0;
-    private isMyProfile;
+    private isMyProfile: boolean;
 
     private allianceInviteState: string = 'out';
 
@@ -65,10 +65,6 @@ export class ProfileComponent implements OnInit {
                 this.loadMyProfile();
             }
         })
-        //this.userService.user$.subscribe(res => {
-        //    this.myUser = res;
-        //    this.startCmp();
-        //});
     }
 
     loadProfile(id: string) {
@@ -99,22 +95,8 @@ export class ProfileComponent implements OnInit {
         )
     }
 
-    //startCmp() {
-    //    if (this.myUser) {
-    //        const id = this.route.snapshot.paramMap.get('id');
-    //        this.isMyProfile = (typeof id === 'string' && id === this.myUser.id.toString()) || (typeof id === 'object' || id === null);
-    //        this.profileService.getProfileById(this.isMyProfile ? this.myUser.id.toString() : id).subscribe(
-    //            profile => {
-    //                this.initProfile(profile);
-    //            }, err => {
-    //                console.log("Error charging profile: ", err)
-    //            }, () => {
-    //            });
-    //    }
-    //}
-
     initProfile(profile): void {
-       
+
             this.profile = profile;
             this.shortName = ( this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + ( this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
             this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
@@ -134,7 +116,7 @@ export class ProfileComponent implements OnInit {
                     }
                 }
             );
-            this.fixProfileContainerLayout();        
+            this.fixProfileContainerLayout();
     }
 
     editProfile(): void {

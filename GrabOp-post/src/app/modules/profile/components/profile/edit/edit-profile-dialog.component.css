@@ -57,3 +57,7 @@ md-form-field {
   text-align: right;
   top: 0;
 }
+
+.container-skill {
+  padding-bottom: 1.25em;
+}
