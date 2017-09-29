@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { MdTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Shared Modules
@@ -35,8 +34,7 @@ const routes: Routes = [
         FormsModule,
         SharedModule,
         PipesModule,
-        PostModule,
-        MdTableModule
+        PostModule
     ],
     declarations: [
         ProfileComponent,

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 // Shared  Modules
 import {
     MatInputModule, MatListModule, MatGridListModule, MatChipsModule, MatSlideToggleModule, MatRadioModule, MatMenuModule,
-    MdIconRegistry, MatIconModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatCardModule, MatCheckboxModule
+    MdIconRegistry, MatIconModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTabsModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -41,6 +41,7 @@ import { ModalWindowService } from './services/modal-window.service';
         MatButtonModule,
         MatCardModule,
         MatCheckboxModule,
+        MatTabsModule
     ],
     exports: [
         FlexLayoutModule,
@@ -58,6 +59,7 @@ import { ModalWindowService } from './services/modal-window.service';
         MatButtonModule,
         MatCardModule,
         MatCheckboxModule,
+        MatTabsModule,
 
         MdImageDirective,
         MembersListComponent,        
