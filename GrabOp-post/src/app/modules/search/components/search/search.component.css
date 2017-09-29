@@ -1,0 +1,21 @@
+div.search-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+  div.search-container md-form-field {
+    margin-top: -10px;
+    margin-bottom: -17px;
+    font-size: 16px;
+  }
+
+  div.search-container /deep/ div.mat-input-underline.mat-form-field-underline {
+    display: none;
+  }
+
+md-form-field md-icon {
+  position: relative;
+  top: 7px;
+}

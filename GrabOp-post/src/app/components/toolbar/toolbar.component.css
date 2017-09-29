@@ -1,6 +1,12 @@
-﻿md-toolbar {
+md-toolbar {
   position: relative;
   z-index: 10;
+}
+
+search {
+  margin-left: 20px;
+  border-radius: 2px;
+  border: 1px solid lightgray;
 }
 
 span.fill-remaining-space {

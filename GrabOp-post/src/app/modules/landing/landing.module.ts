@@ -6,6 +6,7 @@ import { MatInputModule, MatButtonModule, MatIconModule } from '@angular/materia
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
 import { AccountModule } from '../account/account.module';
+import { SearchModule } from '../search/search.module';
 
 // Components
 import { LandingComponent } from "./components/landing/landing.component";
@@ -23,7 +24,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule,
         PostModule,
-        AccountModule
+        AccountModule,
+        SearchModule
     ],
     declarations: [
         LandingComponent

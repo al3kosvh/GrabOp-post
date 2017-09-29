@@ -23,13 +23,11 @@ div.announce-beta {
   font-weight: 600;
 }
 
-/*div.search-container input {
-  min-width: 400px;
-}*/
-
-md-form-field md-icon {
-  position: relative;
-  top: 7px;
+search {
+  margin-bottom: 20px;
+  -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
+  -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
+  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
 }
 
 div.options {
@@ -44,26 +42,6 @@ div.info div.video {
 div.info span {
   font-weight: 600;
 }
-
-div.search-container {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  background-color: white;
-  -webkit-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
-  -moz-box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
-  box-shadow: -4px 5px 5px -3px rgba(0,0,0,0.60);
-}
-
-  div.search-container md-form-field {
-    margin-top: -10px;
-    margin-bottom: -17px;
-  }
-
-  div.search-container /deep/ div.mat-input-underline.mat-form-field-underline {
-    display: none;
-  }
 
 div.landing-video {
   background-color: rgba(0,0,0,0.05);
