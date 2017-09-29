@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatGridListModule, MatCardModule, MatButtonModule, MatIconModule } from '@angular/material';
+
+
 import { MyPostViewComponent } from './components/my-post-view/my-post-view.component';
 import { PostViewComponent } from './components/post-view/post-view.component';
 import { MyPostsService } from '../post/services/my-posts.service';
@@ -27,6 +30,10 @@ const myRoute: Routes = [
         CommonModule,
         PipesModule,
         SharedModule,
+        MatGridListModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
         RouterModule.forChild(myRoute)
     ],
     declarations: [

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
@@ -16,6 +17,9 @@ const routes: Routes = [
 @NgModule({
     imports: [
         CommonModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
         RouterModule.forChild(routes),
         SharedModule,
         PostModule,

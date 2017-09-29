@@ -4,7 +4,6 @@ form table {
 
 .form-edit-profile {
   max-height: 550px;
-  overflow-y: auto;
 }
 
 button.close {

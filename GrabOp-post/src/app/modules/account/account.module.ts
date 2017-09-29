@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdDialogModule } from '@angular/material';
+import { MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 
 // Components
 import { SignupComponent } from './components/signup/signup.component';
@@ -47,15 +47,18 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
         RouterModule.forChild(routes),
-        SharedModule,
-        MdDialogModule
+        SharedModule        
     ],
     exports: [
         SignInComponent,
         SignupComponent,
-        SignOutComponent,
-        MdDialogModule
+        SignOutComponent
     ],
     declarations: [
         SignupComponent,
