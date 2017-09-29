@@ -64,6 +64,20 @@
           </div>
         </div>
 
+        <div class="container-skill">
+          <div *ngFor="let skill of profile.skillset; let i = index">
+            <div fxLayout="column" fxFlex="20">
+              Skills
+            </div>
+            <div class="btn-container" fxLayout="column" fxFlex="10">
+              -
+            </div>
+            <div fxLayout="column" fxFlex="70">
+              <input mdInput placeholder="" name="skill" [(ngModel)]="profile.skillset[i]" required #skill="ngModel"/>
+            </div>
+          </div>
+        </div>
+
       </md-tab>
 
       <md-tab label="Photo/Video">
