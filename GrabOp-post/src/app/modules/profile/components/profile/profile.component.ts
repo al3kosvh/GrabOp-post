@@ -121,10 +121,10 @@ export class ProfileComponent implements OnInit {
       if (this.shortName) {
           this.profileContainerMarginTop += -18;
       }
-      if (this.person.phoneVisible) {
+      if (this.profile.phoneVisible) {
           this.profileContainerMarginTop += -13;
       }
-      if (this.person.emailVisible) {
+      if (this.profile.emailVisible) {
           this.profileContainerMarginTop += -13;
       }
   }
