@@ -1,4 +1,4 @@
-<div class="profile" fxLayout="column">
+<div [ngSwitch]="isMyProfile" class="profile" fxLayout="column">
   <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse">
     <div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
       <div class="profile-banner-info" fxLayout="column" fxLayoutAlign="center center">
@@ -7,13 +7,14 @@
         <span class="city">{{ profile.city }}</span>
       </div>
       <div class="btn-action-container">
-        <button *ngIf="isMyProfile" md-raised-button color="accent" (click)="editProfile()">edit profile</button>
-        <button *ngIf="!isMyProfile" md-raised-button color="accent">connect</button>
-        <button *ngIf="!isMyProfile" md-raised-button color="accent">message</button>
-        <button *ngIf="!isMyProfile" md-raised-button color="accent">
-          <small>invite to</small>
-          aliance
-        </button>
+        <div *ngSwitchCase="true">
+          <button md-raised-button color="accent" (click)="editProfile()">edit profile</button>
+        </div>
+        <div *ngSwitchCase="false">
+          <button md-raised-button color="accent">connect</button>
+          <button md-raised-button color="accent">message</button>
+          <button md-raised-button color="accent"><small>invite to</small>aliance</button>
+        </div>        
       </div>
     </div>
   </div>
@@ -21,7 +22,7 @@
     <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
       <div class="profile-card">
         <div class="profile-photo">
-          <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic"/>
+          <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic" />
         </div>
         <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
           <span>{{ shortName | uppercase }}</span>
@@ -42,11 +43,11 @@
             <div class="profile-inner-site">
               "I help people to transform their businesses,
               their careers and their lives"
-              <br/>
+              <br />
               <span>-Michelle. 7.</span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-beetwing">
-              <img class="bracket" src="assets/img/my-resumen.png"/>
+              <img class="bracket" src="assets/img/my-resumen.png" />
               <div class="skill-set">
                 <span class="skill-title">My Skills</span>
                 <ul *ngIf="profile.skillset">
@@ -58,12 +59,12 @@
           <div class="profile-inner-connections" [ngStyle]="{'background-image':'url(./assets/img/map.png)'}" fxLayout="column" fxFlex="50">
             <div fxlayout="row" fxLayoutAlign="center" class="connections-title">{{ profileConnectionsCount }} connection</div>
             <div fxlayout="row" fxLayoutAlign="center">
-              <img class="bracket" src="assets/img/left-bracket.png"/>
-              <img class="user" src="assets/img/1x.jpg"/>
-              <img class="user" src="assets/img/2x.jpg"/>
-              <img class="user" src="assets/img/3x.jpg"/>
-              <img class="user" src="assets/img/3x.jpg"/>
-              <img class="bracket" src="assets/img/right-bracket.png"/>
+              <img class="bracket" src="assets/img/left-bracket.png" />
+              <img class="user" src="assets/img/1x.jpg" />
+              <img class="user" src="assets/img/2x.jpg" />
+              <img class="user" src="assets/img/3x.jpg" />
+              <img class="user" src="assets/img/3x.jpg" />
+              <img class="bracket" src="assets/img/right-bracket.png" />
             </div>
           </div>
         </div>
