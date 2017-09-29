@@ -7,13 +7,13 @@
         <span class="city">{{ profile.city }}</span>
       </div>
       <div class="btn-action-container">
-        <div>
-          <button *ngSwitchCase="true" md-raised-button color="accent" (click)="editProfile()">edit profile</button>
+        <div *ngSwitchCase="true">
+          <button md-raised-button color="accent" (click)="editProfile()">edit profile</button>
         </div>
-        <div>
-          <button *ngSwitchCase="false" md-raised-button color="accent">connect</button>
-          <button *ngSwitchCase="false" md-raised-button color="accent">message</button>
-          <button *ngSwitchCase="false" md-raised-button color="accent"><small>invite to</small>aliance</button>
+        <div *ngSwitchCase="false">
+          <button md-raised-button color="accent">connect</button>
+          <button md-raised-button color="accent">message</button>
+          <button md-raised-button color="accent"><small>invite to</small>aliance</button>
         </div>        
       </div>
     </div>
