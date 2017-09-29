@@ -26,6 +26,7 @@ import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { ProfileModule } from './modules/profile/profile.module';
+import { MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry } from '@angular/material';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
@@ -50,6 +51,12 @@ const routes: Routes = [
         FormsModule,
         HttpModule,
         AccountModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
         RouterModule.forRoot(routes),        
         PostModule,
         LandingModule,
@@ -69,6 +76,7 @@ const routes: Routes = [
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
+        MdIconRegistry
     ],
     bootstrap: [AppComponent]
 })

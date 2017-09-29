@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatGridListModule, MatIconModule } from '@angular/material';
 
 // Components
 import { OpportunityComponent } from './components/opportunity/opportunity.component';
@@ -23,6 +24,8 @@ const route: Routes = [
 @NgModule({
     imports: [
         CommonModule,
+        MatGridListModule,
+        MatIconModule,
         RouterModule.forChild(route),
         SharedModule,
         PostModule

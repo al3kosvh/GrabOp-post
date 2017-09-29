@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
-// Shared  Modules
-import {
-    MatInputModule, MatListModule, MatGridListModule, MatChipsModule, MatSlideToggleModule, MatRadioModule, MatMenuModule,
-    MdIconRegistry, MatIconModule, MatSidenavModule, MatToolbarModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatTabsModule
-} from '@angular/material';
+import { MatInputModule, MatListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -27,40 +22,11 @@ import { ModalWindowService } from './services/modal-window.service';
     imports: [        
         FormsModule,        
         FlexLayoutModule,
-        // Material modules
         MatInputModule,
-        MatListModule,
-        MatGridListModule,
-        MatChipsModule,
-        MatSlideToggleModule,
-        MatRadioModule,
-        MatMenuModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatTabsModule
+        MatListModule
     ],
     exports: [
         FlexLayoutModule,
-        // Export Material modules
-        MatInputModule,
-        MatListModule,
-        MatGridListModule,
-        MatChipsModule,
-        MatSlideToggleModule,
-        MatRadioModule,
-        MatMenuModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatCardModule,
-        MatCheckboxModule,
-        MatTabsModule,
-
         MdImageDirective,
         MembersListComponent,        
         ListRowComponent,
@@ -75,8 +41,7 @@ import { ModalWindowService } from './services/modal-window.service';
         MembersListComponent
     ],
     providers: [
-        ModalWindowService,
-        MdIconRegistry
+        ModalWindowService
     ],
     entryComponents: [
         ModalAlertComponent,

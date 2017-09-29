@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatGridListModule, MatSlideToggleModule } from '@angular/material';
 
 // Components
 import { PostEditComponent } from './components/post-edit/post-edit.component';
@@ -33,6 +34,8 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
+        MatGridListModule,
+        MatSlideToggleModule,
         RouterModule.forChild(routes)
     ],
     declarations: [

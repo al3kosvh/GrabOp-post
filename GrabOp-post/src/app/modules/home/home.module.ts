@@ -1,6 +1,7 @@
-﻿import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatCardModule, MatInputModule, MatButtonModule } from '@angular/material';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -26,8 +27,11 @@ const homeRoute: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(homeRoute),
         CommonModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        RouterModule.forChild(homeRoute),
         SharedModule,
         PostModule,
         PipesModule,
