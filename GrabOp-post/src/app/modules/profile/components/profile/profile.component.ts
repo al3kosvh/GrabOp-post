@@ -88,6 +88,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.getProfile().subscribe(
             profile => {
                 this.initProfile(profile);
+                this.isMyProfile = true;
             },
             err => {
                 console.log("Error charging profile: ", err)
