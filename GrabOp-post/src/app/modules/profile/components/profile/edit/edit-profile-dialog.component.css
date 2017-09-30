@@ -3,7 +3,13 @@ form table {
 }
 
 .form-edit-profile {
-  max-height: 550px;
+  height: 550px;
+  margin-bottom: 36px;
+}
+
+.form-edit-profile .container-action-btn {
+  position: absolute;
+  bottom: 26px;
 }
 
 button.close {
@@ -34,16 +40,23 @@ md-form-field {
   border: 1px solid grey;
   margin-right: 10px;
   border-radius: 2px;
+  min-height: 100px;
 }
 
-.container-file .document-view img {
+.container-file .document-view .file {
   width: 50%;
+  margin: auto;
+}
+
+.container-file .document-view .image {
+  width: 100%;
   margin: auto;
 }
 
 .btn-file {
   overflow: hidden;
   position: relative;
+  margin: auto 0;
 }
 
 .btn-file [type=file] {

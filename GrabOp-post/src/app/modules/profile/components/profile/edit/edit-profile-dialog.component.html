@@ -52,7 +52,7 @@
 
         <div class="container-file">
           <div class="document-view" fxLayout="column" fxFlex="60">
-            <img [src]="iconFileResume">
+            <img class="file" [src]="iconFileResume">
             <!--<span>{{ fileResume.name }}</span>-->
           </div>
           <div fxLayout="column" fxFlex="40">
@@ -69,7 +69,8 @@
             <button md-raised-button color="primary" (click)="deleteSkill(i)">
               -
             </button>
-            <input placeholder="" name="skill" value="{{ profile.skillset[i] }}" (change)="onchangeSkill($event, i)" required/>
+            <!--TODO when add two or more input and change value in one this value replicate to other are empty but only in view, data profile.skillset is right-->
+            <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required/>
             <br><br>
           </div>
 
@@ -82,10 +83,46 @@
 
       <md-tab label="Photo/Video">
 
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img class="image" [src]="profile.profile_pic">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <button md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)"/>
+              add photo
+            </button>
+          </div>
+        </div>
+
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img class="image" [src]="profile.video">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <button md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)"/>
+              add video
+            </button>
+          </div>
+        </div>
+
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img [src]="profile.background_pic">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <button md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)"/>
+              backfround image
+            </button>
+          </div>
+        </div>
+
       </md-tab>
     </md-tab-group>
 
-    <div fxLayout="column" fxLayoutGap="10px">
+    <div class="container-action-btn" fxLayout="column" fxLayoutGap="10px">
       <div class='row'>
         <button md-raised-button color="basic" [class.disabled]="!f.valid" (click)="onClose()">
           Cancel

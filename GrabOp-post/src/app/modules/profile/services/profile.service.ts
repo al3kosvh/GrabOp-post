@@ -5,7 +5,7 @@ import { Response } from '@angular/http';
 import { AuthHttpService } from '../../account/services/auth-http.service';
 
 import { VOSettings } from '../../../models/vos';
-import { mapGetPerson } from '../../../utils/map-functions';
+import { mapGetPerson, mapUpdateProfileClientToServer } from '../../../utils/map-functions';
 import { VOUserExt } from "../../account/models/vouser";
 import { Observable } from "rxjs/Observable";
 
@@ -28,7 +28,7 @@ export class ProfileService {
     }
 
     public editProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.authHttpService.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), person)
+        return this.authHttpService.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), mapUpdateProfileClientToServer(person))
           .map(res => res.json())
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
