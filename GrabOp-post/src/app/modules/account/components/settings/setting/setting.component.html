@@ -1,0 +1,6 @@
+<div fxLayout="row">
+  <div fxFlex="80">{{setting.description}}</div>
+  <div>
+    <md-slide-toggle (change)="toggle()" [(ngModel)]="value"></md-slide-toggle>
+  </div>
+</div>

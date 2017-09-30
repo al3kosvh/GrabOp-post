@@ -6,34 +6,43 @@
     </div>
     <div fxLayoutAlign="center">
       <div fxFlex="90" fxlayoutAlign="center">
-        <div class="first-row" fxLayout="row" fxLayout.xs="column">
-          <div fxFlex="50">
-            <h5>Manage Your Notifications</h5>
-            <div fxLayout="column">
-              <div fxLayout="row-reverse">Send an email notification</div>
-              <div fxLayout="row">
-                <div fxFlex="80">Connection request</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">New Mensajes</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Alliance notifications</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Task notification</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Service notification</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
+        <md-tab-group dynamicHeight="true">
+          <md-tab label="Notifications">
+            <div *ngIf="settings" fxLayout="column">
+              <h5>Manage Your Notifications</h5>
+              <div>
+                <div fxLayout="column" fxFlex="40">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Send an email notification</div>
+                  <setting [setting]="settings[SettingsName.notifyConnection]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyMessages]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyAlliance]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyServices]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyTasks]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyRecommendations]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyComments]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyOpportunity]"></setting>
+                </div>
               </div>
             </div>
-          </div>
-          <div fxFlexOffset="10" fxFlexOffset.xs="0">
+          </md-tab>
+          <md-tab label="Privacy Settings">
+            <h5>Privacy Settings</h5>
+            <div *ngIf="settings" fxLayout="column">
+              <div>
+                <div fxLayout="column" fxFlex="40">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Make visible to the public</div>
+                  <setting [setting]="settings[SettingsName.isEmailVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isPhoneVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.areConnectionsVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isProfileViewCountVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isServiceViewsCountVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isTrustedNetworkVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isTotalSales]"></setting>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Security">
             <h5>Change Your Password</h5>
             <div fxLayout="column">
               <md-form-field>
@@ -47,49 +56,8 @@
               </md-form-field>
             </div>
             <button md-raised-button color="accent">CHANGE PASSWORD</button>
-          </div>
-        </div>
-        <md-divider color="primary"></md-divider>
-        <div fxLayout="row" fxLayout.xs="column">
-          <div fxFlex="50">
-            <h5>Privacy Settings</h5>
-            <div fxLayout="column">
-              <div fxLayout="row-reverse">Make visible to the public</div>
-              <div fxLayout="row">
-                <div fxFlex="80">Phone Number</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Email Address</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Connections</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Profile Views Counts</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Individual Service Views Count</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Total Number of People Who Trust You</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Total Number of Alliance Members</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-              <div fxLayout="row">
-                <div fxFlex="80">Total Sales</div>
-                <div><md-slide-toggle></md-slide-toggle></div>
-              </div>
-            </div>
-          </div>
-          <div fxFlexOffset="10" fxFlexOffset.xs="0">
+          </md-tab>
+          <md-tab label="Email & Username">
             <h5>Update Your Email Address or Username</h5>
             <div fxLayout="column">
               <md-form-field>
@@ -100,8 +68,8 @@
               </md-form-field>
             </div>
             <button md-raised-button color="accent">UPDATE</button>
-          </div>
-        </div>
+          </md-tab>
+        </md-tab-group>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    MatListModule
+    MatListModule, MatTabsModule
 } from '@angular/material';
 
 // Components
@@ -17,6 +17,7 @@ import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SettingComponent } from './components/settings/setting/setting.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -27,6 +28,7 @@ import { UploadService } from './services/upload.service';
 import { AuthHttpService } from './services/auth-http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
+import { SettingsService } from './services/settings.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -44,7 +46,7 @@ const routes: Routes = [
         ]
     },
     { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
-    { path: 'settings', component: SettingsComponent }
+    { path: 'settings/:id', component: SettingsComponent }
 ];
 
 @NgModule({
@@ -60,6 +62,7 @@ const routes: Routes = [
         MatCheckboxModule,
         MatSlideToggleModule,
         MatListModule,
+        MatTabsModule,
         RouterModule.forChild(routes),
         SharedModule
     ],
@@ -79,13 +82,15 @@ const routes: Routes = [
         ValidateEmailDirective,
         CheckEmailDirective,
         SignupCompanyComponent,
-        SettingsComponent
+        SettingsComponent,
+        SettingComponent
     ],
     providers: [
         UploadService,
         AuthHttpService,
         AuthGuard,
-        SignupService
+        SignupService,
+        SettingsService
     ],
     entryComponents: [SignInDialogComponent]
 })

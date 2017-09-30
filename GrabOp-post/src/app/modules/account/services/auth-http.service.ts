@@ -212,5 +212,4 @@ export class AuthHttpService {
         return this.http.options(url, this.addHeaders(options));
     }
 
-
 }

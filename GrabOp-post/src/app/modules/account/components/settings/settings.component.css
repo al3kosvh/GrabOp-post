@@ -8,10 +8,10 @@ md-icon.settings {
   margin-right: 5px;
 }
 
-div.first-row {
-  margin-bottom: 20px;
+md-tab-group {
+  min-height: 600px;
 }
 
-md-slide-toggle {
-  margin-top: 10px;
+setting {
+  margin-top: 20px;
 }

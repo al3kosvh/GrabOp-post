@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="src\app\modules\account\components\settings.enum.ts" />
+    <None Remove="src\app\modules\account\components\settings\setting.component.ts" />
     <None Remove="src\app\modules\account\components\settings\settings.component.ts" />
     <None Remove="src\app\modules\account\components\signin\signin-dialog.component.ts" />
+    <None Remove="src\app\modules\account\models\account.d.ts" />
+    <None Remove="src\app\modules\account\services\settings.service.ts" />
     <None Remove="src\app\modules\search\components\search\search.component.ts" />
     <None Remove="src\app\modules\search\search.module.ts" />
   </ItemGroup>
@@ -31,7 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\modules\account\components\settings\setting\setting.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\account\models\account.d.ts" />
+    <TypeScriptCompile Include="src\app\modules\account\models\settings.ts" />
     <TypeScriptCompile Include="src\app\modules\account\components\settings\settings.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\account\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
   </ItemGroup>
