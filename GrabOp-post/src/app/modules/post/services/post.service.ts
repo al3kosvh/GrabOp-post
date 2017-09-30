@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AuthHttpService } from "../../account/services/auth-http.service";
+import { HttpService } from "../../account/services/http.service";
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { VOPost, VOResult, VOSettings } from "../../../models/vos";
@@ -17,7 +17,7 @@ export class PostService {
     private selectedPost: VOPost;
 
     constructor(
-        private auth: AuthHttpService
+        private http: HttpService
     ) {
         this.postsSub = new BehaviorSubject(null);
         this.posts$ = this.postsSub.asObservable();
@@ -48,7 +48,7 @@ export class PostService {
             let post: VOPost = this.filterPostById(idPost);
             this.selectedPostSub.next(post);
         } else {
-            this.auth.get(url)
+            this.http.get(url)
                 // .map(res => this.mapSelectPostById(res.json()))
                 .map(mapGetPost)
                 .subscribe(result => {
@@ -79,7 +79,7 @@ export class PostService {
         let url: string = VOSettings.getPosts.replace(<any>'{{id}}', idPerson.toString());
         console.log(url);
 
-        this.auth.get(url)
+        this.http.get(url)
             .map(mapGetMyPosts)
             .subscribe(res => {
                 console.log('getPosts ', res);

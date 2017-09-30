@@ -12,7 +12,7 @@ import { mapGetPost, mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSen
 
 
 // Services
-import { AuthHttpService } from '../../account/services/auth-http.service';
+import { HttpService } from '../../account/services/http.service';
 import { MyPostsService } from '../../post/services/my-posts.service';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class PostEditService {
     private postSub: Subject<VOPost>;
 
     constructor(
-        private http: AuthHttpService,
+        private http: HttpService,
         private myPostsService: MyPostsService
     ) {
 

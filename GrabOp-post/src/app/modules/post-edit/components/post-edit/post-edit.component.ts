@@ -9,7 +9,7 @@ import { ModalAlertComponent } from '../../../shared/components/modal-alert/moda
 
 // Services
 import { PostEditService } from '../../services/post-edit.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { MyPostsService } from '../../../post/services/my-posts.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class PostEditComponent implements OnInit, OnChanges {
         private myPostsService: MyPostsService,
         private router: Router,
         private route: ActivatedRoute,
-        private accountService: AuthHttpService,
+        private accountService: AuthenticationService,
         private dialog: MdDialog
     ) { }
 

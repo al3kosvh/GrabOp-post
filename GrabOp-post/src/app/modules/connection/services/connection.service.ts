@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { VOSettings } from '../../../models/vos';
-import { AuthHttpService } from '../../account/services/auth-http.service';
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class ConnectionService {
 
     constructor(
-        private http: AuthHttpService
+        private http: HttpService
     ) {
         console.log('ConnectionService');
         this.getMyConnections();

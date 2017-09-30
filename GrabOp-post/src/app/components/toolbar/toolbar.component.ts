@@ -8,7 +8,7 @@ import { HelpComponent } from '../help/help.component';
 
 // Services
 import { ModalWindowService } from '../../modules/shared/services/modal-window.service';
-import { AuthHttpService } from '../../modules/account/services/auth-http.service';
+import { AuthenticationService } from '../../modules/account/services/authentication.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -22,7 +22,7 @@ export class ToolbarComponent implements OnInit {
     private profile_pic: string;    
 
     constructor(
-        private authHttp: AuthHttpService,
+        private authHttp: AuthenticationService,
         public modal: ModalWindowService,
         private location: Location,
         private router: Router
@@ -37,7 +37,7 @@ export class ToolbarComponent implements OnInit {
 
     ngOnInit() {
 
-        this.authHttp.user$.subscribe(user => {
+        this.authHttp.getUser().subscribe(user => {
             if (!user) return;
             this.profile_pic = user.profile_pic;
         });

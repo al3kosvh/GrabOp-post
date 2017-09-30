@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, URLSearchParams, } from '@angular/http';
+//import { Http, Response, URLSearchParams, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { VOSettings, VOResult, VOProfileSettings } from "../../../models/vos";
 import { FormControl } from "@angular/forms";
 import { SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse } from "../../../models/sos";
 import { VOUser, VOUserExt } from '../models/vouser';
-import { AuthHttpService } from './auth-http.service';
+import { HttpService } from './http.service';
 import { Router } from '@angular/router';
 
 
@@ -16,7 +16,7 @@ export class SignupService {
 
     // userExt:VOUserExt = new VOUserExt({});
 
-    constructor(public http: Http) {
+    constructor(private http: HttpService) {
 
         // http.user$.subscribe(res=>this.userExt = res);
     }

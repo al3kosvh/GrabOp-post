@@ -6,7 +6,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 // Services
 import { ProfileService } from '../../services/profile.service';
 import { PostService } from '../../../post/services/post.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 
 import { VOUserExt } from "../../../account/models/vouser";
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
     backgroundPic = "#969696";
 
     constructor(
-        private userService: AuthHttpService,
+        private userService: AuthenticationService,
         private route: ActivatedRoute,
         private profileService: ProfileService,
         private postService: PostService,
@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
 
-        this.userService.user$.subscribe(res => this.myUser = res);
+        this.userService.getUser().subscribe(res => this.myUser = res);
         
         let backgroundPic = document.getElementById('backgroundPicProfile');
 

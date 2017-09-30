@@ -6,7 +6,7 @@ import { VOPost } from '../../../../models/vos';
 // Services
 import { OpportunityService } from '../../services/opportunity.service';
 import { PostService } from '../../../post/services/post.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { VOUserExt } from '../../../account/models/vouser';
 
 @Component({
@@ -25,10 +25,10 @@ export class OpportunityNegotiationComponent implements OnInit {
     personPost: VOPost = new VOPost({});
 
     constructor(private aroute: ActivatedRoute,
-        private auth: AuthHttpService,
+        private auth: AuthenticationService,
         private personPostsService: PostService,
         private opportunityService: OpportunityService) {
-        this.auth.user$.subscribe(res => {
+        this.auth.getUser().subscribe(res => {
             this.myUser = res;
             console.log('myUser', this.myUser);
         });

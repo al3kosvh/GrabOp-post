@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthHttpService } from '../../services/auth-http.service';
+//import { AuthHttpService } from '../../services/auth-http.service';
 import { MdDialog } from '@angular/material';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 import { FormControl } from '@angular/forms';

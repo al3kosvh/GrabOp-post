@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 @Injectable()
-export class LocalStorageService {
+export class AccountStorageService {
 
-    user: BehaviorSubject<Models.VOUser> = new BehaviorSubject(null);
+    user: BehaviorSubject<Models.VOUserExt> = new BehaviorSubject(null);
     token: BehaviorSubject<Models.Token> = new BehaviorSubject(null);
 
     constructor() {
         window.addEventListener("storage",
             event => {
                 if (event.key.startsWith("user")) {
-                    this.loadUser();
+                    //this.loadUser();
                     return;
                 }
                 if (event.key.startsWith("token")) {
-                    this.loadToken();
+                    //this.loadToken();
                     return;
                 }
             });
@@ -23,15 +23,21 @@ export class LocalStorageService {
         this.loadToken();
     }
 
-    getUser(): Models.VOUser {
-        return JSON.parse(atob(localStorage.getItem('user')));
+    getUser(): Models.VOUserExt {
+        let base64User: string = localStorage.getItem('user');
+        if (base64User)
+            return JSON.parse(atob(base64User));
+        return null;
     }
 
     getToken(): Models.Token {
-        return JSON.parse(atob(localStorage.getItem('token')));
+        let base64Token: string = localStorage.getItem('token');
+        if (base64Token)
+            return JSON.parse(atob(base64Token));
+        return null;
     }
 
-    setUser(user: Models.VOUser) {
+    setUser(user: Models.VOUserExt) {
         localStorage.setItem('user', btoa(JSON.stringify(user)));
         this.user.next(user);
     }

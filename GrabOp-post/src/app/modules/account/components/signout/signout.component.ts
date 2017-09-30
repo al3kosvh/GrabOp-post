@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthHttpService } from '../../services/auth-http.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     template: ''
@@ -9,7 +9,7 @@ import { AuthHttpService } from '../../services/auth-http.service';
 export class SignOutComponent implements OnInit {
 
     constructor(
-        private authService: AuthHttpService,
+        private authService: AuthenticationService,
         private router: Router
     ) { }
 

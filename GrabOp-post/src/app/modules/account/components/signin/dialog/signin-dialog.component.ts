@@ -4,7 +4,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { VOUser } from '../../../models/vouser';
 
 // Services
-import { AuthHttpService } from '../../../services/auth-http.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
     selector: 'signin-dialog',
@@ -20,9 +20,8 @@ export class SignInDialogComponent {
 
     constructor(
         public dialogRef: MdDialogRef<SignInDialogComponent>,
-        private authenticationService: AuthHttpService
-    ) {
-        this.user = authenticationService.user$;
+        private authenticationService: AuthenticationService
+    ) {        
         this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
         this.loading = false;
     }

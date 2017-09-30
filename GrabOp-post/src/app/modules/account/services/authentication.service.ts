@@ -17,7 +17,7 @@ import { VOSettings } from "../../../models/vos";
 @Injectable()
 export class AuthenticationService {
 
-    private loggedIn: BehaviorSubject<boolean>;
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(
         private http: HttpService,

@@ -8,7 +8,7 @@ import { UserCommentsComponent } from '../user-comments/user-comments.component'
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { MyPostsService } from '../../../post/services/my-posts.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
     constructor(        
         private myPostsService: MyPostsService,
-        private userService: AuthHttpService,
+        private userService: AuthenticationService,
         private connectionService: ConnectionService,
         private modal: ModalWindowService) {
         this.stats = {
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.userService.user$.subscribe(user => {
+        this.userService.getUser().subscribe(user => {
             if (!user) return;
             this.myUser = user;
             console.log('this.myUser.id', this.myUser);

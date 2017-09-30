@@ -11,7 +11,7 @@ import { SignInComponent } from '../../../account/components/signin/signin.compo
 
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 
 @Component({
     selector: 'app-landing',
@@ -47,11 +47,11 @@ export class LandingComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private modal: ModalWindowService,
-        private auth: AuthHttpService,
+        private auth: AuthenticationService,
         private dialog: MdDialog
     ) { }
 
     ngOnInit() {
-        this.isLoggedIn = this.auth.isLoggedIn;
+        this.isLoggedIn = this.auth.isLoggedIn();
     }
 }

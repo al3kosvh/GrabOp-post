@@ -22,7 +22,9 @@ export class HttpService {
     private setHeaders() {
         this.getToken().subscribe((token: Models.Token) => {
             this.headers = new Headers();
-            this.headers.append('Authorization', token.value);
+            if (token) {
+                this.headers.append('Authorization', token.value);
+            }
         });
     }
 
