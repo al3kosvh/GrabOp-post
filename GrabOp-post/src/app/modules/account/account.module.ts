@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule } from '@angular/material';
+import {
+    MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
+    MatListModule
+} from '@angular/material';
 
 // Components
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,6 +16,7 @@ import { SignupCompanyComponent } from './components/signup/company/signup-compa
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -36,10 +40,11 @@ const routes: Routes = [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
-            { path: 'resetpassword/:token', component: AccountRecoverComponent }            
+            { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
     },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] }
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({
@@ -53,8 +58,10 @@ const routes: Routes = [
         MatIconModule,
         MatCardModule,
         MatCheckboxModule,
+        MatSlideToggleModule,
+        MatListModule,
         RouterModule.forChild(routes),
-        SharedModule        
+        SharedModule
     ],
     exports: [
         SignInComponent,
@@ -71,7 +78,8 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent
+        SignupCompanyComponent,
+        SettingsComponent
     ],
     providers: [
         UploadService,
