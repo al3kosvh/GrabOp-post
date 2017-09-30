@@ -21,7 +21,7 @@ export class SignInDialogComponent {
     constructor(
         public dialogRef: MdDialogRef<SignInDialogComponent>,
         private authenticationService: AuthenticationService
-    ) {        
+    ) {
         this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
         this.loading = false;
     }
@@ -34,12 +34,17 @@ export class SignInDialogComponent {
                 this.dialogRef.close();
                 this.loading = false;
             },
-            error => {
-                console.log('onSubmit error: ', error);
-                this.errorMessage = 'Username or password is incorrect';
-                this.loading = false;
-            },
-            () => {
+            error => {                
+                switch (error.status) {
+                    case 0:
+                        this.errorMessage = 'Conection error';
+                        break;
+                    case 401:
+                        this.errorMessage = 'Username or password incorrect';
+                        break;
+                    default:
+                        this.errorMessage = error.statusText;
+                }
                 this.loading = false;
             }
         );
