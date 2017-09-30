@@ -23,20 +23,9 @@ export class AuthenticationService {
         private http: HttpService,
         private storage: AccountStorageService
     ) {
-        //this.isLogedInSub = new BehaviorSubject(false);
-
-        //this.userSub = new BehaviorSubject<VOUserExt>(this.user);
-
-        //this.user$ = this.userSub.asObservable();
-
-        //this.isLoggedIn = this.user$.map(user => !!user);
-
-        //this.isLoggedIn = this.getUser().map(user => !!user);
-        console.log('auth serv constr');
-
         this.getUser().subscribe(
             user => {
-                console.log('auth serv constr user', user);
+                console.log('auth serv constr user: ', user);
                 var isLoggedIn = user ? true : false;
                 //if (this.loggedIn.getValue() != isLoggedIn) {
                 //isLoggedIn ? this.router.navigate(['/']) : this.router.navigate(['/signin']);
@@ -50,37 +39,18 @@ export class AuthenticationService {
     }
 
     isLoggedIn(): Observable<boolean> {
-        console.log('auth serv isloggedin');
         return this.loggedIn.asObservable();
     }
 
-    /*autoLogin(): void {
-
-        let user: VOUser = this.getUser();
-        //TODO if expired error
-        console.log('AuthService - Autologin: ', user);
-        if (!this.user) {
-            return;
-        }
-
-        this.getUserExtended().subscribe(user => {
-            this.user = user;
-            this.userSub.next(this.user);
-        });
-
-    }*/
-
     signOut() {
-        let url: string = VOSettings.server + '/auth/logout?format=json';
-        this.http.get(url).map(res => res.json()).subscribe(response => {
+        let url: string = VOSettings.signoutUrl;
+        this.http.get(url).map(response => {
             this.storage.clearStorage();
         });
     }
 
-
     signIn(authData: Models.SignIn): Observable<Models.VOUserExt> {
-
-        let url: string = VOSettings.authenticateUrl;
+        let url: string = VOSettings.signinUrl;
 
         return this.http.post(url, authData).map(response => {
             let authResponse: Models.SOAuthenticateResponse = response.json();
