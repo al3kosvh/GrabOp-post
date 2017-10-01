@@ -47,6 +47,9 @@ export class ProfileComponent implements OnInit {
   private backgroundPic = "#969696";
   private profilePic = "assets/img/avatar.png";
   private profileContainerMarginTop = -212;
+  private btnConnectValue: string;
+  private myConnections: any;
+  private indexConnection: any;
 
   constructor(private userService: AuthHttpService,
               //private myPostsService: MyPostsService,
@@ -103,6 +106,8 @@ export class ProfileComponent implements OnInit {
     this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
     console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
+    this.validateConnection();
+
     this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
       if (posts) {
         this.profilePosts = posts;
@@ -149,5 +154,43 @@ export class ProfileComponent implements OnInit {
       data: this.profile.video || 'http://localhost:8080/video/AviciiAddictedToYou.mp4'
     };
     this.dialog.open(VideoProfileDialogComponent, config);
+  }
+
+  validateConnection() {
+    this.btnConnectValue = 'connect';
+    if (!this.isMyProfile) {
+      this.connectionService.getMyConnections().subscribe(
+        connections => {
+          console.log('ProfileComponent connection: ', connections);
+          this.myConnections = connections;
+          for (let i in this.myConnections) {
+            if (this.profile.id == this.myConnections[i].id.toString()) {
+              this.indexConnection = i;
+              this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
+              break;
+            }
+          }
+        }
+      );
+    }
+  }
+
+  adminConnection() {
+    if (this.btnConnectValue === 'connect') {
+      // TODO the first param on setConnection and confirmConnection are be the user login
+      this.connectionService.setConnection('16', this.profile.id.toString(), 'make a connection').subscribe(
+        respond => {
+          this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+        }
+      )
+    } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
+      this.connectionService.confirmConnection('16', this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+        respond => {
+          this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+        }
+      )
+    } else {
+
+    }
   }
 }

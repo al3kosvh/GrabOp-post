@@ -8,7 +8,8 @@ import {
   MatRadioModule,
   MatButtonModule,
   MatTabsModule,
-  MatInputModule
+  MatInputModule,
+  MdExpansionModule
 } from '@angular/material';
 
 // Shared Modules
@@ -47,7 +48,8 @@ const routes: Routes = [
     FormsModule,
     SharedModule,
     PipesModule,
-    PostModule
+    PostModule,
+    MdExpansionModule
   ],
   declarations: [
     ProfileComponent,

@@ -176,6 +176,29 @@ div.btn-action-container button small {
   font-size: x-small;
 }
 
+div.btn-action-container .mat-expansion-panel {
+  background-color: #03a9f4;
+}
+
+div.btn-action-container .mat-expansion-panel-header {
+  color: white;
+  font-size: 1.2em;
+}
+
+div.btn-action-container .mat-expansion-panel {
+  color: white;
+  font-size: 1.2em;
+}
+
+div.btn-action-container .retract {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 1.4em;
+  cursor: pointer;
+  text-align: center;
+}
+
 div.posts {
   padding: 0 20px;
   margin-top: 10px;
