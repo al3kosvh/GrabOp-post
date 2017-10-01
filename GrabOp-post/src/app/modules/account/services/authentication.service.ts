@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-//import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
-
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Subject } from 'rxjs/Subject';
@@ -21,39 +20,42 @@ export class AuthenticationService {
 
     constructor(
         private http: HttpService,
-        private storage: AccountStorageService
+        private storage: AccountStorageService,
+        private router: Router
     ) {
         this.getUser().subscribe(
             user => {
                 console.log('auth serv constr user: ', user);
                 var isLoggedIn = user ? true : false;
-                //if (this.loggedIn.getValue() != isLoggedIn) {
-                //isLoggedIn ? this.router.navigate(['/']) : this.router.navigate(['/signin']);
+                if (this.loggedIn.getValue() != isLoggedIn)
+                    isLoggedIn ? this.router.navigate(['/']) : this.router.navigate(['/guest']);
                 this.loggedIn.next(isLoggedIn);
-                //}
+
             },
             error => {
                 console.log('auth serv constr error', error);
             });
-        //this.autoLogin();
     }
 
     isLoggedIn(): Observable<boolean> {
         return this.loggedIn.asObservable();
     }
 
-    signOut() {
+    signOut(): Observable<Models.VOUser> {
         let url: string = VOSettings.signoutUrl;
-        this.http.get(url).map(response => {
+        return this.http.get(url).map((response) => {
             this.storage.clearStorage();
+            return this.mapAuthResponseToUser(response);
         });
     }
 
     signIn(authData: Models.SignIn): Observable<Models.VOUserExt> {
         let url: string = VOSettings.signinUrl;
 
+        console.log('AuthService - SignIn');
+
         return this.http.post(url, authData).map(response => {
-            let authResponse: Models.SOAuthenticateResponse = response.json();
+            let authResponse: Models.SOAuthenticateResponse = response;
 
             console.log('AuthService - SignInResponse: ', authResponse);
 
@@ -61,8 +63,7 @@ export class AuthenticationService {
                 id: authResponse.user_id,
                 sessionId: authResponse.session_id,
                 displayName: authResponse.display_name,
-                username: authData.username,
-                password: authData.password,
+                username: authResponse.user_name,
                 primaryEmail: "",
                 firstName: "",
                 lastName: "",
@@ -70,6 +71,7 @@ export class AuthenticationService {
             }
             return user;
         }).flatMap((user: Models.VOUser) => {
+            console.log('AuthService - SignIn flatMap');
             return this.getUserExtended().map((userExt: Models.VOUserExt) => {
                 this.saveUser(userExt);
                 return userExt;
@@ -83,13 +85,12 @@ export class AuthenticationService {
         return this.http.get(url)
             .map(response => {
                 console.log('AuthService - GetUserExtended: ', response);
-                let jsonResponse: any = response.json();
-                let vouser: Models.VOUserExt = this.mapUserExt(jsonResponse);
+                let vouser: Models.VOUserExt = this.mapUserExtended(response);
                 return vouser;
             });
     }
 
-    private mapUserExt(user: Models.SOUser): Models.VOUserExt {
+    private mapUserExtended(user: Models.SOUser): Models.VOUserExt {
         return {
             id: user.id,
             role: user.type,
@@ -98,6 +99,19 @@ export class AuthenticationService {
             displayName: user.display_name,
             firstName: user.first_name,
             lastName: user.last_name
+        }
+    }
+
+    private mapAuthResponseToUser(authResponse: Models.SOAuthenticateResponse): Models.VOUser {
+        return {
+            id: authResponse.user_id,
+            sessionId: authResponse.session_id,
+            displayName: authResponse.display_name,
+            username: authResponse.user_name,
+            primaryEmail: "",
+            firstName: "",
+            lastName: "",
+            token: authResponse.session_id
         }
     }
 
