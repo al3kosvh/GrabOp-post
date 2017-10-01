@@ -14,7 +14,9 @@ export class SignOutComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.authService.signOut();
-        this.router.navigate(['guest']);
+        this.authService.signOut().subscribe(response => {
+            console.log(response);
+            this.router.navigate(['guest']);
+        });
     }
 }
