@@ -15,6 +15,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry } from '@angular/material';
 
 // App Modules
 import { HomeModule } from './modules/home/home.module';
@@ -26,6 +27,7 @@ import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { ProfileModule } from './modules/profile/profile.module';
+import { SearchModule } from './modules/search/search.module';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
@@ -50,6 +52,12 @@ const routes: Routes = [
         FormsModule,
         HttpModule,
         AccountModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
         RouterModule.forRoot(routes),        
         PostModule,
         LandingModule,
@@ -59,7 +67,8 @@ const routes: Routes = [
         PostEditModule,
         ConnectionModule,
         OpportunityModule,
-        ProfileModule
+        ProfileModule,
+        SearchModule
     ],
     declarations: [
         AppComponent,
@@ -69,6 +78,7 @@ const routes: Routes = [
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
+        MdIconRegistry
     ],
     bootstrap: [AppComponent]
 })

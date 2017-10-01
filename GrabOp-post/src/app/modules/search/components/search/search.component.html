@@ -1,0 +1,15 @@
+<div class="search-container" fxFlex>
+  <form floatPlaceholder="never" fxFlex>
+    <md-form-field floatPlaceholder="never">
+      <md-icon mdPrefix>search</md-icon>
+      <input mdInput placeholder="{{placeholder}}" aria-label="Search" [mdAutocomplete]="auto" [formControl]="searchCtrl">
+      <md-autocomplete #auto="mdAutocomplete">
+        <md-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+          <span>{{ state.name }}</span> |
+          <small>Population: {{state.population}}</small>
+        </md-option>
+      </md-autocomplete>
+    </md-form-field>
+  </form>  
+</div>

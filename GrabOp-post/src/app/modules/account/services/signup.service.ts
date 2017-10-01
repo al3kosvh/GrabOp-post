@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 //import { Http, Response, URLSearchParams, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { VOSettings, VOResult, VOProfileSettings } from "../../../models/vos";
+import { VOSettings, VOResult } from "../../../models/vos";
 import { FormControl } from "@angular/forms";
 import { SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse } from "../../../models/sos";
 import { VOUser, VOUserExt } from '../models/vouser';

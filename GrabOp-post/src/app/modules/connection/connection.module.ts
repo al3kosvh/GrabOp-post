@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
+import { MatGridListModule, MatSlideToggleModule } from '@angular/material';
+
 import { SharedModule } from "../shared/shared.module";
 
 // Components
@@ -16,6 +18,8 @@ const routes: Routes = [];
     imports: [
         CommonModule,
         SharedModule,
+        MatGridListModule,
+        MatSlideToggleModule,
         RouterModule.forChild(routes)
     ],
     declarations: [

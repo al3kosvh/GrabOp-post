@@ -1,0 +1,17 @@
+div.settings {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+md-icon.settings {
+  margin-top: 16px;
+  margin-right: 5px;
+}
+
+md-tab-group {
+  min-height: 600px;
+}
+
+setting {
+  margin-top: 20px;
+}

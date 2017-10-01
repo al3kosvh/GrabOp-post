@@ -1,5 +1,4 @@
 import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
-import { VOProfileSettings } from '../../../../../models/vos';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

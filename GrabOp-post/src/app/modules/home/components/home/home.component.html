@@ -1,5 +1,5 @@
 <div fxLayout="column">
-  <div class="first-row" fxLayout="row" fxLayoutAlign="space-around">
+  <div class="first-row" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
     <app-user-bio [myUser]="myUser"></app-user-bio>
     <app-profile-progress></app-profile-progress>
     <div class="announce" fxLayout="column">
@@ -16,35 +16,53 @@
       </div>
     </div>
   </div>
-  <div class="second-row" fxLayout="row" fxLayoutAlign="space-around">
-    <div fxLayout="row">
-      <div class="table" fxLayout="column">
-        <div class="title">Profile Views</div>
-        <div class="body">132,000</div>
-      </div>
-      <div class="table" fxLayout="column">
-        <div class="title">Connections</div>
-        <div class="body">10,000</div>
-      </div>
-      <div class="table" fxLayout="column">
-        <div class="title">Trusted By</div>
-        <div class="body">812</div>
-      </div>
-      <div class="table" fxLayout="column">
-        <div class="title">Alliance Members</div>
-        <div class="body">300</div>
-      </div>
-      <div class="table" fxLayout="column">
-        <div class="title">Total Sales</div>
-        <div class="body">20,000</div>
-      </div>
-    </div>
+  <div class="second-row" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Profile Views</md-card-title>
+      </md-card-header>
+      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+        132,000
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Connections</md-card-title>
+      </md-card-header>
+      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+        10,000
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Trusted By</md-card-title>
+      </md-card-header>
+      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+        812
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Alliance Members</md-card-title>
+      </md-card-header>
+      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+        300
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-header>
+        <md-card-title>Total Sales</md-card-title>
+      </md-card-header>
+      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+        20,000
+      </md-card-content>
+    </md-card>
   </div>
 </div>
 
 <span class="posts-title">People offering what you need:</span>
 <div class="posts">
-  <div fxLayout="row" xLayoutAlign="space-around">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
       <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
     </div>
@@ -53,7 +71,7 @@
 
 <span class="posts-title">People who need what your offering:</span>
 <div class="posts">
-  <div fxLayout="row" xLayoutAlign="space-around">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">
       <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
     </div>

@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdDialogModule } from '@angular/material';
+import {
+    MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
+    MatListModule, MatTabsModule
+} from '@angular/material';
 
 // Components
 import { SignupComponent } from './components/signup/signup.component';
@@ -13,6 +16,8 @@ import { SignupCompanyComponent } from './components/signup/company/signup-compa
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SettingComponent } from './components/settings/setting/setting.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -25,6 +30,7 @@ import { AccountStorageService } from './services/account-storage.service';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
+import { SettingsService } from './services/settings.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -41,7 +47,8 @@ const routes: Routes = [
             { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
     },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] }
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
+    { path: 'settings/:id', component: SettingsComponent }
 ];
 
 @NgModule({
@@ -49,15 +56,22 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatSlideToggleModule,
+        MatListModule,
+        MatTabsModule,
         RouterModule.forChild(routes),
-        SharedModule,
-        MdDialogModule
+        SharedModule
     ],
     exports: [
         SignInComponent,
         SignupComponent,
-        SignOutComponent,
-        MdDialogModule
+        SignOutComponent
     ],
     declarations: [
         SignupComponent,
@@ -69,7 +83,9 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent
+        SignupCompanyComponent,
+        SettingsComponent,
+        SettingComponent
     ],
     providers: [
         UploadService,
@@ -77,7 +93,8 @@ const routes: Routes = [
         AuthGuard,
         SignupService,
         AccountStorageService,
-        HttpService
+        HttpService,
+        SettingsService
     ],
     entryComponents: [SignInDialogComponent]
 })

@@ -1,0 +1,76 @@
+<div class="settings" fxlayout="row" fxLayoutAlign="center">
+  <div fxFlex="90" fxLayout="column">
+    <div fxLayout="row">
+      <md-icon class="settings">settings</md-icon>
+      <h4>Manage account settings</h4>
+    </div>
+    <div fxLayoutAlign="center">
+      <div fxFlex="90" fxlayoutAlign="center">
+        <md-tab-group dynamicHeight="true">
+          <md-tab label="Notifications">
+            <div *ngIf="settings" fxLayout="column">
+              <h5>Manage Your Notifications</h5>
+              <div>
+                <div fxLayout="column" fxFlex="40">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Send an email notification</div>
+                  <setting [setting]="settings[SettingsName.notifyConnection]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyMessages]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyAlliance]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyServices]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyTasks]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyRecommendations]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyComments]"></setting>
+                  <setting [setting]="settings[SettingsName.notifyOpportunity]"></setting>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Privacy Settings">
+            <h5>Privacy Settings</h5>
+            <div *ngIf="settings" fxLayout="column">
+              <div>
+                <div fxLayout="column" fxFlex="40">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Make visible to the public</div>
+                  <setting [setting]="settings[SettingsName.isEmailVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isPhoneVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.areConnectionsVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isProfileViewCountVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isServiceViewsCountVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isTrustedNetworkVisible]"></setting>
+                  <setting [setting]="settings[SettingsName.isTotalSales]"></setting>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Security">
+            <h5>Change Your Password</h5>
+            <div fxLayout="column">
+              <md-form-field>
+                <input mdInput placeholder="Current" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="New password" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="Confirm new password" />
+              </md-form-field>
+            </div>
+            <button md-raised-button color="accent">CHANGE PASSWORD</button>
+          </md-tab>
+          <md-tab label="Email & Username">
+            <h5>Update Your Email Address or Username</h5>
+            <div fxLayout="column">
+              <md-form-field>
+                <input mdInput placeholder="Account email" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="Username" />
+              </md-form-field>
+            </div>
+            <button md-raised-button color="accent">UPDATE</button>
+          </md-tab>
+        </md-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

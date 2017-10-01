@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatGridListModule, MatCardModule, MatButtonModule, MatIconModule } from '@angular/material';
+
+
 import { MyPostViewComponent } from './components/my-post-view/my-post-view.component';
 import { PostViewComponent } from './components/post-view/post-view.component';
 import { MyPostsService } from '../post/services/my-posts.service';
@@ -12,7 +15,6 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
-import { ProfileService } from '../profile/services/profile.service';
 
 const myRoute: Routes = [
     //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
@@ -28,6 +30,10 @@ const myRoute: Routes = [
         CommonModule,
         PipesModule,
         SharedModule,
+        MatGridListModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
         RouterModule.forChild(myRoute)
     ],
     declarations: [
@@ -44,7 +50,6 @@ const myRoute: Routes = [
     providers: [
         MyPostsService,
         PostService,
-        ProfileService
     ]
 })
 export class PostModule { }

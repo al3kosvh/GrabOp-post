@@ -4,7 +4,6 @@ form table {
 
 .form-edit-profile {
   max-height: 550px;
-  overflow-y: auto;
 }
 
 button.close {
@@ -19,6 +18,7 @@ md-form-field {
 .radio-group {
   display: inline-flex;
   flex-direction: column;
+  padding-bottom: 1.25em;
 }
 
 .radio-button {
@@ -26,11 +26,27 @@ md-form-field {
 }
 
 .container-file {
+  padding-bottom: 1.25em;
+}
+
+.container-file .document-view {
+  padding: 4px;
+  border: 1px solid grey;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.container-file .document-view img {
+  width: 50%;
+  margin: auto;
+}
+
+.btn-file {
   overflow: hidden;
   position: relative;
 }
 
-.container-file [type=file] {
+.btn-file [type=file] {
   cursor: inherit;
   display: block;
   min-height: 100%;
@@ -40,4 +56,8 @@ md-form-field {
   right: 0;
   text-align: right;
   top: 0;
+}
+
+.container-skill {
+  padding-bottom: 1.25em;
 }

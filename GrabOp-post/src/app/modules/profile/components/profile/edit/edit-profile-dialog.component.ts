@@ -5,6 +5,7 @@ import {VOUserExt} from '../../../../account/models/vouser';
 
 // Services
 import {ProfileService} from '../../../services/profile.service';
+import {UploadService} from '../../../../account/services/upload.service';
 
 @Component({
   selector: 'edit-profile-dialog',
@@ -15,33 +16,38 @@ export class EditProfileDialogComponent {
 
   private errorMessage: string;
   private loading: boolean;
-  private person: VOUserExt;
+  private profile: VOUserExt;
   occupations = [
     {value: 0, name: "Company"},
     {value: 1, name: "Self Employed"},
     {value: 2, name: "Seeking an Opportunity"},
     {value: 3, name: "Other"},
   ];
+  iconFileResume = "assets/img/docx.png";
+  fileResume: object;
 
-
-  constructor(public dialogRef: MdDialogRef<EditProfileDialogComponent>, @Inject(MD_DIALOG_DATA) public data: any, private profileService: ProfileService) {
+  constructor(
+    public dialogRef: MdDialogRef<EditProfileDialogComponent>,
+    @Inject(MD_DIALOG_DATA) public data: any,
+    private profileService: ProfileService, private uploadService: UploadService) {
     this.loading = false;
-    this.person = data;
+    this.profile = data;
   }
 
   onSubmit(): void {
     this.loading = true;
-    this.profileService.editProfile(this.person, [
+    this.profileService.editProfile(this.profile).subscribe(
       success => {
-        console.log("EditProfileDialog success", success)
+        console.log("EditProfileDialog success", success);
+        this.fileResume = success;
       },
       err => {
         console.log("EditProfileDialog err: ", err)
       },
       () => {
-      this.loading = false;
+        this.loading = false;
       }
-    ])
+    )
   }
 
   onClose(): void {
@@ -49,13 +55,37 @@ export class EditProfileDialogComponent {
   }
 
   resetCompany(): void {
-    if (!this.person.occupation) {
-      this.person.company = '';
+    if (!this.profile.occupation) {
+      this.profile.company = '';
     }
   }
 
-  onUpLoadFile(): void {
+  onUpLoadFile(event): void {console.log(event)
+    this.uploadService.upload(event).subscribe(
+      dataFile => {
+        console.log("EditProfileDialog dataFile: ", dataFile)
+      },
+      err => {
+        console.log("EditProfileDialog err: ", err.json())
+      },
+      () => {
 
+      }
+    )
+  }
+
+  addSkill(): void {
+    this.profile.skillset = this.profile.skillset ? this.profile.skillset : [];
+    this.profile.skillset.push("");
+  }
+
+  deleteSkill(index): void {
+    this.profile.skillset.splice(index, 1);
+  }
+
+  onchangeSkill(event, index): void {
+    event.preventDefault();
+    this.profile.skillset[index] = event.target.value;
   }
 
 }

@@ -1,4 +1,4 @@
-﻿div.first-row {
+div.first-row {
   margin: 40px;
 }
 
@@ -34,23 +34,27 @@ span.comments {
   font-weight: 600;
 }
 
-div.table {
-  border: 1px solid #BBBBBB;
+
+md-card {
+  padding: 0px;
   margin: 10px;
 }
 
-div.title {
-  text-align: center;
-  background-color: #C3C3C3;
-  border-bottom: 1px solid #BBBBBB;
+md-card-header {
+  padding: 10px;
+  background-color: lightslategrey;
   color: white;
-  padding: 5px 20px 5px 20px;
+  font-weight: 600;
 }
 
-div.body {
+md-card-title {
+  margin-bottom: 0px;
+}
+
+md-card-content {
   text-align: center;
   padding: 20px 0px 20px 0px;
-  color: #3F48CB;
+  color: lightslategrey;
   font-weight: 600;
 }
 
