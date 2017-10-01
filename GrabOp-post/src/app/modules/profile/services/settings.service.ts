@@ -25,7 +25,7 @@ export class SettingsService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    public toggleSetting(accountId: number, settingId, value: string): Observable<Models.Setting> {
+    public toggleSetting(accountId: string, settingId: number, value: string): Observable<Models.Setting> {
         return this.http.post(this.url + accountId + '/settings/' + settingId + '?format=json', { value })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }

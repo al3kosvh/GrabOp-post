@@ -15,7 +15,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-import { MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry } from '@angular/material';
+import {
+    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry,
+    MatGridListModule
+} from '@angular/material';
 
 // App Modules
 import { HomeModule } from './modules/home/home.module';
@@ -45,6 +48,7 @@ import { HowItWorksComponent } from './components/how-it-works/how-it-works.comp
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { HelpComponent } from './components/help/help.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
@@ -89,12 +93,13 @@ const routes: Routes = [
         HowItWorksComponent,
         FeedbackComponent,
         TermsOfUseComponent,
-        AboutUsComponent
+        AboutUsComponent,
+        HelpComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MdIconRegistry,
-        ToolbarService
+        ToolbarService,
     ],
     bootstrap: [AppComponent]
 })

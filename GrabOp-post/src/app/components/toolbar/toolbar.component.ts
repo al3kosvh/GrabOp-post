@@ -20,20 +20,23 @@ export class ToolbarComponent implements OnInit {
     @Input() sidenav: MdSidenav;
     private profile_pic: string;
     private visible: Observable<boolean>;
+    private user: Models.VOUserExt;
 
     constructor(
         private authService: AuthenticationService,
-        public modal: ModalWindowService,
+        private modal: ModalWindowService,
         private toolbarService: ToolbarService
     ) {
-        this.visible = this.toolbarService.isVisible();        
+        this.visible = this.toolbarService.isVisible();
+        this.authService.getUser().subscribe(user => {
+            this.user = user;
+        });
     }
 
     ngOnInit() {
     }
 
     openHelp() {
-
         this.modal.openWindow(HelpComponent, (res) => {
             console.log('helpComponent  ', res);
         });

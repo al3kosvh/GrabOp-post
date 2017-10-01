@@ -6,7 +6,10 @@ import { Router } from "@angular/router";
 export class ModalWindowService {
     private dialogRef: MdDialogRef<Component>;
 
-    constructor(public dialog: MdDialog, private route: Router) { }
+    constructor(
+        public dialog: MdDialog,
+        private route: Router
+    ) { }
 
     openWindow(comp: any, callBack?: Function) {
 
