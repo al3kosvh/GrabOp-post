@@ -13,24 +13,24 @@ import { Observable } from "rxjs/Observable";
 export class ProfileService {
 
     constructor(
-        private authHttpService: HttpService
+        private http: HttpService
     ) {
     }
 
     public getProfile(): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.myProfile).map(mapGetPerson)
+        return this.http.get(VOSettings.myProfile).map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     public getProfileById(id: string): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.profile.replace(<any>'{{id}}', id))
+        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id))
           .map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     public editProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.authHttpService.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), person)
-          .map(res => res.json())
+        return this.http.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), person)
+          .map(res => res)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
