@@ -49,7 +49,7 @@ export class PostService {
             this.selectedPostSub.next(post);
         } else {
             this.http.get(url)
-                // .map(res => this.mapSelectPostById(res.json()))
+                // .map(res => this.mapSelectPostById(res))
                 .map(mapGetPost)
                 .subscribe(result => {
                     console.log('result', result);
@@ -101,7 +101,7 @@ export class PostService {
     // deletePost(post: VOPost): void {
     //   let url: string = VOSettings.server + 'post/' + post.id;
     //   this.auth.delete(url)
-    //     .map(res => new VOResult(res.json()))
+    //     .map(res => new VOResult(res))
     //     .subscribe((result)=>{
     //       if(result.success){
     //         this.posts.splice(this.posts.indexOf(post), 1);
@@ -112,7 +112,7 @@ export class PostService {
     /* deleteAttachment(post_id: number, id: number): void {
      let url: string = VOSettings.server + 'post/' + post_id + '/attachment/' + id;
      this.auth.delete(url)
-     .map(res => new VOResult(res.json()))
+     .map(res => new VOResult(res))
      .subscribe((result)=>{
      if(result.success){
      let post = this.filterPostById(post_id, this.posts);

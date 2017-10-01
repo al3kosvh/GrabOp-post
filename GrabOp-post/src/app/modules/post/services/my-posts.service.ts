@@ -187,7 +187,7 @@ export class MyPostsService {
     // deletePost(post: VOPost): void {
     //   let url: string = VOSettings.server + 'post/' + post.id;
     //   this.auth.delete(url)
-    //     .map(res => new VOResult(res.json()))
+    //     .map(res => new VOResult(res))
     //     .subscribe((result)=>{
     //       if(result.success){
     //        let posts:VOPost[] =  this.myPostsSub.getValue();
@@ -200,7 +200,7 @@ export class MyPostsService {
     // deleteAttachment(post_id: number, id: number): void {
     //   let url: string = VOSettings.server + 'post/' + post_id + '/attachment/' + id;
     //   this.auth.delete(url)
-    //     .map(res => new VOResult(res.json()))
+    //     .map(res => new VOResult(res))
     //     .subscribe((result)=>{
     //       if(result.success){
     //         // let post = this.filterPostById(post_id, this.posts);

@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, CookieXSRFStrategy, XSRFStrategy, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 
@@ -74,9 +73,9 @@ export class PostEditService {
         console.log('updatePost reqData: ', reqData);
 
         return this.http.put(url, reqData)
-            // .map((res: Response) => {
+            // .map((res) => {
             //   console.log('updatePost res',res);
-            //   return res.json();
+            //   return res;
             // })
             .map(mapGetPost)
             .catch(this.handleError);
@@ -120,10 +119,10 @@ export class PostEditService {
         console.log('insertPost req: ', reqData);
 
         return this.http.post(url, reqData)
-            // .map((res: Response) => {
+            // .map((res) => {
             //   console.log('res', res);
-            //   console.log('res.json', res.json());
-            //   return res.json();
+            //   console.log('res.json', res);
+            //   return res;
             // })
             .map(mapGetPost)
             .catch(this.handleError);
@@ -134,8 +133,8 @@ export class PostEditService {
         let url: string = VOSettings.server + '/profiles/' + VOSettings.user.id;
   
         this.http.get(url)
-            .map((res: Response) => {
-                return res.json().map(function (item: any) {
+            .map((res) => {
+                return res.map(function (item: any) {
                     return new VOService(item);
                 });
             })
@@ -172,9 +171,9 @@ export class PostEditService {
     /*  get_AllPosts(): void {
           let url: string = VOSettings.posts;
           this.http.get(url)
-              .map((res: Response) => {
-                  // console.log('res:Res', res.json().map(function(item){ return new VOPost(item)}));
-                  return res.json().map(function (item) {
+              .map((res) => {
+                  // console.log('res:Res', res.map(function(item){ return new VOPost(item)}));
+                  return res.map(function (item) {
                       return new VOPost(item);
                   });
               })
@@ -189,9 +188,9 @@ export class PostEditService {
     // get_AllPosts():Observable<VOPost[]>{
     //     var url:string = VOSettings.posts;
     //     return this.http.get(url)
-    //             .map((res:Response)=>{
-    //                 // console.log('res:Res', res.json().map(function(item){ return new VOPost(item)}));
-    //                 return res.json().map(function(item){ return new VOPost(item)});
+    //             .map((res)=>{
+    //                 // console.log('res:Res', res.map(function(item){ return new VOPost(item)}));
+    //                 return res.map(function(item){ return new VOPost(item)});
     //             })
     //             .catch(this.handleError)
     // }
@@ -199,8 +198,8 @@ export class PostEditService {
     /*  getAllPosts(): Observable<any> {
           let url: string = VOSettings.posts;
           return this.http.get(url)
-              .map((res: Response) => {
-                  return res.json().map(function (item) {
+              .map((res) => {
+                  return res.map(function (item) {
                       return new VOPost(item);
                   });
               })
@@ -211,29 +210,13 @@ export class PostEditService {
          // var url: string = VOSettings.server + 'posts';
          // var url: string = 'http://grabopapi2dev.us-west-2.elasticbeanstalk.com/api/v1/services/myservices?format=json';
   
-         // let headers = new Headers({ 'Authorization': 'Bearer ' });
-  
-         let headers = new Headers();
-         headers.append('Content-Type', 'application/json');
-         // headers.append("Access-Control-Allow-Headers", "Content-Type");
          let account: VOUserExt = JSON.parse(localStorage.getItem('account'));
-         // let authToken = account.token;
-         // headers.append('Authorization', `Bearer ${authToken}`);
-         // headers.append('Authorization', localStorage.getItem('account'));
-         headers.append('Authorization', localStorage.getItem('account'));
-         // let options = new RequestOptions({headers: headers});
-  
-         // let headers = new Headers({ 'Accept': 'application/json' });
-         // headers.append('Authorization', `Bearer `);
-         // let options = new RequestOptions({ headers: headers });
-         // console.log('authToken', authToken);
-         // console.log('account', account);
   
          let url: string = VOSettings.server + VOSettings.posts + VOSettings.myposts + VOSettings.format_json;
-         return this.http.get(url, {headers: headers})
-             .map((res: Response) => {
+         return this.http.get(url)
+             .map((res) => {
                  console.log('res', res);
-                 return res.json().map(function (item) {
+                 return res.map(function (item) {
                      return new VOPost(item);
                  });
              }, err => console.log('err', err))
@@ -246,8 +229,8 @@ export class PostEditService {
   
           let url: string = VOSettings.server + '/post/' + id;
           return this.http.get(url)
-              .map((res: Response) => {
-                  return new VOPost(res.json());
+              .map((res) => {
+                  return new VOPost(res);
               })
               .catch(this.handleError);
       }*/
@@ -255,14 +238,14 @@ export class PostEditService {
     deleteAttachment(psot_id: number, id: number) {
         let url: string = VOSettings.server + 'post/' + psot_id + '/attachment/' + id;
         return this.http.delete(url)
-            .map(res => res.json());
+            .map(res => res);
     }
 
     getAttachments(post_id: number): Promise<VOImage[]> {
         let url: string = VOSettings.server + '/post/' + post_id + '/attachments';
         return this.http.get(url).toPromise()
             .then((res) => {
-                return res.json().map(function (item) {
+                return res.map(function (item) {
                     return new VOImage(item);
                 });
             });
@@ -275,9 +258,9 @@ export class PostEditService {
         console.log(url, data);
 
         return this.http.post(url, data)
-            .map((res: Response) => {
+            .map((res) => {
                 console.log(res);
-                return res.json();
+                return res;
             });
     }
 
@@ -286,7 +269,7 @@ export class PostEditService {
          let url: string = VOSettings.server + '/posts-categories';
          return this.http.get(url).toPromise()
              .then((res) => {
-                 return res.json().map(function (item) {
+                 return res.map(function (item) {
                      return new VOCategory(item);
                  });
              });
@@ -320,7 +303,7 @@ export class PostEditService {
     //     return this.http.patch(url, post)
     //         .map((res: Response) => {
     //             console.log(res);
-    //             return new VOResult(res.json())
+    //             return new VOResult(res)
     //         }).catch(this.handleError)
     // }
 

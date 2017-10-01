@@ -19,7 +19,7 @@ export class ProfileService {
 
     public getProfile(): Observable<VOUserExt> {
         return this.http.get(VOSettings.myProfile).map((response: Response) => {
-            return response.json();
+            return response;
         })
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
