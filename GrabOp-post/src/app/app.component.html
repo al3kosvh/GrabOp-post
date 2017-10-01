@@ -1,4 +1,4 @@
-<app-toolbar (visible)="fixSidenavContainer($event);" [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
+<app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
 <div class="slideRight" [@routerAnimationRight]="getRouteAnimation(outlet)">
   <div fxFlex></div>
   <router-outlet name="slideRight" #outlet="outlet"></router-outlet>

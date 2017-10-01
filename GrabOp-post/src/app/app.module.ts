@@ -33,6 +33,9 @@ import { SearchModule } from './modules/search/search.module';
 import { PipesModule } from './pipes/pipes.module';
 import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 
+// Services
+import { ToolbarService } from './services/toolbar.service';
+
 // Components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
@@ -90,7 +93,8 @@ const routes: Routes = [
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MdIconRegistry
+        MdIconRegistry,
+        ToolbarService
     ],
     bootstrap: [AppComponent]
 })

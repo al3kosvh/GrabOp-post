@@ -1,4 +1,4 @@
-import { Component, Directive } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RouterOutlet } from '@angular/router';
 import { MdIconRegistry } from '@angular/material';
@@ -9,6 +9,7 @@ import { VOUserExt } from './modules/account/models/vouser';
 
 // Services
 import { AuthenticationService } from './modules/account/services/authentication.service';
+import { ToolbarService } from './services/toolbar.service';
 
 @Component({
     selector: 'app-root',
@@ -52,17 +53,16 @@ export class AppComponent {
     private fixedLayout: string = null;
 
     constructor(
-        private auth: AuthenticationService,
+        private authService: AuthenticationService,
         private mdIconRegistry: MdIconRegistry,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private toolbarService: ToolbarService
     ) {
 
-        //this.isLoggedIn = auth.isLoggedIn();
-
-        /*auth.getUser().subscribe(user => {
-            if (!user) return;
-            //this.user = user
-        });*/
+        this.isLoggedIn = authService.isLoggedIn();
+        this.toolbarService.isVisible().subscribe(visible => {
+            this.fixedLayout = visible ? 'fixed' : null;
+        })
 
         // Register Icons
         mdIconRegistry
@@ -75,10 +75,6 @@ export class AppComponent {
 
     public getRouteAnimation(outlet: RouterOutlet): any {
         return outlet.activatedRouteData.animation;
-    }
-
-    private fixSidenavContainer(event) {       
-        this.fixedLayout = event ? 'fixed' : null;
     }
 
     // prepareRouteTransition(r) {
