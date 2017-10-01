@@ -39,20 +39,20 @@ export class HttpService {
         return options;
     }
 
-    public get(url: string, options?: RequestOptions): Observable<Response> {
-        return this.http.get(url, this.getHeaders(options));
+    public get(url: string, options?: RequestOptions): Observable<any> {
+        return this.http.get(url, this.getHeaders(options)).map(response => response.json());
     }
 
-    public post(url: string, body: any, options?: RequestOptions): Observable<Response> {
-        return this.http.post(url, body, this.getHeaders(options));
+    public post(url: string, body: any, options?: RequestOptions): Observable<any> {
+        return this.http.post(url, body, this.getHeaders(options)).map(response => response.json());
     }
 
-    public put(url: string, body: any, options?: RequestOptions): Observable<Response> {
-        return this.http.put(url, body, this.getHeaders(options));
+    public put(url: string, body: any, options?: RequestOptions): Observable<any> {
+        return this.http.put(url, body, this.getHeaders(options)).map(response => response.json());
     }
 
-    public delete(url: string, options?: RequestOptions): Observable<Response> {
-        return this.http.delete(url, this.getHeaders(options));
+    public delete(url: string, options?: RequestOptions): Observable<any> {
+        return this.http.delete(url, this.getHeaders(options)).map(response => response.json());
     }
 
     public patch(url: string, body: any, options?: RequestOptions): Observable<Response> {
