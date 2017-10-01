@@ -26,7 +26,7 @@ export class ToolbarComponent implements OnInit {
         public modal: ModalWindowService,
         private toolbarService: ToolbarService
     ) {
-        this.visible = this.toolbarService.isVisible();
+        this.visible = this.toolbarService.isVisible();        
     }
 
     ngOnInit() {

@@ -8,8 +8,7 @@ export class ConnectionService {
 
     constructor(
         private http: HttpService
-    ) {
-        console.log('ConnectionService');
+    ) {        
         this.getMyConnections();
     }
 
@@ -17,7 +16,6 @@ export class ConnectionService {
         let url = VOSettings.connection_GetProfileConnectionsCount.replace(<any>'{{id}}', id);
         return this.http.get(url)
             .map(res => {
-                console.log('getProfileConnectionsCount', res);
                 return res.count;
             })
             .catch(this.handleError);
@@ -38,8 +36,7 @@ export class ConnectionService {
     }
 
     getMyConnections(): Observable<number> {
-        let url = VOSettings.connection_GetMyConnections;
-        console.log('getMyConnections', url);
+        let url = VOSettings.connection_GetMyConnections;        
         return this.http.get(url)
             .map(res => {
                 console.warn('getMyConnections', res);
@@ -52,7 +49,6 @@ export class ConnectionService {
         let url = VOSettings.connection_GetProfileConnections.replace(<any>'{{id}}', id);
         return this.http.get(url)
             .map(res => {
-                console.log('getProfileConnections', res);
                 return res.count;
             })
             .catch(this.handleError);

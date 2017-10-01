@@ -60,6 +60,7 @@ export class AppComponent {
     ) {
 
         this.isLoggedIn = authService.isLoggedIn();
+        this.toolbarService.showToolbar();        
         this.toolbarService.isVisible().subscribe(visible => {
             this.fixedLayout = visible ? 'fixed' : null;
         })

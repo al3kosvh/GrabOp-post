@@ -1,16 +1,14 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class ToolbarService {
     
-    private visible = new Subject<boolean>()
+    private visible: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-    constructor() {
-        this.visible.next(true)
-    }
+    constructor() { }
 
     isVisible(): Observable<boolean> {
         return this.visible.asObservable();
