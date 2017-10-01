@@ -25,6 +25,7 @@ import {AllianceInviteComponent} from './components/alliance-invite/alliance-inv
 
 // Services
 import {ProfileService} from './services/profile.service';
+import {ProfileGuard} from './services/profile.guard';
 
 // Pipes
 import {PostsFilterPipe} from '../../pipes/posts-filter.pipe';
@@ -32,7 +33,7 @@ import {PipesModule} from '../../pipes/pipes.module';
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
-  {path: 'profile/:id', component: ProfileComponent}
+  {path: 'profile/:id', component: ProfileComponent, canActivate: [ProfileGuard]}
 ];
 
 @NgModule({
@@ -61,6 +62,7 @@ const routes: Routes = [
   ],
   providers: [
     ProfileService,
+    ProfileGuard
   ],
   entryComponents: [
     EditProfileDialogComponent,

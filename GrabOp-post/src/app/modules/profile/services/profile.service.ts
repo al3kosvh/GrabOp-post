@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Router} from '@angular/router';
 import { Response } from '@angular/http';
 
 // Services
@@ -19,6 +20,20 @@ export class ProfileService {
     public getProfile(): Observable<VOUserExt> {
         return this.authHttpService.get(VOSettings.myProfile).map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+
+    public validateUrlProfile(id: string, router: Router): Observable<boolean> {
+        return this.authHttpService.get(VOSettings.myProfile).map(res => {
+          const myProfile = mapGetPerson(res);
+          if (id == myProfile.id) {
+            router.navigate(['/profile']);
+            return false;
+          }
+          return true;
+        })
+        .catch((error: any) => {
+          return new Observable<boolean>();
+        });
     }
 
     public getProfileById(id: string): Observable<VOUserExt> {
