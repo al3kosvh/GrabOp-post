@@ -38,9 +38,17 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/pagenotfound/page-not-found.component';
+import { HowItWorksComponent } from './components/how-it-works/how-it-works.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
+    { path: 'how-it-works', component: HowItWorksComponent },
+    { path: 'feedback', component: FeedbackComponent },
+    { path: 'terms-of-use', component: TermsOfUseComponent },
+    { path: 'about-us', component: AboutUsComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -74,7 +82,11 @@ const routes: Routes = [
         AppComponent,
         ToolbarComponent,
         FooterComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        HowItWorksComponent,
+        FeedbackComponent,
+        TermsOfUseComponent,
+        AboutUsComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
