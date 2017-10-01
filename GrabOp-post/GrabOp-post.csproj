@@ -16,8 +16,8 @@
   <ItemGroup>
     <None Remove="src\app\components\about-us\about-us.component.ts" />
     <None Remove="src\app\modules\account\components\settings.enum.ts" />
-    <None Remove="src\app\modules\account\components\settings\setting.component.ts" />
-    <None Remove="src\app\modules\account\components\settings\settings.component.ts" />
+    <None Remove="src\app\modules\profile\components\settings\setting.component.ts" />
+    <None Remove="src\app\modules\profile\components\settings\settings.component.ts" />
     <None Remove="src\app\modules\account\components\signin\signin-dialog.component.ts" />
     <None Remove="src\app\modules\account\models\account.d.ts" />
     <None Remove="src\app\modules\account\services\settings.service.ts" />
@@ -40,11 +40,11 @@
     <TypeScriptCompile Include="src\app\components\terms-of-use\terms-of-use.component.ts" />
     <TypeScriptCompile Include="src\app\components\how-it-works\how-it-works.component.ts" />
     <TypeScriptCompile Include="src\app\components\about-us\about-us.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\account\components\settings\setting\setting.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\account\models\account.d.ts" />
-    <TypeScriptCompile Include="src\app\modules\account\models\settings.ts" />
-    <TypeScriptCompile Include="src\app\modules\account\components\settings\settings.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\account\services\settings.service.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting\setting.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\models\profile.d.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\models\settings.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\settings.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
   </ItemGroup>

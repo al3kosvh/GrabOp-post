@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
+    MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule,
     MatListModule, MatTabsModule
 } from '@angular/material';
 
@@ -16,8 +16,6 @@ import { SignupCompanyComponent } from './components/signup/company/signup-compa
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { SettingComponent } from './components/settings/setting/setting.component';
 
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
@@ -30,7 +28,6 @@ import { AccountStorageService } from './services/account-storage.service';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
-import { SettingsService } from './services/settings.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -47,8 +44,7 @@ const routes: Routes = [
             { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
     },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
-    { path: 'settings/:id', component: SettingsComponent }
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },    
 ];
 
 @NgModule({
@@ -62,7 +58,6 @@ const routes: Routes = [
         MatIconModule,
         MatCardModule,
         MatCheckboxModule,
-        MatSlideToggleModule,
         MatListModule,
         MatTabsModule,
         RouterModule.forChild(routes),
@@ -83,9 +78,7 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent,
-        SettingsComponent,
-        SettingComponent
+        SignupCompanyComponent
     ],
     providers: [
         UploadService,
@@ -93,8 +86,7 @@ const routes: Routes = [
         AuthGuard,
         SignupService,
         AccountStorageService,
-        HttpService,
-        SettingsService
+        HttpService        
     ],
     entryComponents: [SignInDialogComponent]
 })
