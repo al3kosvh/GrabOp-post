@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { VOUserExt } from '../../../account/models/vouser';
 import { VOPost } from '../../../../models/vos';
 
 // Components
@@ -19,12 +18,12 @@ import { ConnectionService } from '../../../connection/services/connection.servi
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
     profileConnectionsCount: number;
-    myUser: VOUserExt = new VOUserExt();
+    myUser: Models.VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];
 
-    constructor(        
+    constructor(
         private myPostsService: MyPostsService,
         private userService: AuthenticationService,
         private connectionService: ConnectionService,

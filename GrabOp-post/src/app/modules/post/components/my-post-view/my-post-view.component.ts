@@ -3,7 +3,6 @@ import { VOPost } from '../../../../models/vos';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyPostsService } from '../../services/my-posts.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
-import { VOUserExt } from '../../../account/models/vouser';
 
 @Component({
     selector: 'app-my-post-view',
@@ -13,7 +12,7 @@ import { VOUserExt } from '../../../account/models/vouser';
 export class MyPostViewComponent implements OnInit {
 
     // @Input() myPost: VOPost;
-    myUser: VOUserExt = new VOUserExt();
+    myUser: Models.VOUserExt;
     idMyPost: number;
     // idSelectedMyPost: number;
     myPost: VOPost = new VOPost({});
