@@ -2,7 +2,7 @@
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
 // Services
-import { AuthHttpService } from '../../services/auth-http.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { SignInDialogComponent } from './dialog/signin-dialog.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyPostsService } from '../../services/my-posts.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { VOUserExt } from '../../../account/models/vouser';
 
 @Component({
@@ -20,13 +20,13 @@ export class MyPostViewComponent implements OnInit {
     myPosts: VOPost[];
 
     constructor(private myPostsService: MyPostsService,
-        private userService: AuthHttpService,
+        private userService: AuthenticationService,
         private router: Router,
         private aroute: ActivatedRoute) { }
 
     ngOnInit() {
 
-        this.userService.user$.subscribe(user => {
+        this.userService.getUser().subscribe(user => {
             this.myUser = user;
             console.log('this.myUser', this.myUser);
         });

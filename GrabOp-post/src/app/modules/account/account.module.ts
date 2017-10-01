@@ -25,7 +25,9 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
-import { AuthHttpService } from './services/auth-http.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AccountStorageService } from './services/account-storage.service';
+import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
 import { SettingsService } from './services/settings.service';
@@ -87,9 +89,11 @@ const routes: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService,
+        AuthenticationService,
         AuthGuard,
         SignupService,
+        AccountStorageService,
+        HttpService,
         SettingsService
     ],
     entryComponents: [SignInDialogComponent]

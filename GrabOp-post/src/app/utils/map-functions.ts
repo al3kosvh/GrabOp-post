@@ -236,8 +236,8 @@ export function mapAlliance(alliance: SOalliance): VOAlliance {
 
 export function mapGetPost(res): any {
 
-    let service: SOservice_expanded = res.json();
-    //  console.log('mapGetMyPost res.json', res.json());
+    let service: SOservice_expanded = res;
+    //  console.log('mapGetMyPost res.json', res);
 
     let alliance: VOAlliance;
     let allianceMember: VOAllianceMember[];
@@ -297,9 +297,9 @@ export function mapGetPost(res): any {
 
 export function mapGetMyPosts(res): any[] {
 
-    let services: SOservice_expanded[] = res.json();
-    // let posts: any = res.json();
-    // console.log('mapGetMyPosts res.json', res.json());
+    let services: SOservice_expanded[] = res;
+    // let posts: any = res;
+    // console.log('mapGetMyPosts res.json', res);
     return services.map(function (service) {
         // console.log('remap posts 2', service);
         let alliance: VOAlliance;
@@ -362,8 +362,8 @@ export function mapGetMyPosts(res): any[] {
 
 // export function mapGetMyUser(res): VOUser {
 //
-//   let account: SOv_account = res.json();
-//   console.log('mapGetMyUser res.json', res.json());
+//   let account: SOv_account = res;
+//   console.log('mapGetMyUser res.json', res);
 //   return {
 //     id: account.id,
 //     // type: account.type,
@@ -407,8 +407,8 @@ export function mapGetMyPosts(res): any[] {
 
 export function mapGetPerson(res): VOUserExt {
 
-    let account: SOaccount_expanded = res.json();
-    //  console.log('mapGetPerson res.json', res.json());
+    let account: SOaccount_expanded = res;
+    //  console.log('mapGetPerson res', res);
     return {
         id: account.id.toString(),
         // sessionId: account,
@@ -484,7 +484,7 @@ export function mapUpdateProfile(user: VOUserExt): SOupdate_profile_req {
 
 // export function mapUploadRes(res: any): VOpost_attachment_ext{
 export function mapUploadRes(res: any): VOpost_attachment {
-    let result = res.json();
+    let result = res;
     return {
         name: result.public_id + '.' + result.format,
         type: 'image',

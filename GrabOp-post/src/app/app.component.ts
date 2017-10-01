@@ -8,7 +8,7 @@ import { trigger, state, style, transition, animate, keyframes, group, query } f
 import { VOUserExt } from './modules/account/models/vouser';
 
 // Services
-import { AuthHttpService } from './modules/account/services/auth-http.service';
+import { AuthenticationService } from './modules/account/services/authentication.service';
 
 @Component({
     selector: 'app-root',
@@ -52,17 +52,17 @@ export class AppComponent {
     private fixedLayout: string = null;
 
     constructor(
-        private auth: AuthHttpService,
+        private auth: AuthenticationService,
         private mdIconRegistry: MdIconRegistry,
         private sanitizer: DomSanitizer
     ) {
 
-        this.isLoggedIn = auth.isLogedIn;
+        //this.isLoggedIn = auth.isLoggedIn();
 
-        auth.user$.subscribe(user => {
+        /*auth.getUser().subscribe(user => {
             if (!user) return;
             //this.user = user
-        });
+        });*/
 
         // Register Icons
         mdIconRegistry

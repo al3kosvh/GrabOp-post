@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { VOSettings } from '../../../models/vos';
-import { AuthHttpService } from '../../account/services/auth-http.service';
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class ConnectionService {
 
     constructor(
-        private http: AuthHttpService
+        private http: HttpService
     ) {
         console.log('ConnectionService');
         this.getMyConnections();
@@ -18,7 +18,7 @@ export class ConnectionService {
         return this.http.get(url)
             .map(res => {
                 console.log('getProfileConnectionsCount', res);
-                return res.json().count;
+                return res.count;
             })
             .catch(this.handleError);
     }
@@ -28,8 +28,8 @@ export class ConnectionService {
         // TODO: post (http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1/json/metadata?op=Connection_MakeRequest)
         this.http.post(url, { message: message })
             .map(res => {
-                console.log('setConnection res', res.json());
-                return res.json();
+                console.log('setConnection res', res);
+                return res;
             })
             // .catch(this.handleError)
             .subscribe(result => {
@@ -43,7 +43,7 @@ export class ConnectionService {
         return this.http.get(url)
             .map(res => {
                 console.warn('getMyConnections', res);
-                return res.json().count;
+                return res.count;
             })
             .catch(this.handleError);
     }
@@ -53,7 +53,7 @@ export class ConnectionService {
         return this.http.get(url)
             .map(res => {
                 console.log('getProfileConnections', res);
-                return res.json().count;
+                return res.count;
             })
             .catch(this.handleError);
     }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { mapUploadRes } from '../../../utils/map-functions';
 import { VOpost_attachment } from '../../../models/vos';
+import { HttpService } from './http.service';
 
 @Injectable()
 export class UploadService {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpService) {
     }
 
     upload(inputData): Observable<VOpost_attachment> {
@@ -18,10 +18,9 @@ export class UploadService {
             formData.append('file', file, file.name);
             formData.append('upload_preset', 'images');
             // console.log(formData.get('upload_preset'));
-            const options = new RequestOptions();
-            return this.http.post('https://api.cloudinary.com/v1_1/al3kosvh/image/upload', formData, options)
+            return this.http.post('https://api.cloudinary.com/v1_1/al3kosvh/image/upload', formData)
                 .map(mapUploadRes)
-                // .map(res => res.json())
+                // .map(res => res)
                 .catch(error => Observable.throw(error))
             // .subscribe(
             //   data => console.log('success', data),

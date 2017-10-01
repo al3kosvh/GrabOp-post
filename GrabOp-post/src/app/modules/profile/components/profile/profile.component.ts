@@ -6,7 +6,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 // Services
 import { ProfileService } from '../../services/profile.service';
 import { PostService } from '../../../post/services/post.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 //import { MyPostsService } from '../../../post/services/my-posts.service';
 
@@ -48,8 +48,7 @@ export class ProfileComponent implements OnInit {
     private profileContainerMarginTop = -212;
 
     constructor(
-        private userService: AuthHttpService,
-        //private myPostsService: MyPostsService,
+        private userService: AuthenticationService,
         private route: ActivatedRoute,
         private profileService: ProfileService,
         private postService: PostService,
