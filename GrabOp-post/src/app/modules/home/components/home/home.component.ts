@@ -18,7 +18,7 @@ import { ConnectionService } from '../../../connection/services/connection.servi
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
     profileConnectionsCount: number;
-    myUser: Models.VOUserExt;
+    user: Models.VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];
@@ -38,15 +38,13 @@ export class HomeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.userService.getUser().subscribe(user => {
-            if (!user) return;
-            this.myUser = user;
-            console.log('this.myUser.id', this.myUser);
-            this.connectionService.getProfileConnectionsCount(this.myUser.id).subscribe(res => {
-                this.profileConnectionsCount = res;
-                console.log('profileConnectionsCount ', res);
+        this.userService.getUser().subscribe(
+            user => {
+                this.user = user;
+                this.connectionService.getProfileConnectionsCount(user.id).subscribe(res => {
+                    this.profileConnectionsCount = res;
+                });
             });
-        });
 
         // this.myPostsService.getMyPosts().subscribe(posts => {
         // this.myPostsService.getMyPosts();
@@ -93,8 +91,8 @@ export class HomeComponent implements OnInit, OnChanges {
         this.postsOffer = posts.filter(function (post) {
             if (post.type == "offer") return post;
         });
-        this.myUser.needs = this.postsNeed.length;
-        this.myUser.offers = this.postsOffer.length;
+        this.user.needs = this.postsNeed.length;
+        this.user.offers = this.postsOffer.length;
         // console.log('this.postsNeed', this.postsNeed);
         // console.log('this.postsOffer', this.postsOffer);
     }
