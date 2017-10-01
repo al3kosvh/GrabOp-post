@@ -35,7 +35,6 @@ export class HttpService {
         else {
             options = new RequestOptions({ headers: this.headers, withCredentials: true });
         }
-        console.log('AuthService - Headers: ', JSON.stringify(options));
         return options;
     }
 

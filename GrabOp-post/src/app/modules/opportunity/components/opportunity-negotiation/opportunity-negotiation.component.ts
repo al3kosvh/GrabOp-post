@@ -7,7 +7,6 @@ import { VOPost } from '../../../../models/vos';
 import { OpportunityService } from '../../services/opportunity.service';
 import { PostService } from '../../../post/services/post.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
-import { VOUserExt } from '../../../account/models/vouser';
 
 @Component({
     selector: 'app-opportunity-negotiation',
@@ -19,7 +18,7 @@ export class OpportunityNegotiationComponent implements OnInit {
     idNeedPost: number;
     idOfferPost: number;
 
-    myUser: VOUserExt = new VOUserExt();
+    myUser: Models.VOUserExt;
 
     myPost: VOPost = new VOPost({});
     personPost: VOPost = new VOPost({});

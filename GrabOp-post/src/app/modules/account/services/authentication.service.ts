@@ -25,15 +25,12 @@ export class AuthenticationService {
     ) {
         this.getUser().subscribe(
             user => {
-                console.log('auth serv constr user: ', user);
                 var isLoggedIn = user ? true : false;
                 if (this.loggedIn.getValue() != isLoggedIn)
-                    isLoggedIn ? this.router.navigate(['/']) : this.router.navigate(['/guest']);
-                this.loggedIn.next(isLoggedIn);
+                    //isLoggedIn ? this.router.navigate(['/home']) : this.router.navigate(['/guest']);
+                    if (!isLoggedIn) this.router.navigate(['/guest']);
 
-            },
-            error => {
-                console.log('auth serv constr error', error);
+                this.loggedIn.next(isLoggedIn);
             });
     }
 
@@ -41,7 +38,7 @@ export class AuthenticationService {
         return this.loggedIn.asObservable();
     }
 
-    signOut(): Observable<Models.VOUser> {
+    signOut(): Observable<any> {
         let url: string = VOSettings.signoutUrl;
         return this.http.get(url).map((response) => {
             this.storage.clearStorage();
@@ -52,12 +49,8 @@ export class AuthenticationService {
     signIn(authData: Models.SignIn): Observable<Models.VOUserExt> {
         let url: string = VOSettings.signinUrl;
 
-        console.log('AuthService - SignIn');
-
         return this.http.post(url, authData).map(response => {
             let authResponse: Models.SOAuthenticateResponse = response;
-
-            console.log('AuthService - SignInResponse: ', authResponse);
 
             let user: Models.VOUser = {
                 id: authResponse.user_id,
@@ -67,12 +60,12 @@ export class AuthenticationService {
                 primaryEmail: "",
                 firstName: "",
                 lastName: "",
-                token: authResponse.session_id
+                token: { value: authResponse.session_id }
             }
             return user;
         }).flatMap((user: Models.VOUser) => {
-            console.log('AuthService - SignIn flatMap');
             return this.getUserExtended().map((userExt: Models.VOUserExt) => {
+                userExt.token = { value: user.sessionId };
                 this.saveUser(userExt);
                 return userExt;
             });
@@ -84,7 +77,6 @@ export class AuthenticationService {
         let url: string = VOSettings.myProfile;
         return this.http.get(url)
             .map(response => {
-                console.log('AuthService - GetUserExtended: ', response);
                 let vouser: Models.VOUserExt = this.mapUserExtended(response);
                 return vouser;
             });
@@ -111,25 +103,23 @@ export class AuthenticationService {
             primaryEmail: "",
             firstName: "",
             lastName: "",
-            token: authResponse.session_id
+            token: { value: authResponse.session_id }
         }
     }
 
     handleError(error: any) {
         let errMsg = (error.statusText) ? error.statusText : 'Error';
-        console.error('AuthService - HandleError: ', error);
         return Observable.throw(errMsg);
     }
 
 
     getUser(): Observable<Models.VOUserExt> {
-        console.log('auth serv getUser');
         return this.storage.user.asObservable();
     }
 
     saveUser(user: Models.VOUserExt): void {
         this.storage.setUser(user);
-        this.storage.setToken({ value: user.token });
+        this.storage.setToken(user.token);
     }
 
 }
