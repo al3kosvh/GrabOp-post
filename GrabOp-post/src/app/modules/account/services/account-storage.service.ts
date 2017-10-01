@@ -11,11 +11,11 @@ export class AccountStorageService {
         window.addEventListener("storage",
             event => {
                 if (event.key.startsWith("user")) {
-                    //this.loadUser();
+                    this.loadUser();
                     return;
                 }
                 if (event.key.startsWith("token")) {
-                    //this.loadToken();
+                    this.loadToken();
                     return;
                 }
             });
@@ -43,7 +43,7 @@ export class AccountStorageService {
     }
 
     setToken(token: Models.Token) {
-        localStorage.setItem('user', btoa(JSON.stringify(token)));
+        localStorage.setItem('token', btoa(JSON.stringify(token)));
         this.token.next(token);
     }
 
