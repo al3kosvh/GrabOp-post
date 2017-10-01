@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 // Services
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { SettingsService } from '../../services/settings.service';
 import { SettingsName } from '../../models/settings';
 
@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
     private SettingsName = SettingsName;
 
     constructor(
-        private accountService: AuthHttpService,
+        private accountService: AuthenticationService,
         private settingsService: SettingsService,
         private route: ActivatedRoute
     ) { }
