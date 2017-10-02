@@ -1,16 +1,21 @@
-<form #passwordForm="ngForm" fxLayout="column">
-  <md-form-field>
-    <input mdInput type="password" name="current" [(ngModel)]="model.oldpassword" placeholder="Current Password" required />
-  </md-form-field>
-  <md-form-field>
-    <input mdInput type="password" name="NewPassword" [(ngModel)]="model.newpassword" placeholder="New password" required />
-  </md-form-field>
-  <md-form-field>
-    <input mdInput type="password" name="ConfirmNewPassword" [(ngModel)]="model.confirmedpassword" placeholder="Confirm new password" required />
-  </md-form-field>
-  <div fxLayout="row-reverse" [ngSwitch]="inProcess">
-    <span *ngSwitchCase="true" class="spinner-send-label">Sending data...</span>
-    <md-progress-spinner *ngSwitchCase="true" class="spinner36" mode="indeterminate"></md-progress-spinner>
-    <button *ngSwitchCase="false" md-raised-button color="accent" [disabled]="!passwordForm.form.valid" (click)="onChangePassword()">CHANGE PASSWORD</button>
+<h5>Change Your Password</h5>
+<div>
+  <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
+    <form #passwordForm="ngForm" fxLayout="column">
+      <md-form-field>
+        <input mdInput type="password" name="current" [(ngModel)]="model.oldpassword" placeholder="Current Password" required />
+      </md-form-field>
+      <md-form-field>
+        <input mdInput type="password" name="NewPassword" [(ngModel)]="model.newpassword" placeholder="New password" required />
+      </md-form-field>
+      <md-form-field>
+        <input mdInput type="password" name="ConfirmNewPassword" [(ngModel)]="model.confirmedpassword" placeholder="Confirm new password" required />
+      </md-form-field>
+      <div fxLayout="row-reverse" [ngSwitch]="inProcess">
+        <span *ngSwitchCase="true" class="spinner-send-label">Sending data...</span>
+        <md-progress-spinner *ngSwitchCase="true" class="spinner36" mode="indeterminate"></md-progress-spinner>
+        <button *ngSwitchCase="false" md-raised-button color="accent" [disabled]="!passwordForm.form.valid" (click)="onChangePassword()">CHANGE PASSWORD</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
