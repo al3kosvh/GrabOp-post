@@ -7,7 +7,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { SettingsService } from '../../services/settings.service';
 import { SettingsName } from '../../models/settings.enum';
-import { ErrorService } from '../../../shared/services/error.service';
+
 
 @Component({
     selector: 'settings',
@@ -19,21 +19,12 @@ export class SettingsComponent implements OnInit {
     settings: Models.Setting[];
     SettingsName = SettingsName;
     accountId: string;
-    changePasswordInProcess: boolean = false;
-
-    model: Models.ChangeUserPassword
-    passwordFormControl = new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)]);
-
+    
     constructor(
         private accountService: AuthenticationService,
         private settingsService: SettingsService,
-        private route: ActivatedRoute,
-        private error: ErrorService
-    ) {
-        this.model = <Models.ChangeUserPassword>{};
-    }
+        private route: ActivatedRoute       
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe((params: Params) => {
@@ -49,18 +40,5 @@ export class SettingsComponent implements OnInit {
             settings => {
                 this.settings = settings;
             });
-    }
-
-    private onChangePassword() {
-        this.changePasswordInProcess = true;
-        this.settingsService.changePassword(this.accountId, this.model).subscribe(
-            response => {                
-                this.changePasswordInProcess = false;
-            },
-            error => {
-                this.error.resolve(error);
-                this.changePasswordInProcess = false
-            }
-        );
     }
 }

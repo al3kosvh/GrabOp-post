@@ -21,6 +21,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SettingSlideToggleComponent } from './components/settings/setting-slide-toggle/setting-slide-toggle.component';
 import { SettingSliderComponent } from './components/settings/setting-slider/setting-slider.component';
 import { SettingSelectComponent } from './components/settings/setting-select/setting-select.component';
+import { SecuritySettingsComponent } from './components/settings/security-settings/security-settings.component';
 
 // Services
 import { ProfileService } from './services/profile.service';
@@ -64,7 +65,8 @@ const routes: Routes = [
         SettingsComponent,
         SettingSlideToggleComponent,
         SettingSliderComponent,
-        SettingSelectComponent
+        SettingSelectComponent,
+        SecuritySettingsComponent
     ],
     providers: [
         ProfileService,
