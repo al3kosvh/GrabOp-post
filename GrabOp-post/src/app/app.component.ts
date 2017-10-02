@@ -19,7 +19,7 @@ import { ToolbarService } from './services/toolbar.service';
         trigger('routerAnimationRight', [
             state('*', style({
                 // the view covers the whole screen with a semi tranparent background
-                position: 'fixed',                
+                position: 'fixed',
             })),
 
             state('in', style({
@@ -36,8 +36,8 @@ import { ToolbarService } from './services/toolbar.service';
                 style({
                     position: 'fixed',
                     top: '80px',
-                  //top: '80px',
-                    right: '-400px',                  
+                    //top: '80px',
+                    right: '-400px',
                 }),
                 animate('400ms ease-in-out')
             ])
@@ -49,7 +49,7 @@ import { ToolbarService } from './services/toolbar.service';
 export class AppComponent {
 
     private isLoggedIn: Observable<boolean>;
-    private user: VOUserExt;
+    private user: Models.VOUserExt;
     private fixedLayout: string = null;
 
     constructor(
@@ -60,7 +60,11 @@ export class AppComponent {
     ) {
 
         this.isLoggedIn = authService.isLoggedIn();
-        this.toolbarService.showToolbar();        
+        this.authService.getUser().subscribe(
+            user => {
+                this.user = user;
+            });
+        this.toolbarService.showToolbar();
         this.toolbarService.isVisible().subscribe(visible => {
             this.fixedLayout = visible ? 'fixed' : null;
         })
