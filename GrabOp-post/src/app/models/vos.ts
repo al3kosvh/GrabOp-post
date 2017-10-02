@@ -1,4 +1,4 @@
-﻿
+
 import { VOUser, VOUserExt } from '../modules/account/models/vouser';
 /**
  * Created by Vlad on 9/6/2016.
@@ -253,7 +253,7 @@ export class VOService extends VOPost {
 
 
 
-export class VOProfileSettings {
+export class VOAccountSettings {
     connection_requests: boolean;
     new_messages: boolean;
     alliance_notifications: boolean;
@@ -306,7 +306,8 @@ export class VOSettings {
     // static server: string = 'http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1';
     static server: string = 'http://localhost:53822/api/v1';
 
-    static authenticateUrl = VOSettings.server + '/auth?format=json';
+    static signinUrl = VOSettings.server + '/auth?format=json';
+    static signoutUrl = VOSettings.server + '/auth/logout?format=json';
     static register: string = VOSettings.server + '/register?format=json';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
     static getMyPosts: string = VOSettings.server + '/services/myservices?format=json';
@@ -336,6 +337,7 @@ export class VOSettings {
 
     static upload: string = 'api/upload.php';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
+    static toggleSetting: string = VOSettings.server + '/profiles/{id}/settings/{settingId}?format=json';
     // static settings: string = 'api/settings.php';
     static images: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
     static SMALL: string = 't_thumbnail';

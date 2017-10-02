@@ -6,8 +6,7 @@ import { VOPost } from '../../../../models/vos';
 // Services
 import { OpportunityService } from '../../services/opportunity.service';
 import { PostService } from '../../../post/services/post.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
-import { VOUserExt } from '../../../account/models/vouser';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 
 @Component({
     selector: 'app-opportunity-negotiation',
@@ -19,16 +18,16 @@ export class OpportunityNegotiationComponent implements OnInit {
     idNeedPost: number;
     idOfferPost: number;
 
-    myUser: VOUserExt = new VOUserExt();
+    myUser: Models.VOUserExt;
 
     myPost: VOPost = new VOPost({});
     personPost: VOPost = new VOPost({});
 
     constructor(private aroute: ActivatedRoute,
-        private auth: AuthHttpService,
+        private auth: AuthenticationService,
         private personPostsService: PostService,
         private opportunityService: OpportunityService) {
-        this.auth.user$.subscribe(res => {
+        this.auth.getUser().subscribe(res => {
             this.myUser = res;
             console.log('myUser', this.myUser);
         });

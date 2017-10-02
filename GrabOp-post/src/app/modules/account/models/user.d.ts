@@ -31,7 +31,7 @@ declare module Models {
         primaryEmail: string;
         emailVisible?: boolean;
         displayName: string;
-        token?: string;
+        token?: Models.Token;
         isLogin?: boolean;
         firstName: string;
         lastName: string;
@@ -42,28 +42,28 @@ declare module Models {
     }
 
     interface VOUserExt extends VOUser {
-        background_pic: string;
-        video: string;
-        resume: string;
-        province: string;
-        city: string;
-        country: string;
-        latitude: number;
-        longitude: number;
-        skillset: string[];
-        interests: string[];
-        profile_pic: string;
-        jobtitle: string;
-        company: string;
-        occupation: number;
-        url: string;
-        description: string;
-        phoneNumber: string;
+        background_pic?: string;
+        video?: string;
+        resume?: string;
+        province?: string;
+        city?: string;
+        country?: string;
+        latitude?: number;
+        longitude?: number;
+        skillset?: string[];
+        interests?: string[];
+        profile_pic?: string;
+        jobtitle?: string;
+        company?: string;
+        occupation?: number;
+        url?: string;
+        description?: string;
+        phoneNumber?: string;
         phoneVisible?: boolean;
-        distance: number;
-        offers: number;
-        needs: number;
-        numberOfOpps: number;
+        distance?: number;
+        offers?: number;
+        needs?: number;
+        numberOfOpps?: number;
     }
 
     interface SOResponseStatus {
@@ -91,12 +91,12 @@ declare module Models {
     }
 
     interface SOAuthenticateResponse {
-        UserId: string;
-        SessionId: string;
-        UserName: string;
-        DisplayName: string;
-        BearerToken: string;
-        ResponseStatus: SOResponseStatus;        
+        user_id: string;
+        session_id: string;
+        user_name: string;
+        display_name: string;
+        bearer_token: string;
+        response_status: SOResponseStatus;
     }
 
     // server model

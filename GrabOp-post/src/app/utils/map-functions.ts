@@ -297,13 +297,13 @@ export function mapGetPost(res): any {
 
 export function mapGetMyPosts(res): any[] {
 
-  let services: SOservice_expanded[] = res.json();
-  // let posts: any = res.json();
-  // console.log('mapGetMyPosts res.json', res.json());
-  return services.map(function (service) {
-    // console.log('remap posts 2', service);
-    let alliance: VOAlliance;
-    let allianceMember: VOAllianceMember[];
+    let services: SOservice_expanded[] = res;
+    // let posts: any = res;
+    // console.log('mapGetMyPosts res.json', res);
+    return services.map(function (service) {
+        // console.log('remap posts 2', service);
+        let alliance: VOAlliance;
+        let allianceMember: VOAllianceMember[];
 
     if (service.alliance) {
       alliance = mapAlliance(service.alliance);
@@ -362,8 +362,8 @@ export function mapGetMyPosts(res): any[] {
 
 // export function mapGetMyUser(res): VOUser {
 //
-//   let account: SOv_account = res.json();
-//   console.log('mapGetMyUser res.json', res.json());
+//   let account: SOv_account = res;
+//   console.log('mapGetMyUser res.json', res);
 //   return {
 //     id: account.id,
 //     // type: account.type,
@@ -407,46 +407,46 @@ export function mapGetMyPosts(res): any[] {
 
 export function mapGetPerson(res): VOUserExt {
 
-  let account: SOaccount_expanded = res.json();
-  //  console.log('mapGetPerson res.json', res.json());
-  return {
-    id: account.id.toString(),
-    // sessionId: account,
-    // userId:account,
-    // role: account.type,
-    username: account.user_name,
-    // password:account,
-    primaryEmail: account.primary_email,
-    // emailVisible: account,
-    displayName: account.display_name,
-    // token: account,
-    // isLogin: account,
-    firstName: account.first_name,
-    lastName: account.last_name,
+    let account: SOaccount_expanded = res;
+    //  console.log('mapGetPerson res', res);
+    return {
+        id: account.id.toString(),
+        // sessionId: account,
+        // userId:account,
+        // role: account.type,
+        username: account.user_name,
+        // password:account,
+        primaryEmail: account.primary_email,
+        // emailVisible: account,
+        displayName: account.display_name,
+        // token: account,
+        // isLogin: account,
+        firstName: account.first_name,
+        lastName: account.last_name,
 
-    background_pic: account.background_pic,
-    video: account.bideo, // ????? bideo
-    resume: account.resume,
-    province: account.province,
-    city: account.city,
-    country: account.country,
-    latitude: account.latitude,
-    longitude: account.longitude,
-    skillset: account.skillset,
-    interests: account.interests,
-    profile_pic: account.profile_pic,
-    jobtitle: account.jobtitle,
-    company: account.company,
-    occupation: account.occupation,
-    url: account.url,
-    description: account.description,
-    phoneNumber: account.phone_number,
-    // phoneVisible: account,
-    distance: account.distance,
-    offers: account.offers,
-    needs: account.needs,
-    numberOfOpps: account.number_of_opps
-  }
+        background_pic: account.background_pic,
+        video: account.bideo, // ????? bideo
+        resume: account.resume,
+        province: account.province,
+        city: account.city,
+        country: account.country,
+        latitude: account.latitude,
+        longitude: account.longitude,
+        skillset: account.skillset,
+        interests: account.interests,
+        profile_pic: account.profile_pic,
+        jobtitle: account.jobtitle,
+        company: account.company,
+        occupation: account.occupation,
+        url: account.url,
+        description: account.description,
+        phoneNumber: account.phone_number,
+        // phoneVisible: account,
+        distance: account.distance,
+        offers: account.offers,
+        needs: account.needs,
+        numberOfOpps: account.number_of_opps
+    }
 }
 
 export function mapUpdateProfileClientToServer(user: VOUserExt): any {
@@ -502,15 +502,15 @@ export function mapUpdateProfileClientToServer(user: VOUserExt): any {
 
 // export function mapUploadRes(res: any): VOpost_attachment_ext{
 export function mapUploadRes(res: any): VOpost_attachment {
-  let result = res.json();
-  return {
-    name: result.public_id + '.' + result.format,
-    type: 'image',
-    // prefix: result.url.slice(result.url.indexOf("/upload/")+8, result.url.indexOf("/publicimages/")),
-    prefix: 'v' + result.version,
+    let result = res;
+    return {
+        name: result.public_id + '.' + result.format,
+        type: 'image',
+        // prefix: result.url.slice(result.url.indexOf("/upload/")+8, result.url.indexOf("/publicimages/")),
+        prefix: 'v' + result.version,
 
-    // url: result.url,
-    // url_prefix: result.url.slice(0, result.url.indexOf("v" + result.version + "/")),
-    // thumbnail: result.eager[0].url
-  }
+        // url: result.url,
+        // url_prefix: result.url.slice(0, result.url.indexOf("v" + result.version + "/")),
+        // thumbnail: result.eager[0].url
+    }
 }

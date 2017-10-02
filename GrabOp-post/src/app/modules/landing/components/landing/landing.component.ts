@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,8 @@ import { SignInComponent } from '../../../account/components/signin/signin.compo
 
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
+import { ToolbarService } from '../../../../services/toolbar.service';
 
 @Component({
     selector: 'app-landing',
@@ -19,7 +20,7 @@ import { AuthHttpService } from '../../../account/services/auth-http.service';
     styleUrls: ['./landing.component.css'],
     providers: []
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
 
     private isLoggedIn: Observable<boolean>;
     private postNeed: VOPost[] = [];
@@ -47,11 +48,19 @@ export class LandingComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private modal: ModalWindowService,
-        private auth: AuthHttpService,
-        private dialog: MdDialog
-    ) { }
+        private auth: AuthenticationService,
+        private dialog: MdDialog,
+        private toolbarService: ToolbarService
+    ) {
+        this.toolbarService.hideToolbar();
+        this.isLoggedIn = this.auth.isLoggedIn(); 
+    }
 
     ngOnInit() {
-        this.isLoggedIn = this.auth.isLogedIn;
+               
+    }
+
+    ngOnDestroy() {
+        this.toolbarService.showToolbar();
     }
 }

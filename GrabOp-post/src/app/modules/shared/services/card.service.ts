@@ -1,10 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { BehaviorSubject } from "rxjs";
 import { VOSettings } from '../../../models/vos';
+
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class CardService {
@@ -20,7 +21,7 @@ export class CardService {
     // private userSub:BehaviorSubject<VOUserExt>;
 
 
-    constructor(private http: Http) {
+    constructor(private http: HttpService) {
 
         // this.userSub = new BehaviorSubject<VOUserExt>(new VOUserExt({}));
         //this.user$= this.userSub.asObservable();
@@ -34,7 +35,7 @@ export class CardService {
 
         /* var url:string =VOSettings.login+'/user';
          this.http.get(url)
-             .map(res=>{return  new VOUser(res.json());})
+             .map(res=>{return  new VOUser(res);})
              .catch((err)=>this.handleError(err)).subscribe(
              (res:any)=> {
                  this._user = res;
@@ -49,7 +50,7 @@ export class CardService {
     
             var url:string = VOSettings.login+'/user';
             return  this.http.post(url,this._user).toPromise()
-                .then(res=>{return  new VOResult(res.json());})
+                .then(res=>{return  new VOResult(res);})
         }*/
 
 

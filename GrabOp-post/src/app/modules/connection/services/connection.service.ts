@@ -1,15 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {VOSettings} from '../../../models/vos';
-import {AuthHttpService} from '../../account/services/auth-http.service';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { VOSettings } from '../../../models/vos';
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class ConnectionService {
 
-  constructor(private http: AuthHttpService) {
-    console.log('ConnectionService');
-    this.getMyConnections();
-  }
+    constructor(
+        private http: HttpService
+    ) {
+        this.getMyConnections();
+    }
 
   getProfileConnectionsCount(id: string): Observable<number> {
     let url = VOSettings.connection_GetProfileConnectionsCount.replace(<any>'{{id}}', id);

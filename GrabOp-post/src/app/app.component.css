@@ -11,6 +11,14 @@ md-sidenav md-list a {
   text-decoration: none;
 }
 
+  md-sidenav md-list a.menu-active {
+    color: #03a9f4;
+  }
+
+.mat-list-item {
+  border-bottom: 1px outset white;
+}
+
 md-sidenav-container.fixed {
   margin-top: -64px;
   padding-top: 64px;
@@ -20,3 +28,5 @@ div.slideRight {
   position: fixed;
   z-index: 1000;
 }
+
+

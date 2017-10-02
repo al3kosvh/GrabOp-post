@@ -15,6 +15,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import {
+    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry,
+    MatGridListModule
+} from '@angular/material';
 
 // App Modules
 import { HomeModule } from './modules/home/home.module';
@@ -26,20 +30,32 @@ import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { ProfileModule } from './modules/profile/profile.module';
-import { MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry } from '@angular/material';
+import { SearchModule } from './modules/search/search.module';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
 import { PostsFilterPipe } from './pipes/posts-filter.pipe';
+
+// Services
+import { ToolbarService } from './services/toolbar.service';
 
 // Components
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { PageNotFoundComponent } from './components/pagenotfound/page-not-found.component';
+import { HowItWorksComponent } from './components/how-it-works/how-it-works.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { HelpComponent } from './components/help/help.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
+    { path: 'how-it-works', component: HowItWorksComponent },
+    { path: 'feedback', component: FeedbackComponent },
+    { path: 'terms-of-use', component: TermsOfUseComponent },
+    { path: 'about-us', component: AboutUsComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -66,17 +82,24 @@ const routes: Routes = [
         PostEditModule,
         ConnectionModule,
         OpportunityModule,
-        ProfileModule
+        ProfileModule,
+        SearchModule
     ],
     declarations: [
         AppComponent,
         ToolbarComponent,
         FooterComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        HowItWorksComponent,
+        FeedbackComponent,
+        TermsOfUseComponent,
+        AboutUsComponent,
+        HelpComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MdIconRegistry
+        MdIconRegistry,
+        ToolbarService
     ],
     bootstrap: [AppComponent]
 })

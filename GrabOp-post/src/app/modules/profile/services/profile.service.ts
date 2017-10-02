@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import { Response } from '@angular/http';
 
 // Services
-import { AuthHttpService } from '../../account/services/auth-http.service';
+import { HttpService } from '../../account/services/http.service';
 
 import { VOSettings } from '../../../models/vos';
 import { mapGetPerson, mapUpdateProfileClientToServer } from '../../../utils/map-functions';
@@ -14,16 +14,17 @@ import { Observable } from "rxjs/Observable";
 export class ProfileService {
 
     constructor(
-        private authHttpService: AuthHttpService
-    ) { }
+        private http: HttpService
+    ) {
+    }
 
     public getProfile(): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.myProfile).map(mapGetPerson)
+        return this.http.get(VOSettings.myProfile).map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     public validateUrlProfile(id: string, router: Router): Observable<boolean> {
-        return this.authHttpService.get(VOSettings.myProfile).map(res => {
+        return this.http.get(VOSettings.myProfile).map(res => {
           const myProfile = mapGetPerson(res);
           if (id == myProfile.id) {
             router.navigate(['/profile']);
@@ -37,14 +38,14 @@ export class ProfileService {
     }
 
     public getProfileById(id: string): Observable<VOUserExt> {
-        return this.authHttpService.get(VOSettings.profile.replace(<any>'{{id}}', id))
+        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id))
           .map(mapGetPerson)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     public editProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.authHttpService.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), mapUpdateProfileClientToServer(person))
-          .map(res => res.json())
+        return this.http.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id),  mapUpdateProfileClientToServer(person))
+          .map(res => res)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 

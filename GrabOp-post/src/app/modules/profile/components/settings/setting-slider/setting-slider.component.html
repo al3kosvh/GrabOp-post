@@ -1,0 +1,16 @@
+<div fxLayout="row">
+  <div class="description" fxFlex="80">{{setting.description}}</div>
+  <div>
+    <md-slider (change)="onChange()" class="example-margin"
+               [disabled]="disabled"
+               [invert]="invert"
+               [max]="max"
+               [min]="min"
+               [step]="step"
+               [thumb-label]="thumbLabel"
+               [tick-interval]="tickInterval"
+               [(ngModel)]="value"
+               [vertical]="vertical">
+    </md-slider>
+  </div>
+</div>

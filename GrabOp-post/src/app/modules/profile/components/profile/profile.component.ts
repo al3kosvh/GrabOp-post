@@ -4,10 +4,10 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 import {MdDialog, MdDialogConfig} from '@angular/material';
 
 // Services
-import {ProfileService} from '../../services/profile.service';
-import {PostService} from '../../../post/services/post.service';
-import {AuthHttpService} from '../../../account/services/auth-http.service';
-import {ConnectionService} from '../../../connection/services/connection.service';
+import { ProfileService } from '../../services/profile.service';
+import { PostService } from '../../../post/services/post.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
+import { ConnectionService } from '../../../connection/services/connection.service';
 //import { MyPostsService } from '../../../post/services/my-posts.service';
 
 import {VOUserExt} from "../../../account/models/vouser";
@@ -51,14 +51,14 @@ export class ProfileComponent implements OnInit {
   private myConnections: any;
   private indexConnection: any;
 
-  constructor(private userService: AuthHttpService,
-              //private myPostsService: MyPostsService,
-              private route: ActivatedRoute,
-              private profileService: ProfileService,
-              private postService: PostService,
-              private connectionService: ConnectionService,
-              private dialog: MdDialog) {
-  }
+    constructor(
+        private userService: AuthenticationService,
+        private route: ActivatedRoute,
+        private profileService: ProfileService,
+        private postService: PostService,
+        private connectionService: ConnectionService,
+        private dialog: MdDialog
+    ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

@@ -12,7 +12,7 @@ import { ModalWindowService } from '../../../shared/services/modal-window.servic
 })
 export class UserBioComponent implements OnInit {
 
-    @Input() myUser: VOUserExt = new VOUserExt();
+    @Input() user: VOUserExt = new VOUserExt();
 
     constructor(
         public modal: ModalWindowService

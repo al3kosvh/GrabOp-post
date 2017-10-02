@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { VOUserExt } from '../../../account/models/vouser';
 import { VOPost } from '../../../../models/vos';
 
 // Components
@@ -8,7 +7,7 @@ import { UserCommentsComponent } from '../user-comments/user-comments.component'
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { MyPostsService } from '../../../post/services/my-posts.service';
-import { AuthHttpService } from '../../../account/services/auth-http.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 
 @Component({
@@ -19,14 +18,14 @@ import { ConnectionService } from '../../../connection/services/connection.servi
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
     profileConnectionsCount: number;
-    myUser: VOUserExt = new VOUserExt();
+    user: Models.VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];
 
-    constructor(        
+    constructor(
         private myPostsService: MyPostsService,
-        private userService: AuthHttpService,
+        private userService: AuthenticationService,
         private connectionService: ConnectionService,
         private modal: ModalWindowService) {
         this.stats = {
@@ -39,15 +38,13 @@ export class HomeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.userService.user$.subscribe(user => {
-            if (!user) return;
-            this.myUser = user;
-            console.log('this.myUser.id', this.myUser);
-            this.connectionService.getProfileConnectionsCount(this.myUser.id).subscribe(res => {
-                this.profileConnectionsCount = res;
-                console.log('profileConnectionsCount ', res);
+        this.userService.getUser().subscribe(
+            user => {
+                this.user = user;
+                this.connectionService.getProfileConnectionsCount(user.id).subscribe(res => {
+                    this.profileConnectionsCount = res;
+                });
             });
-        });
 
         // this.myPostsService.getMyPosts().subscribe(posts => {
         // this.myPostsService.getMyPosts();
@@ -94,8 +91,8 @@ export class HomeComponent implements OnInit, OnChanges {
         this.postsOffer = posts.filter(function (post) {
             if (post.type == "offer") return post;
         });
-        this.myUser.needs = this.postsNeed.length;
-        this.myUser.offers = this.postsOffer.length;
+        this.user.needs = this.postsNeed.length;
+        this.user.offers = this.postsOffer.length;
         // console.log('this.postsNeed', this.postsNeed);
         // console.log('this.postsOffer', this.postsOffer);
     }

@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
+import {
+    MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule,
+    MatListModule, MatTabsModule
+} from '@angular/material';
 
 // Components
 import { SignupComponent } from './components/signup/signup.component';
@@ -20,7 +23,9 @@ import { CheckEmailDirective } from './directives/check-email.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
-import { AuthHttpService } from './services/auth-http.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AccountStorageService } from './services/account-storage.service';
+import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignupService } from './services/signup.service';
 
@@ -36,10 +41,10 @@ const routes: Routes = [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
-            { path: 'resetpassword/:token', component: AccountRecoverComponent }            
+            { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
     },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] }
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },    
 ];
 
 @NgModule({
@@ -52,8 +57,11 @@ const routes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatCardModule,
+        MatCheckboxModule,
+        MatListModule,
+        MatTabsModule,
         RouterModule.forChild(routes),
-        SharedModule        
+        SharedModule
     ],
     exports: [
         SignInComponent,
@@ -74,9 +82,11 @@ const routes: Routes = [
     ],
     providers: [
         UploadService,
-        AuthHttpService,
+        AuthenticationService,
         AuthGuard,
-        SignupService
+        SignupService,
+        AccountStorageService,
+        HttpService        
     ],
     entryComponents: [SignInDialogComponent]
 })

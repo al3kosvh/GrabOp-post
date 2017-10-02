@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AuthHttpService } from "../../account/services/auth-http.service";
+import { HttpService } from "../../account/services/http.service";
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { VOPost, VOResult, VOSettings } from "../../../models/vos";
@@ -17,7 +17,7 @@ export class PostService {
     private selectedPost: VOPost;
 
     constructor(
-        private auth: AuthHttpService
+        private http: HttpService
     ) {
         this.postsSub = new BehaviorSubject(null);
         this.posts$ = this.postsSub.asObservable();
@@ -48,8 +48,8 @@ export class PostService {
             let post: VOPost = this.filterPostById(idPost);
             this.selectedPostSub.next(post);
         } else {
-            this.auth.get(url)
-                // .map(res => this.mapSelectPostById(res.json()))
+            this.http.get(url)
+                // .map(res => this.mapSelectPostById(res))
                 .map(mapGetPost)
                 .subscribe(result => {
                     console.log('result', result);
@@ -79,7 +79,7 @@ export class PostService {
         let url: string = VOSettings.getPosts.replace(<any>'{{id}}', idPerson.toString());
         console.log(url);
 
-        this.auth.get(url)
+        this.http.get(url)
             .map(mapGetMyPosts)
             .subscribe(res => {
                 console.log('getPosts ', res);
@@ -101,7 +101,7 @@ export class PostService {
     // deletePost(post: VOPost): void {
     //   let url: string = VOSettings.server + 'post/' + post.id;
     //   this.auth.delete(url)
-    //     .map(res => new VOResult(res.json()))
+    //     .map(res => new VOResult(res))
     //     .subscribe((result)=>{
     //       if(result.success){
     //         this.posts.splice(this.posts.indexOf(post), 1);
@@ -112,7 +112,7 @@ export class PostService {
     /* deleteAttachment(post_id: number, id: number): void {
      let url: string = VOSettings.server + 'post/' + post_id + '/attachment/' + id;
      this.auth.delete(url)
-     .map(res => new VOResult(res.json()))
+     .map(res => new VOResult(res))
      .subscribe((result)=>{
      if(result.success){
      let post = this.filterPostById(post_id, this.posts);

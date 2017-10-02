@@ -9,7 +9,7 @@
         <div class="options">
           <div *ngIf="isLoggedIn | async">
             <button md-raised-button color="accent" routerLink="/home">HOME</button>
-            <button md-raised-button color="accent" routerLink="signout">SIGN OUT</button>
+            <button md-raised-button color="accent" routerLink="/signout">SIGN OUT</button>
           </div>
           <div *ngIf="!(isLoggedIn | async)">
             <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>
@@ -17,13 +17,8 @@
           </div>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <div class="search-container" fxFlex="35" fxFlex.xs="60">
-          <md-form-field floatPlaceholder="never" fxFlex>
-            <md-icon mdPrefix>search</md-icon>
-            <input mdInput placeholder="star your search here">
-          </md-form-field>
-        </div>
+      <div fxLayout="row" fxLayoutAlign="center">        
+          <search placeholder="star your search here" fxFlex="35" fxFlex.xs="60"></search>   
       </div>
     </div>
   </div>

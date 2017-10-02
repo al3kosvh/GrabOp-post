@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
+import { HttpService } from '../../account/services/http.service';
 
 import { VOSettings, VOService, VOResult, VOPost, VOImage, VOCategory, VOSearch } from "../../../models/vos";
 
@@ -22,7 +22,7 @@ export class SearchService {
 
     currentSearch: VOSearch;
 
-    constructor(private http: Http) {
+    constructor(private http: HttpService) {
         this.postSub = new Subject<VOPost[]>();
         this.posts$ = this.postSub.asObservable();
         // this.get_AllPosts();
@@ -140,9 +140,9 @@ export class SearchService {
     get_AllPosts(): void {
         var url: string = VOSettings.posts;
         this.http.get(url)
-            .map((res: Response) => {
-                // console.log('res:Res', res.json().map(function(item){ return new VOPost(item)}));
-                return res.json().map(function (item) {
+            .map((res) => {
+                // console.log('res:Res', res.map(function(item){ return new VOPost(item)}));
+                return res.map(function (item) {
                     return new VOPost(item)
                 });
             })
@@ -158,9 +158,9 @@ export class SearchService {
     // get_AllPosts():Observable<VOPost[]>{
     //     var url:string = VOSettings.posts;
     //     return this.http.get(url)
-    //             .map((res:Response)=>{
-    //                 // console.log('res:Res', res.json().map(function(item){ return new VOPost(item)}));
-    //                 return res.json().map(function(item){ return new VOPost(item)});
+    //             .map((res)=>{
+    //                 // console.log('res:Res', res.map(function(item){ return new VOPost(item)}));
+    //                 return res.map(function(item){ return new VOPost(item)});
     //             })
     //             .catch(this.handleError)
     // }
@@ -168,8 +168,8 @@ export class SearchService {
     getAllPosts(): Observable<any> {
         var url: string = VOSettings.posts;
         return this.http.get(url)
-            .map((res: Response) => {
-                return res.json().map(function (item) {
+            .map((res) => {
+                return res.map(function (item) {
                     return new VOPost(item)
                 });
             })

@@ -1,0 +1,5 @@
+<md-select fxFlex (change)="onChange()" placeholder="{{setting.description}}" [(ngModel)]="value" name="unit">
+  <md-option *ngFor="let unit of units" [value]="unit">
+    {{unit}}
+  </md-option>
+</md-select>  

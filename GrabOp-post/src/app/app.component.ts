@@ -1,4 +1,4 @@
-import { Component, Directive } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RouterOutlet } from '@angular/router';
 import { MdIconRegistry } from '@angular/material';
@@ -8,7 +8,8 @@ import { trigger, state, style, transition, animate, keyframes, group, query } f
 import { VOUserExt } from './modules/account/models/vouser';
 
 // Services
-import { AuthHttpService } from './modules/account/services/auth-http.service';
+import { AuthenticationService } from './modules/account/services/authentication.service';
+import { ToolbarService } from './services/toolbar.service';
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,7 @@ import { AuthHttpService } from './modules/account/services/auth-http.service';
         trigger('routerAnimationRight', [
             state('*', style({
                 // the view covers the whole screen with a semi tranparent background
-                position: 'fixed',                
+                position: 'fixed',
             })),
 
             state('in', style({
@@ -35,8 +36,8 @@ import { AuthHttpService } from './modules/account/services/auth-http.service';
                 style({
                     position: 'fixed',
                     top: '80px',
-                  //top: '80px',
-                    right: '-400px',                  
+                    //top: '80px',
+                    right: '-400px',
                 }),
                 animate('400ms ease-in-out')
             ])
@@ -48,21 +49,25 @@ import { AuthHttpService } from './modules/account/services/auth-http.service';
 export class AppComponent {
 
     private isLoggedIn: Observable<boolean>;
-    private user: VOUserExt;
+    private user: Models.VOUserExt;
     private fixedLayout: string = null;
 
     constructor(
-        private auth: AuthHttpService,
+        private authService: AuthenticationService,
         private mdIconRegistry: MdIconRegistry,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private toolbarService: ToolbarService
     ) {
 
-        this.isLoggedIn = auth.isLogedIn;
-
-        auth.user$.subscribe(user => {
-            if (!user) return;
-            //this.user = user
-        });
+        this.isLoggedIn = authService.isLoggedIn();
+        this.authService.getUser().subscribe(
+            user => {
+                this.user = user;
+            });
+        this.toolbarService.showToolbar();
+        this.toolbarService.isVisible().subscribe(visible => {
+            this.fixedLayout = visible ? 'fixed' : null;
+        })
 
         // Register Icons
         mdIconRegistry
@@ -75,10 +80,6 @@ export class AppComponent {
 
     public getRouteAnimation(outlet: RouterOutlet): any {
         return outlet.activatedRouteData.animation;
-    }
-
-    private fixSidenavContainer(event) {       
-        this.fixedLayout = event ? 'fixed' : null;
     }
 
     // prepareRouteTransition(r) {

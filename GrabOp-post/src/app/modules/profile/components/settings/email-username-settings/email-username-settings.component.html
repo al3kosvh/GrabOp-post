@@ -1,0 +1,18 @@
+<h5>Update Your Email Address or Username</h5>
+<div>
+  <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
+    <form #passwordForm="ngForm" fxLayout="column">
+      <md-form-field>
+        <input mdInput name="email" [(ngModel)]="model.email" placeholder="Email Address" required />
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="username" [(ngModel)]="model.username" placeholder="Username" required />
+      </md-form-field>      
+      <div fxLayout="row-reverse" [ngSwitch]="inProcess">
+        <span *ngSwitchCase="true" class="spinner-send-label">Sending data...</span>
+        <md-progress-spinner *ngSwitchCase="true" class="spinner36" mode="indeterminate"></md-progress-spinner>
+        <button *ngSwitchCase="false" md-raised-button color="accent" [disabled]="!passwordForm.form.valid" (click)="onUpdate()">UPDATE</button>
+      </div>
+    </form>
+  </div>
+</div>

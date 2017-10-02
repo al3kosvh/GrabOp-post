@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response, URLSearchParams, } from '@angular/http';
+//import { Http, Response, URLSearchParams, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { VOSettings, VOResult, VOProfileSettings } from "../../../models/vos";
+import { VOSettings, VOResult } from "../../../models/vos";
 import { FormControl } from "@angular/forms";
 import { SOAuthenticate, SOAuthenticateResponse, SOResponseStatus, SORegister, SORegisterResponse } from "../../../models/sos";
 import { VOUser, VOUserExt } from '../models/vouser';
-import { AuthHttpService } from './auth-http.service';
+import { HttpService } from './http.service';
 import { Router } from '@angular/router';
 
 
@@ -16,7 +16,7 @@ export class SignupService {
 
     // userExt:VOUserExt = new VOUserExt({});
 
-    constructor(public http: Http) {
+    constructor(private http: HttpService) {
 
         // http.user$.subscribe(res=>this.userExt = res);
     }
@@ -26,7 +26,7 @@ export class SignupService {
         var url: string = VOSettings.login + '/exists/' + column;
         return this.http.post(url, value).toPromise().then(
             res => {
-                return new VOResult(res.json())
+                return new VOResult(res)
             }
         )
     }*/
@@ -37,7 +37,7 @@ export class SignupService {
    
        return this.http.post(url, newUser).map(res => {
          console.log('register post res ', res);
-         let resp: SOAuthenticateResponse = res.json();
+         let resp: SOAuthenticateResponse = res;
    
          let user: VOUser = new VOUser();
            user.id = resp.UserId;
@@ -78,16 +78,16 @@ export class SignupService {
     //     // console.log(url, account);
     //     return this.http.post(url, req).toPromise()
     //         .then(resp => {
-    //             console.log('resp', resp.json());
-    //             let res: SORegisterResponse = resp.json();
+    //             console.log('resp', resp);
+    //             let res: SORegisterResponse = resp;
     //             let out: VOUserExt = new VOUserExt({});
     //                 out.id = +res.UserId;
     //                 out.username = res.UserName;
     //                 out.sessionId = res.SessionId;
     //             return out;
     //         }, err => {
-    //             console.log('error!!! ', err.json());
-    //             let regRes: SORegisterResponse = new SORegisterResponse(err.json());
+    //             console.log('error!!! ', err);
+    //             let regRes: SORegisterResponse = new SORegisterResponse(err);
     //             let res: SOResponseStatus = regRes.ResponseStatus;
     //             let out: VOResult = new VOResult({});
     //                 out.error = res.ErrorCode;
@@ -103,14 +103,14 @@ export class SignupService {
     //     console.log(url,account);
     //     return  this.http.post(url,account).toPromise()
     //         .then(resp=>{
-    //             return   new VOResult(resp.json());
+    //             return   new VOResult(resp);
     //
     //         })
     // }
 
     // getSettings(model:VOAccountSettings):Observable<VOAccountSettings>{
     //     return this.http.get('server/get_icons3.php').map((res:any)=>{
-    //         return new VOIcons(res.json());
+    //         return new VOIcons(res);
     //     });
     // }
 

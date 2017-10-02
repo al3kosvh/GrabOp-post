@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthHttpService } from '../../services/auth-http.service';
-
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     template: ''
@@ -11,12 +9,13 @@ import { AuthHttpService } from '../../services/auth-http.service';
 export class SignOutComponent implements OnInit {
 
     constructor(
-        private authService: AuthHttpService,
+        private authService: AuthenticationService,
         private router: Router
     ) { }
 
     ngOnInit() {
-        this.authService.signOut();
-        this.router.navigate(['guest']);
+        this.authService.signOut().subscribe(response => {
+            this.router.navigate(['guest']);
+        });
     }
 }

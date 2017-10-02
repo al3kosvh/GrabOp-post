@@ -101,17 +101,6 @@ h2, h3, h4, h5 {
   display: inline-block;
 }
 
-.content {
-}
-
-.green {
-  color: green;
-}
-
-.red {
-  color: red;
-}
-
 .ell {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -123,75 +112,14 @@ h2, h3, h4, h5 {
   font-size: small;
 }
 
-.w4 {
-  width: 4em;
-  display: inline-block;
-  overflow: hidden;
+md-progress-spinner.spinner36 {
+  height: 36px;
+  width: 36px;
 }
 
-.w5 {
-  width: 5em;
-  display: block;
-  overflow: hidden;
-}
-
-.w6 {
-  width: 6em;
-  display: block;
-  overflow: hidden;
-}
-
-.w7 {
-  width: 7em;
-  display: block;
-  overflow: hidden;
-}
-
-.w8 {
-  width: 8em;
-  overflow: hidden;
-}
-
-.w9 {
-  width: 9em;
-  overflow: hidden;
-}
-
-.w10 {
-  width: 10em;
-  overflow: hidden;
-}
-
-.w60 {
-  width: 60px;
-  overflow: hidden;
-}
-
-.w80 {
-  width: 80px;
-  overflow: hidden;
-}
-
-.w100 {
-  width: 100px;
-  overflow: hidden;
-}
-
-.w120 {
-  width: 120px;
-  overflow: hidden;
-}
-
-.w160 {
-  width: 150px;
-  display: block;
-}
-
-.m60 {
-  margin-left: 60px;
-  display: block;
-}
-
-.btn {
-  cursor: pointer;
+span.spinner-send-label {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-transform: capitalize;
 }

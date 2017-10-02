@@ -1,0 +1,67 @@
+<div class="settings" fxlayout="row" fxLayoutAlign="center">
+  <div fxFlex="90" fxLayout="column">
+    <div fxLayout="row">
+      <md-icon class="settings">settings</md-icon>
+      <h4>Manage account settings</h4>
+    </div>
+    <div fxLayoutAlign="center">
+      <div fxFlex="90" fxlayoutAlign="center">
+        <md-tab-group dynamicHeight="true">
+          <md-tab label="Notifications">
+            <div *ngIf="settings" fxLayout="column">
+              <h5>Manage Your Notifications</h5>
+              <div>
+                <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Send an email notification</div>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyConnection]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyMessages]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyAlliance]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyServices]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyTasks]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyRecommendations]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyComments]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.notifyOpportunity]"></setting-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Privacy Settings">
+            <h5>Privacy Settings</h5>
+            <div *ngIf="settings" fxLayout="column">
+              <div>
+                <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
+                  <div fxLayout="row-inverse" fxLayoutAlign="center">Make visible to the public</div>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isEmailVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isPhoneVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.areConnectionsVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isProfileViewCountVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isServiceViewsCountVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isTrustedNetworkVisible]"></setting-slide-toggle>
+                  <setting-slide-toggle [setting]="settings[SettingsName.isTotalSales]"></setting-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Hub">
+            <h5>Hub</h5>
+            <div *ngIf="settings" fxLayout="column">
+              <div>
+                <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
+                  <setting-slider [setting]="settings[SettingsName.searchRadio]"></setting-slider>
+                  <setting-select [setting]="settings[SettingsName.distanceUnit]"></setting-select>
+                  <setting-select [setting]="settings[SettingsName.currency]"></setting-select>
+                </div>
+              </div>
+            </div>
+          </md-tab>
+          <md-tab label="Security">
+            <security-settings [accountId]="accountId"></security-settings>
+          </md-tab>
+          <md-tab label="Email & Username">
+            <email-username-settings [accountId]="accountId"></email-username-settings>
+          </md-tab>
+        </md-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

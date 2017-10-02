@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { VOOpportunity, VOPost } from '../../../models/vos';
 
 // Services
-import { AuthHttpService } from "../../account/services/auth-http.service";
+import { AuthenticationService } from "../../account/services/authentication.service";
 import { PostService } from '../../post/services/post.service';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class OpportunityService {
     private selectedOpportunitySub: BehaviorSubject<VOOpportunity>;
 
     constructor(
-        private auth: AuthHttpService,
+        private auth: AuthenticationService,
         private myPostsService: PostService
     ) {
         this.myPostSub = new BehaviorSubject(null);

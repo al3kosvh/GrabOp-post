@@ -1,5 +1,4 @@
 import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
-import { VOProfileSettings } from '../../../../../models/vos';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +14,7 @@ import { MdDialog } from '@angular/material';
 import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
 import { UploadService } from '../../../services/upload.service';
 import { RequestOptions } from '@angular/http';
-import { AuthHttpService } from '../../../services/auth-http.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 
 @Component({
@@ -47,7 +46,7 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private authHttpMy: AuthHttpService,
+        private authHttpMy: AuthenticationService,
         private dialog: MdDialog,
         private uploadService: UploadService,
         private modal: ModalWindowService,
