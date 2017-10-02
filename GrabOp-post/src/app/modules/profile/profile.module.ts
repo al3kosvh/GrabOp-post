@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
-    MatSlideToggleModule,
+    MatSlideToggleModule, MatSliderModule, MatSelectModule
 } from '@angular/material';
 
 // Shared Modules
@@ -18,7 +18,9 @@ import { EditProfileDialogComponent } from './components/profile/edit/edit-profi
 import { ResumeComponent } from './components/resume/resume.component';
 import { AllianceInviteComponent } from './components/alliance-invite/alliance-invite.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { SettingComponent } from './components/settings/setting/setting.component';
+import { SettingSlideToggleComponent } from './components/settings/setting-slide-toggle/setting-slide-toggle.component';
+import { SettingSliderComponent } from './components/settings/setting-slider/setting-slider.component';
+import { SettingSelectComponent } from './components/settings/setting-select/setting-select.component';
 
 // Services
 import { ProfileService } from './services/profile.service';
@@ -44,6 +46,8 @@ const routes: Routes = [
         MatInputModule,
         MatCheckboxModule,
         MatSlideToggleModule,
+        MatSliderModule,
+        MatSelectModule,  
         RouterModule.forChild(routes),
         FormsModule,
         SharedModule,
@@ -56,7 +60,9 @@ const routes: Routes = [
         ResumeComponent,
         AllianceInviteComponent,
         SettingsComponent,
-        SettingComponent
+        SettingSlideToggleComponent,
+        SettingSliderComponent,
+        SettingSelectComponent
     ],
     providers: [
         ProfileService,
