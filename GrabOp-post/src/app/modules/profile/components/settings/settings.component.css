@@ -12,6 +12,14 @@ md-tab-group {
   min-height: 600px;
 }
 
-setting {
+setting-slide-toggle {
   margin-top: 20px;
+}
+
+setting-select {
+  margin-top: 20px;
+}
+
+md-form-field {
+  width: 100%;
 }
