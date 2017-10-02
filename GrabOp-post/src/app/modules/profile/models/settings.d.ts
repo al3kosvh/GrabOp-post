@@ -7,4 +7,10 @@ declare module Models {
         fieldtype: string;
         value: string;
     }
+
+    interface ChangeUserPassword  {        
+        oldpassword: string;
+        newpassword: string;
+        confirmedpassword: string;
+    }
 }

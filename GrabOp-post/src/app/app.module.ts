@@ -99,7 +99,7 @@ const routes: Routes = [
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MdIconRegistry,
-        ToolbarService,
+        ToolbarService
     ],
     bootstrap: [AppComponent]
 })
