@@ -5,13 +5,13 @@
   <a class="app-logo" [routerLink]="['/home']">
     <img src="assets/img/transparent_logo.png">
   </a>
-  <search placeholder="Search" fxFlex.xs="40" fxFlex.gt-sm="30" fxFlex.lg="20"></search>
+  <search placeholder="Search" fxHide.xs fxFlex.gt-sm="30" fxFlex.lg="20"></search>
   <!--<md-form-field><input mdInput placeholder="search" /></md-form-field>-->
   <span class="fill-remaining-space"></span>
-  <button md-icon-button [mdMenuTriggerFor]="exploreDropdown">
+  <button fxHide.xs md-icon-button [mdMenuTriggerFor]="exploreDropdown">
     <md-icon>person_pin_circle</md-icon>
   </button>
-  <md-menu #exploreDropdown="mdMenu" [overlapTrigger]="false">
+  <md-menu fxHide.xs #exploreDropdown="mdMenu" [overlapTrigger]="false">
     <span class='menu-section'>Business style</span>
     <div *ngFor='let option of ["Business Partnership","Exchange","Internship","Donate","Money"]'>
       <button md-menu-item>
@@ -25,13 +25,13 @@
       </button>
     </div>
   </md-menu>
-  <button md-icon-button modal (click)='openHelp()'>
+  <button fxHide.xs md-icon-button modal (click)='openHelp()'>
     <md-icon>info</md-icon>
   </button>
-  <button md-icon-button [mdMenuTriggerFor]="appPost">
+  <button fxHide.xs md-icon-button [mdMenuTriggerFor]="appPost">
     <md-icon>add_circle</md-icon>
   </button>
-  <span>Post</span>
+  <span fxHide.xs>Post</span>
   <md-menu #appPost="mdMenu" [overlapTrigger]="false">
     <!--<a md-menu-item [routerLink]="['/post-edit',{type:'need'}]">Post need</a>-->
     <!--<a md-menu-item [routerLink]="['/post-edit',{type:'offer'}]">Post offer</a>-->
@@ -51,10 +51,10 @@
     <md-icon>more_vert</md-icon>
   </button>
   <md-menu #appMenu="mdMenu" [overlapTrigger]="false">
-    <button md-menu-item routerLink='/settings/{{user.id}}'>Settings</button>
+    <button md-menu-item routerLink="/settings/{{user.id}}">Settings</button>
     <button md-menu-item routerLink="/how-it-works">How it Works</button>
     <button md-menu-item routerLink="/feedback">Feedback</button>
     <button md-menu-item routerLink="/terms-of-use">Terms of Use</button>
-    <button md-menu-item routerLink='/guest'>Sign out</button>
+    <button md-menu-item routerLink="/signout">Sign out</button>
   </md-menu>
 </md-toolbar>
