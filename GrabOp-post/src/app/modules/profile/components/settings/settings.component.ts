@@ -1,11 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 // Services
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { SettingsService } from '../../services/settings.service';
-import { SettingsName } from '../../models/settings';
+import { SettingsName } from '../../models/settings.enum';
+import { ErrorService } from '../../../shared/services/error.service';
 
 @Component({
     selector: 'settings',
@@ -14,30 +16,50 @@ import { SettingsName } from '../../models/settings';
 })
 export class SettingsComponent implements OnInit {
 
-    private settings: Models.Setting[];
-    private SettingsName = SettingsName;
+    settings: Models.Setting[];
+    SettingsName = SettingsName;
+    accountId: string;
+    changePasswordInProcess: boolean = false;
+
+    model: Models.ChangeUserPassword
+    passwordFormControl = new FormControl('', [
+        Validators.required,
+        Validators.minLength(6)]);
 
     constructor(
         private accountService: AuthenticationService,
         private settingsService: SettingsService,
-        private route: ActivatedRoute
-    ) { }
+        private route: ActivatedRoute,
+        private error: ErrorService
+    ) {
+        this.model = <Models.ChangeUserPassword>{};
+    }
 
     ngOnInit() {
         this.route.params.subscribe((params: Params) => {
             if (params['id']) {
-                this.loadSettings(params['id']);
+                this.accountId = params['id'];
+                this.loadSettings(this.accountId);
             }
-        })
+        });
     }
 
     private loadSettings(accountId: string): void {
         this.settingsService.getSettings(accountId).subscribe(
             settings => {
-                this.settings = settings;                
-                for (let setting of settings) {
-                    console.log(setting);
-                }
+                this.settings = settings;
+            });
+    }
+
+    private onChangePassword() {
+        this.changePasswordInProcess = true;
+        this.settingsService.changePassword(this.accountId, this.model).subscribe(
+            response => {                
+                this.changePasswordInProcess = false;
+            },
+            error => {
+                this.error.resolve(error);
+                this.changePasswordInProcess = false
             }
         );
     }

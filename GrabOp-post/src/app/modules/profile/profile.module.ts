@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
-    MatSlideToggleModule, MatSliderModule, MatSelectModule
+    MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 // Shared Modules
@@ -47,9 +47,11 @@ const routes: Routes = [
         MatCheckboxModule,
         MatSlideToggleModule,
         MatSliderModule,
-        MatSelectModule,  
+        MatSelectModule,
+        MatProgressSpinnerModule,
         RouterModule.forChild(routes),
         FormsModule,
+        ReactiveFormsModule,
         SharedModule,
         PipesModule,
         PostModule

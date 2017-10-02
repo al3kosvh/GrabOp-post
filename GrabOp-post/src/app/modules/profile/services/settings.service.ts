@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map'
 
 // Services
 import { HttpService } from '../../account/services/http.service';
-
 import { VOSettings } from '../../../models/vos';
 
 @Injectable()
@@ -30,4 +29,8 @@ export class SettingsService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
+    public changePassword(accountId: string, changeUserPassword: Models.ChangeUserPassword): Observable<Models.ChangeUserPassword> {
+        return this.http.put(this.url + accountId + '/password/?format=json', changeUserPassword)
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
 }
