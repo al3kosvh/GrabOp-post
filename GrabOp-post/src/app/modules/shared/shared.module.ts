@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatListModule } from '@angular/material';
+import { MatInputModule, MatListModule, MdSnackBarModule, MdSnackBarContainer, MdSnackBar } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -17,13 +17,16 @@ import { MdImageDirective } from "./directives/md-image.directive";
 
 // Services
 import { ModalWindowService } from './services/modal-window.service';
+import { SnackBarService } from './services/snackbar.service';
+import { ErrorService } from './services/error.service';
 
 @NgModule({
     imports: [        
         FormsModule,        
         FlexLayoutModule,
         MatInputModule,
-        MatListModule
+        MatListModule,
+        MdSnackBarModule
     ],
     exports: [
         FlexLayoutModule,
@@ -41,11 +44,15 @@ import { ModalWindowService } from './services/modal-window.service';
         MembersListComponent
     ],
     providers: [
-        ModalWindowService
+        ModalWindowService,
+        SnackBarService,
+        ErrorService,
+        MdSnackBar
     ],
     entryComponents: [
         ModalAlertComponent,
-        ModalPromptComponent
+        ModalPromptComponent,
+        MdSnackBarContainer
     ]
 })
 export class SharedModule { }
