@@ -55,24 +55,10 @@
             </div>
           </md-tab>
           <md-tab label="Security">
-            <h5>Change Your Password</h5>
-            <div>
-              <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
-                <security-settings [accountId]="accountId"></security-settings>
-              </div>
-            </div>
+            <security-settings [accountId]="accountId"></security-settings>
           </md-tab>
           <md-tab label="Email & Username">
-            <h5>Update Your Email Address or Username</h5>
-            <div fxLayout="column" fxFlex="40" fxFlex.sm="80" fxFlex.xs="100">
-              <md-form-field>
-                <input mdInput placeholder="Account email" />
-              </md-form-field>
-              <md-form-field>
-                <input mdInput placeholder="Username" />
-              </md-form-field>
-            </div>
-            <button md-raised-button color="accent">UPDATE</button>
+            <email-username-settings [accountId]="accountId"></email-username-settings>
           </md-tab>
         </md-tab-group>
       </div>
