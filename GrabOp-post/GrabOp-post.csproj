@@ -40,9 +40,11 @@
     <TypeScriptCompile Include="src\app\components\terms-of-use\terms-of-use.component.ts" />
     <TypeScriptCompile Include="src\app\components\how-it-works\how-it-works.component.ts" />
     <TypeScriptCompile Include="src\app\components\about-us\about-us.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting\setting.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\profile\models\profile.d.ts" />
-    <TypeScriptCompile Include="src\app\modules\profile\models\settings.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-select\setting-select.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slider\setting-slider.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slide-toggle\setting-slide-toggle.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\models\settings.d.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\models\settings.enum.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
