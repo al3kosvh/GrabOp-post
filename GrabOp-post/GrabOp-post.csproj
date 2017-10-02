@@ -16,7 +16,7 @@
   <ItemGroup>
     <None Remove="src\app\components\about-us\about-us.component.ts" />
     <None Remove="src\app\modules\account\components\settings.enum.ts" />
-    <None Remove="src\app\modules\profile\components\settings\security-settings\security-settings.component.ts" />
+    <None Remove="src\app\modules\profile\components\settings\email-username-settings\security-settings.component.ts" />
     <None Remove="src\app\modules\profile\components\settings\setting.component.ts" />
     <None Remove="src\app\modules\profile\components\settings\settings.component.ts" />
     <None Remove="src\app\modules\account\components\signin\signin-dialog.component.ts" />
@@ -42,6 +42,7 @@
     <TypeScriptCompile Include="src\app\components\how-it-works\how-it-works.component.ts" />
     <TypeScriptCompile Include="src\app\components\about-us\about-us.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\security-settings\security-settings.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\components\settings\email-username-settings\email-username-settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-select\setting-select.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slider\setting-slider.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slide-toggle\setting-slide-toggle.component.ts" />
