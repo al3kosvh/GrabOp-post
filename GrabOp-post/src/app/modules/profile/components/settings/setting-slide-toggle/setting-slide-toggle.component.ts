@@ -6,11 +6,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { SettingsService } from '../../../services/settings.service';
 
 @Component({
-    selector: 'setting',
-    templateUrl: './setting.component.html',
-    styleUrls: ['./setting.component.css']
+    selector: 'setting-slide-toggle',
+    templateUrl: './setting-slide-toggle.component.html',
+    styleUrls: ['./setting-slide-toggle.component.css']
 })
-export class SettingComponent implements OnInit {
+export class SettingSlideToggleComponent implements OnInit {
 
     @Input() setting: Models.Setting;
     private value: boolean;
@@ -35,11 +35,10 @@ export class SettingComponent implements OnInit {
 
     toggle() {
         let stringValue = !this.value ? "1" : "0";
-        
-        console.log(stringValue);
+
         this.settingsService.toggleSetting(this.userId, this.setting.settingid, stringValue).subscribe(
             setting => {
-                console.log(setting);
+                //console.log(setting);
             }
         );
     }
