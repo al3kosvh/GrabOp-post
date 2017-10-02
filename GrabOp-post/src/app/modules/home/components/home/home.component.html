@@ -1,7 +1,7 @@
 <div fxLayout="column">
   <div class="first-row" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
-    <app-user-bio [user]="user"></app-user-bio>
-    <app-profile-progress></app-profile-progress>
+    <user-bio *ngIf="user" [user]="user"></user-bio>
+    <profile-progress></profile-progress>
     <div class="announce" fxLayout="column">
       <span class="title">GrabOp thought of the day</span>
       <p>
@@ -30,7 +30,7 @@
         <md-card-title>Connections</md-card-title>
       </md-card-header>
       <md-card-content fxLayout="column" fxLayoutAlign="center center">
-        10,000
+        {{connectionsCount}}
       </md-card-content>
     </md-card>
     <md-card>
