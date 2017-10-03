@@ -13,9 +13,9 @@ import { UploadService } from '../../../../account/services/upload.service';
 })
 export class EditProfileDialogComponent {
 
-    private errorMessage: string;
-    private loading: boolean;
-    private profile: VOUserExt;
+    errorMessage: string;
+    loading: boolean;
+    profile: VOUserExt;
     occupations = [
         { value: 1, name: "Self Employed" },
         { value: 2, name: "Company" },
@@ -62,7 +62,7 @@ export class EditProfileDialogComponent {
         }
     }
 
-    onUpLoadFile(event): void {
+    onUpLoadFile(event?: Event): void {
         if (event) {
             this.uploadService.upload(event).subscribe(
                 dataFile => {

@@ -41,7 +41,6 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
     formValid: boolean;
     restoreUsername: boolean;
 
-
     constructor(
         private router: Router,
         private route: ActivatedRoute,

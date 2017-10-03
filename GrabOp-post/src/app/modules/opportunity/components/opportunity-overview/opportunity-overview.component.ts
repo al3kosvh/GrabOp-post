@@ -15,7 +15,9 @@ export class OpportunityOverviewComponent implements OnInit {
     opportunitiesActive: VOOpportunity[];
     opportunitiesComplete: VOOpportunity[];
 
-    constructor(private opportunityService: OpportunityService) { }
+    constructor(
+        private opportunityService: OpportunityService
+    ) { }
 
     ngOnInit() {
     }

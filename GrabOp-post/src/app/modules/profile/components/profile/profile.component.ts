@@ -36,20 +36,20 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 })
 export class ProfileComponent implements OnInit {
 
-    private profile: VOUserExt = new VOUserExt();
-    private profileConnectionsCount = 0;
-    private isMyProfile: boolean;
+    profile: VOUserExt = new VOUserExt();
+    profileConnectionsCount = 0;
+    isMyProfile: boolean;
 
-    private allianceInviteState: string = 'out';
+    allianceInviteState: string = 'out';
 
-    private profilePosts: VOPost[];
-    private shortName: string;
-    private backgroundPic = "#969696";
-    private profilePic = "assets/img/avatar.png";
-    private profileContainerMarginTop = -212;
-    private btnConnectValue: string;
-    private myConnections: any;
-    private indexConnection: any;
+    profilePosts: VOPost[];
+    shortName: string;
+    backgroundPic = "#969696";
+    profilePic = "assets/img/avatar.png";
+    profileContainerMarginTop = -212;
+    btnConnectValue: string;
+    myConnections: any;
+    indexConnection: any;
 
     constructor(
         private userService: AuthenticationService,

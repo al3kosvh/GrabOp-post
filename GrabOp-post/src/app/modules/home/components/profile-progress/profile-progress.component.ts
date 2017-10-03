@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileProgressComponent implements OnInit {
 
-    private percent: number = 0;
+    percent: number = 0;
 
     constructor() { }
 

@@ -5,27 +5,27 @@ import { ModalWindowService } from '../../../../shared/services/modal-window.ser
 import { SignupComponent } from '../signup.component';
 
 @Component({
-  selector: 'signup-button',
-  templateUrl: './signup-button.component.html',
-  styleUrls: ['./signup-button.component.css']
+    selector: 'signup-button',
+    templateUrl: './signup-button.component.html',
+    styleUrls: ['./signup-button.component.css']
 })
 export class SignupButtonComponent implements OnInit {
 
-  selectedOption: string;
+    selectedOption: string;
 
-  constructor(
-    private dialog: MdDialog,
-    signupService: SignupService,
-    private modal: ModalWindowService
-  ) { }
+    constructor(
+        private dialog: MdDialog,
+        signupService: SignupService,
+        private modal: ModalWindowService
+    ) { }
 
-  ngOnInit() {  }
+    ngOnInit() { }
 
-  loginClick(evt) {
-    this.modal.openWindow(SignupComponent, (res) => {
-      console.log('SignupComponent  ', res);
-    });
-  }
+    loginClick(evt) {
+        this.modal.openWindow(SignupComponent, (res) => {
+            console.log('SignupComponent  ', res);
+        });
+    }
 
 }
 //

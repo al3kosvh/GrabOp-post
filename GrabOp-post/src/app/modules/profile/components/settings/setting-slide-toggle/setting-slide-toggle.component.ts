@@ -13,8 +13,8 @@ import { SettingsService } from '../../../services/settings.service';
 export class SettingSlideToggleComponent implements OnInit {
 
     @Input() setting: Models.Setting;
-    private value: boolean;
-    private userId: string;
+    value: boolean;
+    userId: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class SettingSlideToggleComponent implements OnInit {
         this.route.params.subscribe((params: Params) => {
             if (params['id']) {
                 this.userId = params['id'];
-            } 
+            }
         })
     }
 

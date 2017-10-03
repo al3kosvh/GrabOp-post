@@ -22,10 +22,10 @@ import { ToolbarService } from '../../../../services/toolbar.service';
 })
 export class LandingComponent implements OnInit, OnDestroy {
 
-    private isLoggedIn: Observable<boolean>;
-    private postNeed: VOPost[] = [];
+    isLoggedIn: Observable<boolean>;
+    postNeed: VOPost[] = [];
 
-    private summaryData: any[] = [
+    summaryData: any[] = [
         {
             image: 'assets/img/search-opportunities.png',
             text: 'Find jobs, products, services and talent'
@@ -53,11 +53,11 @@ export class LandingComponent implements OnInit, OnDestroy {
         private toolbarService: ToolbarService
     ) {
         this.toolbarService.hideToolbar();
-        this.isLoggedIn = this.auth.isLoggedIn(); 
+        this.isLoggedIn = this.auth.isLoggedIn();
     }
 
     ngOnInit() {
-               
+
     }
 
     ngOnDestroy() {

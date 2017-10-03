@@ -1,4 +1,4 @@
-﻿import { Component, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
 // Services
@@ -12,8 +12,9 @@ import { SignInDialogComponent } from './dialog/signin-dialog.component';
 })
 export class SignInComponent {
 
-    constructor(public dialog: MdDialog) { }
-
+    constructor(
+        public dialog: MdDialog
+    ) { }
 
     openDialog(): void {
         let config: MdDialogConfig = {

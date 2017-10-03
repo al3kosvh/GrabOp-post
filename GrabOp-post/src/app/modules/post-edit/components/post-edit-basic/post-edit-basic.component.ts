@@ -16,7 +16,10 @@ export class PostEditBasicComponent implements OnInit, OnChanges {
     @Input() model_id: number;
     @Output() f: boolean;
     categories: VOCategory[];
-    constructor(private postEditService: PostEditService) {
+
+    constructor(
+        private postEditService: PostEditService
+    ) {
         //this.postEditService.getCategories().then( res => this.categories = res);
     }
 
