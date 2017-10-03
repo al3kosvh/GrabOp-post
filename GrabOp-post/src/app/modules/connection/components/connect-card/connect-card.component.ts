@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {Model} from "sequelize";
+
 
 @Component({
     selector: 'app-connect-card',
@@ -7,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ConnectCardComponent implements OnInit {
     @Input() tab;
+    @Input() connection: Models.VOConnection;
 
     constructor() {
     }
