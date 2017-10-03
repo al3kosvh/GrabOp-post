@@ -31,7 +31,7 @@ export class SettingSelectComponent implements OnInit {
     ngOnInit() {
 
         switch (this.setting.name) {
-            case 'distanceUnit': this.units = ['km', 'mile']; break;
+            case 'distanceUnit': this.units = ['km', 'mi']; break;
             case 'currency': this.units = ['CAD', 'USD']; break;
             default:
         }

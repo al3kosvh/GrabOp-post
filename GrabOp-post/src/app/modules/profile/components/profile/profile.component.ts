@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {MdDialog, MdDialogConfig} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 
 // Services
 import { ProfileService } from '../../services/profile.service';
@@ -74,19 +74,19 @@ export class ProfileComponent implements OnInit {
         })
     }
 
-  loadProfile(id: string) {
-    this.profileService.getProfileById(id).subscribe(
-      profile => {
-        this.initProfile(profile);
-        this.isMyProfile = false;
-      },
-      err => {
-        console.log("Error charging profile: ", err)
-      },
-      () => {
-      }
-    );
-  }
+    loadProfile(id: string) {
+        this.profileService.getProfileById(id).subscribe(
+            profile => {
+                this.initProfile(profile);
+                this.isMyProfile = false;
+            },
+            err => {
+                console.log("Error charging profile: ", err)
+            },
+            () => {
+            }
+        );
+    }
 
   private loadMyProfile() {
     this.profileService.getProfile().subscribe(
@@ -108,7 +108,6 @@ export class ProfileComponent implements OnInit {
         this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
         this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
         this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
-        console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
         this.validateConnection();
 
@@ -128,13 +127,13 @@ export class ProfileComponent implements OnInit {
         this.fixProfileContainerLayout();
     }
 
-  editProfile(): void {
-    let config: MdDialogConfig = {
-      width: '400px',
-      data: this.profile
-    };
-    this.dialog.open(EditProfileDialogComponent, config);
-  }
+    editProfile(): void {
+        let config: MdDialogConfig = {
+            width: '80%',
+            data: { profile: this.profile }
+        };
+        this.dialog.open(EditProfileDialogComponent, config);
+    }
 
   allianceInvite() {
     this.allianceInviteState = this.allianceInviteState === 'out' ? 'in' : 'out';

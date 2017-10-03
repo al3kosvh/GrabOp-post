@@ -101,6 +101,7 @@ const routes: Routes = [
         MdIconRegistry,
         ToolbarService
     ],
+    entryComponents: [HelpComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

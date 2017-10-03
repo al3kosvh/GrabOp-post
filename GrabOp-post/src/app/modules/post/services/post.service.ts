@@ -77,12 +77,10 @@ export class PostService {
 
     getPersonPosts(idPerson: string): Observable<VOPost[]> {
         let url: string = VOSettings.getPosts.replace(<any>'{{id}}', idPerson.toString());
-        console.log(url);
 
         this.http.get(url)
             .map(mapGetMyPosts)
             .subscribe(res => {
-                console.log('getPosts ', res);
                 this.posts = res;
                 this.broadcastPosts();
             });
