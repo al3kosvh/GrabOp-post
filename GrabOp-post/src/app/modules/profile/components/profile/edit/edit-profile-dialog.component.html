@@ -9,27 +9,27 @@
       <md-tab label="Basics">
         <div class="demo-tab-content">
           <md-form-field>
-            <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="profile.firstName" required #firstName="ngModel"/>
+            <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="profile.firstName" required #firstName="ngModel" />
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="profile.lastName" required #lastName="ngModel"/>
+            <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="profile.lastName" required #lastName="ngModel" />
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="profile.phoneNumber" required #phoneNumber="ngModel"/>
+            <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="profile.phoneNumber" required #phoneNumber="ngModel" />
           </md-form-field>
           <md-checkbox name="phoneVisible" [(ngModel)]="profile.phoneVisible">Make Visible</md-checkbox>
           <md-form-field>
-            <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="profile.primaryEmail" required #primaryEmail="ngModel"/>
+            <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="profile.primaryEmail" required #primaryEmail="ngModel" />
           </md-form-field>
           <md-checkbox name="emailVisible" [(ngModel)]="profile.emailVisible">Make Visible</md-checkbox>
           <md-form-field>
-            <input mdInput placeholder="Country" name="country" [(ngModel)]="profile.country" required #country="ngModel"/>
+            <input mdInput placeholder="Country" name="country" [(ngModel)]="profile.country" required #country="ngModel" />
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="Province" name="province" [(ngModel)]="profile.province" required #province="ngModel"/>
+            <input mdInput placeholder="Province" name="province" [(ngModel)]="profile.province" required #province="ngModel" />
           </md-form-field>
           <md-form-field>
-            <input mdInput placeholder="City" name="city" [(ngModel)]="profile.city" required #city="ngModel"/>
+            <input mdInput placeholder="City" name="city" [(ngModel)]="profile.city" required #city="ngModel" />
           </md-form-field>
           <md-form-field>
             <textarea mdInput placeholder="Personal Statement" name="resume" [(ngModel)]="profile.resume" required #resume="ngModel"></textarea>
@@ -39,10 +39,10 @@
 
       <md-tab label="Professional">
         <md-form-field>
-          <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel"/>
+          <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel" />
         </md-form-field>
         <md-form-field *ngIf="profile.occupation === 0">
-          <input mdInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel"/>
+          <input mdInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel" />
         </md-form-field>
         <md-radio-group class="radio-group" name="occupation" [(ngModel)]="profile.occupation">
           <md-radio-button class="radio-button" *ngFor="let occupation of occupations" [value]="occupation.value" (click)="resetCompany()">
@@ -52,24 +52,25 @@
 
         <div class="container-file">
           <div class="document-view" fxLayout="column" fxFlex="60">
-            <img [src]="iconFileResume">
+            <img class="file" [src]="iconFileResume">
             <!--<span>{{ fileResume.name }}</span>-->
           </div>
           <div fxLayout="column" fxFlex="40">
-            <button md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)"/>
+            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
               Upload Resume
-            </button>
+            </a>
           </div>
         </div>
 
         <div class="container-skill">
-            Skills
+          Skills
           <div *ngFor="let skill of profile.skillset; let i = index">
             <button md-raised-button color="primary" (click)="deleteSkill(i)">
               -
             </button>
-            <input placeholder="" name="skill" value="{{ profile.skillset[i] }}" (change)="onchangeSkill($event, i)" required/>
+            <!--TODO when add two or more input and change value in one this value replicate to other are empty but only in view, data profile.skillset is right-->
+            <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />
             <br><br>
           </div>
 
@@ -82,21 +83,57 @@
 
       <md-tab label="Photo/Video">
 
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img class="image" [src]="profile.profile_pic">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+              add photo
+            </a>
+          </div>
+        </div>
+
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img class="image" [src]="profile.video">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+              add video
+            </a>
+          </div>
+        </div>
+
+        <div class="container-file">
+          <div class="document-view" fxLayout="column" fxFlex="60">
+            <img [src]="profile.background_pic">
+          </div>
+          <div fxLayout="column" fxFlex="40">
+            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+              backfround image
+            </a>
+          </div>
+        </div>
+
       </md-tab>
     </md-tab-group>
 
-    <div fxLayout="column" fxLayoutGap="10px">
-      <div class='row'>
-        <button md-raised-button color="basic" [class.disabled]="!f.valid" (click)="onClose()">
-          Cancel
-        </button>
-        <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="onSubmit()">
-          Update
-        </button>
-        <img *ngIf="loading"
-             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-      </div>
-      <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class='row'>
+      <button md-raised-button color="basic" [class.disabled]="!f.valid" (click)="onClose()">
+        Cancel
+      </button>
+      <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="onSubmit()">
+        Update
+      </button>
+      <img *ngIf="loading"
+           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
     </div>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
   </form>
 </div>

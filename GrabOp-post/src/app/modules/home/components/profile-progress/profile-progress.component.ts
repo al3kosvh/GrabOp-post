@@ -1,13 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-profile-progress',
+    selector: 'profile-progress',
     templateUrl: './profile-progress.component.html',
     styleUrls: ['./profile-progress.component.css']
 })
 export class ProfileProgressComponent implements OnInit {
 
-    private percent: number = 0;
+    percent: number = 0;
 
     constructor() { }
 

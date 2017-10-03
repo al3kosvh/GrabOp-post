@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 
 // Services
 import { ProfileService } from '../../services/profile.service';
@@ -15,6 +15,7 @@ import { VOPost } from '../../../../models/vos';
 
 import { ModalPromptComponent } from '../../../shared/components/modal-prompt/modal-prompt.component';
 import { EditProfileDialogComponent } from './edit/edit-profile-dialog.component';
+import { VideoProfileDialogComponent } from './video/video-profile-dialog.component';
 
 @Component({
     selector: 'app-profile',
@@ -35,17 +36,20 @@ import { EditProfileDialogComponent } from './edit/edit-profile-dialog.component
 })
 export class ProfileComponent implements OnInit {
 
-    private profile: VOUserExt = new VOUserExt();
-    private profileConnectionsCount = 0;
-    private isMyProfile: boolean;
+    profile: VOUserExt = new VOUserExt();
+    profileConnectionsCount = 0;
+    isMyProfile: boolean;
 
-    private allianceInviteState: string = 'out';
+    allianceInviteState: string = 'out';
 
-    private profilePosts: VOPost[];
-    private shortName: string;
-    private backgroundPic = "#969696";
-    private profilePic = "assets/img/avatar.png";
-    private profileContainerMarginTop = -212;
+    profilePosts: VOPost[];
+    shortName: string;
+    backgroundPic = "#969696";
+    profilePic = "assets/img/avatar.png";
+    profileContainerMarginTop = -212;
+    btnConnectValue: string;
+    myConnections: any;
+    indexConnection: any;
 
     constructor(
         private userService: AuthenticationService,
@@ -96,34 +100,36 @@ export class ProfileComponent implements OnInit {
 
     initProfile(profile): void {
 
-            this.profile = profile;
-            this.shortName = ( this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + ( this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
-            this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
-            this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
-            console.log("ProfileComponent profile: ", this.profile, this.shortName);
+        this.profile = profile;
+        this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
+        this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
+        this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
+        console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
-            this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
-                if (posts) {
-                    this.profilePosts = posts;
-                }
-            });
+        this.validateConnection();
 
-            this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
-                profileConnectionsCount => {
-                    if (profileConnectionsCount) {
-                        this.profileConnectionsCount = profileConnectionsCount
-                    }
+        this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
+            if (posts) {
+                this.profilePosts = posts;
+            }
+        });
+
+        this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
+            profileConnectionsCount => {
+                if (profileConnectionsCount) {
+                    this.profileConnectionsCount = profileConnectionsCount
                 }
-            );
-            this.fixProfileContainerLayout();
+            }
+        );
+        this.fixProfileContainerLayout();
     }
 
     editProfile(): void {
         let config: MdDialogConfig = {
             width: '400px',
-            data: this.profile
+            data: { profile: this.profile }
         };
-        let dialogRef = this.dialog.open(EditProfileDialogComponent, config);
+        this.dialog.open(EditProfileDialogComponent, config);
     }
 
     allianceInvite() {
@@ -139,6 +145,52 @@ export class ProfileComponent implements OnInit {
         }
         if (this.profile.emailVisible) {
             this.profileContainerMarginTop += -13;
+        }
+    }
+
+    playVideo() {
+        let config: MdDialogConfig = {
+            width: '400px',
+            data: this.profile.video || 'http://localhost:8080/video/AviciiAddictedToYou.mp4'
+        };
+        this.dialog.open(VideoProfileDialogComponent, config);
+    }
+
+    validateConnection() {
+        this.btnConnectValue = 'connect';
+        if (!this.isMyProfile) {
+            this.connectionService.getMyConnections().subscribe(
+                connections => {
+                    console.log('ProfileComponent connection: ', connections);
+                    this.myConnections = connections;
+                    for (let i in this.myConnections) {
+                        if (this.profile.id == this.myConnections[i].id.toString()) {
+                            this.indexConnection = i;
+                            this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
+                            break;
+                        }
+                    }
+                }
+            );
+        }
+    }
+
+    adminConnection() {
+        if (this.btnConnectValue === 'connect') {
+            // TODO the first param on setConnection and confirmConnection are be the user login
+            this.connectionService.setConnection('16', this.profile.id.toString(), 'make a connection').subscribe(
+                respond => {
+                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+                }
+            )
+        } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
+            this.connectionService.confirmConnection('16', this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+                respond => {
+                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+                }
+            )
+        } else {
+
         }
     }
 }

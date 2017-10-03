@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../modules/account/services/authentica
 })
 export class FooterComponent implements OnInit {
 
-    private isLoggedIn: Observable<boolean>;
+    isLoggedIn: Observable<boolean>;
 
     constructor(
         private auth: AuthenticationService,

@@ -17,8 +17,8 @@ export class PostCardComponent implements OnInit {
 
     @Input() idPerson: string;
 
-    private postImage = 'assets/img/pic05-300x195.jpg';
-    private accountImage = 'assets/img/temp-users-img/6.jpg';
+    postImage = 'assets/img/pic05-300x195.jpg';
+    accountImage = 'assets/img/temp-users-img/6.jpg';
 
     accountIMG = '';
     // imgURL = 'url(img/img-girl.jpg)';

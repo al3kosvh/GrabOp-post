@@ -11,10 +11,17 @@
           <button md-raised-button color="accent" (click)="editProfile()">edit profile</button>
         </div>
         <div *ngSwitchCase="false">
-          <button md-raised-button color="accent">connect</button>
+          <!--TODO change this for a button-->
+          <md-expansion-panel *ngIf="btnConnectValue !== 'connect'">
+            <md-expansion-panel-header>
+              {{ btnConnectValue }}
+            </md-expansion-panel-header>
+            <div class="retract" (click)="adminConnection()">{{ btnConnectValue === 'connected' ? 'disconnect' : 'retract'}}</div>
+          </md-expansion-panel>
+          <button md-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
           <button md-raised-button color="accent">message</button>
           <button md-raised-button color="accent"><small>invite to</small> aliance</button>
-        </div>        
+        </div>
       </div>
     </div>
   </div>
@@ -22,6 +29,7 @@
     <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
       <div class="profile-card">
         <div class="profile-photo">
+          <span class="btn-play-video" (click)="playVideo()"><span></span></span>
           <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic" />
         </div>
         <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
@@ -69,9 +77,15 @@
           </div>
         </div>
 
-        <div class="title">Offering Services</div>
-        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap> 
+        <div class="post-title">offering service</div>
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
             <div *ngFor="let item of profilePosts | postsFilter:'offer'; let i=index">
+              <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
+            </div>
+        </div>
+        <div class="post-title">needs service</div>
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+            <div *ngFor="let item of profilePosts | postsFilter:'need'; let i=index">
               <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
             </div>
         </div>

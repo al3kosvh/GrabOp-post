@@ -5,12 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
-    MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule
+    MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule,
+  MdExpansionModule
 } from '@angular/material';
 
 // Shared Modules
-import { SharedModule } from '../shared/shared.module';
-import { PostModule } from '../post/post.module';
+import {SharedModule} from '../shared/shared.module';
+import {PostModule} from '../post/post.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
@@ -23,18 +24,20 @@ import { SettingSliderComponent } from './components/settings/setting-slider/set
 import { SettingSelectComponent } from './components/settings/setting-select/setting-select.component';
 import { SecuritySettingsComponent } from './components/settings/security-settings/security-settings.component';
 import { EmailUsernameSettingsComponent } from './components/settings/email-username-settings/email-username-settings.component';
+import { VideoProfileDialogComponent } from './components/profile/video/video-profile-dialog.component';
 
 // Services
-import { ProfileService } from './services/profile.service';
+import {ProfileService} from './services/profile.service';
 import { SettingsService } from './services/settings.service';
+import {ProfileGuard} from './services/profile.guard';
 
 // Pipes
-import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
-import { PipesModule } from '../../pipes/pipes.module';
+import {PostsFilterPipe} from '../../pipes/posts-filter.pipe';
+import {PipesModule} from '../../pipes/pipes.module';
 
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
-    { path: 'profile/:id', component: ProfileComponent },
+    { path: 'profile/:id', component: ProfileComponent, canActivate: [ProfileGuard] },
     { path: 'settings/:id', component: SettingsComponent }
 ];
 
@@ -56,7 +59,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         SharedModule,
         PipesModule,
-        PostModule
+        PostModule,
+      MdExpansionModule
     ],
     declarations: [
         ProfileComponent,
@@ -68,13 +72,16 @@ const routes: Routes = [
         SettingSliderComponent,
         SettingSelectComponent,
         SecuritySettingsComponent,
-        EmailUsernameSettingsComponent
+        EmailUsernameSettingsComponent,
+        VideoProfileDialogComponent
     ],
     providers: [
         ProfileService,
-        SettingsService
+        SettingsService,
+      ProfileGuard
     ],
-    entryComponents: [EditProfileDialogComponent]
+    entryComponents: [EditProfileDialogComponent,
+      VideoProfileDialogComponent]
 })
 
 export class ProfileModule { }
