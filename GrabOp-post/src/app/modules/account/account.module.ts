@@ -16,7 +16,7 @@ import { SignupCompanyComponent } from './components/signup/company/signup-compa
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
-
+import { SignupButtonComponent } from './components/signup/button/signup-button.component';
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
@@ -78,7 +78,8 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent
+        SignupCompanyComponent,
+        SignupButtonComponent
     ],
     providers: [
         UploadService,

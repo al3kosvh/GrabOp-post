@@ -1,4 +1,4 @@
-﻿img.avatar {
+img.avatar {
   width: 180px;
   height: 180px;
   border-radius: 50%;
@@ -21,4 +21,8 @@ span.city {
 
 div.info small {
   margin-bottom: 5px;
+}
+
+b.orange-text {
+  color: darkorange;
 }

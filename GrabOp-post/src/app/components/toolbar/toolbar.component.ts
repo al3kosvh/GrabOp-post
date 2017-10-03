@@ -18,9 +18,9 @@ import { ToolbarService } from '../../services/toolbar.service';
 export class ToolbarComponent implements OnInit {
 
     @Input() sidenav: MdSidenav;
-    private profile_pic: string;
-    private visible: Observable<boolean>;
-    private user: Models.VOUserExt;
+    profile_pic: string;
+    visible: Observable<boolean>;
+    user: Models.VOUserExt;
 
     constructor(
         private authService: AuthenticationService,

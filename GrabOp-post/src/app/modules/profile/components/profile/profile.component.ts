@@ -10,38 +10,41 @@ import { AuthenticationService } from '../../../account/services/authentication.
 import { ConnectionService } from '../../../connection/services/connection.service';
 //import { MyPostsService } from '../../../post/services/my-posts.service';
 
-import {VOUserExt} from "../../../account/models/vouser";
-import {VOPost} from '../../../../models/vos';
+import { VOUserExt } from "../../../account/models/vouser";
+import { VOPost } from '../../../../models/vos';
 
-import {ModalPromptComponent} from '../../../shared/components/modal-prompt/modal-prompt.component';
-import {EditProfileDialogComponent} from './edit/edit-profile-dialog.component';
-import {VideoProfileDialogComponent} from './video/video-profile-dialog.component';
+import { ModalPromptComponent } from '../../../shared/components/modal-prompt/modal-prompt.component';
+import { EditProfileDialogComponent } from './edit/edit-profile-dialog.component';
+import { VideoProfileDialogComponent } from './video/video-profile-dialog.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        transform: 'translate3d(0, 0, 0)'
-      })),
-      state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
-      })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
-    ]),
-  ]
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css'],
+    animations: [
+        trigger('slideInOut', [
+            state('in', style({
+                transform: 'translate3d(0, 0, 0)'
+            })),
+            state('out', style({
+                transform: 'translate3d(100%, 0, 0)'
+            })),
+            transition('in => out', animate('400ms ease-in-out')),
+            transition('out => in', animate('400ms ease-in-out'))
+        ]),
+    ]
 })
 export class ProfileComponent implements OnInit {
 
+    profile: VOUserExt = new VOUserExt();
+    profileConnectionsCount = 0;
+    isMyProfile: boolean;
   private profile: VOUserExt = new VOUserExt();
   private myUser: Models.VOUserExt;
   private profileConnectionsCount = 0;
   private isMyProfile: boolean;
 
-  private allianceInviteState: string = 'out';
+    allianceInviteState: string = 'out';
 
   private profilePosts: VOPost[];
   private shortName: string;
@@ -61,17 +64,17 @@ export class ProfileComponent implements OnInit {
         private dialog: MdDialog
     ) { }
 
-  ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      if (params['id']) {
-        this.loadProfile(params['id']);
-      } else {
-        this.loadMyProfile();
-      }
-    })
-  }
+    ngOnInit() {
+        this.route.params.subscribe((params: Params) => {
+            if (params['id']) {
+                this.loadProfile(params['id']);
+            } else {
+                this.loadMyProfile();
+            }
+        })
+    }
 
-  private loadProfile(id: string) {
+  loadProfile(id: string) {
     this.profileService.getProfileById(id).subscribe(
       profile => {
         this.initProfile(profile);
@@ -101,29 +104,29 @@ export class ProfileComponent implements OnInit {
 
   private initProfile(profile): void {
 
-    this.profile = profile;
-    this.shortName = ( this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + ( this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
-    this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
-    this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
-    console.log("ProfileComponent profile: ", this.profile, this.shortName);
+        this.profile = profile;
+        this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
+        this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
+        this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
+        console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
-    this.validateConnection();
+        this.validateConnection();
 
-    this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
-      if (posts) {
-        this.profilePosts = posts;
-      }
-    });
+        this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
+            if (posts) {
+                this.profilePosts = posts;
+            }
+        });
 
-    this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
-      profileConnectionsCount => {
-        if (profileConnectionsCount) {
-          this.profileConnectionsCount = profileConnectionsCount
-        }
-      }
-    );
-    this.fixProfileContainerLayout();
-  }
+        this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
+            profileConnectionsCount => {
+                if (profileConnectionsCount) {
+                    this.profileConnectionsCount = profileConnectionsCount
+                }
+            }
+        );
+        this.fixProfileContainerLayout();
+    }
 
   editProfile(): void {
     let config: MdDialogConfig = {

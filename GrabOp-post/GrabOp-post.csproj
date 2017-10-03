@@ -22,6 +22,7 @@
     <None Remove="src\app\modules\account\components\signin\signin-dialog.component.ts" />
     <None Remove="src\app\modules\account\models\account.d.ts" />
     <None Remove="src\app\modules\account\services\settings.service.ts" />
+    <None Remove="src\app\modules\profile\models\profile.d.ts" />
     <None Remove="src\app\modules\search\components\search\search.component.ts" />
     <None Remove="src\app\modules\search\search.module.ts" />
   </ItemGroup>
@@ -46,12 +47,17 @@
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-select\setting-select.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slider\setting-slider.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-slide-toggle\setting-slide-toggle.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\profile\models\profile.d.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\models\settings.d.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\models\settings.enum.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\app\modules\connection\models\" />
   </ItemGroup>
 
   <PropertyGroup>

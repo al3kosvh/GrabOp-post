@@ -15,14 +15,17 @@ export class EmailUsernameSettingsComponent {
 
     @Input() accountId: string;
     inProcess: boolean = false;
-    model: Models.ChangeUserPassword
+    model: any;
 
     constructor(
         private accountService: AuthenticationService,
         private settingsService: SettingsService,
         private error: ErrorService
     ) {
-        this.model = <Models.ChangeUserPassword>{};
+        this.model = {
+            email: '',
+            username: ''
+        };
     }
 
     private onUpdate() {

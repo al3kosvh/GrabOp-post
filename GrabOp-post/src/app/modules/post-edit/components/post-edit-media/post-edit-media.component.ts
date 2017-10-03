@@ -21,7 +21,7 @@ export class PostEditMediaComponent implements OnInit, OnChanges {
     currentImage: VOImage;
     // @Output() selected$: EventEmitter<VOImage> = new EventEmitter<VOImage>();
     // private selected: VOImage;
-    private image_selected: VOpost_attachment;
+    image_selected: VOpost_attachment;
 
     constructor(
         private uploadService: UploadService,

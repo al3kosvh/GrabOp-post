@@ -48,9 +48,9 @@ import { ToolbarService } from './services/toolbar.service';
 })
 export class AppComponent {
 
-    private isLoggedIn: Observable<boolean>;
-    private user: Models.VOUserExt;
-    private fixedLayout: string = null;
+    isLoggedIn: Observable<boolean>;
+    user: Models.VOUserExt;
+    fixedLayout: string = null;
 
     constructor(
         private authService: AuthenticationService,

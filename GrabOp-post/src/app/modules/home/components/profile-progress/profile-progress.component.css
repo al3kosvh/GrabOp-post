@@ -1,18 +1,39 @@
-﻿span.title {
+span.title {
   margin-top: 20px;
   font-weight: 600;
   color: gray;
 }
 
-img.star {
-  margin: 5px;
-  width: 100px;
+div.start {
+  position: relative;
 }
 
-span.star {
-  position: relative; 
-  top: -60px;
-  font-size: 14px;
+div.star img {
+  margin: 5px;
+  width: 100px;
+  z-index: 60;
+}
+
+div.star span {
+  position: fixed;
+  font-size: 12px;
+  margin-top: 5px;
+  z-index: 60;
+  font-weight: 700;
+}
+
+div.background-container {
+  z-index: 20;
+  position: fixed;
+  width: 90px;
+  height: 86px;
+  margin-bottom: 25px;
+}
+
+div.background {
+  z-index: 20;
+  background-color: #ffb426;
+  width: 90px;
 }
 
 a {

@@ -24,7 +24,7 @@ import { SettingSliderComponent } from './components/settings/setting-slider/set
 import { SettingSelectComponent } from './components/settings/setting-select/setting-select.component';
 import { SecuritySettingsComponent } from './components/settings/security-settings/security-settings.component';
 import { EmailUsernameSettingsComponent } from './components/settings/email-username-settings/email-username-settings.component';
-import {VideoProfileDialogComponent} from './components/profile/video/video-profile-dialog.component';
+import { VideoProfileDialogComponent } from './components/profile/video/video-profile-dialog.component';
 
 // Services
 import {ProfileService} from './services/profile.service';
@@ -73,7 +73,7 @@ const routes: Routes = [
         SettingSelectComponent,
         SecuritySettingsComponent,
         EmailUsernameSettingsComponent,
-      VideoProfileDialogComponent
+        VideoProfileDialogComponent
     ],
     providers: [
         ProfileService,

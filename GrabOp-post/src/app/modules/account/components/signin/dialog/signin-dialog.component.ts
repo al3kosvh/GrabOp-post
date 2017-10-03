@@ -13,10 +13,10 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SignInDialogComponent {
 
-    private user: Observable<VOUser>;
-    private signinData: Models.SignIn;
-    private errorMessage: string;
-    private loading: boolean;
+    user: Observable<VOUser>;
+    signinData: Models.SignIn;
+    errorMessage: string;
+    loading: boolean;
 
     constructor(
         public dialogRef: MdDialogRef<SignInDialogComponent>,

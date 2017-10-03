@@ -1,8 +1,8 @@
-<div fxLayout="row">
+<div *ngIf="user" fxLayout="row">
   <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
   <div class="info" fxLayout="column">
     <span class="firstName">{{user.firstName + user.lastName}}</span>
-    <span class='city'>{{user.city}}</span>
+    <span class='city'>{{location.city}}</span>
     <small><b>Offerings:</b> <b class='orange-text'>{{user.offers}}</b></small>
     <small><b>Needs:</b> <b class='orange-text'>{{user.needs}}</b></small>
   </div>

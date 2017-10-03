@@ -1,5 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+
 import { VOPost } from '../../../../models/vos';
+import { VOUserExt } from "../../../account/models/vouser";
 
 // Components
 import { UserCommentsComponent } from '../user-comments/user-comments.component';
@@ -9,6 +11,7 @@ import { ModalWindowService } from '../../../shared/services/modal-window.servic
 import { MyPostsService } from '../../../post/services/my-posts.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
+import { ProfileService } from '../../../profile/services/profile.service';
 
 @Component({
     selector: 'app-home',
@@ -17,8 +20,8 @@ import { ConnectionService } from '../../../connection/services/connection.servi
 })
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
-    profileConnectionsCount: number;
-    user: Models.VOUserExt;
+    connectionsCount: number;
+    user: VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];
@@ -27,7 +30,9 @@ export class HomeComponent implements OnInit, OnChanges {
         private myPostsService: MyPostsService,
         private userService: AuthenticationService,
         private connectionService: ConnectionService,
-        private modal: ModalWindowService) {
+        private modal: ModalWindowService,
+        private profileService: ProfileService
+    ) {
         this.stats = {
             'Profile': 132000,
             'Connections': 10000,
@@ -38,11 +43,12 @@ export class HomeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.userService.getUser().subscribe(
-            user => {
-                this.user = user;
-                this.connectionService.getProfileConnectionsCount(user.id).subscribe(res => {
-                    this.profileConnectionsCount = res;
+
+        this.profileService.getProfile().subscribe(
+            profile => {
+                this.user = profile;
+                this.connectionService.getProfileConnectionsCount(profile.id).subscribe(res => {
+                    this.connectionsCount = res;
                 });
             });
 
