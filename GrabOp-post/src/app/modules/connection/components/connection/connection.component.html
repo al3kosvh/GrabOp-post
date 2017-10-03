@@ -1,18 +1,18 @@
 <md-tab-group position="center">
   <md-tab label="Active Connections">
     <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections" [tab]='tab[0]' [connection]="connection"></app-connect-card>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[0]' [connection]="connection"></app-connect-card>
     </div>
 
   </md-tab>
   <md-tab label="Received Requests">
     <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections" [tab]='tab[1]' [connection]="connection"></app-connect-card>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[1]' [connection]="connection"></app-connect-card>
     </div>
   </md-tab>
   <md-tab label="Send Requests">
     <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections" [tab]='tab[2]' [connection]="connection"></app-connect-card>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[2]' [connection]="connection"></app-connect-card>
     </div>
   </md-tab>
 </md-tab-group>

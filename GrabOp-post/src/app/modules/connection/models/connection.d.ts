@@ -8,10 +8,10 @@ declare module Models {
   }
 
   interface VOConnectionRequest {
-    "id": number,
-    "sender": number,
-    "receiver": number,
-    "status": number,
-    "status_date": string
+    id: number,
+    sender: number,
+    receiver: number,
+    status: number,
+    status_date: string
   }
 }

@@ -18,6 +18,9 @@ import {ConnectCardComponent} from './components/connect-card/connect-card.compo
 // Services
 import {ConnectionService} from './services/connection.service';
 
+// Pipes
+import {PipesModule} from '../../pipes/pipes.module';
+
 const routes: Routes = [
   {path: 'connections', component: ConnectionComponent},
   {path: 'connections/:id', component: ConnectionComponent}];
@@ -31,7 +34,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MdTabsModule,
     MdButtonModule,
-    MdCardModule
+    MdCardModule,
+    PipesModule,
   ],
   declarations: [
     ConnectionComponent,
