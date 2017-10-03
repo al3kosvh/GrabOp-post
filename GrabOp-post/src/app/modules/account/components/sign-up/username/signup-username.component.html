@@ -1,0 +1,41 @@
+<div class="username">
+  <h3>Username</h3>
+  <!--<button md-button (click)="openModalDialog()">Open dialog</button>-->
+  <form #f="ngForm" fxLayout="column" (ngSubmit)="setNewUser()" autocomplete="off" novalidate>    
+    <md-form-field>
+      <!--[(ngModel)]="person.firstName"-->
+      <input mdInput placeholder="First Name" name="firstName" required minlength="2" />
+    </md-form-field>
+    <md-form-field>
+      <!--[(ngModel)]="person.lastName"-->
+      <input mdInput placeholder="Last Name" name="lastName" required minlength="2" />
+    </md-form-field>
+    <md-form-field>
+      <!--[(ngModel)]="person.username"-->
+      <input mdInput placeholder="User Name" name="username" (focus)="onUsernameFocus()" (blur)="onUsernameBlur()" required minlength="2" />
+      <div *ngIf="usernameMsg">{{usernameMsg}}</div>
+    </md-form-field>
+    <md-form-field>
+      <!--[(ngModel)]="person.primaryEmail"-->
+      <input mdInput placeholder="Email" name="email" (focus)="onEmailFocus()" (blur)="onEmailBlur()" type="email" appCheckEmail required minlength="6" maxlength="100"/>
+      <div *ngIf="emailMsg">{{emailMsg}}</div>
+      <div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div>
+    </md-form-field>
+    <md-form-field>
+      <!--[(ngModel)]="person.password"-->
+      <input mdInput placeholder="Password" name="password" (ngModelChange)="onPasswordChanged($event)" required minlength="6" />
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Re-confirm Password" name="confirm" (ngModelChange)="onPasswordChanged($event)" required />
+    </md-form-field>
+    
+    <!--  <input type="file" name="upload" (change)="upload($event)" /> -->
+    <button md-raised-button color="accent" (click)="onSubmit()" [class.disabled]="(!f.valid || !passwordOK)">Register</button>
+
+  </form>
+  <!--<a routerLink="../company" routerLinkActive="active">Company</a>-->
+  <!--<a routerLink="../company" routerLinkActive="active" class="valign blue col s3 right waves-effect waves-light btn" >Company</a>-->
+  <!--<div class="debug">valid: {{ f.valid | json }} </div>
+  <div class="debug">person: {{ person | json }} </div>
+  <div class="debug"> {{(usernameOK && emailOK && passwordOK) | json }} </div>-->
+</div>

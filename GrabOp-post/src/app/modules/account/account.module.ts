@@ -8,7 +8,8 @@ import {
 } from '@angular/material';
 
 // Components
-import { SignupComponent } from './components/signup/signup.component';
+//import { SignupComponent } from './components/signup/signup.component';
+import { SignUpComponent } from './components/sign-up/signup.component';
 import { SignupUsernameComponent } from './components/signup/username/signup-username.component';
 import { SignupConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 import { AccountRecoverComponent } from './components/recover/recover.component';
@@ -35,7 +36,7 @@ import { SharedModule } from '../shared/shared.module';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
 const routes: Routes = [
-    {
+    /*{
         path: 'join-us', component: SignupComponent, outlet: 'slideRight', data: { animation: 'in' },
         children: [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
@@ -43,8 +44,9 @@ const routes: Routes = [
             { path: 'confirm/:token', component: SignupConfirmComponent },
             { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
-    },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },    
+    },*/
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
+    { path: 'signup', component: SignUpComponent, canDeactivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -65,11 +67,11 @@ const routes: Routes = [
     ],
     exports: [
         SignInComponent,
-        SignupComponent,
+        SignUpComponent,
         SignOutComponent
     ],
     declarations: [
-        SignupComponent,
+        SignUpComponent,
         SignInComponent,
         SignOutComponent,
         SignInDialogComponent,
@@ -86,7 +88,7 @@ const routes: Routes = [
         AuthGuard,
         SignupService,
         AccountStorageService,
-        HttpService        
+        HttpService
     ],
     entryComponents: [SignInDialogComponent]
 })
