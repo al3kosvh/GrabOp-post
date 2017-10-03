@@ -36,24 +36,20 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 })
 export class ProfileComponent implements OnInit {
 
-    profile: VOUserExt = new VOUserExt();
+    profile: Models.VOUserExt;
     profileConnectionsCount = 0;
     isMyProfile: boolean;
-  private profile: VOUserExt = new VOUserExt();
-  private myUser: Models.VOUserExt;
-  private profileConnectionsCount = 0;
-  private isMyProfile: boolean;
 
     allianceInviteState: string = 'out';
 
-  private profilePosts: VOPost[];
-  private shortName: string;
-  private backgroundPic = "#969696";
-  private profilePic = "assets/img/avatar.png";
-  private profileContainerMarginTop = -212;
-  private btnConnectValue: string;
-  private myConnections: Models.VOConnection[];
-  private indexConnection: any;
+    profilePosts: VOPost[];
+    shortName: string;
+    backgroundPic = "#969696";
+    profilePic = "assets/img/avatar.png";
+    profileContainerMarginTop = -212;
+    btnConnectValue: string;
+    myConnections: Models.VOConnection[];
+    indexConnection: any;
 
     constructor(
         private userService: AuthenticationService,
@@ -88,21 +84,21 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-  private loadMyProfile() {
-    this.profileService.getProfile().subscribe(
-      profile => {
-        this.initProfile(profile);
-        this.isMyProfile = true;
-      },
-      err => {
-        console.log("Error charging profile: ", err)
-      },
-      () => {
-      }
-    )
-  }
+    private loadMyProfile() {
+        this.profileService.getProfile().subscribe(
+            profile => {
+                this.initProfile(profile);
+                this.isMyProfile = true;
+            },
+            err => {
+                console.log("Error charging profile: ", err)
+            },
+            () => {
+            }
+        )
+    }
 
-  private initProfile(profile): void {
+    private initProfile(profile): void {
 
         this.profile = profile;
         this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
@@ -135,89 +131,89 @@ export class ProfileComponent implements OnInit {
         this.dialog.open(EditProfileDialogComponent, config);
     }
 
-  allianceInvite() {
-    this.allianceInviteState = this.allianceInviteState === 'out' ? 'in' : 'out';
-  }
-
-  private fixProfileContainerLayout(): void {
-    if (this.shortName) {
-      this.profileContainerMarginTop += -18;
+    allianceInvite() {
+        this.allianceInviteState = this.allianceInviteState === 'out' ? 'in' : 'out';
     }
-    if (this.profile.phoneVisible) {
-      this.profileContainerMarginTop += -13;
-    }
-    if (this.profile.emailVisible) {
-      this.profileContainerMarginTop += -13;
-    }
-  }
 
-  playVideo() {
-    let config: MdDialogConfig = {
-      width: '400px',
-      data: this.profile.video || 'http://localhost:8080/video/AviciiAddictedToYou.mp4'
-    };
-    this.dialog.open(VideoProfileDialogComponent, config);
-  }
-
-  private validateConnection() {
-    this.btnConnectValue = 'connect';
-    if (!this.isMyProfile) {
-      this.connectionService.getMyConnections().subscribe(
-        connections => {
-          console.log('ProfileComponent connection: ', connections);
-          this.myConnections = connections;
-          for (let i in this.myConnections) {
-            if (this.profile.id == this.myConnections[i].id.toString()) {
-              this.indexConnection = i;
-              this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
-              break;
-            }
-          }
+    private fixProfileContainerLayout(): void {
+        if (this.shortName) {
+            this.profileContainerMarginTop += -18;
         }
-      );
+        if (this.profile.phoneVisible) {
+            this.profileContainerMarginTop += -13;
+        }
+        if (this.profile.emailVisible) {
+            this.profileContainerMarginTop += -13;
+        }
     }
-  }
 
-  adminConnection() {
-    if (this.btnConnectValue === 'connect') {
-      if (this.myUser) {
-        this.setConnection();
-      } else {
-        this.userService.getUser().subscribe(
-          user => {
-            this.myUser = user;
-            this.setConnection();
-          }
-        )
-      }
-    } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-      if (this.myUser) {
-        this.confirmConnection();
-      } else {
-        this.userService.getUser().subscribe(
-          user => {
-            this.myUser = user;
-            this.confirmConnection();
-          }
-        )
-      }
+    playVideo() {
+        let config: MdDialogConfig = {
+            width: '400px',
+            data: this.profile.video || 'http://localhost:8080/video/AviciiAddictedToYou.mp4'
+        };
+        this.dialog.open(VideoProfileDialogComponent, config);
     }
-  }
 
-  private setConnection() {
-    this.connectionService.setConnection(this.myUser.id, this.profile.id.toString(), 'make a connection').subscribe(
-      respond => {
-        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-      }
-    )
-  }
+    private validateConnection() {
+        this.btnConnectValue = 'connect';
+        if (!this.isMyProfile) {
+            this.connectionService.getMyConnections().subscribe(
+                connections => {
+                    console.log('ProfileComponent connection: ', connections);
+                    this.myConnections = connections;
+                    for (let i in this.myConnections) {
+                        if (this.profile.id == this.myConnections[i].id.toString()) {
+                            this.indexConnection = i;
+                            this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
+                            break;
+                        }
+                    }
+                }
+            );
+        }
+    }
 
-  private confirmConnection() {
-    this.connectionService.confirmConnection(this.myUser.id, this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
-      respond => {
-        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-      }
-    )
-  }
+    adminConnection() {
+        if (this.btnConnectValue === 'connect') {
+            if (this.profile) {
+                this.setConnection();
+            } else {
+                this.userService.getUser().subscribe(
+                    user => {
+                        this.profile = user;
+                        this.setConnection();
+                    }
+                )
+            }
+        } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
+            if (this.profile) {
+                this.confirmConnection();
+            } else {
+                this.userService.getUser().subscribe(
+                    user => {
+                        this.profile = user;
+                        this.confirmConnection();
+                    }
+                )
+            }
+        }
+    }
+
+    private setConnection() {
+        this.connectionService.setConnection(this.profile.id, this.profile.id.toString(), 'make a connection').subscribe(
+            respond => {
+                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+            }
+        )
+    }
+
+    private confirmConnection() {
+        this.connectionService.confirmConnection(this.profile.id, this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+            respond => {
+                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+            }
+        )
+    }
 
 }
