@@ -1,10 +1,12 @@
 import { Component, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialogRef, MD_DIALOG_DATA, MdChipInputEvent, ENTER } from '@angular/material';
 import { VOUserExt } from '../../../../account/models/vouser';
 
 // Services
 import { ProfileService } from '../../../services/profile.service';
 import { UploadService } from '../../../../account/services/upload.service';
+
+const COMMA = 188;
 
 @Component({
     selector: 'edit-profile-dialog',
@@ -12,7 +14,7 @@ import { UploadService } from '../../../../account/services/upload.service';
     styleUrls: ['./edit-profile-dialog.component.css']
 })
 export class EditProfileDialogComponent {
-
+    
     errorMessage: string;
     loading: boolean;
     profile: VOUserExt;
@@ -24,6 +26,14 @@ export class EditProfileDialogComponent {
     ];
     iconFileResume = "assets/img/docx.png";
     fileResume: object;
+
+    fruits = [
+        { name: 'Lemon' },
+        { name: 'Lime' },
+        { name: 'Apple' },
+    ];
+    // Enter, comma
+    separatorKeysCodes = [ENTER, COMMA];
 
     constructor(
         public dialogRef: MdDialogRef<EditProfileDialogComponent>,
@@ -91,6 +101,29 @@ export class EditProfileDialogComponent {
         event.preventDefault();
         this.profile.skillset[index] = event.target.value;
         console.log('onchange', index, event.target.value, this.profile.skillset);
+    }
+
+    add(event: MdChipInputEvent): void {
+        let input = event.input;
+        let value = event.value;
+
+        // Add our person
+        if ((value || '').trim()) {
+            this.fruits.push({ name: value.trim() });
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    remove(fruit: any): void {
+        let index = this.fruits.indexOf(fruit);
+
+        if (index >= 0) {
+            this.fruits.splice(index, 1);
+        }
     }
 
 }

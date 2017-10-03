@@ -104,7 +104,6 @@ export class ProfileComponent implements OnInit {
         this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
         this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
         this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
-        console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
         this.validateConnection();
 
@@ -126,7 +125,7 @@ export class ProfileComponent implements OnInit {
 
     editProfile(): void {
         let config: MdDialogConfig = {
-            width: '400px',
+            width: '80%',
             data: { profile: this.profile }
         };
         this.dialog.open(EditProfileDialogComponent, config);
@@ -161,7 +160,6 @@ export class ProfileComponent implements OnInit {
         if (!this.isMyProfile) {
             this.connectionService.getMyConnections().subscribe(
                 connections => {
-                    console.log('ProfileComponent connection: ', connections);
                     this.myConnections = connections;
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id.toString()) {

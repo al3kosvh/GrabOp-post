@@ -5,13 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
-    MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule,
-  MdExpansionModule
+    MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
+    MdExpansionModule
 } from '@angular/material';
 
 // Shared Modules
-import {SharedModule} from '../shared/shared.module';
-import {PostModule} from '../post/post.module';
+import { SharedModule } from '../shared/shared.module';
+import { PostModule } from '../post/post.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
@@ -27,13 +27,13 @@ import { EmailUsernameSettingsComponent } from './components/settings/email-user
 import { VideoProfileDialogComponent } from './components/profile/video/video-profile-dialog.component';
 
 // Services
-import {ProfileService} from './services/profile.service';
+import { ProfileService } from './services/profile.service';
 import { SettingsService } from './services/settings.service';
-import {ProfileGuard} from './services/profile.guard';
+import { ProfileGuard } from './services/profile.guard';
 
 // Pipes
-import {PostsFilterPipe} from '../../pipes/posts-filter.pipe';
-import {PipesModule} from '../../pipes/pipes.module';
+import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
+import { PipesModule } from '../../pipes/pipes.module';
 
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
@@ -54,13 +54,14 @@ const routes: Routes = [
         MatSliderModule,
         MatSelectModule,
         MatProgressSpinnerModule,
+        MatChipsModule,
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
         PipesModule,
         PostModule,
-      MdExpansionModule
+        MdExpansionModule
     ],
     declarations: [
         ProfileComponent,
@@ -78,10 +79,10 @@ const routes: Routes = [
     providers: [
         ProfileService,
         SettingsService,
-      ProfileGuard
+        ProfileGuard
     ],
     entryComponents: [EditProfileDialogComponent,
-      VideoProfileDialogComponent]
+        VideoProfileDialogComponent]
 })
 
 export class ProfileModule { }

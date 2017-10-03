@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdSidenav } from '@angular/material';
+import { MdSidenav, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 // Components
 import { HelpComponent } from '../help/help.component';
 
 // Services
-import { ModalWindowService } from '../../modules/shared/services/modal-window.service';
 import { AuthenticationService } from '../../modules/account/services/authentication.service';
 import { ToolbarService } from '../../services/toolbar.service';
 
@@ -24,7 +23,7 @@ export class ToolbarComponent implements OnInit {
 
     constructor(
         private authService: AuthenticationService,
-        private modal: ModalWindowService,
+        private dialog: MdDialog,
         private toolbarService: ToolbarService
     ) {
         this.visible = this.toolbarService.isVisible();
@@ -37,7 +36,7 @@ export class ToolbarComponent implements OnInit {
     }
 
     openHelp() {
-        this.modal.openWindow(HelpComponent, (res) => {
+        this.dialog.open(HelpComponent, (res) => {
             console.log('helpComponent  ', res);
         });
     }

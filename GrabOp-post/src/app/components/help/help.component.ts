@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-// Services
-import { ModalWindowService } from '../../modules/shared/services/modal-window.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'help',
@@ -15,17 +13,18 @@ export class HelpComponent implements OnInit {
     comment_image: any;
 
     constructor(
-        private modal: ModalWindowService
+        public dialogRef: MdDialogRef<HelpComponent>,
+        @Inject(MD_DIALOG_DATA) public data: any,
     ) { }
 
     ngOnInit() {
     }
 
-    onCloseClick() {
-        this.modal.closeWindow('close button clicked '); // parameter just for testing
+    onClose(): void {
+        this.dialogRef.close();
     }
 
-    onSubmit() {
-        console.log(this.comment + this.comment_file + this.comment_image + 'send button clicked');
+    onSubmit(): void {
+        this.dialogRef.close();
     }
 }

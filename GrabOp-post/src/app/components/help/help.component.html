@@ -34,10 +34,10 @@
     </md-grid-tile>
 
     <md-grid-tile >
-      <button type="button" md-button color="primary" (click)="onCloseClick()"> cancel</button>
+      <button type="button" md-raised-button (click)="onClose()"> cancel</button>
     </md-grid-tile>
     <md-grid-tile >
-      <button type="submit" md-raised-button color="primary"> send</button>
+      <button type="submit" md-raised-button color="primary" (click)="onSubmit()"> send</button>
     </md-grid-tile>
   </md-grid-list>
 </form>
