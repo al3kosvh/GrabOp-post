@@ -65,7 +65,9 @@
             </div>
           </div>
           <div class="profile-inner-connections" [ngStyle]="{'background-image':'url(./assets/img/map.png)'}" fxLayout="column" fxFlex="50">
-            <div fxlayout="row" fxLayoutAlign="center" class="connections-title">{{ profileConnectionsCount }} connection</div>
+            <div fxlayout="row" fxLayoutAlign="center" class="connections-title" [routerLink]="isMyProfile ? '/connections' : ('/connections/' + profile.id)">
+              {{ profileConnectionsCount }} connection
+            </div>
             <div fxlayout="row" fxLayoutAlign="center">
               <img class="bracket" src="assets/img/left-bracket.png" />
               <img class="user" src="assets/img/1x.jpg" />

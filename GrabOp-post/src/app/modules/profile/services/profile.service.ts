@@ -44,7 +44,7 @@ export class ProfileService {
     }
 
     public editProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.http.post(VOSettings.updateProfile.replace(<any>'{{id}}', person.id),  mapUpdateProfileClientToServer(person))
+        return this.http.put(VOSettings.updateProfile.replace(<any>'{{id}}', person.id),  mapUpdateProfileClientToServer(person))
           .map(res => res)
         .catch((error: any) => Observable.throw(error || 'Server error'));
     }

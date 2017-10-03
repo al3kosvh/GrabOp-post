@@ -72,7 +72,8 @@ const routes: Routes = [
         SettingSliderComponent,
         SettingSelectComponent,
         SecuritySettingsComponent,
-        EmailUsernameSettingsComponent
+        EmailUsernameSettingsComponent,
+      VideoProfileDialogComponent
     ],
     providers: [
         ProfileService,

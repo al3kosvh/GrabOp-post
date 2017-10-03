@@ -37,6 +37,7 @@ import {VideoProfileDialogComponent} from './video/video-profile-dialog.componen
 export class ProfileComponent implements OnInit {
 
   private profile: VOUserExt = new VOUserExt();
+  private myUser: Models.VOUserExt;
   private profileConnectionsCount = 0;
   private isMyProfile: boolean;
 
@@ -48,7 +49,7 @@ export class ProfileComponent implements OnInit {
   private profilePic = "assets/img/avatar.png";
   private profileContainerMarginTop = -212;
   private btnConnectValue: string;
-  private myConnections: any;
+  private myConnections: Models.VOConnection[];
   private indexConnection: any;
 
     constructor(
@@ -70,7 +71,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  loadProfile(id: string) {
+  private loadProfile(id: string) {
     this.profileService.getProfileById(id).subscribe(
       profile => {
         this.initProfile(profile);
@@ -84,7 +85,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  loadMyProfile() {
+  private loadMyProfile() {
     this.profileService.getProfile().subscribe(
       profile => {
         this.initProfile(profile);
@@ -98,7 +99,7 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  initProfile(profile): void {
+  private initProfile(profile): void {
 
     this.profile = profile;
     this.shortName = ( this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + ( this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
@@ -156,7 +157,7 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(VideoProfileDialogComponent, config);
   }
 
-  validateConnection() {
+  private validateConnection() {
     this.btnConnectValue = 'connect';
     if (!this.isMyProfile) {
       this.connectionService.getMyConnections().subscribe(
@@ -177,20 +178,44 @@ export class ProfileComponent implements OnInit {
 
   adminConnection() {
     if (this.btnConnectValue === 'connect') {
-      // TODO the first param on setConnection and confirmConnection are be the user login
-      this.connectionService.setConnection('16', this.profile.id.toString(), 'make a connection').subscribe(
-        respond => {
-          this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-        }
-      )
+      if (this.myUser) {
+        this.setConnection();
+      } else {
+        this.userService.getUser().subscribe(
+          user => {
+            this.myUser = user;
+            this.setConnection();
+          }
+        )
+      }
     } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-      this.connectionService.confirmConnection('16', this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
-        respond => {
-          this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-        }
-      )
-    } else {
-
+      if (this.myUser) {
+        this.confirmConnection();
+      } else {
+        this.userService.getUser().subscribe(
+          user => {
+            this.myUser = user;
+            this.confirmConnection();
+          }
+        )
+      }
     }
   }
+
+  private setConnection() {
+    this.connectionService.setConnection(this.myUser.id, this.profile.id.toString(), 'make a connection').subscribe(
+      respond => {
+        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+      }
+    )
+  }
+
+  private confirmConnection() {
+    this.connectionService.confirmConnection(this.myUser.id, this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+      respond => {
+        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+      }
+    )
+  }
+
 }
