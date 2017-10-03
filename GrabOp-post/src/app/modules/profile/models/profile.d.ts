@@ -1,5 +1,5 @@
 declare module Models {
-    interface ProfileLocation {
+    export interface ProfileLocation {
         id: number,
         longitude: number,
         latitude: number,
