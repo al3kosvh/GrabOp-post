@@ -1,29 +1,30 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {RouterModule, Routes} from "@angular/router";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule, Routes } from "@angular/router";
 import {
-  MatIconModule,
+  MatAutocompleteModule,
+  MatButtonModule,
   MatChipsModule,
   MatGridListModule,
+  MatIconModule,
+  MatInputModule,
   MatSlideToggleModule,
-  MdTabsModule,
   MdButtonModule,
-  MdCardModule, MdSidenavModule, MatInputModule, MatButtonModule
-} from '@angular/material';
+  MdCardModule,
+  MdSidenavModule,
+  MdTabsModule
+} from "@angular/material";
 
-import {SharedModule} from "../shared/shared.module";
-
+import { SharedModule } from "../shared/shared.module";
 // Components
-import {ConnectionComponent} from './components/connection/connection.component';
-import {ConnectCardComponent} from './components/connect-card/connect-card.component';
+import { ConnectionComponent } from "./components/connection/connection.component";
+import { ConnectCardComponent } from "./components/connect-card/connect-card.component";
 import { MessageSideNavComponent } from "./components/message-sidenav/message-sidenav.component";
-
 // Services
-import {ConnectionService} from './services/connection.service';
-
+import { ConnectionService } from "./services/connection.service";
 // Pipes
-import {PipesModule} from '../../pipes/pipes.module';
+import { PipesModule } from "../../pipes/pipes.module";
 
 const routes: Routes = [
   {path: 'connections', component: ConnectionComponent},
@@ -46,7 +47,8 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatAutocompleteModule
   ],
   declarations: [
     ConnectionComponent,

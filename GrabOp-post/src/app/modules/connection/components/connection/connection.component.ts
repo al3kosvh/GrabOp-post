@@ -11,6 +11,7 @@ export class ConnectionComponent implements OnInit {
   tab = ['connections', 'received', 'sent'];
   myConnections: Models.VOConnection[];
   message: Models.VOMessage;
+  search: string;
 
   constructor(private connectionService: ConnectionService) {
   }
