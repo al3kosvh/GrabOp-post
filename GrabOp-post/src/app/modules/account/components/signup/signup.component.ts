@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
 
     openDialog(): void {
         const config: MdDialogConfig = {
-            width: '350px',
+            width: '400px',
         };
         this.dialog.open(SignUpDialogComponent, config);
     }
