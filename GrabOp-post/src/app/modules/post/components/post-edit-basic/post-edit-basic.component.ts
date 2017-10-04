@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { VOCategory, VOPost } from '../../../../models/vos';
-import { PostEditService } from '../../services/post-edit.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
     selector: 'app-post-edit-basic',
@@ -18,7 +18,7 @@ export class PostEditBasicComponent implements OnInit, OnChanges {
     categories: VOCategory[];
 
     constructor(
-        private postEditService: PostEditService
+        private postService: PostService
     ) {
         //this.postEditService.getCategories().then( res => this.categories = res);
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VOService } from '../../../../models/vos';
-import { PostEditService } from '../../services/post-edit.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
     selector: 'app-post-edit-tools',
@@ -13,7 +13,7 @@ export class PostEditToolsComponent implements OnInit {
     currentService: VOService;
 
     constructor(
-        private myService: PostEditService
+        private postService: PostService
     ) {
 
         /* myService.myService.subscribe(

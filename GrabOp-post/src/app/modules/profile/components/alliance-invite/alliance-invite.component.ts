@@ -25,7 +25,7 @@ export class AllianceInviteComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.postService.posts$.subscribe(posts => {
+        this.postService.myPosts$.subscribe(posts => {
             console.log('alliance-invite myPosts', posts);
             this.myPosts = posts;
             // posts.forEach(function (item, i, arr) {

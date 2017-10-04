@@ -1,36 +1,42 @@
 <div fxLayout="column">
   <div fxLayout="row-reverse">
-    <button class="close" md-icon-button (click)="onClose()">
+    <button md-icon-button class="close" (click)="onClose()">
       <md-icon>close</md-icon>
     </button>
   </div>
   <form #f="ngForm" autocomplete="off" novalidate fxLayout="column" class="form-edit-profile">
     <md-tab-group>
       <md-tab label="Basics">
-        <div class="demo-tab-content">
-          <md-form-field>
-            <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="profile.firstName" required #firstName="ngModel" />
-          </md-form-field>
-          <md-form-field>
-            <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="profile.lastName" required #lastName="ngModel" />
-          </md-form-field>
-          <md-form-field>
-            <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="profile.phoneNumber" required #phoneNumber="ngModel" />
-          </md-form-field>
-          <md-checkbox name="phoneVisible" [(ngModel)]="profile.phoneVisible">Make Visible</md-checkbox>
-          <md-form-field>
-            <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="profile.primaryEmail" required #primaryEmail="ngModel" />
-          </md-form-field>
-          <md-checkbox name="emailVisible" [(ngModel)]="profile.emailVisible">Make Visible</md-checkbox>
-          <md-form-field>
-            <input mdInput placeholder="Country" name="country" [(ngModel)]="profile.country" required #country="ngModel" />
-          </md-form-field>
-          <md-form-field>
-            <input mdInput placeholder="Province" name="province" [(ngModel)]="profile.province" required #province="ngModel" />
-          </md-form-field>
-          <md-form-field>
-            <input mdInput placeholder="City" name="city" [(ngModel)]="profile.city" required #city="ngModel" />
-          </md-form-field>
+        <div class="tab-content">
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="50" fxLayout="column">
+              <md-form-field>
+                <input mdInput placeholder="First Name" name="firstName" [(ngModel)]="profile.firstName" required #firstName="ngModel" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="Last Name" name="lastName" [(ngModel)]="profile.lastName" required #lastName="ngModel" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="profile.phoneNumber" required #phoneNumber="ngModel" />
+              </md-form-field>
+              <md-checkbox name="phoneVisible" [(ngModel)]="profile.phoneVisible">Make Visible</md-checkbox>
+              <md-form-field>
+                <input mdInput placeholder="Email Address" name="primaryEmail" [(ngModel)]="profile.primaryEmail" required #primaryEmail="ngModel" />
+              </md-form-field>
+              <md-checkbox name="emailVisible" [(ngModel)]="profile.emailVisible">Make Visible</md-checkbox>
+            </div>
+            <div fxFlex="50" fxLayout="column" fxFlexOffset="10px" fxFlexOffset.xs="0">
+              <md-form-field>
+                <input mdInput placeholder="Country" name="country" [(ngModel)]="profile.country" required #country="ngModel" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="Province" name="province" [(ngModel)]="profile.province" required #province="ngModel" />
+              </md-form-field>
+              <md-form-field>
+                <input mdInput placeholder="City" name="city" [(ngModel)]="profile.city" required #city="ngModel" />
+              </md-form-field>
+            </div>
+          </div>
           <md-form-field>
             <textarea mdInput placeholder="Personal Statement" name="resume" [(ngModel)]="profile.resume" required #resume="ngModel"></textarea>
           </md-form-field>
@@ -38,92 +44,96 @@
       </md-tab>
 
       <md-tab label="Professional">
-        <md-form-field>
-          <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel" />
-        </md-form-field>
-        <md-form-field *ngIf="profile.occupation === 0">
-          <input mdInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel" />
-        </md-form-field>
-        <md-radio-group class="radio-group" name="occupation" [(ngModel)]="profile.occupation">
-          <md-radio-button class="radio-button" *ngFor="let occupation of occupations" [value]="occupation.value" (click)="resetCompany()">
-            {{occupation.name}}
-          </md-radio-button>
-        </md-radio-group>
-
-        <div class="container-file">
-          <div class="document-view" fxLayout="column" fxFlex="60">
-            <img class="file" [src]="iconFileResume">
-            <!--<span>{{ fileResume.name }}</span>-->
+        <div class="tab-content">
+          <md-form-field>
+            <input mdInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel" />
+          </md-form-field>
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxLayout="column" fxFlex="50">
+              <md-form-field *ngIf="profile.occupation === 0">
+                <input mdInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel" />
+              </md-form-field>
+              <md-radio-group class="radio-group" name="occupation" [(ngModel)]="profile.occupation">
+                <md-radio-button class="radio-button" *ngFor="let occupation of occupations" [value]="occupation.value" (click)="resetCompany()">
+                  {{occupation.name}}
+                </md-radio-button>
+              </md-radio-group>
+            </div>
+            <div fxLayout="column" fxFlex="50" fxFlexOffset="10px" fxFlexOffset.xs="0">
+              <div class="container-file" fxLayout="row">
+                <div class="document-view" fxLayout="column" fxLayoutAlign="center center">
+                  <img class="file" [src]="iconFileResume">
+                  <span>Test dile 1</span>
+                  <span>{{ fileResume }}</span>
+                </div>
+                <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+                  <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                  Upload Resume
+                </a>
+              </div>
+            </div>
           </div>
-          <div fxLayout="column" fxFlex="40">
-            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
-              Upload Resume
-            </a>
-          </div>
-        </div>
 
-        <div class="container-skill">
-          Skills
-          <div *ngFor="let skill of profile.skillset; let i = index">
-            <button md-raised-button color="primary" (click)="deleteSkill(i)">
-              -
+          <div class="container-skill">
+            Skills
+            <button md-icon-button color="primary" (click)="addSkill()">
+              <md-icon>add_circle</md-icon>
             </button>
-            <!--TODO when add two or more input and change value in one this value replicate to other are empty but only in view, data profile.skillset is right-->
-            <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />
-            <br><br>
+            <div *ngFor="let skill of profile.skillset; let i = index">
+              <button md-icon-button color="primary" (click)="deleteSkill(i)">
+                <md-icon>remove_circle</md-icon>
+              </button>
+              <!--TODO when add two or more input and change value in one this value replicate to other are empty but only in view, data profile.skillset is right-->
+              <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />
+            </div>
           </div>
-
-          <button md-raised-button color="primary" (click)="addSkill()">
-            +
-          </button>
         </div>
-
       </md-tab>
 
       <md-tab label="Photo/Video">
+        <div class="tab-content">
 
-        <div class="container-file">
-          <div class="document-view" fxLayout="column" fxFlex="60">
-            <img class="image" [src]="profile.profile_pic">
+          <div class="container-file" fxLayout="row">
+            <div class="document-view" fxLayout="column">
+              <img class="image" [src]="profile.profile_pic">
+            </div>
+            <div fxLayout="column">
+              <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                add photo
+              </a>
+            </div>
           </div>
-          <div fxLayout="column" fxFlex="40">
-            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
-              add photo
-            </a>
+
+          <div class="container-file" fxLayout="row">
+            <div class="document-view" fxLayout="column">
+              <img class="image" [src]="profile.video">
+            </div>
+            <div fxLayout="column">
+              <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                add video
+              </a>
+            </div>
+          </div>
+
+          <div class="container-file" fxLayout="row">
+            <div class="document-view" fxLayout="column">
+              <img [src]="profile.background_pic">
+            </div>
+            <div fxLayout="column">
+              <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
+                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                backfround image
+              </a>
+            </div>
           </div>
         </div>
-
-        <div class="container-file">
-          <div class="document-view" fxLayout="column" fxFlex="60">
-            <img class="image" [src]="profile.video">
-          </div>
-          <div fxLayout="column" fxFlex="40">
-            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
-              add video
-            </a>
-          </div>
-        </div>
-
-        <div class="container-file">
-          <div class="document-view" fxLayout="column" fxFlex="60">
-            <img [src]="profile.background_pic">
-          </div>
-          <div fxLayout="column" fxFlex="40">
-            <a md-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-              <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
-              backfround image
-            </a>
-          </div>
-        </div>
-
       </md-tab>
     </md-tab-group>
 
 
-    <div class='row'>
+    <div class="options" fxLayout="row-reverse">
       <button md-raised-button color="basic" [class.disabled]="!f.valid" (click)="onClose()">
         Cancel
       </button>

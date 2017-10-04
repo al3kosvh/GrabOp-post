@@ -8,9 +8,8 @@ import { VOPost } from '../../../../models/vos';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 
 // Services
-import { PostEditService } from '../../services/post-edit.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
-import { MyPostsService } from '../../../post/services/my-posts.service';
+import { PostService } from '../../../post/services/post.service';
 
 @Component({
     selector: 'app-post-edit',
@@ -27,8 +26,8 @@ export class PostEditComponent implements OnInit, OnChanges {
 
     postType: string;
 
-    constructor(private postEditService: PostEditService,
-        private myPostsService: MyPostsService,
+    constructor(
+        private postService: PostService,
         private router: Router,
         private route: ActivatedRoute,
         private accountService: AuthenticationService,
@@ -42,9 +41,9 @@ export class PostEditComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
 
-        this.postEditService.post$.subscribe(post => this.model = post);
+        //this.postService.my.subscribe(post => this.model = post);
 
-        this.myPostsService.selectedMyPost$.subscribe(post => this.postEditService.setPost(post));
+        //this.postService.selectedMyPost$.subscribe(post => this.postService.setPost(post));
 
         this.route.params.subscribe(params => {
             console.log(params);
@@ -64,7 +63,7 @@ export class PostEditComponent implements OnInit, OnChanges {
     }
 
     loadPost(id: number): void {
-        this.myPostsService.getMyPostById(id);
+        this.postService.getMyPostById(id);
         console.log('load post ' + id);
     }
 
@@ -75,16 +74,16 @@ export class PostEditComponent implements OnInit, OnChanges {
     onSaveClick(): void {
         // console.log(this.myServiceService);
         if (this.model.id) {
-            this.postEditService.updatePost(this.model)
-                .subscribe(res => {
-                    console.log('updatePost', res);
-                    if (res.id) {
-                        this.dialog.open(ModalAlertComponent, { data: 'Post updated.' });
-                    }
-                }
-                );
+            this.postService.updatePost(this.model)
+                //.subscribe(res => {
+                //    console.log('updatePost', res);
+                //    if (res.id) {
+                //        this.dialog.open(ModalAlertComponent, { data: 'Post updated.' });
+                //    }
+                //}
+                //);
         } else {
-            this.postEditService.insertPost(this.model)
+            this.postService.insertPost(this.model)
                 .subscribe(res => {
                     console.log('insertPost', res);
                     if (res.id) {

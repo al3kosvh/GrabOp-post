@@ -36,7 +36,7 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 })
 export class ProfileComponent implements OnInit {
 
-    profile: VOUserExt = new VOUserExt();
+    profile: Models.VOUserExt;
     profileConnectionsCount = 0;
     isMyProfile: boolean;
 
@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
     profilePic = "assets/img/avatar.png";
     profileContainerMarginTop = -212;
     btnConnectValue: string;
-    myConnections: any;
+    myConnections: Models.VOConnection[];
     indexConnection: any;
 
     constructor(
@@ -58,7 +58,9 @@ export class ProfileComponent implements OnInit {
         private postService: PostService,
         private connectionService: ConnectionService,
         private dialog: MdDialog
-    ) { }
+    ) {
+        this.profile = <Models.VOUserExt>{};
+    }
 
     ngOnInit() {
         this.route.params.subscribe((params: Params) => {
@@ -84,7 +86,7 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-    loadMyProfile() {
+    private loadMyProfile() {
         this.profileService.getProfile().subscribe(
             profile => {
                 this.initProfile(profile);
@@ -98,21 +100,21 @@ export class ProfileComponent implements OnInit {
         )
     }
 
-    initProfile(profile): void {
+    private initProfile(profile): void {
 
         this.profile = profile;
         this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
         this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
         this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
-        console.log("ProfileComponent profile: ", this.profile, this.shortName);
 
         this.validateConnection();
 
-        this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
-            if (posts) {
-                this.profilePosts = posts;
-            }
-        });
+        this.postService.getUserPosts(this.profile.id).subscribe(
+            posts => {
+                if (posts) {
+                    this.profilePosts = posts;
+                }
+            });
 
         this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
             profileConnectionsCount => {
@@ -126,7 +128,7 @@ export class ProfileComponent implements OnInit {
 
     editProfile(): void {
         let config: MdDialogConfig = {
-            width: '400px',
+            width: '80%',
             data: { profile: this.profile }
         };
         this.dialog.open(EditProfileDialogComponent, config);
@@ -156,12 +158,11 @@ export class ProfileComponent implements OnInit {
         this.dialog.open(VideoProfileDialogComponent, config);
     }
 
-    validateConnection() {
+    private validateConnection() {
         this.btnConnectValue = 'connect';
         if (!this.isMyProfile) {
             this.connectionService.getMyConnections().subscribe(
                 connections => {
-                    console.log('ProfileComponent connection: ', connections);
                     this.myConnections = connections;
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id.toString()) {
@@ -177,20 +178,44 @@ export class ProfileComponent implements OnInit {
 
     adminConnection() {
         if (this.btnConnectValue === 'connect') {
-            // TODO the first param on setConnection and confirmConnection are be the user login
-            this.connectionService.setConnection('16', this.profile.id.toString(), 'make a connection').subscribe(
-                respond => {
-                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-                }
-            )
+            if (this.profile) {
+                this.setConnection();
+            } else {
+                this.userService.getUser().subscribe(
+                    user => {
+                        this.profile = user;
+                        this.setConnection();
+                    }
+                )
+            }
         } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-            this.connectionService.confirmConnection('16', this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
-                respond => {
-                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-                }
-            )
-        } else {
-
+            if (this.profile) {
+                this.confirmConnection();
+            } else {
+                this.userService.getUser().subscribe(
+                    user => {
+                        this.profile = user;
+                        this.confirmConnection();
+                    }
+                )
+            }
         }
     }
+
+    private setConnection() {
+        this.connectionService.setConnection(this.profile.id, this.profile.id.toString(), 'make a connection').subscribe(
+            respond => {
+                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+            }
+        )
+    }
+
+    private confirmConnection() {
+        this.connectionService.confirmConnection(this.profile.id, this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+            respond => {
+                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+            }
+        )
+    }
+
 }

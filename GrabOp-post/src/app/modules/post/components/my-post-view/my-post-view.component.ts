@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MyPostsService } from '../../services/my-posts.service';
+import { PostService } from '../../services/post.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 
 @Component({
@@ -18,10 +18,12 @@ export class MyPostViewComponent implements OnInit {
     myPost: VOPost = new VOPost({});
     myPosts: VOPost[];
 
-    constructor(private myPostsService: MyPostsService,
+    constructor(
+        private postService: PostService,
         private userService: AuthenticationService,
         private router: Router,
-        private aroute: ActivatedRoute) { }
+        private route: ActivatedRoute
+    ) { }
 
     ngOnInit() {
 
@@ -30,17 +32,17 @@ export class MyPostViewComponent implements OnInit {
             console.log('this.myUser', this.myUser);
         });
 
-        this.myPostsService.myPosts$.subscribe(posts => {
+        this.postService.getMyPosts().subscribe(posts => {
             console.log('posts', posts);
             this.myPosts = posts;
         });
 
-        this.myPostsService.selectedMyPost$.subscribe(post => {
-            console.log('myPost', post);
-            this.myPost = post;
-        });
+        //this.postService.selectedMyPost$.subscribe(post => {
+        //    console.log('myPost', post);
+        //    this.myPost = post;
+        //});
 
-        this.aroute.params.subscribe(params => {
+        this.route.params.subscribe(params => {
             // console.log(params);
             // this.idSelectedMyPost =  +params['idSelectedMyPost'];
             this.idMyPost = +params['idMyPost'];
@@ -48,7 +50,7 @@ export class MyPostViewComponent implements OnInit {
                 console.error(' please provide ID for post to view');
                 return;
             }
-            this.myPostsService.getMyPostById(this.idMyPost);
+            this.postService.getMyPostById(this.idMyPost);
         });
     }
 
@@ -58,7 +60,7 @@ export class MyPostViewComponent implements OnInit {
     }
 
     onClickItem(item: VOPost) {
-        this.myPostsService.setSelectedMyPost(item);
+        this.postService.setSelectedMyPost(item);
     }
 
     onDuplicateClick() { }

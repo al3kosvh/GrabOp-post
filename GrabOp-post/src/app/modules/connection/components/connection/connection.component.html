@@ -1,31 +1,19 @@
-<md-tab-group>
+<md-tab-group position="center">
   <md-tab label="Active Connections">
-    <md-grid-list cols="3" rowHeight="2:5">
-      <div *ngFor="let x of [1,2,3,4,5,6]">
-        <md-grid-tile>
-          <app-connect-card [tab]='tab[0]'></app-connect-card>
-        </md-grid-tile>
-      </div>
-    </md-grid-list>
+    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[0]' [connection]="connection"></app-connect-card>
+    </div>
 
   </md-tab>
   <md-tab label="Received Requests">
-    <md-grid-list cols="3" rowHeight="2:5">
-      <div *ngFor="let x of [1,2,3,4,5,6]">
-        <md-grid-tile>
-          <app-connect-card [tab]='tab[1]'></app-connect-card>
-        </md-grid-tile>
-      </div>
-    </md-grid-list>
+    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[1]' [connection]="connection"></app-connect-card>
+    </div>
   </md-tab>
   <md-tab label="Send Requests">
-    <md-grid-list cols="3" rowHeight="2:5">
-      <div *ngFor="let x of [1,2,3,4,5,6]">
-        <md-grid-tile>
-          <app-connect-card [tab]='tab[2]'></app-connect-card>
-        </md-grid-tile>
-      </div>
-    </md-grid-list>
+    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[2]' [connection]="connection"></app-connect-card>
+    </div>
   </md-tab>
 </md-tab-group>
 

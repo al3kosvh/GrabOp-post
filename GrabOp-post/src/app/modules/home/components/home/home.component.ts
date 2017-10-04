@@ -8,7 +8,7 @@ import { UserCommentsComponent } from '../user-comments/user-comments.component'
 
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
-import { MyPostsService } from '../../../post/services/my-posts.service';
+import { PostService } from '../../../post/services/post.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 import { ProfileService } from '../../../profile/services/profile.service';
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnChanges {
     myPosts: VOPost[];
 
     constructor(
-        private myPostsService: MyPostsService,
+        private postService: PostService,
         private userService: AuthenticationService,
         private connectionService: ConnectionService,
         private modal: ModalWindowService,
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
         // this.myPostsService.getMyPosts().subscribe(posts => {
         // this.myPostsService.getMyPosts();
-        this.myPostsService.myPosts$.subscribe(posts => {
+        this.postService.getMyPosts().subscribe(posts => {
             // console.log('posts', posts);
             if (!posts) return;
             this.myPosts = posts;
@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit, OnChanges {
     }
 
     onClickItem(item: VOPost) {
-        this.myPostsService.setSelectedMyPost(item);
+        this.postService.setSelectedMyPost(item);
     }
 
 }

@@ -134,6 +134,7 @@ div.connections-title {
   color: #03a9f4;
   font-weight: 500;
   font-size: 1em;
+  cursor: pointer;
 }
 
 div.profile-inner-connections img.bracket {

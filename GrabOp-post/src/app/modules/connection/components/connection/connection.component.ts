@@ -10,6 +10,7 @@ import { ConnectionService } from '../../services/connection.service';
 })
 export class ConnectionComponent implements OnInit {
     tab = ['connections', 'received', 'sent'];
+    myConnections: Models.VOConnection[];
 
     constructor(
         private connectionService: ConnectionService
@@ -17,7 +18,7 @@ export class ConnectionComponent implements OnInit {
 
     ngOnInit() {
         this.connectionService.getMyConnections().subscribe(res => {
-            console.log('getMyConnections res', res);
+            this.myConnections = res;
         });
     }
 

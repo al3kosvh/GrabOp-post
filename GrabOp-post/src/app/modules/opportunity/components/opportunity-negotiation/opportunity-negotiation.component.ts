@@ -23,10 +23,12 @@ export class OpportunityNegotiationComponent implements OnInit {
     myPost: VOPost = new VOPost({});
     personPost: VOPost = new VOPost({});
 
-    constructor(private aroute: ActivatedRoute,
+    constructor(
+        private aroute: ActivatedRoute,
         private auth: AuthenticationService,
         private personPostsService: PostService,
-        private opportunityService: OpportunityService) {
+        private opportunityService: OpportunityService
+    ) {
         this.auth.getUser().subscribe(res => {
             this.myUser = res;
             console.log('myUser', this.myUser);
@@ -48,7 +50,7 @@ export class OpportunityNegotiationComponent implements OnInit {
             //    this.myPost = res;
             //    console.log('selectMyPostById MY', res);
             //});
-            this.personPostsService.getPostById(this.idOfferPost).subscribe(res => {
+            this.personPostsService.getMyPostById(this.idOfferPost).subscribe(res => {
                 this.personPost = res;
                 console.log('selectMyPostById PERSON', res);
             });

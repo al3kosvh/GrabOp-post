@@ -1,7 +1,7 @@
 <div fxLayout="column">
   <div class="first-row" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
-    <user-bio *ngIf="user" [user]="user"></user-bio>
-    <profile-progress></profile-progress>
+    <user-bio [user]="user"></user-bio>
+    <profile-progress [user]="user"></profile-progress>
     <div class="announce" fxLayout="column">
       <span class="title">GrabOp thought of the day</span>
       <p>
