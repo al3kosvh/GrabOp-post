@@ -4,20 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule,
-    MatListModule, MatTabsModule
+    MatListModule, MatTabsModule, MatStepperModule, MatRadioModule
 } from '@angular/material';
 
 // Components
-//import { SignupComponent } from './components/signup/signup.component';
-import { SignUpComponent } from './components/sign-up/signup.component';
-import { SignupUsernameComponent } from './components/signup/username/signup-username.component';
-import { SignupConfirmComponent } from './components/signup/confirm/signup-confirm.component';
-import { AccountRecoverComponent } from './components/recover/recover.component';
-import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
+//import { SignupComponent } from './components/signup_old/signup.component';
+//import { SignupButtonComponent } from './components/signup_old/button/signup-button.component';
+
+import { SignUpComponent } from './components/signup/signup.component';
+import { SignUpDialogComponent } from './components/signup/dialog/signup-dialog.component';
+import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
+
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
+
+import { AccountRecoverComponent } from './components/recover/recover.component';
+
 import { SignOutComponent } from './components/signout/signout.component';
-import { SignupButtonComponent } from './components/signup/button/signup-button.component';
+
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
@@ -37,7 +41,7 @@ import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     /*{
-        path: 'join-us', component: SignupComponent, outlet: 'slideRight', data: { animation: 'in' },
+        path: 'join-us', component: SignUpComponent, outlet: 'slideRight', data: { animation: 'in' },
         children: [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
@@ -46,7 +50,6 @@ const routes: Routes = [
         ]
     },*/
     { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
-    { path: 'signup', component: SignUpComponent, canDeactivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -62,6 +65,8 @@ const routes: Routes = [
         MatCheckboxModule,
         MatListModule,
         MatTabsModule,
+        MatStepperModule,
+        MatRadioModule,
         RouterModule.forChild(routes),
         SharedModule
     ],
@@ -75,13 +80,11 @@ const routes: Routes = [
         SignInComponent,
         SignOutComponent,
         SignInDialogComponent,
-        SignupUsernameComponent,
-        SignupConfirmComponent,
+        SignUpDialogComponent,
+        SignUpConfirmComponent,
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent,
-        SignupButtonComponent
     ],
     providers: [
         UploadService,
@@ -91,6 +94,6 @@ const routes: Routes = [
         AccountStorageService,
         HttpService
     ],
-    entryComponents: [SignInDialogComponent]
+    entryComponents: [SignInDialogComponent, SignUpDialogComponent]
 })
 export class AccountModule { }

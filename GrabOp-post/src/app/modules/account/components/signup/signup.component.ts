@@ -1,43 +1,28 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SignupService } from '../../services/signup.service';
+﻿import { Component, Inject, OnInit } from '@angular/core';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+
+// Services
+import { AuthenticationService } from '../../services/authentication.service';
+import { SignUpDialogComponent } from './dialog/signup-dialog.component';
 
 @Component({
-    selector: 'app-login-new',
+    selector: 'account-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignUpComponent implements OnInit {
 
-    isIn: boolean;
-    isVisible: boolean = true;
+    constructor(public dialog: MdDialog) { }
 
-    constructor(private router: Router, private signupService: SignupService) {
-
-    }
-
-    ngOnInit() {
+    ngOnInit(): void {
 
     }
 
-    /*  ngAfterViewInit():void{
-        setTimeout(()=>{this.isIn= true;},100)
-    
-      }*/
-
-    /* removeMe():void{
-       this.router.navigate(['./', {outlets: {important: null}}]);
-     }
-   
-   
-     hideMe():void{
-       this.isIn = false;
-       setTimeout(()=>this.removeMe(),600)
-     }
-   
-     onCloseClick():void{
-       this.hideMe();
-     }
-   */
+    openDialog(): void {
+        const config: MdDialogConfig = {
+            width: '350px',
+        };
+        this.dialog.open(SignUpDialogComponent, config);
+    }
 
 }
