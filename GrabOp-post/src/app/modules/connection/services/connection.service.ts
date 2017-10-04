@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { VOSettings } from "../../../models/vos";
 import { HttpService } from "../../account/services/http.service";
+import { Router } from "@angular/router";
+import { mapGetPerson } from "../../../utils/map-functions";
 
 @Injectable()
 export class ConnectionService {
@@ -55,4 +57,19 @@ export class ConnectionService {
       console.error(error);
     return Observable.throw(errMsg);
   }
+
+  public validateUrlProfile(id: string, router: Router): Observable<boolean> {
+    return this.http.get(VOSettings.myProfile).map(res => {
+        const myProfile = mapGetPerson(res);
+        if (id == myProfile.id) {
+          router.navigate(['/connections']);
+          return false;
+        }
+        return true;
+      })
+      .catch((error: any) => {
+        return new Observable<boolean>();
+      });
+  }
+
 }

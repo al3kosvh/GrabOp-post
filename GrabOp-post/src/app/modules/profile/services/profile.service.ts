@@ -16,8 +16,7 @@ export class ProfileService {
     private url: string;
 
     constructor(
-        private http: HttpService,
-        private router: Router
+        private http: HttpService
     ) {
     }
 
@@ -30,7 +29,7 @@ export class ProfileService {
         return this.http.get(VOSettings.myProfile).map(res => {
             const myProfile = mapGetPerson(res);
             if (id == myProfile.id) {
-                this.router.navigate(['/profile']);
+                router.navigate(['/profile']);
                 return false;
             }
             return true;

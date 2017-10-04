@@ -26,12 +26,13 @@ import { MessageSideNavComponent } from "./components/message-sidenav/message-si
 import { ConnectionProfileComponent } from "./components/connection-profile/connection-profile.component";
 // Services
 import { ConnectionService } from "./services/connection.service";
+import { ConnectionGuard } from "./services/connection.guard";
 // Pipes
 import { PipesModule } from "../../pipes/pipes.module";
 
 const routes: Routes = [
   {path: 'connections', component: ConnectionComponent},
-  {path: 'connections/:id', component: ConnectionProfileComponent}];
+  {path: 'connections/:id', component: ConnectionProfileComponent, canActivate: [ConnectionGuard]}];
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ const routes: Routes = [
     MessageSideNavComponent
   ],
   providers: [
-    ConnectionService
+    ConnectionService,
+    ConnectionGuard
   ],
   entryComponents: [MessageSideNavComponent]
 })
