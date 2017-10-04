@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOImage, VOPost, VOpost_attachment } from '../../../../models/vos';
 // import {UploadService} from '../../myservices/upload-service';
-import { PostEditService } from '../../services/post-edit.service';
+import { PostService } from '../../services/post.service';
 import { UploadService } from '../../../account/services/upload.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class PostEditMediaComponent implements OnInit, OnChanges {
 
     constructor(
         private uploadService: UploadService,
-        private postEditService: PostEditService
+        private postService: PostService
     ) {
     }
 

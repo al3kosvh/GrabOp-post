@@ -19,6 +19,7 @@ export class ProfileService {
         private http: HttpService,
         private router: Router
     ) {
+        this.url = VOSettings.server + '/profiles/';
     }
 
     public getProfile(): Observable<VOUserExt> {

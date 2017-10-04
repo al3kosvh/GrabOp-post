@@ -58,7 +58,9 @@ export class ProfileComponent implements OnInit {
         private postService: PostService,
         private connectionService: ConnectionService,
         private dialog: MdDialog
-    ) { }
+    ) {
+        this.profile = <Models.VOUserExt>{};
+    }
 
     ngOnInit() {
         this.route.params.subscribe((params: Params) => {
@@ -107,11 +109,12 @@ export class ProfileComponent implements OnInit {
 
         this.validateConnection();
 
-        this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
-            if (posts) {
-                this.profilePosts = posts;
-            }
-        });
+        this.postService.getUserPosts(this.profile.id).subscribe(
+            posts => {
+                if (posts) {
+                    this.profilePosts = posts;
+                }
+            });
 
         this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
             profileConnectionsCount => {
@@ -160,7 +163,6 @@ export class ProfileComponent implements OnInit {
         if (!this.isMyProfile) {
             this.connectionService.getMyConnections().subscribe(
                 connections => {
-                    console.log('ProfileComponent connection: ', connections);
                     this.myConnections = connections;
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id.toString()) {
