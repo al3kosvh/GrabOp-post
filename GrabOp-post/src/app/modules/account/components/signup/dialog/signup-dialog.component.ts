@@ -18,9 +18,7 @@ export class SignUpDialogComponent implements OnInit {
 
     private user: VOUserExt = new VOUserExt();
     //private user = {};
-    private companyFormGroup: FormGroup;
     private userFormGroup: FormGroup;
-    private locationFormGroup: FormGroup;
 
     constructor(
         public dialogRef: MdDialogRef<SignUpDialogComponent>,
@@ -29,15 +27,9 @@ export class SignUpDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.companyFormGroup = this.formBuilder.group({
-            //firstCtrl: ['', Validators.required]
-        });
         this.userFormGroup = this.formBuilder.group({
-            //firstCtrl: ['', Validators.required]
+            firstCtrl: ['', Validators.required]
         });
-        this.locationFormGroup = this.formBuilder.group({
-          //firstCtrl: ['', Validators.required]
-      });
     }
 
     onSubmit(): void {

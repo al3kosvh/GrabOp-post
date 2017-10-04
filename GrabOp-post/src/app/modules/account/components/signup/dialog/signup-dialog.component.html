@@ -4,10 +4,9 @@
     </div>
     <h3>Sign Up</h3>
     <!--div *ngIf="errorMessage">{{ errorMessage }}</div-->
-    <md-horizontal-stepper>
-
-        <md-step [stepControl]="userFormGroup">
-            <form #f="ngForm" [formGroup]="userFormGroup" autocomplete="off">
+    <form #f="ngForm" [formGroup]="userFormGroup" autocomplete="off">
+        <md-horizontal-stepper linear>
+            <md-step>
                 <md-form-field>
                     <input mdInput placeholder="First Name" name="firstName" required minlength="2" />
                 </md-form-field>
@@ -34,12 +33,9 @@
                 <div>
                     <button type="button" md-raised-button color="primary" mdStepperNext>Next</button>
                 </div>
+            </md-step>
 
-            </form>
-        </md-step>
-
-        <md-step [stepControl]="companyFormGroup">
-            <form #f="ngForm" [formGroup]="companyFormGroup" autocomplete="off">
+            <md-step >
                 <md-form-field>
                     <input mdInput placeholder="Job Title" name="jobtitle" required/>
                 </md-form-field>
@@ -71,11 +67,9 @@
                     <button md-button type="button" mdStepperPrevious>Back</button>
                     <button md-raised-button color="primary" type="button" mdStepperNext>Next</button>
                 </div>
-            </form>
-        </md-step>
+            </md-step>
 
-        <md-step [stepControl]="locationFormGroup">
-            <form #f="ngForm" [formGroup]="locationFormGroup" autocomplete="off">
+            <md-step >
                 <md-form-field>
                     <input mdInput placeholder="Phone Number" name="phone" required type="tel" />
                 </md-form-field>
@@ -96,15 +90,14 @@
                     <button md-button type="button" mdStepperPrevious>Back</button>
                     <button md-raised-button color="primary" type="button" mdStepperNext>Next</button>
                 </div>
+            </md-step>
 
-            </form>
-        </md-step>
-
-        <md-step label="GO">
-            You are now done.
-            <div>
-                <button md-button type="button" mdStepperPrevious>Back</button>
-            </div>
-        </md-step>
-    </md-horizontal-stepper>
+            <md-step label="GO">
+                You are now done.
+                <div>
+                    <button md-button type="button" mdStepperPrevious>Back</button>
+                </div>
+            </md-step>
+        </md-horizontal-stepper>
+    </form>
 </div>
