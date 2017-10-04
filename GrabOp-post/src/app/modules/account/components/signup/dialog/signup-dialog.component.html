@@ -1,0 +1,110 @@
+<div fxLayout="column">
+    <div fxLayout="row-reverse">
+        <button class="close" md-icon-button (click)="onClose()"><md-icon>close</md-icon></button>
+    </div>
+    <h3>Sign Up</h3>
+    <!--div *ngIf="errorMessage">{{ errorMessage }}</div-->
+    <md-horizontal-stepper>
+
+        <md-step [stepControl]="userFormGroup">
+            <form #f="ngForm" [formGroup]="userFormGroup" autocomplete="off">
+                <md-form-field>
+                    <input mdInput placeholder="First Name" name="firstName" required minlength="2" />
+                </md-form-field>
+                <md-form-field>
+                    <!--[(ngModel)]="person.lastName"-->
+                    <input mdInput placeholder="Last Name" name="lastName" required minlength="2" />
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="User Name" name="username" required minlength="2" />
+                    <div *ngIf="usernameMsg">{{usernameMsg}}</div>
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="Email" name="email" type="email" appCheckEmail required minlength="6" maxlength="100" />
+                    <div *ngIf="emailMsg">{{emailMsg}}</div>
+                    <div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div>
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="Password" name="password" required minlength="6" />
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="Confirm Password" name="confirm" required minlength="6" />
+                </md-form-field>
+
+                <div>
+                    <button md-raised-button color="primary" mdStepperNext>Next</button>
+                </div>
+
+            </form>
+        </md-step>
+
+        <md-step [stepControl]="companyFormGroup">
+            <form #f="ngForm" [formGroup]="companyFormGroup" autocomplete="off">
+                <md-form-field>
+                    <input mdInput placeholder="Job Title" name="jobtitle" required/>
+                </md-form-field>
+
+                <md-radio-group required name="occupation">
+                    <md-radio-button checked=true value="company">
+                        Company
+                    </md-radio-button>
+                    <md-form-field>
+                        <input mdInput placeholder="Company" required/>
+                    </md-form-field>
+
+                    <md-radio-button value="self">
+                        Self Employed
+                    </md-radio-button>
+                    <md-radio-button value="seeking">
+                        Seeking an Opportunity
+                    </md-radio-button>
+                    <md-radio-button value="custom">
+                        Other
+                    </md-radio-button>
+                </md-radio-group>
+
+                <md-form-field>
+                    <input mdInput placeholder="Occupation" name="other-occupation" required/>
+                </md-form-field>
+
+                <div>
+                    <button md-button mdStepperPrevious>Back</button>
+                    <button md-raised-button color="primary" mdStepperNext>Next</button>
+                </div>
+            </form>
+        </md-step>
+
+        <md-step [stepControl]="locationFormGroup">
+            <form #f="ngForm" [formGroup]="locationFormGroup" autocomplete="off">
+                <md-form-field>
+                    <input mdInput placeholder="Phone Number" name="phone" required type="tel" />
+                </md-form-field>
+
+                <md-checkbox>Make Visible</md-checkbox>
+
+                <md-form-field>
+                    <input mdInput placeholder="Country" name="country" required />
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="Province" name="province" required />
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="City" name="city" required />
+                </md-form-field>
+
+                <div>
+                    <button md-button mdStepperPrevious>Back</button>
+                    <button md-raised-button color="primary" mdStepperNext>Next</button>
+                </div>
+
+            </form>
+        </md-step>
+
+        <md-step label="GO">
+            You are now done.
+            <div>
+                <button md-button mdStepperPrevious>Back</button>
+            </div>
+        </md-step>
+    </md-horizontal-stepper>
+</div>
