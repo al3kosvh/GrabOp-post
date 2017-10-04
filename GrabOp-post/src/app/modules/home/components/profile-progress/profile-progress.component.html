@@ -3,8 +3,8 @@
   <div class="star" fxLayout="column" fxLayoutAlign="center center">
     <img #star src='assets/img/star.png' />
     <span>{{percent}}%</span>
-    <div class="background-container" fxLayout="column-reverse">
-      <div *ngIf="star.src" [ngStyle]="{'height.px': (0.7 * percent)}" class="background"></div>
+    <div *ngIf="star.src" class="background-container" fxLayout="column-reverse">
+      <div [ngStyle]="{'height.px': (0.7 * percent)}" class="background"></div>
     </div>    
   </div>
   <a [routerLink]="['/profile']">Enhance your Profile</a>
