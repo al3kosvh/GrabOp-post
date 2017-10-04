@@ -1,12 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from "@angular/router";
 import {
+  MatIconModule,
+  MatChipsModule,
   MatGridListModule,
   MatSlideToggleModule,
   MdTabsModule,
   MdButtonModule,
-  MdCardModule
+  MdCardModule, MdSidenavModule, MatInputModule, MatButtonModule
 } from '@angular/material';
 
 import {SharedModule} from "../shared/shared.module";
@@ -14,6 +17,7 @@ import {SharedModule} from "../shared/shared.module";
 // Components
 import {ConnectionComponent} from './components/connection/connection.component';
 import {ConnectCardComponent} from './components/connect-card/connect-card.component';
+import { MessageSideNavComponent } from "./components/message-sidenav/message-sidenav.component";
 
 // Services
 import {ConnectionService} from './services/connection.service';
@@ -36,14 +40,23 @@ const routes: Routes = [
     MdButtonModule,
     MdCardModule,
     PipesModule,
+    MdSidenavModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule
   ],
   declarations: [
     ConnectionComponent,
-    ConnectCardComponent
+    ConnectCardComponent,
+    MessageSideNavComponent
   ],
   providers: [
     ConnectionService
-  ]
+  ],
+  entryComponents: [MessageSideNavComponent]
 })
 export class ConnectionModule {
 }
