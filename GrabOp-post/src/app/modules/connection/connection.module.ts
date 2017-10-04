@@ -12,6 +12,7 @@ import {
   MatSlideToggleModule,
   MdButtonModule,
   MdCardModule,
+  MdExpansionModule,
   MdSidenavModule,
   MdTabsModule
 } from "@angular/material";
@@ -20,7 +21,9 @@ import { SharedModule } from "../shared/shared.module";
 // Components
 import { ConnectionComponent } from "./components/connection/connection.component";
 import { ConnectCardComponent } from "./components/connect-card/connect-card.component";
+import { ConnectCardProfileComponent } from "./components/connect-card-profile/connect-card-profile.component";
 import { MessageSideNavComponent } from "./components/message-sidenav/message-sidenav.component";
+import { ConnectionProfileComponent } from "./components/connection-profile/connection-profile.component";
 // Services
 import { ConnectionService } from "./services/connection.service";
 // Pipes
@@ -28,7 +31,7 @@ import { PipesModule } from "../../pipes/pipes.module";
 
 const routes: Routes = [
   {path: 'connections', component: ConnectionComponent},
-  {path: 'connections/:id', component: ConnectionComponent}];
+  {path: 'connections/:id', component: ConnectionProfileComponent}];
 
 @NgModule({
   imports: [
@@ -48,11 +51,14 @@ const routes: Routes = [
     MatButtonModule,
     MatChipsModule,
     MatIconModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MdExpansionModule
   ],
   declarations: [
     ConnectionComponent,
+    ConnectionProfileComponent,
     ConnectCardComponent,
+    ConnectCardProfileComponent,
     MessageSideNavComponent
   ],
   providers: [
