@@ -8,7 +8,7 @@
           <form floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
             <md-form-field floatPlaceholder="never">
               <md-icon mdPrefix>search</md-icon>
-              <input mdInput placeholder="Search" name="search" aria-label="Search" [mdAutocomplete]="auto" [(ngModel)]="search">
+              <input mdInput placeholder="Search" name="search" aria-label="Search..." [mdAutocomplete]="auto" [(ngModel)]="search">
               <md-autocomplete #auto="mdAutocomplete">
                 <md-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
                   <span>{{ connection.display_name }}</span>
