@@ -5,3 +5,15 @@ app-post-details {
 app-post-info {
     width: 100%;
 }
+
+span.posts-title {
+  margin: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: grey;
+}
+
+div.posts {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

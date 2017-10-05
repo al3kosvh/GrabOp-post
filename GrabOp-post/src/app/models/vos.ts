@@ -167,7 +167,7 @@ export class VOPost {
     // summary: string;     // is it description ???
     description: string; // is it summary ???
     createdDate: Date;
-    categoryid: number;
+    categoryId: number;
     city: string;
     province: string;
     country: string;

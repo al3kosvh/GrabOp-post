@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { VOPost, VOResult, VOSettings, VOImage } from "../../../models/vos";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { mapGetMyPosts, mapGetPost, mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSend_UpdateNeed, mapPostSend_UpdateOffer } from '../../../utils/map-functions';
+import { mapGetPosts, mapGetPost, mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSend_UpdateNeed, mapPostSend_UpdateOffer } from '../../../utils/map-functions';
 
 // Services
 import { HttpService } from "../../account/services/http.service";
@@ -33,25 +33,25 @@ export class PostService {
         //this.selectedMyPost$ = this.selectedMyPostSub.asObservable();
     }
 
-    getUserPosts(userId: string): Observable<VOPost[]> {
+    getUserPosts(userId: number): Observable<VOPost[]> {
         let url: string = VOSettings.getPosts;
-        return this.http.get(url.replace(<any>'{{id}}', userId)).map(mapGetMyPosts)
+        return this.http.get(url.replace(<any>'{{id}}', userId.toString())).map(mapGetPosts)
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     getMyPosts(): Observable<VOPost[]> {
         let url: string = VOSettings.getMyPosts;
 
-        return this.http.get(url).map(mapGetMyPosts)
+        return this.http.get(url).map(mapGetPosts)
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    //getPostById(): Observable<VOPost> {
-    //    let url: string = VOSettings.getMyPosts;
+    getPostById(postId: string): Observable<VOPost> {
+        let url: string = VOSettings.getPostById;
 
-    //    return this.http.get(url).map(mapGetMyPosts)
-    //        .catch((error: any) => Observable.throw(error || 'Server error'));
-    //}
+        return this.http.get(url.replace(<any>'{{id}}', postId)).map(mapGetPost)
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
 
 
 
@@ -221,7 +221,7 @@ export class PostService {
         // delete post.type;
         let url: string;
 
-        post.categoryid = 1;
+        post.categoryId = 1;
         let reqData: any;
         // let req = {};
 

@@ -17,7 +17,7 @@
     </md-grid-tile>
   </md-grid-list>
 
-  <div *ngIf="post && post.attachments.length">
+  <div *ngIf="post?.attachments && post.attachments.length">
     <div id="postImages" *ngFor="let image of post.attachments; let i=index">
       <md-grid-list *ngIf="i == 0" cols="4" rowHeight="200px">
         <md-grid-tile>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div *ngIf="!post || !post.attachments.length">
+  <div *ngIf="!post?.attachments || !post.attachments.length">
     <md-grid-list cols="4" rowHeight="200px">
       <md-grid-tile>
         IMG
