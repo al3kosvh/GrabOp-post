@@ -1,0 +1,160 @@
+<div fxlayout="row">
+  <div fxLayout="column" fxFlex="20" class="filters">
+    <h3 class="title">Advanced Search</h3>
+    <form #f="ngForm" autocomplete="off" novalidate class="form-filters">
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Search" name="search" [(ngModel)]="filters.search" #search="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Country" name="country" [(ngModel)]="filters.country" #country="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Province" name="province" [(ngModel)]="filters.province" #province="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="City" name="city" [(ngModel)]="filters.city" #city="ngModel"/>
+      </md-form-field>
+
+      <h4 class="title">Business Style</h4>
+      <div class="checkbox-group">
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="partnership" [(ngModel)]="filters.businessStyle.partnership">Business Partnership</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="exchange" [(ngModel)]="filters.businessStyle.exchange">Exchange</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="donate" [(ngModel)]="filters.businessStyle.donate">Donate</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="internship" [(ngModel)]="filters.businessStyle.internship">Internship</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="money" [(ngModel)]="filters.businessStyle.money">Money</md-checkbox>
+        </div>
+      </div>
+
+      <div fxlayout="row" class="full-width">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Fixed</span>
+        </div>
+
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          $
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="fixedStart" [(ngModel)]="filters.fixed.start" #fixedStart="ngModel"/>
+          </md-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="fixedEnd" [(ngModel)]="filters.fixed.end" #fixedEnd="ngModel"/>
+          </md-form-field>
+        </div>
+      </div>
+
+      <div fxlayout="row" class="full-width">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Hourly</span>
+        </div>
+
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          $
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="hourlyStart" [(ngModel)]="filters.hourly.start" #hourlyStart="ngModel"/>
+          </md-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="hourlyEnd" [(ngModel)]="filters.hourly.end" #hourlyEnd="ngModel"/>
+          </md-form-field>
+        </div>
+      </div>
+
+      <div fxlayout="row" class="full-width">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Commission</span>
+        </div>
+
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          %
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="commissionStart" [(ngModel)]="filters.commission.start" #commissionStart="ngModel"/>
+          </md-form-field>
+        </div>
+
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+
+        <div fxLayout="column" fxFlex="25">
+          <md-form-field class="full-width">
+            <input mdInput placeholder="" name="commissionEnd" [(ngModel)]="filters.commission.end" #commissionEnd="ngModel"/>
+          </md-form-field>
+        </div>
+      </div>
+
+      <div fxlayout="row" class="full-width btn-container" fxLayoutAlign="center center">
+        <div fxLayout="column" fxFlex="70">
+          <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="advancedSearch()">
+            Search
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="result-container" fxLayout="column" fxFlex="80">
+
+    <div fxlayout="row" class="full-width">
+      <span class="result">Result: {{ resultCant }}</span>
+    </div>
+
+    <md-tab-group>
+      <md-tab [label]="'Offerings (' + offeringsCant + ')'">
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <div *ngFor="let item of posts | postsFilter:'offer'; let i=index">
+            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab [label]="'Needs (' + needsCant + ')'">
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <div *ngFor="let item of posts | postsFilter:'need'; let i=index">
+            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab [label]="'People (' + peopleCant + ')'">
+        People
+      </md-tab>
+    </md-tab-group>
+
+  </div>
+</div>
+
