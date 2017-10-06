@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 
 @Injectable()
-export class SignupService {
+export class SignUpService {
 
 
     // userExt:VOUserExt = new VOUserExt({});
@@ -34,11 +34,11 @@ export class SignupService {
     /* register(newUser: VOUserExt): Observable<VOUserExt> {
        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/register?format=json';
        let url: string = VOSettings.register;;
-   
+
        return this.http.post(url, newUser).map(res => {
          console.log('register post res ', res);
          let resp: SOAuthenticateResponse = res;
-   
+
          let user: VOUser = new VOUser();
            user.id = resp.UserId;
            user.username = newUser.username;
@@ -54,7 +54,7 @@ export class SignupService {
         return this.http.post(url, token).map(res => {
             console.log('verifyEmail post res ', res);
             return res;
-        }).catch(this.handleError);
+        });
     }
 
 

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
 import { MdDialog } from '@angular/material';
 //import {UserEditService} from '../../../user-edit/user-edit.service';
-import { SignupService } from '../../../services/signup.service';
+import { SignUpService } from '../../../services/signup.service';
 
 @Component({
     selector: 'signup-confirm',
@@ -15,7 +15,7 @@ export class SignUpConfirmComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private signupService: SignupService,
+        private signupService: SignUpService,
         private dialog: MdDialog
     ) { }
 

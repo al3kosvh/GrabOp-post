@@ -33,7 +33,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AccountStorageService } from './services/account-storage.service';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
-import { SignupService } from './services/signup.service';
+import { SignUpService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -92,7 +92,7 @@ const routes: Routes = [
         UploadService,
         AuthenticationService,
         AuthGuard,
-        SignupService,
+        SignUpService,
         AccountStorageService,
         HttpService
     ],
