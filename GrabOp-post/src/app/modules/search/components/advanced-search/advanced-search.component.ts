@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
 import { VOPost } from "../../../../models/vos";
 import { PostService } from "../../../post/services/post.service";
 import { ConnectionService } from "../../../connection/services/connection.service";
@@ -18,10 +19,9 @@ export class AdvancedSearchComponent implements OnInit {
   myConnections: Models.VOConnection[];
   connections: Models.VOConnection[];
 
-  constructor(
-    private postService: PostService,
-  private connectionService: ConnectionService
-  ) {
+  constructor(private postService: PostService,
+              private connectionService: ConnectionService,
+              private route: ActivatedRoute) {
 
   }
 
@@ -54,7 +54,12 @@ export class AdvancedSearchComponent implements OnInit {
       };
     }
 
-    this.advancedSearch();
+    this.route.params.subscribe((params: Params) => {
+      if (params['search']) {
+        this.filters.search = params['search'];
+      }
+      this.advancedSearch();
+    });
 
   }
 
@@ -120,7 +125,7 @@ export class AdvancedSearchComponent implements OnInit {
             || this.match(search, connections[i].user_name)
             || this.match(search, connections[i].first_name)
             || this.match(search, connections[i].last_name)
-          ){
+          ) {
             result.push(connections[i]);
             this.peopleCant++;
           }
@@ -151,7 +156,9 @@ export class AdvancedSearchComponent implements OnInit {
   }
 
   private match(split, value: string) {
-    value = value ? value.trim() : '';
+    if (value) {
+      value = value.trim();
+    }
     if (!value) {
       return false;
     }

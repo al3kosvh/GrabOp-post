@@ -1,15 +1,13 @@
 <div class="search-container" fxFlex>
-  <form floatPlaceholder="never" fxFlex>
+  <form floatPlaceholder="never" fxFlex (ngSubmit)="onSubmit()">
     <md-form-field floatPlaceholder="never">
       <md-icon mdPrefix>search</md-icon>
       <input mdInput placeholder="{{placeholder}}" aria-label="Search" [mdAutocomplete]="auto" [formControl]="searchCtrl">
-      <md-autocomplete #auto="mdAutocomplete">
-        <md-option *ngFor="let state of filteredStates | async" [value]="state.name">
-          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-          <span>{{ state.name }}</span> |
-          <small>Population: {{state.population}}</small>
+      <md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSubmit()">
+        <md-option *ngFor="let post of filteredPosts | async" [value]="post.city">
+          <span>{{ post.city + ' | ' + post.province + ' | ' + post.country}}</span>
         </md-option>
       </md-autocomplete>
     </md-form-field>
-  </form>  
+  </form>
 </div>
