@@ -63,6 +63,8 @@ export class ProfileProgressComponent implements OnChanges {
 
             // First alliance members 1 % each up to a maximum of 3 %
             //if (this.user.services) this.percent += 1;
+
+            this.percent = 78;
         }
         
     }
