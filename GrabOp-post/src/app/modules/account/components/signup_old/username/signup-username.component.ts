@@ -6,7 +6,6 @@ import { SignupService } from '../../../services/signup.service';
 import { VOUserExt } from '../../../models/vouser';
 
 // Directives
-import { confirmPassword } from '../../../directives/confirmPassword';
 import { CheckEmailDirective } from '../../../directives/check-email.directive';
 
 import { ModalWindowService } from '../../../../shared/services/modal-window.service';
@@ -80,7 +79,7 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
          },  error => {
            console.log('error register ', error);
            this.dialog.open(ModalAlertComponent, {data: 'Username already exists'});
-     
+
          });
          */
     }

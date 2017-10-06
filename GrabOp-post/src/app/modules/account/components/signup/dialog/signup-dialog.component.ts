@@ -1,10 +1,7 @@
 import { Component, Inject, EventEmitter, Output, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog, MdDialogRef } from '@angular/material';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { VOUser, VOUserExt } from '../../../models/vouser';
 
 // Services
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -16,9 +13,10 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SignUpDialogComponent implements OnInit {
 
-    private user: VOUserExt = new VOUserExt();
-    //private user = {};
+    private user: Models.VOUserExt = {} as Models.VOUserExt;
     private userFormGroup: FormGroup;
+
+    private isCompanyChecked = false;
 
     constructor(
         public dialogRef: MdDialogRef<SignUpDialogComponent>,
@@ -37,5 +35,11 @@ export class SignUpDialogComponent implements OnInit {
 
     onClose(): void {
         this.dialogRef.close();
+    }
+
+    onCompanyChecked(event) {
+        console.log(event);
+        //console.log(this.isCompanyChecked);
+        //this.isCompanyChecked = value;
     }
 }

@@ -4,30 +4,39 @@
     </div>
     <h3>Sign Up</h3>
     <!--div *ngIf="errorMessage">{{ errorMessage }}</div-->
-    <form #f="ngForm" [formGroup]="userFormGroup" autocomplete="off">
-        <md-horizontal-stepper linear>
+    <form #f="ngForm" autocomplete="off">
+        <md-horizontal-stepper>
             <md-step>
                 <md-form-field>
-                    <input mdInput placeholder="First Name" name="firstName" required minlength="2" />
+                    <input mdInput [(ngModel)]="user.firstName" placeholder="First Name" name="firstName" required minlength="2" />
                 </md-form-field>
+
                 <md-form-field>
-                    <!--[(ngModel)]="person.lastName"-->
-                    <input mdInput placeholder="Last Name" name="lastName" required minlength="2" />
+                    <input mdInput [(ngModel)]="user.lastName" placeholder="Last Name" name="lastName" required minlength="2" />
                 </md-form-field>
+
                 <md-form-field>
-                    <input mdInput placeholder="User Name" name="username" required minlength="2" />
+                    <input mdInput [(ngModel)]="user.username" placeholder="User Name" name="username" required minlength="2" />
                     <div *ngIf="usernameMsg">{{usernameMsg}}</div>
                 </md-form-field>
+
                 <md-form-field>
-                    <input mdInput placeholder="Email" name="email" type="email" appCheckEmail required minlength="6" maxlength="100" />
+                    <input mdInput [(ngModel)]="user.primaryEmail" placeholder="Email" name="email" type="email" appCheckEmail required minlength="6"
+                        maxlength="100" />
                     <div *ngIf="emailMsg">{{emailMsg}}</div>
                     <div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div>
                 </md-form-field>
+
                 <md-form-field>
-                    <input mdInput placeholder="Password" name="password" required minlength="6" />
+                    <input mdInput type="password" [(ngModel)]="user.password" placeholder="Password" name="password" required minlength="6" #password="ngModel"
+                    />
                 </md-form-field>
                 <md-form-field>
-                    <input mdInput placeholder="Confirm Password" name="confirm" required minlength="6" />
+                    <input mdInput type="password" [(ngModel)]="user.confirmPassword" EqualValidate="password" placeholder="Confirm Password" name="confirm" required minlength="6" #confirmPassword="ngModel"
+                    />
+                    <div [hidden]="confirmPassword.valid || confirmPassword.pristine">
+                        Password mismatch
+                    </div>
                 </md-form-field>
 
                 <div>
@@ -35,33 +44,36 @@
                 </div>
             </md-step>
 
-            <md-step >
+            <md-step>
                 <md-form-field>
-                    <input mdInput placeholder="Job Title" name="jobtitle" required/>
+                    <input mdInput [(ngModel)]="user.jobTitle" placeholder="Job Title" name="jobtitle" required/>
                 </md-form-field>
 
-                <md-radio-group required name="occupation">
+                <md-radio-group [(ngModel)]="user.occupation" (change)="onCompanyChecked($event)" required name="occupation">
+
                     <md-radio-button checked=true value="company">
                         Company
                     </md-radio-button>
                     <md-form-field>
-                        <input mdInput placeholder="Company" required/>
+                        <input mdInput [(ngModel)]="user.companyName" placeholder="Company" name="companyName" required/>
                     </md-form-field>
 
                     <md-radio-button value="self">
                         Self Employed
                     </md-radio-button>
+
                     <md-radio-button value="seeking">
                         Seeking an Opportunity
                     </md-radio-button>
+
                     <md-radio-button value="custom">
                         Other
                     </md-radio-button>
-                </md-radio-group>
+                    <md-form-field>
+                        <input mdInput [(ngModel)]="user.customOccupation" placeholder="Your occupation" name="customOccupation" required/>
+                    </md-form-field>
 
-                <md-form-field>
-                    <input mdInput placeholder="Occupation" name="other-occupation" required/>
-                </md-form-field>
+                </md-radio-group>
 
                 <div>
                     <button md-button type="button" mdStepperPrevious>Back</button>
@@ -69,21 +81,23 @@
                 </div>
             </md-step>
 
-            <md-step >
+            <md-step>
                 <md-form-field>
-                    <input mdInput placeholder="Phone Number" name="phone" required type="tel" />
+                    <input mdInput [(ngModel)]="user.phoneNumber" placeholder="Phone Number" name="phone" required type="tel" />
                 </md-form-field>
 
                 <md-checkbox>Make Visible</md-checkbox>
 
                 <md-form-field>
-                    <input mdInput placeholder="Country" name="country" required />
+                    <input mdInput [(ngModel)]="user.country" placeholder="Country" name="country" required />
                 </md-form-field>
+
                 <md-form-field>
-                    <input mdInput placeholder="Province" name="province" required />
+                    <input mdInput [(ngModel)]="user.province" placeholder="Province" name="province" required />
                 </md-form-field>
+
                 <md-form-field>
-                    <input mdInput placeholder="City" name="city" required />
+                    <input mdInput [(ngModel)]="user.city" placeholder="City" name="city" required />
                 </md-form-field>
 
                 <div>

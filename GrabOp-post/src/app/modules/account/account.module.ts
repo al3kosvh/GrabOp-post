@@ -25,6 +25,7 @@ import { SignOutComponent } from './components/signout/signout.component';
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
+import { EqualValidator } from './directives/equal-validate.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
@@ -85,6 +86,7 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
+        EqualValidator
     ],
     providers: [
         UploadService,
