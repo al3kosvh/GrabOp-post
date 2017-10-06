@@ -2,7 +2,7 @@
 import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Directive({
-    selector: '[EqualValidate][formControlName],[formControl],[ngModel]',
+    selector: '[appEqualValidate][formControlName],[formControl],[ngModel]',
     providers: [
         {
             provide: NG_VALIDATORS,
@@ -14,18 +14,18 @@ import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } fr
 
 export class EqualValidator implements Validator {
 
-    constructor(@Attribute('EqualValidate') public EqualValidate: string) { }
+    constructor( @Attribute('appEqualValidate') public appEqualValidate: string) { }
 
     validate(abControl: AbstractControl): { [key: string]: any } {
         // Get self value.
         let val = abControl.value;
 
         // Get control value.
-        let cValue = abControl.root.get(this.EqualValidate);
+        let cValue = abControl.root.get(this.appEqualValidate);
 
         // value not equal
         if (cValue && val !== cValue.value) return {
-            Equalvalidate: false
+            appEqualValidate: false
         }
 
         return null;

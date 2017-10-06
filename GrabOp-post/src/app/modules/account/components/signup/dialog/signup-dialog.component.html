@@ -32,7 +32,7 @@
                     />
                 </md-form-field>
                 <md-form-field>
-                    <input mdInput type="password" [(ngModel)]="user.confirmPassword" EqualValidate="password" placeholder="Confirm Password" name="confirm" required minlength="6" #confirmPassword="ngModel"
+                    <input mdInput type="password" [(ngModel)]="user.confirmPassword" appEqualValidate="password" placeholder="Confirm Password" name="confirm" required minlength="6" #confirmPassword="ngModel"
                     />
                     <div [hidden]="confirmPassword.valid || confirmPassword.pristine">
                         Password mismatch
