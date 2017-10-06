@@ -28,8 +28,9 @@
           <md-expansion-panel-header>
             {{ btnConnectValue }}
           </md-expansion-panel-header>
-          <div class="retract" (click)="accept()">accept</div>
-          <div class="retract" (click)="decline()">decline</div>
+          <div class="retract" *ngIf="btnConnectValue == 'connection sent'" (click)="accept()">retract</div>
+          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="accept()">accept</div>
+          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="decline()">decline</div>
         </md-expansion-panel>
         <button md-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">connect</button>
       </div>
