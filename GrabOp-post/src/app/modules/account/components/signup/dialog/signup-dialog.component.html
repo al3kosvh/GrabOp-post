@@ -49,27 +49,27 @@
                     <input mdInput [(ngModel)]="user.jobTitle" placeholder="Job Title" name="jobtitle" required/>
                 </md-form-field>
 
-                <md-radio-group [(ngModel)]="user.occupation" (change)="onCompanyChecked($event)" required name="occupation">
+                <md-radio-group [(ngModel)]="user.occupation" #occupation="ngModel" required name="occupation">
 
-                    <md-radio-button checked=true value="company">
+                    <md-radio-button value="1">
                         Company
                     </md-radio-button>
-                    <md-form-field>
+                    <md-form-field *ngIf="occupation.value == 1">
                         <input mdInput [(ngModel)]="user.companyName" placeholder="Company" name="companyName" required/>
                     </md-form-field>
 
-                    <md-radio-button value="self">
+                    <md-radio-button value="2">
                         Self Employed
                     </md-radio-button>
 
-                    <md-radio-button value="seeking">
+                    <md-radio-button value="3">
                         Seeking an Opportunity
                     </md-radio-button>
 
-                    <md-radio-button value="custom">
+                    <md-radio-button value="4">
                         Other
                     </md-radio-button>
-                    <md-form-field>
+                    <md-form-field *ngIf="occupation.value == 4">
                         <input mdInput [(ngModel)]="user.customOccupation" placeholder="Your occupation" name="customOccupation" required/>
                     </md-form-field>
 

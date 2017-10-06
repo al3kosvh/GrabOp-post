@@ -13,10 +13,8 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SignUpDialogComponent implements OnInit {
 
-    private user: Models.VOUserExt = {} as Models.VOUserExt;
+    private user: Models.VOUserExt = { occupation: 1 } as Models.VOUserExt;
     private userFormGroup: FormGroup;
-
-    private isCompanyChecked = false;
 
     constructor(
         public dialogRef: MdDialogRef<SignUpDialogComponent>,
@@ -35,11 +33,5 @@ export class SignUpDialogComponent implements OnInit {
 
     onClose(): void {
         this.dialogRef.close();
-    }
-
-    onCompanyChecked(event) {
-        console.log(event);
-        //console.log(this.isCompanyChecked);
-        //this.isCompanyChecked = value;
     }
 }
