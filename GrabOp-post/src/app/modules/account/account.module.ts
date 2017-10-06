@@ -4,22 +4,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatDialogModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule, MatCheckboxModule,
-    MatListModule, MatTabsModule
+    MatListModule, MatTabsModule, MatStepperModule, MatRadioModule
 } from '@angular/material';
 
 // Components
-import { SignupComponent } from './components/signup/signup.component';
-import { SignupUsernameComponent } from './components/signup/username/signup-username.component';
-import { SignupConfirmComponent } from './components/signup/confirm/signup-confirm.component';
-import { AccountRecoverComponent } from './components/recover/recover.component';
-import { SignupCompanyComponent } from './components/signup/company/signup-company.component';
+//import { SignupComponent } from './components/signup_old/signup.component';
+//import { SignupButtonComponent } from './components/signup_old/button/signup-button.component';
+
+import { SignUpComponent } from './components/signup/signup.component';
+import { SignUpDialogComponent } from './components/signup/dialog/signup-dialog.component';
+import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
+
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
+
+import { AccountRecoverComponent } from './components/recover/recover.component';
+
 import { SignOutComponent } from './components/signout/signout.component';
-import { SignupButtonComponent } from './components/signup/button/signup-button.component';
+
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
+import { EqualValidator } from './directives/equal-validator.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
@@ -27,7 +33,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AccountStorageService } from './services/account-storage.service';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
-import { SignupService } from './services/signup.service';
+import { SignUpService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -35,16 +41,16 @@ import { SharedModule } from '../shared/shared.module';
 // import {SignupButtonComponent} from './login-new-button/signup-button.component';
 
 const routes: Routes = [
-    {
-        path: 'join-us', component: SignupComponent, outlet: 'slideRight', data: { animation: 'in' },
+    /*{
+        path: 'join-us', component: SignUpComponent, outlet: 'slideRight', data: { animation: 'in' },
         children: [
             { path: '', redirectTo: 'username', pathMatch: 'full' },
             { path: 'username', component: SignupUsernameComponent },
             { path: 'confirm/:token', component: SignupConfirmComponent },
             { path: 'resetpassword/:token', component: AccountRecoverComponent }
         ]
-    },
-    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },    
+    },*/
+    { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -60,35 +66,36 @@ const routes: Routes = [
         MatCheckboxModule,
         MatListModule,
         MatTabsModule,
+        MatStepperModule,
+        MatRadioModule,
         RouterModule.forChild(routes),
         SharedModule
     ],
     exports: [
         SignInComponent,
-        SignupComponent,
+        SignUpComponent,
         SignOutComponent
     ],
     declarations: [
-        SignupComponent,
+        SignUpComponent,
         SignInComponent,
         SignOutComponent,
         SignInDialogComponent,
-        SignupUsernameComponent,
-        SignupConfirmComponent,
+        SignUpDialogComponent,
+        SignUpConfirmComponent,
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
-        SignupCompanyComponent,
-        SignupButtonComponent
+        EqualValidator
     ],
     providers: [
         UploadService,
         AuthenticationService,
         AuthGuard,
-        SignupService,
+        SignUpService,
         AccountStorageService,
-        HttpService        
+        HttpService
     ],
-    entryComponents: [SignInDialogComponent]
+    entryComponents: [SignInDialogComponent, SignUpDialogComponent]
 })
 export class AccountModule { }

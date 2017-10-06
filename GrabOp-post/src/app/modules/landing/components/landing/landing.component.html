@@ -12,13 +12,14 @@
             <button md-raised-button color="accent" routerLink="/signout">SIGN OUT</button>
           </div>
           <div *ngIf="!(isLoggedIn | async)">
-            <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>
+            <!--button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button-->
+            <account-signup></account-signup>
             <account-signin></account-signin>
           </div>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center">        
-          <search placeholder="star your search here" fxFlex="35" fxFlex.xs="60"></search>   
+      <div fxLayout="row" fxLayoutAlign="center">
+          <search placeholder="star your search here" fxFlex="35" fxFlex.xs="60"></search>
       </div>
     </div>
   </div>
@@ -26,8 +27,8 @@
     <h2 class="heading">Do These Cool Things With GrapOp</h2>
   </div>
   <div class="landing-things" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around">
-    <div *ngFor="let item of summaryData" fxFlex="20" fxLayout="column" fxLayoutAlign="center center">      
-        <img src="{{item.image}}" alt="Photo of a Shiba Inu">   
+    <div *ngFor="let item of summaryData" fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <img src="{{item.image}}" alt="Photo of a Shiba Inu">
       <p>
         {{item.text}}
       </p>

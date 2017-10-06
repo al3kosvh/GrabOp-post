@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { SignupService } from '../../../services/signup.service';
+import { SignUpService } from '../../../services/signup.service';
 import { ModalWindowService } from '../../../../shared/services/modal-window.service';
 import { SignupComponent } from '../signup.component';
 
@@ -15,7 +15,7 @@ export class SignupButtonComponent implements OnInit {
 
     constructor(
         private dialog: MdDialog,
-        signupService: SignupService,
+        signupService: SignUpService,
         private modal: ModalWindowService
     ) { }
 

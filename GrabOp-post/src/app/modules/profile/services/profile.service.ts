@@ -18,6 +18,7 @@ export class ProfileService {
     constructor(
         private http: HttpService
     ) {
+        this.url = VOSettings.server + '/profiles/';
     }
 
     public getProfile(): Observable<VOUserExt> {
@@ -25,7 +26,7 @@ export class ProfileService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    public validateUrlProfile(id: string, router: Router): Observable<boolean> {
+    public validateUrlProfile(id: number, router: Router): Observable<boolean> {
         return this.http.get(VOSettings.myProfile).map(res => {
             const myProfile = mapGetPerson(res);
             if (id == myProfile.id) {
@@ -39,8 +40,8 @@ export class ProfileService {
             });
     }
 
-    public getProfileLocation(id: string, type: number): Observable<Models.ProfileLocation> {
-        return this.http.get(this.url + id + '/location?format=json&type=' + type)
+    public getProfileLocation(id: number, type: number): Observable<Models.ProfileLocation> {
+        return this.http.get(this.url + id.toString() + '/location?format=json&type=' + type)
           .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -50,7 +51,7 @@ export class ProfileService {
     }
 
     public updateProfile(person: VOUserExt): Observable<VOUserExt> {
-        return this.http.put(VOSettings.updateProfile.replace(<any>'{{id}}', person.id), mapUpdateProfileClientToServer(person))
+        return this.http.put(VOSettings.updateProfile.replace(<any>'{{id}}', person.id.toString()), mapUpdateProfileClientToServer(person))
             .map(res => res)
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }

@@ -26,7 +26,6 @@ import { AccountModule } from './modules/account/account.module';
 import { SharedModule } from "./modules/shared/shared.module";
 import { PostModule } from './modules/post/post.module';
 import { LandingModule } from './modules/landing/landing.module';
-import { PostEditModule } from './modules/post-edit/post-edit.module';
 import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { ProfileModule } from './modules/profile/profile.module';
@@ -79,7 +78,6 @@ const routes: Routes = [
         HomeModule,
         SharedModule,
         PipesModule,
-        PostEditModule,
         ConnectionModule,
         OpportunityModule,
         ProfileModule,

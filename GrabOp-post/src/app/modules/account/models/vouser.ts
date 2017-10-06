@@ -28,7 +28,7 @@ export class SOUser{
 
 
 export class VOUser {
-  id: string;
+  id: number;
   sessionId?:string;
   userId?:any;
   role?: string;

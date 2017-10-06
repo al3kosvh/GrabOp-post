@@ -2,11 +2,10 @@ import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { SignupService } from '../../../services/signup.service';
+import { SignUpService } from '../../../services/signup.service';
 import { VOUserExt } from '../../../models/vouser';
 
 // Directives
-import { confirmPassword } from '../../../directives/confirmPassword';
 import { CheckEmailDirective } from '../../../directives/check-email.directive';
 
 import { ModalWindowService } from '../../../../shared/services/modal-window.service';
@@ -49,7 +48,7 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
         private dialog: MdDialog,
         private uploadService: UploadService,
         private modal: ModalWindowService,
-        private signupService: SignupService
+        private signupService: SignUpService
     ) {
         //this.person = authHttpMy.userExt;
 
@@ -80,7 +79,7 @@ export class SignupUsernameComponent implements OnInit, OnDestroy {
          },  error => {
            console.log('error register ', error);
            this.dialog.open(ModalAlertComponent, {data: 'Username already exists'});
-     
+
          });
          */
     }

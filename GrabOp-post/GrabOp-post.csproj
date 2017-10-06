@@ -58,6 +58,7 @@
 
   <ItemGroup>
     <Folder Include="src\app\modules\connection\models\" />
+    <Folder Include="src\app\modules\post\models\" />
   </ItemGroup>
 
   <PropertyGroup>

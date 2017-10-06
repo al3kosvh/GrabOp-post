@@ -100,36 +100,37 @@ export class ProfileComponent implements OnInit {
 
   private initProfile(profile): void {
 
-    this.profile = profile;
-    this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
-    this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
-    this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
+        this.profile = profile;
+        this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
+        this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
+        this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
 
-    this.validateConnection();
+        this.validateConnection();
 
-    this.postService.getPersonPosts(this.profile.id).subscribe(posts => {
-      if (posts) {
-        this.profilePosts = posts;
-      }
-    });
+        this.postService.getUserPosts(this.profile.id).subscribe(
+            posts => {
+                if (posts) {
+                    this.profilePosts = posts;
+                }
+            });
 
-    this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
-      profileConnectionsCount => {
-        if (profileConnectionsCount) {
-          this.profileConnectionsCount = profileConnectionsCount
-        }
-      }
-    );
-    this.fixProfileContainerLayout();
-  }
+        this.connectionService.getProfileConnectionsCount(this.profile.id).subscribe(
+            profileConnectionsCount => {
+                if (profileConnectionsCount) {
+                    this.profileConnectionsCount = profileConnectionsCount
+                }
+            }
+        );
+        this.fixProfileContainerLayout();
+    }
 
-  editProfile(): void {
-    let config: MdDialogConfig = {
-      width: '80%',
-      data: {profile: this.profile}
-    };
-    this.dialog.open(EditProfileDialogComponent, config);
-  }
+    editProfile(): void {
+        let config: MdDialogConfig = {
+            width: '80%',
+            data: { profile: this.profile }
+        };
+        this.dialog.open(EditProfileDialogComponent, config);
+    }
 
   allianceInvite() {
     this.allianceInviteState = this.allianceInviteState === 'out' ? 'in' : 'out';

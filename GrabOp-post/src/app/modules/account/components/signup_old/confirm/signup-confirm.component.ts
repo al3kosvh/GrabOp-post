@@ -10,7 +10,7 @@ import { SignUpService } from '../../../services/signup.service';
     templateUrl: './signup-confirm.component.html',
     styleUrls: ['./signup-confirm.component.css']
 })
-export class SignUpConfirmComponent implements OnInit {
+export class SignupConfirmComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
