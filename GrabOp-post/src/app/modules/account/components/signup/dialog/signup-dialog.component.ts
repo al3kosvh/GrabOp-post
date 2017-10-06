@@ -40,11 +40,12 @@ export class SignUpDialogComponent implements OnInit {
         this.signupService.verifyEmail(email).subscribe(
             value => {
                 this.checkingEmail = false;
-
+                console.log(value);
             },
             error => {
                 this.checkingEmail = false;
-
+                this.emailMessage = "Email error";
+                console.log(error);
             });
     }
 
