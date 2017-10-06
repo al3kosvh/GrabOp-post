@@ -38,33 +38,21 @@
         </div>
       </div>
 
-      <div fxlayout="row" class="full-width">
+      <div fxlayout="row" class="full-width numbers-container">
         <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
           <span class="title-red">Fixed</span>
         </div>
-
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           $
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="fixedStart" [(ngModel)]="filters.fixed.start" #fixedStart="ngModel"/>
-          </md-form-field>
-        </div>
-
+        <app-number-input (onValue)="filters.fixed.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="fixedEnd" [(ngModel)]="filters.fixed.end" #fixedEnd="ngModel"/>
-          </md-form-field>
-        </div>
+        <app-number-input (onValue)="filters.fixed.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
       </div>
 
-      <div fxlayout="row" class="full-width">
+      <div fxlayout="row" class="full-width numbers-container">
         <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
           <span class="title-red">Hourly</span>
         </div>
@@ -72,25 +60,14 @@
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           $
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="hourlyStart" [(ngModel)]="filters.hourly.start" #hourlyStart="ngModel"/>
-          </md-form-field>
-        </div>
-
+        <app-number-input (onValue)="filters.hourly.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="hourlyEnd" [(ngModel)]="filters.hourly.end" #hourlyEnd="ngModel"/>
-          </md-form-field>
-        </div>
+        <app-number-input (onValue)="filters.hourly.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
       </div>
 
-      <div fxlayout="row" class="full-width">
+      <div fxlayout="row" class="full-width numbers-container">
         <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
           <span class="title-red">Commission</span>
         </div>
@@ -98,22 +75,11 @@
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           %
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="commissionStart" [(ngModel)]="filters.commission.start" #commissionStart="ngModel"/>
-          </md-form-field>
-        </div>
-
+        <app-number-input (onValue)="filters.commission.start = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-
-        <div fxLayout="column" fxFlex="25">
-          <md-form-field class="full-width">
-            <input mdInput placeholder="" name="commissionEnd" [(ngModel)]="filters.commission.end" #commissionEnd="ngModel"/>
-          </md-form-field>
-        </div>
+        <app-number-input (onValue)="filters.commission.end = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
       </div>
 
       <div fxlayout="row" class="full-width btn-container" fxLayoutAlign="center center">
@@ -130,7 +96,7 @@
   <div class="result-container" fxLayout="column" fxFlex="80">
 
     <div fxlayout="row" class="full-width">
-      <span class="result">Result: {{ resultCant }}</span>
+      <span class="result">Result: {{ offeringsCant + needsCant + peopleCant }}</span>
     </div>
 
     <md-tab-group>
@@ -151,8 +117,13 @@
       </md-tab>
 
       <md-tab [label]="'People (' + peopleCant + ')'">
-        People
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <app-connect-card-profile
+            *ngFor="let connection of connections"
+            [connection]="connection" [myConnections]="myConnections"></app-connect-card-profile>
+        </div>
       </md-tab>
+
     </md-tab-group>
 
   </div>

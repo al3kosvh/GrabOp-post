@@ -62,6 +62,9 @@ const routes: Routes = [
     ConnectCardProfileComponent,
     MessageSideNavComponent
   ],
+  exports: [
+    ConnectCardProfileComponent
+  ],
   providers: [
     ConnectionService,
     ConnectionGuard

@@ -16,6 +16,8 @@ import { PostModule } from '../post/post.module';
 import { SearchComponent } from "./components/search/search.component";
 import { AdvancedSearchComponent } from "./components/advanced-search/advanced-search.component";
 import { PipesModule } from "../../pipes/pipes.module";
+import { NumberInputComponent } from "./components/numbers/number-input.component";
+import { ConnectionModule } from "../connection/connection.module";
 
 const routes: Routes = [
   {path: 'advanced-search', component: AdvancedSearchComponent}
@@ -40,14 +42,15 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     PostModule,
+    ConnectionModule,
     MatAutocompleteModule,
     MdExpansionModule,
     MatOptionModule,
     MdInputModule,
     PipesModule
   ],
-  declarations: [SearchComponent, AdvancedSearchComponent],
-  exports: [SearchComponent],
+  declarations: [SearchComponent, AdvancedSearchComponent, NumberInputComponent],
+  exports: [SearchComponent, NumberInputComponent],
   providers: [],
 })
 export class SearchModule {
