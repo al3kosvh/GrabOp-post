@@ -3,7 +3,7 @@
         <button class="close" md-icon-button (click)="onClose()"><md-icon>close</md-icon></button>
     </div>
     <h3>Sign Up</h3>
-    <!--div *ngIf="errorMessage">{{ errorMessage }}</div-->
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
     <form #f="ngForm" autocomplete="off">
         <md-horizontal-stepper>
             <md-step>
@@ -20,26 +20,30 @@
                     <div *ngIf="usernameMsg">{{usernameMsg}}</div>
                 </md-form-field>
 
-                <md-form-field>
-                    <input mdInput [(ngModel)]="user.primaryEmail" (change)="checkEmail($event.value)" placeholder="Email" name="email" type="email"
-                        appCheckEmail required minlength="6" maxlength="100" />
+                <div>
+                    <md-form-field>
+                        <input mdInput [(ngModel)]="user.primaryEmail" (change)="checkEmail($event.value)" placeholder="Email" name="email" type="email"
+                            appCheckEmail required minlength="6" maxlength="100" />
+                    </md-form-field>
                     <img *ngIf="checkingEmail" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                     <div *ngIf="emailMessage">{{emailMessage}}</div>
                     <!--div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div-->
-                </md-form-field>
+                </div>
 
-                <md-form-field>
-                    <input mdInput type="password" [(ngModel)]="user.password" placeholder="Password" name="password" required minlength="6"
-                        #password="ngModel" />
-                </md-form-field>
-                <md-form-field>
-                    <input mdInput type="password" [(ngModel)]="user.confirmPassword" appEqualValidate="password" placeholder="Confirm Password"
-                        name="confirm" required minlength="6" #confirmPassword="ngModel" />
+                <div>
+                    <md-form-field>
+                        <input mdInput type="password" [(ngModel)]="user.password" placeholder="Password" name="password" required minlength="6"
+                            #password="ngModel" />
+                    </md-form-field>
+                    <md-form-field>
+                        <input mdInput type="password" [(ngModel)]="user.confirmPassword" appEqualValidate="password" placeholder="Confirm Password"
+                            name="confirm" required minlength="6" #confirmPassword="ngModel" />
+                    </md-form-field>
                     <div [hidden]="confirmPassword.valid || confirmPassword.pristine">
                         Password mismatch
                     </div>
-                </md-form-field>
+                </div>
 
                 <div>
                     <button type="button" md-raised-button color="primary" mdStepperNext>Next</button>

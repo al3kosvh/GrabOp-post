@@ -44,8 +44,13 @@ export class SignUpDialogComponent implements OnInit {
             },
             error => {
                 this.checkingEmail = false;
-                this.emailMessage = "Email error";
-                console.log(error);
+                switch (error.status) {
+                    case 0:
+                        this.emailMessage = 'Conection error';
+                        break;
+                    default:
+                        this.emailMessage = error.statusText;
+                }
             });
     }
 
