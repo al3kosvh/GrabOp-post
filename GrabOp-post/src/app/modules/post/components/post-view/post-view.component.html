@@ -66,20 +66,20 @@
 </md-grid-list>
 
 
-<md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
-  <h3>Posts need</h3>
-  <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
-    <md-grid-tile *ngIf="i<4">
-      <post-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></post-card>
-    </md-grid-tile>
+<span class="posts-title">People offering what you need:</span>
+<div class="posts">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+    <div *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
+      <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+    </div>
   </div>
-</md-grid-list>
+</div>
 
-<md-grid-list cols="2" rowHeight="4:5" style="width: 100%">
-  <h3>Posts offer</h3>
-  <div (click)="onClickItem(item)" *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
-    <md-grid-tile *ngIf="i<4">
-      <post-card [post]="item" [viewDetailsButton]="true" [idPerson]="person.id"></post-card>
-    </md-grid-tile>
+<span class="posts-title">People who need what your offering:</span>
+<div class="posts">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+    <div *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">
+      <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+    </div>
   </div>
-</md-grid-list>
+</div>

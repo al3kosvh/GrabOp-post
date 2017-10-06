@@ -6,7 +6,7 @@ declare module Models {
         display_name: string;
         distance: string;
         first_name: string;
-        id: string;
+        id: number;
         jobtitle: string;
         last_name: string;
         needs: number;
@@ -22,7 +22,7 @@ declare module Models {
     }
 
     interface VOUser {
-        id: string;
+        id: number;
         sessionId?: string;
         userId?: any;
         role?: string;
@@ -91,7 +91,7 @@ declare module Models {
     }
 
     interface SOAuthenticateResponse {
-        user_id: string;
+        user_id: number;
         session_id: string;
         user_name: string;
         display_name: string;

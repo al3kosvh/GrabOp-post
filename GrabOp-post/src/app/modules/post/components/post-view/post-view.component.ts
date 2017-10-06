@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { VOPost } from '../../../../models/vos';
 import { PostService } from '../../services/post.service';
@@ -23,10 +23,21 @@ export class PostViewComponent implements OnInit {
     constructor(
         private postService: PostService,
         private profileService: ProfileService,
-        private aroute: ActivatedRoute
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
+
+        this.route.params.subscribe((params: Params) => {
+            if (params['id']) {                
+                this.postService.getPostById(params['id']).subscribe(
+                    post => {
+                        this.postService.getUserPosts(post.ownerId).subscribe(posts => { this.personPosts = posts });
+                    });
+            }
+        })
+
+
         // this.myPostsService.myPosts$.subscribe(posts => {
         //   console.log('posts', posts);
         //   this.myPosts = posts;

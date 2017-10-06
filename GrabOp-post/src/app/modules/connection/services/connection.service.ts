@@ -10,8 +10,8 @@ export class ConnectionService {
         private http: HttpService
     ) { }
 
-    getProfileConnectionsCount(accountId: string): Observable<number> {
-        let url = VOSettings.connection_GetProfileConnectionsCount.replace(<any>'{{id}}', accountId);
+    getProfileConnectionsCount(accountId: number): Observable<number> {
+        let url = VOSettings.connection_GetProfileConnectionsCount.replace(<any>'{{id}}', accountId.toString());
         return this.http.get(url)
             .map(res => {
                 return res.count;
@@ -19,8 +19,8 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-    setConnection(sender: string, receiver: string, message: string): Observable<any> {
-        let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender).replace(<any>'{{receiver}}', receiver);
+    setConnection(sender: number, receiver: number, message: string): Observable<any> {
+        let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender.toString()).replace(<any>'{{receiver}}', receiver.toString());
         // TODO: post (http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1/json/metadata?op=Connection_MakeRequest)
         return this.http.post(url, { message: message })
             .map(res => {
@@ -30,9 +30,9 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-    confirmConnection(sender: string, receiver: string, connectionId: number, confirmer: number, accept: boolean): Observable<any> {
+    confirmConnection(sender: number, receiver: number, connectionId: number, confirmer: number, accept: boolean): Observable<any> {
         // TODO api url to make a connection request on profile and confirm request, is the same with different params, but not working
-        let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender).replace(<any>'{{receiver}}', receiver);
+        let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender.toString()).replace(<any>'{{receiver}}', receiver.toString());
         return this.http.post(url, { accept: accept, connectionid: connectionId, confirmer })
             .map(res => {
                 console.log('connectionState res', res);

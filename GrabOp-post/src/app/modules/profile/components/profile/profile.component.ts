@@ -165,7 +165,7 @@ export class ProfileComponent implements OnInit {
                 connections => {
                     this.myConnections = connections;
                     for (let i in this.myConnections) {
-                        if (this.profile.id == this.myConnections[i].id.toString()) {
+                        if (this.profile.id == this.myConnections[i].id) {
                             this.indexConnection = i;
                             this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
                             break;
@@ -203,7 +203,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private setConnection() {
-        this.connectionService.setConnection(this.profile.id, this.profile.id.toString(), 'make a connection').subscribe(
+        this.connectionService.setConnection(this.profile.id, this.profile.id, 'make a connection').subscribe(
             respond => {
                 this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
             }
@@ -211,7 +211,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private confirmConnection() {
-        this.connectionService.confirmConnection(this.profile.id, this.profile.id.toString(), this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+        this.connectionService.confirmConnection(this.profile.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
             respond => {
                 this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
             }
