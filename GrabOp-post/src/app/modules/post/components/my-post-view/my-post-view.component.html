@@ -5,13 +5,13 @@
         <div class="star-post-container" fxLayout="column" fxLayoutAlign="center center">
           <img src="assets/img/star-post.png" />
         </div>
-        <div class="star-post-text">Offering</div>
+        <div class="star-post-text">{{post?.type}}</div>
         <div fxLayout="column" fxLayoutAlign="end start" fxFlex>
-          <span class="post-title">Title of Service</span>
-          <span class="post-location">Toronto, Otario</span>
+          <span class="post-title">{{post?.title}}</span>
+          <span class="post-location">{{post?.city}}, {{post?.country}}</span>
         </div>
         <div fxLayout="column" fxLayoutAlign="end end">
-          <div>Page Views: <span class="views-value">500</span></div>
+          <div>Page Views: <span class="views-value">{{post?.visitCount}}</span></div>
         </div>
       </div>
       <div class="post-background" fxLayout="row"></div>
@@ -23,16 +23,16 @@
       </div>
       <div fxLayout="row" class="description">
         <p>
-          This is where all the awesome details of the service will go. We will give lost of room for the description. If there are absolutely no pictures, video or documents attached in the service details screen then the service description will move up on the this page.................under the Service title...................all the boxes where the attachments are supposed to be will be removed if there are no attachments.
+          {{post?.description}}
         </p>
       </div>
-      <span *ngIf="personPosts.length" class="posts-title">Other Offerings by Tim White:</span>
+      <span *ngIf="personPosts.length" class="posts-title">Similar Services Others are Offering:</span>
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
         <div *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
           <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
         </div>
       </div>
-      <span *ngIf="personPosts.length != 0" class="posts-title">Other Needs of Tim White:</span>
+      <span *ngIf="personPosts.length != 0" class="posts-title">Similar Services Others Need:</span>
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
         <div *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
           <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
@@ -45,7 +45,7 @@
         <button md-raised-button color="primary" (click)="onShareClick()">duplicate</button>
         <button md-raised-button color="primary" (click)="onReportClick()">share</button>
         <button md-raised-button color="primary" (click)="onReportClick()">hide service</button>
-        <button md-raised-button color="primary" (click)="onReportClick()">delete service</button>
+        <button md-raised-button color="warn" (click)="onReportClick()">delete service</button>
       </div>
       <div class="user-info" fxLayout="column">
         <div fxLayout="row">
@@ -56,12 +56,12 @@
             <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
           </div>
           <div fxLayout="column" fxLayoutAlign="center start">
-            <span>Tim White</span>
-            <span>Hamilton, Ontario</span>
+            <span>{{person?.displayName}}</span>
+            <span>{{personLocation?.city}}, {{personLocation?.country}}</span>
           </div>
         </div>
         <div>
-          Posted on: April 10th, 2016
+          Posted on: {{post?.createdDate | date}}
         </div>
       </div>
       <div class="bussines-styles">
@@ -86,53 +86,39 @@
           </div>
         </div>
       </div>
-      <div class="recomended-list">
-        Service Recomended by: (4)
+      <div *ngIf="post?.allianceMembers && post.allianceMembers.length > 0" class="alliance-members-list">
+        Alliance Members: ({{post?.allianceMembers ? post.allianceMembers.length : 0}})
         <div fxLayout="column">
           <md-list>
-            <md-list-item fxLayout="row">
+            <md-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
               <div fxLayout="column" fxLayoutAlign="center center">
                 <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
               </div>
               <div fxLayout="column" fxLayoutAlign="center start">
-                <span>Tim White</span>
-                <span>Hamilton, Ontario</span>
+                <span>{{member.displayName}}</span>
+                <span>{{member.jobtitle}}</span>
               </div>
-            </md-list-item>
-            <md-list-item fxLayout="row">
+            </md-list-item>           
+          </md-list>
+        </div>       
+      </div>
+
+      <!--<div class="recomended-list">
+        Service Recomended by: ({{post?.allianceMembers ? post.allianceMembers.length : 0}})
+        <div fxLayout="column">
+          <md-list>
+            <md-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
               <div fxLayout="column" fxLayoutAlign="center center">
                 <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
               </div>
               <div fxLayout="column" fxLayoutAlign="center start">
-                <span>Tim White</span>
-                <span>Hamilton, Ontario</span>
-              </div>
-            </md-list-item>
-            <md-list-item fxLayout="row">
-              <div fxLayout="column" fxLayoutAlign="center center">
-                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
-              </div>
-              <div fxLayout="column" fxLayoutAlign="center start">
-                <span>Tim White</span>
-                <span>Hamilton, Ontario</span>
-              </div>
-            </md-list-item>
-            <md-list-item fxLayout="row">
-              <div fxLayout="column" fxLayoutAlign="center center">
-                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
-              </div>
-              <div fxLayout="column" fxLayoutAlign="center start">
-                <span>Tim White</span>
-                <span>Hamilton, Ontario</span>
+                <span>{{member.displayName}}</span>
+                <span>{{member.jobtitle}}</span>
               </div>
             </md-list-item>
           </md-list>
-
         </div>
-        <div>
-          <button fxFlex md-raised-button color="primary" (click)="onRequestClick()">recomended this service</button>
-        </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

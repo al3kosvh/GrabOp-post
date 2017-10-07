@@ -9,7 +9,6 @@ import { UserCommentsComponent } from '../user-comments/user-comments.component'
 // Services
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { PostService } from '../../../post/services/post.service';
-import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 import { ProfileService } from '../../../profile/services/profile.service';
 
@@ -28,7 +27,6 @@ export class HomeComponent implements OnInit, OnChanges {
 
     constructor(
         private postService: PostService,
-        private userService: AuthenticationService,
         private connectionService: ConnectionService,
         private modal: ModalWindowService,
         private profileService: ProfileService

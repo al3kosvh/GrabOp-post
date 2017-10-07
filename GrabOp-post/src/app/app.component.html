@@ -14,7 +14,7 @@
       <a md-list-item routerLink="/profile" routerLinkActive="menu-active" (click)="sidenav.toggle()">Profile</a>
       <a md-list-item routerLink="/advanced-search" routerLinkActive="menu-active" (click)="sidenav.toggle()">Search</a>
       <a md-list-item [routerLink]="['/settings/', user ? user.id : '']" routerLinkActive="menu-active" (click)="sidenav.toggle()">Settings</a>
-      <a md-list-item routerLink="/services" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
+      <a md-list-item routerLink="/myposts" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
       <a md-list-item routerLink="/connections" routerLinkActive="menu-active" (click)="sidenav.toggle()">Connections hub</a>
       <a md-list-item routerLink="/projects" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Projects</a>
       <a md-list-item routerLink="messages" routerLinkActive="menu-active" (click)="sidenav.toggle()">Messages</a>

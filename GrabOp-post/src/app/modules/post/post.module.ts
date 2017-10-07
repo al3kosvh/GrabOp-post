@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
+import {
+    MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatSlideToggleModule,
+    MatTabsModule
+} from '@angular/material';
 
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { MyPostViewComponent } from './components/my-post-view/my-post-view.component';
@@ -29,7 +32,8 @@ const myRoute: Routes = [
     //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
     //{ path: 'person-preview/:idPost/:idPerson', component: PostViewComponent },
     { path: 'posts/:id', component: PostViewComponent },
-    { path: 'mypost/view/:id', component: MyPostViewComponent }
+    { path: 'myposts', component: MyPostsComponent },
+    { path: 'myposts/view/:id', component: MyPostViewComponent }
 
     // {path: 'my-selected/:idSelectedMyPost', component: MyPostViewComponent}
     // {path: 'person/:idPerson/:idPost', component: PostViewComponent}
@@ -52,6 +56,7 @@ const myRoute: Routes = [
         MatButtonModule,
         MatIconModule,
         MatSlideToggleModule,
+        MatTabsModule,
         RouterModule.forChild(myRoute)
     ],
     declarations: [

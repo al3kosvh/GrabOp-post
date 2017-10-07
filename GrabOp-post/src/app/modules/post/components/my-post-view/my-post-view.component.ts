@@ -15,7 +15,8 @@ export class MyPostViewComponent implements OnInit {
 
     idPost: number;
     idPerson: string;
-    person: Models.VOUserExt;
+    person: VOUserExt;
+    personLocation: Models.ProfileLocation;
     post: VOPost = new VOPost({});
     // myPosts: VOPost[];
     personPosts: VOPost[] = [];
@@ -32,6 +33,12 @@ export class MyPostViewComponent implements OnInit {
             if (params['id']) {
                 this.postService.getPostById(params['id']).subscribe(
                     post => {
+                        this.post = post;
+                        console.log(post);
+                        this.profileService.getProfile().subscribe(profile => {
+                            this.person = profile;
+                            this.profileService.getProfileLocation(profile.id, 1).subscribe(location => this.personLocation = location);                            
+                        });
                         this.postService.getPersonPosts(16).subscribe(posts => { this.personPosts = posts });
                     });
 
