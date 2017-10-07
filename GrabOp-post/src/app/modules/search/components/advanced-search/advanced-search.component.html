@@ -99,7 +99,7 @@
       <span class="result">Result: {{ offeringsCant + needsCant + peopleCant }}</span>
     </div>
 
-    <md-tab-group>
+    <md-tab-group dynamicHeight="true">
       <md-tab [label]="'Offerings (' + offeringsCant + ')'">
         <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
           <div *ngFor="let item of posts | postsFilter:'offer'; let i=index">
