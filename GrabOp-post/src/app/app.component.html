@@ -3,8 +3,11 @@
   <div fxFlex></div>
   <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
 </div>
-<md-sidenav-container  [ngClass]="fixedLayout">
+<md-sidenav-container [ngClass]="fixedLayout">
   <md-sidenav #sidenav>
+    <a md-button style="height: 0; position: absolute;">
+      <!-- 'absorbs' the behavior -->
+    </a>
     <md-list>
       <a md-list-item routerLink="/guest" routerLinkActive="menu-active" (click)="sidenav.toggle()">Guest</a>
       <a md-list-item routerLink="/home" routerLinkActive="menu-active" (click)="sidenav.toggle()">Home</a>
