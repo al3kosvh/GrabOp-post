@@ -32,7 +32,7 @@ export class MyPostViewComponent implements OnInit {
             if (params['id']) {
                 this.postService.getPostById(params['id']).subscribe(
                     post => {
-                        this.postService.getUserPosts(16).subscribe(posts => { this.personPosts = posts });
+                        this.postService.getPersonPosts(16).subscribe(posts => { this.personPosts = posts });
                     });
 
             }
@@ -80,7 +80,7 @@ export class MyPostViewComponent implements OnInit {
 
     getUserRelatedPosts(userId): VOPost[] {
         console.log(userId);
-        this.postService.getUserPosts(userId).subscribe(posts => {
+        this.postService.getPersonPosts(userId).subscribe(posts => {
             return posts
         });
         return [];
