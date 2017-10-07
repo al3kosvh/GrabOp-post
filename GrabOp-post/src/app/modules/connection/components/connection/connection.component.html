@@ -1,7 +1,7 @@
 <md-sidenav-container class="sidenav-container">
 
   <md-tab-group position="center">
-    <md-tab label="Active Connections">
+    <md-tab label="Active Connections ({{myConnections.length}})">
 
       <div fxLayout="row" fxLayoutAlign="center">
         <div class="search-container" fxFlex="35" fxFlex.xs="60">
@@ -29,7 +29,7 @@
       </div>
 
     </md-tab>
-    <md-tab label="Received Requests">
+    <md-tab label="Received Requests ({{myConnections.length}})">
       <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
         <app-connect-card
           *ngFor="let connection of myConnections | connectionFilter: 1"
@@ -39,7 +39,7 @@
           [sidenav]="sidenav"></app-connect-card>
       </div>
     </md-tab>
-    <md-tab label="Send Requests">
+    <md-tab label="Send Requests ({{myConnections.length}})">
       <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
         <app-connect-card
           *ngFor="let connection of myConnections | connectionFilter: 1"
@@ -51,7 +51,7 @@
     </md-tab>
   </md-tab-group>
 
-  <md-sidenav #sidenav align="end" class="sidenav-content">
+  <md-sidenav #sidenav class="sidenav-content">
     <msg-sidenav [message]="message" [sidenav]="sidenav"></msg-sidenav>
   </md-sidenav>
 
