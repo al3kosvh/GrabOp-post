@@ -1,6 +1,6 @@
 <div class="search-container" fxFlex>
-  <form floatPlaceholder="never" fxFlex (ngSubmit)="onSubmit()">
-    <md-form-field floatPlaceholder="never">
+  <form floatPlaceholder="never" fxFlex="100" (ngSubmit)="onSubmit()">
+    <md-form-field floatPlaceholder="never" fxFlex="100">
       <md-icon mdPrefix>search</md-icon>
       <input mdInput placeholder="{{placeholder}}" aria-label="Search" [mdAutocomplete]="auto" [formControl]="searchCtrl">
       <md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSubmit()">

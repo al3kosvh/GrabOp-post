@@ -25,7 +25,7 @@ export class ConnectCardProfileComponent implements OnInit {
   private validateConnection() {
     this.btnConnectValue = 'connect';
           for (let i in this.myConnections) {
-            if (this.connection.id == this.myConnections[i].id.toString()) {
+            if (this.connection.id.toString() == this.myConnections[i].id.toString()) {
               this.indexConnection = i;
               // TODO what is the state describe in connection_status
               this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection sent' :

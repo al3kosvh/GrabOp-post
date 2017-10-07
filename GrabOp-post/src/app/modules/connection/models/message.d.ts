@@ -1,7 +1,7 @@
 declare module Models {
 
   interface VOMessage {
-    id: string, // receiver id
+    id: number, // receiver id
     senderid: string,
     subject?: string,
     body?: string,

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { VOSettings } from '../../../models/vos';
 import { HttpService } from '../../account/services/http.service';
+import { mapGetPerson } from "../../../utils/map-functions";
 
 @Injectable()
 export class ConnectionService {
@@ -69,7 +71,7 @@ export class ConnectionService {
   public validateUrlProfile(id: string, router: Router): Observable<boolean> {
     return this.http.get(VOSettings.myProfile).map(res => {
         const myProfile = mapGetPerson(res);
-        if (id == myProfile.id) {
+        if (id.toString() == myProfile.id.toString()) {
           router.navigate(['/connections']);
           return false;
         }

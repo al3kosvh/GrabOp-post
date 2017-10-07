@@ -52,7 +52,7 @@ export class SearchComponent {
   constructor(private router: Router,
               private postService: PostService) {
     this.searchCtrl = new FormControl();
-    this.postService.getPersonPosts('16').subscribe(posts => {
+    this.postService.getUserPosts(16).subscribe(posts => {
       if (posts) {
         this.posts = posts;
 

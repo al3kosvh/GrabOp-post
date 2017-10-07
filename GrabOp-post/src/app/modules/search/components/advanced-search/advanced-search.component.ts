@@ -71,7 +71,7 @@ export class AdvancedSearchComponent implements OnInit {
     const province = this.filters.province.trim().split(/\s+/);
     const city = this.filters.city.trim().split(/\s+/);
 
-    this.postService.getPersonPosts('16').subscribe(posts => {
+    this.postService.getUserPosts(16).subscribe(posts => {
       if (posts) {
         let result = [];
         this.offeringsCant = 0;
