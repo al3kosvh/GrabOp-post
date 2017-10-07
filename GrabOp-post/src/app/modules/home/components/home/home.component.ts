@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit, OnChanges {
             'Alliance Members': 188,
             'Total Sales': 20000
         };
+        this.myPosts = [];
     }
 
     ngOnInit(): void {
