@@ -41,28 +41,43 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-    getMyConnections(): Observable<any[]> {
-        let url = VOSettings.connection_GetMyConnections;
-        return this.http.get(url)
-            .map(res => {
-                return res;
-            })
-            .catch(this.handleError);
-    }
+  getMyConnections(): Observable<Models.VOConnection[]> {
+    let url = VOSettings.connection_GetMyConnections;
+    console.log('getMyConnections', url);
+    return this.http.get(url)
+      .catch(this.handleError);
+  }
 
-    getProfileConnections(id: string): Observable<any[]> {
-        let url = VOSettings.connection_GetProfileConnections.replace(<any>'{{id}}', id);
-        return this.http.get(url)
-            .map(res => {
-                console.log('getProfileConnections', res);
-                return res.json();
-            })
-            .catch(this.handleError);
-    }
+  getProfileConnections(id: string): Observable<Models.VOConnection[]> {
+    let url = VOSettings.connection_GetProfileConnections.replace(<any>'{{id}}', id);
+    return this.http.get(url)
+      .catch(this.handleError);
+  }
 
-    private handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            console.error(error);
-        return Observable.throw(errMsg);
-    }
+  sendMessage(id: string, senderid: string, body: string, subject?: string): Observable<any> {
+    let url = VOSettings.sendMessage.replace(<any>'{{id}}', id);
+    return this.http.post(url, {id, senderid, body, subject})
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any) {
+    let errMsg = (error.message) ? error.message :
+      console.error(error);
+    return Observable.throw(errMsg);
+  }
+
+  public validateUrlProfile(id: string, router: Router): Observable<boolean> {
+    return this.http.get(VOSettings.myProfile).map(res => {
+        const myProfile = mapGetPerson(res);
+        if (id == myProfile.id) {
+          router.navigate(['/connections']);
+          return false;
+        }
+        return true;
+      })
+      .catch((error: any) => {
+        return new Observable<boolean>();
+      });
+  }
+
 }

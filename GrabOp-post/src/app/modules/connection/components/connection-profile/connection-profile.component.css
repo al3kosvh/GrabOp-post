@@ -12,7 +12,7 @@
 div.search-container {
   padding-left: 10px;
   padding-right: 10px;
-  margin: 30px auto;
+  margin: 10px auto;
   background-color: white;
   border-radius: 2px;
   border: 1px solid #778899;
@@ -31,4 +31,18 @@ div.search-container /deep/ div.mat-input-underline.mat-form-field-underline {
 md-form-field md-icon {
   position: relative;
   top: 7px;
+}
+
+.titles {
+  margin-top: 30px;
+}
+
+.display-name {
+  color: #03a9f4;
+  font-size: 18px;
+}
+
+.active-connection {
+  color: grey;
+  font-size: 18px;
 }

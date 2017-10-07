@@ -227,8 +227,8 @@ export class VOService extends VOPost {
      fixedPrice:number;
      hourlyRateFrom:number;
      hourlyRateTo:number;
-  
-  
+
+
      matchPercentage:number;
      numberReviews:number;
      numberTrades:number;
@@ -326,6 +326,7 @@ export class VOSettings {
     static connection_GetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connection_GetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
     static connection_MakeRequest: string = VOSettings.server + '/profiles/{{sender}}/connectionsInvite/{{receiver}}?format=json';
+    static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
     // static profile: string = VOSettings.server+'/profiles/{{id}}?format=json';
     // static register: string = 'register';
     static myposts: string = 'myservices';

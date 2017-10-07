@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
 // Services
-import { ConnectionService } from '../../services/connection.service';
+import { ConnectionService } from "../../services/connection.service";
 
 @Component({
-    selector: 'app-connection',
-    templateUrl: './connection.component.html',
-    styleUrls: ['./connection.component.css']
+  selector: 'app-connection',
+  templateUrl: './connection.component.html',
+  styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-    tab = ['connections', 'received', 'sent'];
-    myConnections: Models.VOConnection[];
+  tab = ['connections', 'received', 'sent'];
+  myConnections: Models.VOConnection[];
+  message: Models.VOMessage;
+  search: string;
 
-    constructor(
-        private connectionService: ConnectionService
-    ) { }
+  constructor(private connectionService: ConnectionService) {
+  }
 
-    ngOnInit() {
-        this.connectionService.getMyConnections().subscribe(res => {
-            this.myConnections = res;
-        });
-    }
+  ngOnInit() {
+    this.connectionService.getMyConnections().subscribe(res => {
+      this.myConnections = res;
+    });
+  }
+
+  onMessage(msg: Models.VOMessage) {
+    this.message = msg;
+  }
 
 }

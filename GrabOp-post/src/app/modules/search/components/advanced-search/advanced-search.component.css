@@ -1,0 +1,45 @@
+.filters {
+  padding: 0 20px 20px;
+  margin: 10px 0 0;
+  border-right: 1px solid #aaaaaa;
+  color: grey;
+  overflow: auto;
+}
+
+.filters .title {
+  margin: 0;
+}
+
+.filters .checkbox-group {
+  padding: 5px 0 5px 5px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.title-red {
+  color: orangered;
+  margin-right: 5px;
+}
+
+.symbol {
+  margin-right: 2px;
+}
+
+.btn-container {
+  margin: 20px 0;
+}
+
+.result-container {
+  padding: 0 20px 20px;
+  margin: 10px 0 0;
+}
+
+.result {
+  color: black;
+}
+
+.numbers-container {
+  margin: 8px 0;
+}

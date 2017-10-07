@@ -1,0 +1,27 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="titles">
+    <span class="display-name">{{ user.displayName + "'s"}}</span>
+    <span class="active-connection">&thinsp;Active Connections</span>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div class="search-container" fxFlex="35" fxFlex.xs="60">
+      <form floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
+        <md-form-field floatPlaceholder="never">
+          <md-icon mdPrefix>search</md-icon>
+          <input mdInput placeholder="Search" name="search" aria-label="Search..." [mdAutocomplete]="auto" [(ngModel)]="search">
+          <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let connection of connections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
+              <span>{{ connection.display_name }}</span>
+            </md-option>
+          </md-autocomplete>
+        </md-form-field>
+      </form>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+    <app-connect-card-profile
+      *ngFor="let connection of connections | connectionFilter: 1 | connectionSearch: search"
+      [connection]="connection" [myConnections]="myConnections"></app-connect-card-profile>
+  </div>
+</div>

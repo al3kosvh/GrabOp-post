@@ -1,0 +1,131 @@
+<div fxlayout="row">
+  <div fxLayout="column" fxFlex="20" class="filters">
+    <h3 class="title">Advanced Search</h3>
+    <form #f="ngForm" autocomplete="off" novalidate class="form-filters">
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Search" name="search" [(ngModel)]="filters.search" #search="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Country" name="country" [(ngModel)]="filters.country" #country="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="Province" name="province" [(ngModel)]="filters.province" #province="ngModel"/>
+      </md-form-field>
+
+      <md-form-field class="full-width">
+        <input mdInput placeholder="City" name="city" [(ngModel)]="filters.city" #city="ngModel"/>
+      </md-form-field>
+
+      <h4 class="title">Business Style</h4>
+      <div class="checkbox-group">
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="partnership" [(ngModel)]="filters.businessStyle.partnership">Business Partnership</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="exchange" [(ngModel)]="filters.businessStyle.exchange">Exchange</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="donate" [(ngModel)]="filters.businessStyle.donate">Donate</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="internship" [(ngModel)]="filters.businessStyle.internship">Internship</md-checkbox>
+        </div>
+        <div fxlayout="row" class="full-width">
+          <md-checkbox name="money" [(ngModel)]="filters.businessStyle.money">Money</md-checkbox>
+        </div>
+      </div>
+
+      <div fxlayout="row" class="full-width numbers-container">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Fixed</span>
+        </div>
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          $
+        </div>
+        <app-number-input (onValue)="filters.fixed.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+        <app-number-input (onValue)="filters.fixed.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+      </div>
+
+      <div fxlayout="row" class="full-width numbers-container">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Hourly</span>
+        </div>
+
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          $
+        </div>
+        <app-number-input (onValue)="filters.hourly.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+        <app-number-input (onValue)="filters.hourly.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+      </div>
+
+      <div fxlayout="row" class="full-width numbers-container">
+        <div fxLayout="column" fxFlex="35" fxLayoutAlign="center end">
+          <span class="title-red">Commission</span>
+        </div>
+
+        <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
+          %
+        </div>
+        <app-number-input (onValue)="filters.commission.start = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
+        <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
+          to
+        </div>
+        <app-number-input (onValue)="filters.commission.end = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
+      </div>
+
+      <div fxlayout="row" class="full-width btn-container" fxLayoutAlign="center center">
+        <div fxLayout="column" fxFlex="70">
+          <button md-raised-button color="accent" [class.disabled]="!f.valid" (click)="advancedSearch()">
+            Search
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="result-container" fxLayout="column" fxFlex="80">
+
+    <div fxlayout="row" class="full-width">
+      <span class="result">Result: {{ offeringsCant + needsCant + peopleCant }}</span>
+    </div>
+
+    <md-tab-group>
+      <md-tab [label]="'Offerings (' + offeringsCant + ')'">
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <div *ngFor="let item of posts | postsFilter:'offer'; let i=index">
+            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab [label]="'Needs (' + needsCant + ')'">
+        <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <div *ngFor="let item of posts | postsFilter:'need'; let i=index">
+            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab [label]="'People (' + peopleCant + ')'">
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+          <app-connect-card-profile
+            *ngFor="let connection of connections"
+            [connection]="connection" [myConnections]="myConnections"></app-connect-card-profile>
+        </div>
+      </md-tab>
+
+    </md-tab-group>
+
+  </div>
+</div>
+

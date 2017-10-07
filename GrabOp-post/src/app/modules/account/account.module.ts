@@ -25,6 +25,7 @@ import { SignOutComponent } from './components/signout/signout.component';
 // Directives
 import { ValidateEmailDirective } from './directives/validate-email.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
+import { EqualValidator } from './directives/equal-validator.directive';
 
 // Services
 import { UploadService } from './services/upload.service';
@@ -32,7 +33,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AccountStorageService } from './services/account-storage.service';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
-import { SignupService } from './services/signup.service';
+import { SignUpService } from './services/signup.service';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -85,12 +86,13 @@ const routes: Routes = [
         AccountRecoverComponent,
         ValidateEmailDirective,
         CheckEmailDirective,
+        EqualValidator
     ],
     providers: [
         UploadService,
         AuthenticationService,
         AuthGuard,
-        SignupService,
+        SignUpService,
         AccountStorageService,
         HttpService
     ],
