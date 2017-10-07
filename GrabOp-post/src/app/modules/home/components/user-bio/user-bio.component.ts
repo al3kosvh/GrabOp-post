@@ -13,7 +13,7 @@ import { ProfileService } from '../../../profile/services/profile.service';
 })
 export class UserBioComponent implements OnChanges {
 
-    @Input() user: VOUserExt;
+    @Input() person: VOUserExt;
     location: Models.ProfileLocation;
 
     constructor(
@@ -24,8 +24,8 @@ export class UserBioComponent implements OnChanges {
     }
 
     ngOnChanges() {
-        if (this.user) {
-            this.profileService.getProfileLocation(this.user.id, 1).subscribe(
+        if (this.person) {
+            this.profileService.getProfileLocation(this.person.id, 1).subscribe(
                 location => {
                     this.location = location
                 }

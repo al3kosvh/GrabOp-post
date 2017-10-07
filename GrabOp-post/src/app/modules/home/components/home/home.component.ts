@@ -20,7 +20,7 @@ import { ProfileService } from '../../../profile/services/profile.service';
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
     connectionsCount: number;
-    user: VOUserExt;
+    person: VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
         this.profileService.getProfile().subscribe(
             profile => {
-                this.user = profile;
+                this.person = profile;
                 this.connectionService.getProfileConnectionsCount(profile.id).subscribe(res => {
                     this.connectionsCount = res;
                 });
@@ -96,8 +96,8 @@ export class HomeComponent implements OnInit, OnChanges {
         this.postsOffer = posts.filter(function (post) {
             if (post.type == "offer") return post;
         });
-        this.user.needs = this.postsNeed.length;
-        this.user.offers = this.postsOffer.length;
+        this.person.needs = this.postsNeed.length;
+        this.person.offers = this.postsOffer.length;
         // console.log('this.postsNeed', this.postsNeed);
         // console.log('this.postsOffer', this.postsOffer);
     }
