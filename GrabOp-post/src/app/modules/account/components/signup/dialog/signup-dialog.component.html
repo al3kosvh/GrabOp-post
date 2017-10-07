@@ -1,49 +1,57 @@
 <div fxLayout="column">
+
     <div fxLayout="row-reverse">
         <button class="close" md-icon-button (click)="onClose()"><md-icon>close</md-icon></button>
     </div>
+
     <h3>Sign Up</h3>
+
     <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
     <form #f="ngForm" autocomplete="off" [formGroup]="formGroup">
-        <md-horizontal-stepper formArrayName="formArray">
+
+        <md-horizontal-stepper formArrayName="formArray" linear>
+
             <md-step formGroupName="0" [stepControl]="formArray?.get([0])">
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.firstName" placeholder="First Name" name="firstName" formControlName="firstName" />
+                    <input mdInput placeholder="First Name" name="firstName" formControlName="firstName" />
                 </md-form-field>
 
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.lastName" placeholder="Last Name" name="lastName" formControlName="lastName" />
+                    <input mdInput placeholder="Last Name" name="lastName" formControlName="lastName" />
                 </md-form-field>
-
-                <md-form-field>
-                    <input mdInput [(ngModel)]="user.username" placeholder="User Name" name="username" formControlName="username" />
-                </md-form-field>
-                <div *ngIf="usernameMsg">{{usernameMsg}}</div>
 
                 <div>
                     <md-form-field>
-                        <input mdInput [(ngModel)]="user.primaryEmail" (change)="checkEmail($event.value)" placeholder="Email" name="email" type="email"
-                            appCheckEmail formControlName="primaryEmail" />
-                            <md-error *ngIf="emailMessage">{{emailMessage}}</md-error>
+                        <input mdInput placeholder="User Name" name="username" formControlName="username" (change)="checkUsername($event.value)"
+                        />
+                    </md-form-field>
+                    <img *ngIf="checkingUsername" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                    <div *ngIf="usernameMessage">{{usernameMessage}}</div>
+                </div>
+
+                <div>
+                    <md-form-field>
+                        <input mdInput placeholder="Email" name="email" type="email" formControlName="primaryEmail" (change)="checkEmail($event.value)"
+                        />
                     </md-form-field>
                     <img *ngIf="checkingEmail" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
-                    
+                    <div *ngIf="emailMessage">{{emailMessage}}</div>
                     <!--div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div-->
                 </div>
 
                 <div>
                     <md-form-field>
-                        <input mdInput type="password" [(ngModel)]="user.password" placeholder="Password" name="password" formControlName="password"
-                            #password="ngModel" />
+                        <input mdInput type="password" placeholder="Password" name="password" formControlName="password" />
                     </md-form-field>
                     <md-form-field>
-                        <input mdInput type="password" [(ngModel)]="user.confirmPassword" appEqualValidate="password" placeholder="Confirm Password"
-                            name="confirm" formControlName="confirmPassword" #confirmPassword="ngModel" />
+                        <input mdInput type="password" placeholder="Confirm Password" name="confirm" formControlName="confirmPassword" />
                     </md-form-field>
-                    <div [hidden]="confirmPassword.valid || confirmPassword.pristine">
+                    <!--div [hidden]="confirmPassword.valid || confirmPassword.pristine">
                         Password mismatch
-                    </div>
+                    </div-->
                 </div>
 
                 <div>
@@ -53,16 +61,16 @@
 
             <md-step formGroupName="1" [stepControl]="formArray?.get([1])">
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.jobtitle" placeholder="Job Title" name="jobtitle" formControlName="jobTitle"/>
+                    <input mdInput placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
                 </md-form-field>
 
-                <md-radio-group [(ngModel)]="user.occupation" #occupation="ngModel" name="occupation" formControlName="occupation">
+                <md-radio-group name="occupation" formControlName="occupation">
 
                     <md-radio-button value="1">
                         Company
                     </md-radio-button>
-                    <md-form-field *ngIf="occupation.value == 1">
-                        <input mdInput [(ngModel)]="user.company" placeholder="Company" name="company" formControlName="company"/>
+                    <md-form-field *ngIf="user.occupation == 1">
+                        <input mdInput placeholder="Company" name="company" formControlName="company" />
                     </md-form-field>
 
                     <md-radio-button value="2">
@@ -87,21 +95,21 @@
 
             <md-step formGroupName="2" [stepControl]="formArray?.get([2])">
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.phoneNumber" placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber" />
+                    <input mdInput placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber" />
                 </md-form-field>
 
-                <md-checkbox [(ngModel)]="user.phoneVisible" formControlName="phoneVisible">Make Visible</md-checkbox>
+                <md-checkbox formControlName="phoneVisible">Make Visible</md-checkbox>
 
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.country" placeholder="Country" name="country" formControlName="country" />
-                </md-form-field>
-
-                <md-form-field>
-                    <input mdInput [(ngModel)]="user.province" placeholder="Province" name="province" formControlName="province" />
+                    <input mdInput placeholder="Country" name="country" formControlName="country" />
                 </md-form-field>
 
                 <md-form-field>
-                    <input mdInput [(ngModel)]="user.city" placeholder="City" name="city" formControlName="city" />
+                    <input mdInput placeholder="Province" name="province" formControlName="province" />
+                </md-form-field>
+
+                <md-form-field>
+                    <input mdInput placeholder="City" name="city" formControlName="city" />
                 </md-form-field>
 
                 <div>
@@ -116,7 +124,7 @@
                 <div>
                     <button md-button type="button" mdStepperPrevious>Back</button>
                     <button md-raised-button color="primary" type="submit" mdStepperPrevious>Sign Up</button>
-                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    <img *ngIf="submitting" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                 </div>
             </md-step>

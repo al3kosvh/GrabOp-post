@@ -21,10 +21,14 @@ export class SignUpDialogComponent implements OnInit {
     private jobFormGroup: FormGroup;
     private locationFormGroup: FormGroup;
 
-    private loading = false;
+    private submitting = false;
     private checkingEmail = false;
+    private checkingUsername = false;
+
     private errorMessage = "";
     private emailMessage = "";
+    private usernameMessage = "";
+
 
     constructor(
         public dialogRef: MdDialogRef<SignUpDialogComponent>,
@@ -56,8 +60,27 @@ export class SignUpDialogComponent implements OnInit {
             });
     }
 
+    checkUsername(username) {
+        /*this.checkingUsername = true;
+        this.signupService.verifyEmail(username).subscribe(
+            value => {
+                this.checkingUsername = false;
+                console.log(value);
+            },
+            error => {
+                this.checkingUsername = false;
+                switch (error.status) {
+                    case 0:
+                        this.usernameMessage = 'Conection error';
+                        break;
+                    default:
+                        this.usernameMessage = error.statusText;
+                }
+            });*/
+    }
+
     onSubmit(): void {
-        this.loading = true;
+        this.submitting = true;
         this.errorMessage = '';
     }
 
@@ -73,13 +96,32 @@ export class SignUpDialogComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
 
             formArray: this.formBuilder.array([
-                this.nameFormGroup,
-                this.jobFormGroup,
-                this.locationFormGroup
+                this.nameFormGroup = this.formBuilder.group({
+                    firstName: ['', Validators.required],
+                    lastName: ['', Validators.required],
+                    username: ['', Validators.required],
+                    primaryEmail: ['', Validators.required],
+                    password: ['', Validators.required],
+                    confirmPassword: ['', Validators.required],
+                }),
+
+                this.jobFormGroup = this.formBuilder.group({
+                    jobTitle: ['', Validators.required],
+                    occupation: ['', Validators.required],
+                    company: ['', Validators.nullValidator],
+                }),
+
+                this.locationFormGroup = this.formBuilder.group({
+                    phoneNumber: ['', Validators.required],
+                    phoneVisible: ['', Validators.nullValidator],
+                    country: ['', Validators.required],
+                    province: ['', Validators.required],
+                    city: ['', Validators.required],
+                }),
             ])
         });
 
-        this.nameFormGroup = this.formBuilder.group({
+        /*this.nameFormGroup = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
@@ -89,16 +131,17 @@ export class SignUpDialogComponent implements OnInit {
         });
 
         this.jobFormGroup = this.formBuilder.group({
-            jobTitle: ['', Validators.email],
-            occupation: ['', Validators.email],
-            company: ['', Validators.email],
+            jobTitle: ['', Validators.required],
+            occupation: ['', Validators.required],
+            company: ['', Validators.nullValidator],
         });
 
         this.locationFormGroup = this.formBuilder.group({
-            phoneNumber: ['', Validators.email],
-            country: ['', Validators.email],
-            province: ['', Validators.email],
-            city: ['', Validators.email],
-        });
+            phoneNumber: ['', Validators.required],
+            phoneVisible: ['', Validators.nullValidator],
+            country: ['', Validators.required],
+            province: ['', Validators.required],
+            city: ['', Validators.required],
+        });*/
     }
 }
