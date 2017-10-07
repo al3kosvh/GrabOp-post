@@ -28,7 +28,8 @@ import { SharedModule } from '../shared/shared.module';
 const myRoute: Routes = [
     //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
     //{ path: 'person-preview/:idPost/:idPerson', component: PostViewComponent },
-    { path: 'posts/:id', component: PostViewComponent }
+    { path: 'posts/:id', component: PostViewComponent },
+    { path: 'mypost/view/:id', component: MyPostViewComponent }
 
     // {path: 'my-selected/:idSelectedMyPost', component: MyPostViewComponent}
     // {path: 'person/:idPerson/:idPost', component: PostViewComponent}
