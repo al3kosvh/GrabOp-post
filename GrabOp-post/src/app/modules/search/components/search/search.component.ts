@@ -19,35 +19,11 @@ export class SearchComponent {
     @Input() placeholder?: string;
     searchCtrl: FormControl;
     filteredPosts: Observable<VOPost[]>;
+    @Input() icon?: string; // prefix, suffix
 
     posts: VOPost[];
 
-    states: any[] = [
-        {
-            name: 'Arkansas',
-            population: '2.978M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-            flag: ''
-        },
-        {
-            name: 'California',
-            population: '39.14M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-            flag: ''
-        },
-        {
-            name: 'Florida',
-            population: '20.27M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-            flag: ''
-        },
-        {
-            name: 'Texas',
-            population: '27.47M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-            flag: ''
-        }
-    ];
+    states: any[] = [];
 
     constructor(
         private router: Router,

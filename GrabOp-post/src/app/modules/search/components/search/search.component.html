@@ -1,8 +1,9 @@
 <div class="search-container" fxFlex>
-  <form floatPlaceholder="never" fxFlex (ngSubmit)="onSubmit()">
-    <md-form-field floatPlaceholder="never">
-      <md-icon mdPrefix>search</md-icon>
+  <form (ngSubmit)="onSubmit()">
+    <md-form-field floatPlaceholder="never" fxFlex>
+      <md-icon *ngIf="icon == 'prefix'" mdPrefix>search</md-icon>
       <input mdInput placeholder="{{placeholder}}" aria-label="Search" [mdAutocomplete]="auto" [formControl]="searchCtrl">
+      <md-icon *ngIf="icon == 'suffix'" mdSuffix>search</md-icon>
       <md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSubmit()">
         <md-option *ngFor="let post of filteredPosts | async" [value]="post.city">
           <span>{{ post.city + ' | ' + post.province + ' | ' + post.country}}</span>
