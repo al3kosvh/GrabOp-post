@@ -66,3 +66,13 @@ span.menu-section {
   font-weight: 700;
   color: dimgrey;
 }
+
+:host /deep/ search div.search-container {
+  padding-left: 5px;
+  padding-right: 5px;  
+}
+
+  :host /deep/ search div.search-container md-form-field {
+    margin-top: -15px !important;
+    margin-bottom: -21px !important;
+  }
