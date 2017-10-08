@@ -297,7 +297,7 @@ export function mapGetPost(res): any {
 
 export function mapGetPosts(res): any[] {
 
-    let services: SOservice_expanded[] = res;
+    let services: SOservice_expanded[] = res ? res : [];
     
     // let posts: any = res;
     // console.log('mapGetMyPosts res.json', res);

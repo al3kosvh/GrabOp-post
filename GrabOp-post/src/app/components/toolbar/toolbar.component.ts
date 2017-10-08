@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MdSidenav, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router'; 
 
 // Components
 import { HelpComponent } from '../help/help.component';
@@ -24,7 +25,8 @@ export class ToolbarComponent implements OnInit {
     constructor(
         private authService: AuthenticationService,
         private dialog: MdDialog,
-        private toolbarService: ToolbarService
+        private toolbarService: ToolbarService,
+        private router: Router
     ) {
         this.visible = this.toolbarService.isVisible();
         this.authService.getUser().subscribe(user => {
@@ -39,6 +41,10 @@ export class ToolbarComponent implements OnInit {
         this.dialog.open(HelpComponent, (res) => {
             console.log('helpComponent  ', res);
         });
+    }
+
+    goToProfile(): void {
+        this.router.navigate(['profile']);
     }
 
     toggleSideNav() {

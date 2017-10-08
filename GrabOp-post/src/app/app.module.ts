@@ -55,7 +55,7 @@ const routes: Routes = [
     { path: 'feedback', component: FeedbackComponent },
     { path: 'terms-of-use', component: TermsOfUseComponent },
     { path: 'about-us', component: AboutUsComponent },
-    { path: '**', component: PageNotFoundComponent }
+    { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -71,8 +71,7 @@ const routes: Routes = [
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
-        MatListModule,
-        RouterModule.forRoot(routes),        
+        MatListModule,                
         PostModule,
         LandingModule,
         HomeModule,
@@ -81,7 +80,8 @@ const routes: Routes = [
         ConnectionModule,
         OpportunityModule,
         ProfileModule,
-        SearchModule
+        SearchModule,
+        RouterModule.forRoot(routes)
     ],
     declarations: [
         AppComponent,

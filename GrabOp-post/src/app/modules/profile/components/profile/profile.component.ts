@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 
 // Services
@@ -20,21 +19,9 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css'],
-    animations: [
-        trigger('slideInOut', [
-            state('in', style({
-                transform: 'translate3d(0, 0, 0)'
-            })),
-            state('out', style({
-                transform: 'translate3d(100%, 0, 0)'
-            })),
-            transition('in => out', animate('400ms ease-in-out')),
-            transition('out => in', animate('400ms ease-in-out'))
-        ]),
-    ]
+    styleUrls: ['./profile.component.css']    
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
     profile: VOUserExt = new VOUserExt();
     profileConnectionsCount = 0;
@@ -57,7 +44,10 @@ export class ProfileComponent implements OnInit {
         private profileService: ProfileService,
         private postService: PostService,
         private connectionService: ConnectionService,
-        private dialog: MdDialog) {
+        private dialog: MdDialog,
+        private router: Router
+    ) {
+
     }
 
     ngOnInit() {
@@ -68,6 +58,10 @@ export class ProfileComponent implements OnInit {
                 this.loadMyProfile();
             }
         })
+    }
+
+    ngOnDestroy() {
+        this.router.navigate(['/', {outlets: { aux: null } }]);
     }
 
     loadProfile(id: string) {

@@ -39,7 +39,6 @@ export class ConnectionService {
         let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender.toString()).replace(<any>'{{receiver}}', receiver.toString());
         return this.http.post(url, { accept: accept, connectionid: connectionId, confirmer })
             .map(res => {
-                console.log('connectionState res', res);
                 return res.json();
             })
             .catch(this.handleError);
@@ -47,7 +46,6 @@ export class ConnectionService {
 
     getMyConnections(): Observable<Models.VOConnection[]> {
         let url = VOSettings.connection_GetMyConnections;
-        console.log('getMyConnections', url);
         return this.http.get(url)
             .catch(this.handleError);
     }

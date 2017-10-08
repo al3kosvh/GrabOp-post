@@ -1,7 +1,6 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
-<div class="slideRight" [@routerAnimationRight]="getRouteAnimation(outlet)">
-  <div fxFlex></div>
-  <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
+<div class="slideRight">
+  <router-outlet name="aux" #outlet="outlet"></router-outlet>
 </div>
 <md-sidenav-container [ngClass]="fixedLayout">
   <md-sidenav #sidenav>
@@ -29,7 +28,7 @@
     </md-list>
   </md-sidenav>
 
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet>  
 
   <app-footer></app-footer>
 

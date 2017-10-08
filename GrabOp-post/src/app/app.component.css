@@ -24,9 +24,10 @@ md-sidenav-container.fixed {
   padding-top: 64px;
 }
 
-div.slideRight {
+div.slideRight {  
   position: fixed;
-  z-index: 1000;
+  left: auto;
+  top: 100px;
+  right: 0;  
+  z-index: 9999;
 }
-
-
