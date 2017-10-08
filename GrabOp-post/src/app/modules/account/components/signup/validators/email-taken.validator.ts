@@ -5,9 +5,13 @@ export class EmailTakenValidator {
 
     static createValidator(signupService: SignUpService) {
         return (control: AbstractControl) => {
-            return signupService.verifyEmail(control.value).map(res => {
-                return res ? null : { emailTaken: true };
-            });
+            return signupService.verifyEmail(control.value).subscribe(
+                res => {
+                    return res ? null : { emailTaken: true };
+                }, error => {
+                    return { connectionError: true };
+                }
+            );
         }
     }
 }

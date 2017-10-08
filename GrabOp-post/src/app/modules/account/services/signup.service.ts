@@ -57,6 +57,16 @@ export class SignUpService {
         });
     }
 
+    verifyUsername(token: string) {
+        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
+        let url: string = VOSettings.verifyemail;
+
+        return this.http.post(url, token).map(res => {
+            console.log('verifyEmail post res ', res);
+            return res;
+        });
+    }
+
 
     // confirmPassword(password: string, ctrl: FormControl) {
     //

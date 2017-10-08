@@ -3,7 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { MatchPasswordValidator } from './match-password.validator';
+//Validators
+import { MatchPasswordValidator } from '../validators/password-match.validator';
+import { EmailTakenValidator } from '../validators/email-taken.validator';
+import { UsernameTakenValidator } from '../validators/username-taken.validator';
 
 // Services
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -17,18 +20,16 @@ import { SignUpService } from '../../../services/signup.service';
 export class SignUpDialogComponent implements OnInit {
 
     private user: Models.VOUserExt = { occupation: 1 } as Models.VOUserExt;
-
     private formGroup: FormGroup;
-
     private submitting = false;
-    private checkingEmail = false;
-    private checkingUsername = false;
-    private passwordMatch;
 
-    private errorMessage = "";
-    private emailMessage = "";
-    private usernameMessage = "";
-
+    private messages = {
+        submitErrorMessage: "",
+        emailTakenMessage: "This email is already taken",
+        passwordMismatchMessage: "Password mismatch, retype it",
+        usernameTakenMessage: "This username is not available",
+        connectionErrorMessage: "Connection error"
+    };
 
     constructor(
         public dialogRef: MdDialogRef<SignUpDialogComponent>,
@@ -42,23 +43,23 @@ export class SignUpDialogComponent implements OnInit {
     }
 
     checkEmail(email) {
-        this.checkingEmail = true;
+        //this.checkingEmail = true;
         this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: true });
         this.signupService.verifyEmail(email).subscribe(
             value => {
-                this.checkingEmail = false;
+                //      this.checkingEmail = false;
                 console.log(value);
                 this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: false });
             },
             error => {
-                this.checkingEmail = false;
+                //    this.checkingEmail = false;
                 this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: true });
                 switch (error.status) {
                     case 0:
-                        this.emailMessage = 'Conection error';
+                        //          this.emailMessage = 'Conection error';
                         break;
                     default:
-                        this.emailMessage = error.statusText;
+                    //        this.emailMessage = error.statusText;
                 }
             });
     }
@@ -84,8 +85,9 @@ export class SignUpDialogComponent implements OnInit {
 
     private submit(data): void {
         this.submitting = true;
-        this.errorMessage = '';
+        this.messages.submitErrorMessage = '';
         console.log(data);
+        this.submitting = false;
     }
 
     private close(): void {
@@ -110,8 +112,16 @@ export class SignUpDialogComponent implements OnInit {
                 this.formBuilder.group({
                     firstName: ['', Validators.required],
                     lastName: ['', Validators.required],
-                    username: ['', Validators.required],
-                    primaryEmail: ['', [Validators.required, Validators.email]],
+                    username: [
+                        '',
+                        [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
+                        Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
+                    ],
+                    primaryEmail: [
+                        '',
+                        [Validators.required, Validators.email],
+                        EmailTakenValidator.createValidator(this.signupService)
+                    ],
                     password: ['', [Validators.required, Validators.minLength(6)]],
                     confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
                 },
@@ -139,5 +149,9 @@ export class SignUpDialogComponent implements OnInit {
 
     private getFormControlErrors(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName).errors;
+    }
+
+    private getFormControl(formArrayIndex: number, controlName: string) {
+        return this.formArray.get([formArrayIndex]).get(controlName);
     }
 }
