@@ -1,14 +1,14 @@
 <div fxLayout="column">
 
     <div fxLayout="row-reverse">
-        <button class="close" md-icon-button (click)="onClose()"><md-icon>close</md-icon></button>
+        <button class="close" md-icon-button (click)="close()"><md-icon>close</md-icon></button>
     </div>
 
     <h3>Sign Up</h3>
 
     <div *ngIf="errorMessage && !submitting">{{ errorMessage }}</div>
 
-    <form #f="ngForm" autocomplete="off" [formGroup]="formGroup">
+    <form #f="ngForm" autocomplete="off" [formGroup]="formGroup" (ngSubmit)="submit(f.value)">
 
         <md-horizontal-stepper formArrayName="formArray" linear>
 
@@ -33,7 +33,7 @@
 
                 <div>
                     <md-form-field>
-                        <input mdInput placeholder="Email" name="email" type="email" formControlName="primaryEmail" (change)="checkEmail($event.value)"
+                        <input mdInput placeholder="Email" name="primaryEmail" formControlName="primaryEmail" (change)="checkEmail($event.value)"
                         />
                     </md-form-field>
                     <img *ngIf="checkingEmail" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
@@ -47,11 +47,11 @@
                         <input mdInput type="password" placeholder="Password" name="password" formControlName="password" />
                     </md-form-field>
                     <md-form-field>
-                        <input mdInput type="password" placeholder="Confirm Password" name="confirm" formControlName="confirmPassword" />
+                        <input mdInput type="password" placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
                     </md-form-field>
-                    <!--div [hidden]="confirmPassword.valid || confirmPassword.pristine">
+                    <div *ngIf="getFormControlErrors(0,'confirmPassword')?.MatchPassword">
                         Password mismatch
-                    </div-->
+                    </div>
                 </div>
 
                 <div>
@@ -64,7 +64,7 @@
                     <input mdInput placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
                 </md-form-field>
 
-                <md-radio-group name="occupation" formControlName="occupation">
+                <md-radio-group name="occupation" formControlName="occupation" (change)="changeOccupation($event.value)">
 
                     <md-radio-button value="1">
                         Company
@@ -123,7 +123,7 @@
                 You are now done.
                 <div>
                     <button md-button type="button" mdStepperPrevious>Back</button>
-                    <button md-raised-button color="primary" type="submit" mdStepperPrevious>Sign Up</button>
+                    <button md-raised-button color="primary" [disabled]="!f.valid" type="submit">Sign Up</button>
                     <img *ngIf="submitting" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                 </div>
