@@ -5,7 +5,7 @@ export class MatchPasswordValidator {
         let password = AC.get('password').value;
         let confirmPassword = AC.get('confirmPassword');
         if (confirmPassword.dirty && password != confirmPassword.value) {
-            AC.get('confirmPassword').setErrors({ MatchPassword: true })
+            AC.get('confirmPassword').setErrors({ matchPassword: true })
         } else {
             return null
         }
