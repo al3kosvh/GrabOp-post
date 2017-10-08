@@ -84,8 +84,7 @@ const routes: Routes = [
         SignUpConfirmComponent,
         AccountRecoverComponent,
         ValidateEmailDirective,
-        CheckEmailDirective,
-        EqualValidator
+        CheckEmailDirective
     ],
     providers: [
         UploadService,
