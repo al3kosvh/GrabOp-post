@@ -515,3 +515,15 @@ export function mapUploadRes(res: any): VOpost_attachment {
         // thumbnail: result.eager[0].url
     }
 }
+
+export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
+    return {
+        id: user.id,
+        role: user.type,
+        username: user.user_name,
+        primaryEmail: user.primary_email,
+        displayName: user.display_name,
+        firstName: user.first_name,
+        lastName: user.last_name
+    }
+}

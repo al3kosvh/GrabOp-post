@@ -10,6 +10,7 @@ import { AccountStorageService } from './account-storage.service';
 import { HttpService } from './http.service';
 
 import { VOSettings } from "../../../models/vos";
+import { mapUserExtended } from "../../../utils/map-functions";
 
 
 
@@ -77,21 +78,9 @@ export class AuthenticationService {
         let url: string = VOSettings.myProfile;
         return this.http.get(url)
             .map(response => {
-                let vouser: Models.VOUserExt = this.mapUserExtended(response);
+                let vouser: Models.VOUserExt = mapUserExtended(response);
                 return vouser;
             });
-    }
-
-    private mapUserExtended(user: Models.SOUser): Models.VOUserExt {
-        return {
-            id: user.id,
-            role: user.type,
-            username: user.user_name,
-            primaryEmail: user.primary_email,
-            displayName: user.display_name,
-            firstName: user.first_name,
-            lastName: user.last_name
-        }
     }
 
     private mapAuthResponseToUser(authResponse: Models.SOAuthenticateResponse): Models.VOUser {
