@@ -7,25 +7,18 @@ import {
     MatListModule, MatTabsModule, MatStepperModule, MatRadioModule
 } from '@angular/material';
 
-// Components
-//import { SignupComponent } from './components/signup_old/signup.component';
-//import { SignupButtonComponent } from './components/signup_old/button/signup-button.component';
+//App Modules
+import { SharedModule } from '../shared/shared.module';
 
+//Account Components
 import { SignUpComponent } from './components/signup/signup.component';
 import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
-
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
-
 import { AccountRecoverComponent } from './components/recover/recover.component';
-
 import { SignOutComponent } from './components/signout/signout.component';
 
-// Directives
-import { ValidateEmailDirective } from './directives/validate-email.directive';
-import { CheckEmailDirective } from './directives/check-email.directive';
-
-// Services
+//Account Services
 import { UploadService } from './services/upload.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AccountStorageService } from './services/account-storage.service';
@@ -33,21 +26,7 @@ import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.guard';
 import { SignUpService } from './services/signup.service';
 
-import { SharedModule } from '../shared/shared.module';
-
-// import {SigninButtonComponent} from './login-button/button.component';
-// import {SignupButtonComponent} from './login-new-button/signup-button.component';
-
 const routes: Routes = [
-    /*{
-        path: 'join-us', component: SignUpComponent, outlet: 'slideRight', data: { animation: 'in' },
-        children: [
-            { path: '', redirectTo: 'username', pathMatch: 'full' },
-            { path: 'username', component: SignupUsernameComponent },
-            { path: 'confirm/:token', component: SignupConfirmComponent },
-            { path: 'resetpassword/:token', component: AccountRecoverComponent }
-        ]
-    },*/
     { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
 ];
 
@@ -71,7 +50,7 @@ const routes: Routes = [
     ],
     exports: [
         SignInComponent,
-        SignOutComponent        
+        SignOutComponent
     ],
     declarations: [
         SignUpComponent,
@@ -80,8 +59,6 @@ const routes: Routes = [
         SignInDialogComponent,
         SignUpConfirmComponent,
         AccountRecoverComponent,
-        ValidateEmailDirective,
-        CheckEmailDirective
     ],
     providers: [
         UploadService,
