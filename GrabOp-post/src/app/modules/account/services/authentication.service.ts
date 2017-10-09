@@ -28,8 +28,7 @@ export class AuthenticationService {
             user => {
                 var isLoggedIn = user ? true : false;
                 if (this.loggedIn.getValue() != isLoggedIn)
-                    //isLoggedIn ? this.router.navigate(['/home']) : this.router.navigate(['/guest']);
-                    if (!isLoggedIn) this.router.navigate(['/guest']);
+                    isLoggedIn ? this.router.navigate(['/home']) : this.router.navigate(['/guest']);
 
                 this.loggedIn.next(isLoggedIn);
             });
