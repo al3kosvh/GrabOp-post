@@ -298,7 +298,7 @@ export function mapGetPost(res): any {
 export function mapGetPosts(res): any[] {
 
     let services: SOservice_expanded[] = res ? res : [];
-    
+
     // let posts: any = res;
     // console.log('mapGetMyPosts res.json', res);
     return services.map(function (service) {
@@ -525,5 +525,18 @@ export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
         displayName: user.display_name,
         firstName: user.first_name,
         lastName: user.last_name
+    }
+}
+
+export function mapAuthResponseToUser(authResponse: Models.SOAuthenticateResponse): Models.VOUser {
+    return {
+        id: authResponse.user_id,
+        sessionId: authResponse.session_id,
+        displayName: authResponse.display_name,
+        username: authResponse.user_name,
+        primaryEmail: "",
+        firstName: "",
+        lastName: "",
+        token: { value: authResponse.session_id }
     }
 }

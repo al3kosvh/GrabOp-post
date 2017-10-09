@@ -10,7 +10,7 @@ import { AccountStorageService } from './account-storage.service';
 import { HttpService } from './http.service';
 
 import { VOSettings } from "../../../models/vos";
-import { mapUserExtended } from "../../../utils/map-functions";
+import { mapUserExtended, mapAuthResponseToUser } from "../../../utils/map-functions";
 
 
 
@@ -42,7 +42,7 @@ export class AuthenticationService {
         let url: string = VOSettings.signoutUrl;
         return this.http.get(url).map((response) => {
             this.storage.clearStorage();
-            return this.mapAuthResponseToUser(response);
+            return mapAuthResponseToUser(response);
         });
     }
 
@@ -80,19 +80,6 @@ export class AuthenticationService {
                 let vouser: Models.VOUserExt = mapUserExtended(response);
                 return vouser;
             });
-    }
-
-    private mapAuthResponseToUser(authResponse: Models.SOAuthenticateResponse): Models.VOUser {
-        return {
-            id: authResponse.user_id,
-            sessionId: authResponse.session_id,
-            displayName: authResponse.display_name,
-            username: authResponse.user_name,
-            primaryEmail: "",
-            firstName: "",
-            lastName: "",
-            token: { value: authResponse.session_id }
-        }
     }
 
     handleError(error: any) {
