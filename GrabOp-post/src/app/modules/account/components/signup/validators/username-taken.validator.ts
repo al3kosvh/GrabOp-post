@@ -19,19 +19,10 @@ export class UsernameTakenValidator {
                             error => { observer.next({ connectionError: true }) }
                         )
                     });
-                }).mergeMap(stat => Observable.of(this.map(control, stat)));
-            /*let username = control.value;
-            return new Observable((observer: any) => {
-                signupService.verifyUsername(username).subscribe(
-                    taken => { observer.next(taken ? { usernameTaken: true } : null) },
-                    error => { observer.next({ connectionError: true }) }
-                )
-            });*/
+                }).mergeMap(stat => {
+                    control.setErrors(stat);
+                    return Observable.of(stat);
+                });
         }
-    }
-
-    private static map(c: AbstractControl, res: any): ValidationErrors {        
-        c.setErrors(res);
-        return res;
     }
 }
