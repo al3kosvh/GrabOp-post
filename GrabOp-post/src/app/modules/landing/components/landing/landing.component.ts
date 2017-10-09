@@ -14,6 +14,7 @@ import { SignUpComponent } from '../../../account/components/signup/signup.compo
 import { ModalWindowService } from '../../../shared/services/modal-window.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ToolbarService } from '../../../../services/toolbar.service';
+import { SidenavService } from '../../../../services/sidenav.service';
 
 @Component({
     selector: 'app-landing',
@@ -51,7 +52,8 @@ export class LandingComponent implements OnInit, OnDestroy {
         private modal: ModalWindowService,
         private auth: AuthenticationService,
         private dialog: MdDialog,
-        private toolbarService: ToolbarService
+        private toolbarService: ToolbarService,
+        private sidenavService: SidenavService
     ) {
         this.toolbarService.hideToolbar();
         this.isLoggedIn = this.auth.isLoggedIn();
@@ -63,5 +65,9 @@ export class LandingComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.toolbarService.showToolbar();
+    }
+
+    onSignUp() {
+        this.sidenavService.signUp();
     }
 }

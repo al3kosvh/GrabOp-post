@@ -5,7 +5,7 @@
         <h2>Get started today, it's free!</h2>
       </div>
       <div class="options">
-        <button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button>
+        <button md-raised-button color="accent" (click)="onSignUp()">JOIN US</button> 
         <account-signin></account-signin>
       </div>
     </div>

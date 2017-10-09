@@ -21,18 +21,7 @@ export class SidenavOptionsComponent {
         this.sidenavService.registerViewContainerRef(this.viewContainerRef);
     }
 
-    ngOnInit() {
-    //    this.sidenavService.getComponent().subscribe(component => {
-    //        if (component != null) {
-    //            this.viewContainerRef.clear()
-    //            const factory = this.componentFactoryResolver.resolveComponentFactory(component);
-    //            const ref = this.viewContainerRef.createComponent(factory);
-    //            let instance: any = ref.instance;
-    //            instance.person = this.sidenavService.data;
-    //            ref.changeDetectorRef.detectChanges();
-    //        }
-    //    })
-    }
+    ngOnInit() { }
 
     onClose() {
         this.sidenav.close();

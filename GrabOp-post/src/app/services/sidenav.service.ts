@@ -7,6 +7,7 @@ import { MdSidenav } from '@angular/material';
 import { VOUserExt } from '../modules/account/models/vouser';
 
 import { AllianceInviteComponent } from '../modules/profile/components/alliance-invite/alliance-invite.component';
+import { SignUpComponent } from '../modules/account/components/signup/signup.component';
 
 @Injectable()
 export class SidenavService {
@@ -41,6 +42,15 @@ export class SidenavService {
         const ref = this.viewContainerRef.createComponent(factory);
         let instance: any = ref.instance;
         instance.person = person;
+        this.sidenav.open();
+    }
+
+    signUp() {
+        this.viewContainerRef.clear()
+        const factory = this.componentFactoryResolver.resolveComponentFactory(SignUpComponent);
+        const ref = this.viewContainerRef.createComponent(factory);
+        //let instance: any = ref.instance;
+        //instance.person = person;
         this.sidenav.open();
     }
 

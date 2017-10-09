@@ -1,5 +1,5 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
-<div class="slideRight">
+<div class="slideRight" [ngClass]="fixedLayout">
   <router-outlet name="aux" #outlet="outlet"></router-outlet>
 </div>
 <md-sidenav-container [ngClass]="fixedLayout">
@@ -28,7 +28,7 @@
     </md-list>
   </md-sidenav>
 
-  <md-sidenav #aux position="end" mode="over">
+  <md-sidenav #aux position="end" mode="over" [ngClass]="fixedLayout">
     <sidenav-options [sidenav]="aux"></sidenav-options>
   </md-sidenav>
 

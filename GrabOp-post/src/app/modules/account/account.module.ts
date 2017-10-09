@@ -12,7 +12,6 @@ import {
 //import { SignupButtonComponent } from './components/signup_old/button/signup-button.component';
 
 import { SignUpComponent } from './components/signup/signup.component';
-import { SignUpDialogComponent } from './components/signup/dialog/signup-dialog.component';
 import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 
 import { SignInComponent } from './components/signin/signin.component';
@@ -72,15 +71,13 @@ const routes: Routes = [
     ],
     exports: [
         SignInComponent,
-        SignUpComponent,
-        SignOutComponent
+        SignOutComponent        
     ],
     declarations: [
         SignUpComponent,
         SignInComponent,
         SignOutComponent,
         SignInDialogComponent,
-        SignUpDialogComponent,
         SignUpConfirmComponent,
         AccountRecoverComponent,
         ValidateEmailDirective,
@@ -94,6 +91,6 @@ const routes: Routes = [
         AccountStorageService,
         HttpService
     ],
-    entryComponents: [SignInDialogComponent, SignUpDialogComponent]
+    entryComponents: [SignInDialogComponent, SignUpComponent]
 })
 export class AccountModule { }
