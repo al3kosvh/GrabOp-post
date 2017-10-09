@@ -1,7 +1,7 @@
-<div *ngIf="user" fxLayout="column">
+<div *ngIf="person" fxLayout="column">
   <div class="first-row" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
-    <user-bio [user]="user"></user-bio>
-    <profile-progress [user]="user"></profile-progress>
+    <user-bio [person]="person"></user-bio>
+    <profile-progress [person]="person"></profile-progress>
     <div class="announce" fxLayout="column">
       <span class="title">GrabOp thought of the day</span>
       <p>
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<span class="posts-title">People offering what you need:</span>
+<span *ngIf="myPosts.length > 0" class="posts-title">People offering what you need:</span>
 <div class="posts">
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<span class="posts-title">People who need what your offering:</span>
+<span *ngIf="myPosts.length > 0" class="posts-title">People who need what your offering:</span>
 <div class="posts">
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">

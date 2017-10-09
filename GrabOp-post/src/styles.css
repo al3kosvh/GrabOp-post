@@ -33,38 +33,8 @@
   font-feature-settings: 'liga';
 }
 
-.right {
-  float: right;
-}
-
-.btns-row > a {
-  margin-right: 1em;
-  font-size: small;
-}
-
-md-sidenav {
-  background-color: white;
-}
-
-.scrolable {
-  overflow-x: scroll;
-}
-
-.active-link {
-  background-color: #dddddd;
-}
-
-.text-center {
-  text-align: center;
-}
-
 .mat-progress-spinner path, .mat-spinner path {
   stroke: #fff;
-}
-
-.fa.fa-close, .fa.fa-edit {
-  cursor: pointer;
-  color: #dc6d3c;
 }
 
 html, body {
@@ -76,40 +46,6 @@ html, body, md-sidenav-container, .my-content {
   margin: 0;
   width: 100%;
   height: 100%;
-}
-
-#MainOutlet {
-  min-height: 500px;
-}
-
-
-table th {
-  text-align: left;
-}
-
-table {
-  border-spacing: 10px;
-  border-collapse: separate;
-}
-
-  table td {
-    border-bottom: 1px solid #ddd;
-    padding: 5px;
-  }
-
-h2, h3, h4, h5 {
-  display: inline-block;
-}
-
-.ell {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-}
-
-.small {
-  font-size: small;
 }
 
 md-progress-spinner.spinner36 {

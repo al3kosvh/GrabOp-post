@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
     MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
-    MdExpansionModule
+    MdExpansionModule, MatCardModule
 } from '@angular/material';
 
 // Shared Modules
@@ -37,8 +37,9 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
+    { path: 'invite', component: AllianceInviteComponent, outlet: 'aux', data: {animation: 'in'} },
     { path: 'profile/:id', component: ProfileComponent, canActivate: [ProfileGuard] },
-    { path: 'settings/:id', component: SettingsComponent }
+    { path: 'settings/:id', component: SettingsComponent },
 ];
 
 @NgModule({
@@ -55,6 +56,7 @@ const routes: Routes = [
         MatSelectModule,
         MatProgressSpinnerModule,
         MatChipsModule,
+        MatCardModule,
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule,

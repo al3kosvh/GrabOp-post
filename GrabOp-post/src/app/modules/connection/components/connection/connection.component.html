@@ -1,19 +1,59 @@
-<md-tab-group position="center">
-  <md-tab label="Active Connections">
-    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[0]' [connection]="connection"></app-connect-card>
-    </div>
+<md-sidenav-container class="sidenav-container">
 
-  </md-tab>
-  <md-tab label="Received Requests">
-    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[1]' [connection]="connection"></app-connect-card>
-    </div>
-  </md-tab>
-  <md-tab label="Send Requests">
-    <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-      <app-connect-card *ngFor="let connection of myConnections | connectionFilter: 1" [tab]='tab[2]' [connection]="connection"></app-connect-card>
-    </div>
-  </md-tab>
-</md-tab-group>
+  <md-tab-group position="center">
+    <md-tab label="Active Connections ({{myConnections.length}})">
+
+      <div fxLayout="row" fxLayoutAlign="center">
+        <div class="search-container" fxFlex="35" fxFlex.xs="60">
+          <form floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
+            <md-form-field floatPlaceholder="never">
+              <md-icon mdPrefix>search</md-icon>
+              <input mdInput placeholder="Search" name="search" aria-label="Search..." [mdAutocomplete]="auto" [(ngModel)]="search">
+              <md-autocomplete #auto="mdAutocomplete">
+                <md-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
+                  <span>{{ connection.display_name }}</span>
+                </md-option>
+              </md-autocomplete>
+            </md-form-field>
+          </form>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+        <app-connect-card
+          *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search"
+          [tab]='tab[0]'
+          [connection]="connection"
+          (onMessage)="onMessage($event)"
+          [sidenav]="sidenav"></app-connect-card>
+      </div>
+
+    </md-tab>
+    <md-tab label="Received Requests ({{myConnections.length}})">
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+        <app-connect-card
+          *ngFor="let connection of myConnections | connectionFilter: 1"
+          [tab]='tab[1]'
+          [connection]="connection"
+          (onMessage)="onMessage($event)"
+          [sidenav]="sidenav"></app-connect-card>
+      </div>
+    </md-tab>
+    <md-tab label="Send Requests ({{myConnections.length}})">
+      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+        <app-connect-card
+          *ngFor="let connection of myConnections | connectionFilter: 1"
+          [tab]='tab[2]'
+          [connection]="connection"
+          (onMessage)="onMessage($event)"
+          [sidenav]="sidenav"></app-connect-card>
+      </div>
+    </md-tab>
+  </md-tab-group>
+
+  <md-sidenav #sidenav class="sidenav-content">
+    <msg-sidenav [message]="message" [sidenav]="sidenav"></msg-sidenav>
+  </md-sidenav>
+
+</md-sidenav-container>
 

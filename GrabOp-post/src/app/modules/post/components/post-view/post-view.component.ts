@@ -18,7 +18,7 @@ export class PostViewComponent implements OnInit {
     person: Models.VOUserExt;
     post: VOPost = new VOPost({});
     // myPosts: VOPost[];
-    personPosts: VOPost[];
+    personPosts: VOPost[] = [];
 
     constructor(
         private postService: PostService,
@@ -29,15 +29,15 @@ export class PostViewComponent implements OnInit {
     ngOnInit() {
 
         this.route.params.subscribe((params: Params) => {
-            if (params['id']) {                
+            if (params['id']) {
                 this.postService.getPostById(params['id']).subscribe(
                     post => {
-                        this.postService.getUserPosts(post.ownerId).subscribe(posts => { this.personPosts = posts });
+                        this.postService.getPersonPosts(16).subscribe(posts => { this.personPosts = posts });
                     });
+
             }
-        })
-
-
+        });
+        
         // this.myPostsService.myPosts$.subscribe(posts => {
         //   console.log('posts', posts);
         //   this.myPosts = posts;
@@ -76,6 +76,13 @@ export class PostViewComponent implements OnInit {
         //        this.personPosts = posts;
         //    });
         //});
+    }
+
+    getUserRelatedPosts(userId): VOPost[] {        
+        this.postService.getPersonPosts(userId).subscribe(posts => {
+            return posts
+        });
+        return [];
     }
 
     onClickItem(item: VOPost) {

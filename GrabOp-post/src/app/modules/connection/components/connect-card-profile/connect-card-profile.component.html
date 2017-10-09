@@ -1,0 +1,40 @@
+<div class="card-container">
+  <md-card>
+    <img md-card-image class="card-image" src="assets/img/avatar.png"/>
+    <md-card-content>
+      <div class="center">
+        <h4 class="name">{{ connection.display_name }}</h4>
+        <p class="title">{{ connection.jobtitle }}</p>
+        <p class="company">{{ connection.company }}</p>
+        <p class="located">City,Province</p>
+      </div>
+      <div class="services">
+        <div class="offerings">
+          Offerings
+          <div class="value">{{ connection.offers }}</div>
+        </div>
+        <div class="needs">
+          Needs
+          <div class="value">{{ connection.needs }}</div>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+  <div class="btn-container">
+
+    <div fxLayout="row" class="margin-top-10">
+      <div class="center" fxLayout="column" fxLayoutAlign="center">
+        <md-expansion-panel *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
+          <md-expansion-panel-header>
+            {{ btnConnectValue }}
+          </md-expansion-panel-header>
+          <div class="retract" *ngIf="btnConnectValue == 'connection sent'" (click)="accept()">retract</div>
+          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="accept()">accept</div>
+          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="decline()">decline</div>
+        </md-expansion-panel>
+        <button md-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">connect</button>
+      </div>
+    </div>
+
+  </div>
+</div>

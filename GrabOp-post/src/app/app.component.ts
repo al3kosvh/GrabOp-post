@@ -14,37 +14,7 @@ import { ToolbarService } from './services/toolbar.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    animations: [
-        trigger('routerAnimationRight', [
-            state('*', style({
-                // the view covers the whole screen with a semi tranparent background
-                position: 'fixed',
-            })),
-
-            state('in', style({
-                position: 'fixed',
-                //top: 0,
-                //left: 0,
-                right: '17px',
-                //bottom: 0,
-                top: '80px',
-                //backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            })),
-
-            transition('* => in', [
-                style({
-                    position: 'fixed',
-                    top: '80px',
-                    //top: '80px',
-                    right: '-400px',
-                }),
-                animate('400ms ease-in-out')
-            ])
-
-            //transition('* => in', animate('400ms ease-in-out')),
-        ]),
-    ]
+    styleUrls: ['./app.component.css'],    
 })
 export class AppComponent {
 
@@ -77,18 +47,5 @@ export class AppComponent {
 
         // console.log('appp');
     }
-
-    public getRouteAnimation(outlet: RouterOutlet): any {
-        return outlet.activatedRouteData.animation;
-    }
-
-    // prepareRouteTransition(r) {
-    //   const animation = r.activatedRouteData['animation'] || {};
-    //   return animation['value'] || null;
-    //
-    //   // return r.activeRoute ? r.activeRoute.config.animations : '';
-    //
-    //   // return this.state = (this.state === 'out' ? 'in' : 'out');
-    // }
 
 }

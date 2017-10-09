@@ -1,17 +1,19 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
-<div class="slideRight" [@routerAnimationRight]="getRouteAnimation(outlet)">
-  <div fxFlex></div>
-  <router-outlet name="slideRight" #outlet="outlet"></router-outlet>
+<div class="slideRight">
+  <router-outlet name="aux" #outlet="outlet"></router-outlet>
 </div>
-<md-sidenav-container  [ngClass]="fixedLayout">
+<md-sidenav-container [ngClass]="fixedLayout">
   <md-sidenav #sidenav>
+    <a md-button style="height: 0; position: absolute;">
+      <!-- 'absorbs' the behavior -->
+    </a>
     <md-list>
       <a md-list-item routerLink="/guest" routerLinkActive="menu-active" (click)="sidenav.toggle()">Guest</a>
       <a md-list-item routerLink="/home" routerLinkActive="menu-active" (click)="sidenav.toggle()">Home</a>
       <a md-list-item routerLink="/profile" routerLinkActive="menu-active" (click)="sidenav.toggle()">Profile</a>
-      <a md-list-item routerLink="/search-advanced" routerLinkActive="menu-active" (click)="sidenav.toggle()">Search</a>
+      <a md-list-item routerLink="/advanced-search" routerLinkActive="menu-active" (click)="sidenav.toggle()">Search</a>
       <a md-list-item [routerLink]="['/settings/', user ? user.id : '']" routerLinkActive="menu-active" (click)="sidenav.toggle()">Settings</a>
-      <a md-list-item routerLink="/services" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
+      <a md-list-item routerLink="/myposts" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
       <a md-list-item routerLink="/connections" routerLinkActive="menu-active" (click)="sidenav.toggle()">Connections hub</a>
       <a md-list-item routerLink="/projects" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Projects</a>
       <a md-list-item routerLink="messages" routerLinkActive="menu-active" (click)="sidenav.toggle()">Messages</a>
@@ -26,7 +28,7 @@
     </md-list>
   </md-sidenav>
 
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet>  
 
   <app-footer></app-footer>
 

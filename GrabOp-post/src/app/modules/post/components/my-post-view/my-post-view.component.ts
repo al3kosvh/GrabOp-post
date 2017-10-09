@@ -1,71 +1,104 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
 import { VOPost } from '../../../../models/vos';
-import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
-import { AuthenticationService } from '../../../account/services/authentication.service';
+import { VOUserExt } from '../../../account/models/vouser';
+import { ProfileService } from '../../../profile/services/profile.service';
 
 @Component({
-    selector: 'app-my-post-view',
+    selector: 'my-post-view',
     templateUrl: './my-post-view.component.html',
     styleUrls: ['./my-post-view.component.css']
 })
 export class MyPostViewComponent implements OnInit {
 
-    // @Input() myPost: VOPost;
-    myUser: Models.VOUserExt;
-    idMyPost: number;
-    // idSelectedMyPost: number;
-    myPost: VOPost = new VOPost({});
-    myPosts: VOPost[];
+    idPost: number;
+    idPerson: string;
+    person: VOUserExt;
+    personLocation: Models.ProfileLocation;
+    post: VOPost = new VOPost({});
+    // myPosts: VOPost[];
+    personPosts: VOPost[] = [];
 
     constructor(
         private postService: PostService,
-        private userService: AuthenticationService,
-        private router: Router,
+        private profileService: ProfileService,
         private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
 
-        this.userService.getUser().subscribe(user => {
-            this.myUser = user;
-            console.log('this.myUser', this.myUser);
+        this.route.params.subscribe((params: Params) => {
+            if (params['id']) {
+                this.postService.getPostById(params['id']).subscribe(
+                    post => {
+                        this.post = post;
+                        console.log(post);
+                        this.profileService.getProfile().subscribe(profile => {
+                            this.person = profile;
+                            this.profileService.getProfileLocation(profile.id, 1).subscribe(location => this.personLocation = location);                            
+                        });
+                        this.postService.getPersonPosts(16).subscribe(posts => { this.personPosts = posts });
+                    });
+
+            }
         });
 
-        this.postService.getMyPosts().subscribe(posts => {
-            console.log('posts', posts);
-            this.myPosts = posts;
-        });
+        // this.myPostsService.myPosts$.subscribe(posts => {
+        //   console.log('posts', posts);
+        //   this.myPosts = posts;
+        // });
 
         //this.postService.selectedMyPost$.subscribe(post => {
-        //    console.log('myPost', post);
-        //    this.myPost = post;
+        //    console.log('Post', post);
+        //    this.post = post;
+        //    // this.profileService.getProfileById(post.ownerId);
         //});
 
-        this.route.params.subscribe(params => {
-            // console.log(params);
-            // this.idSelectedMyPost =  +params['idSelectedMyPost'];
-            this.idMyPost = +params['idMyPost'];
-            if (isNaN(this.idMyPost)) {
-                console.error(' please provide ID for post to view');
-                return;
-            }
-            this.postService.getMyPostById(this.idMyPost);
-        });
+        //this.aroute.params.subscribe(params => {
+        //    // console.log(params);
+        //    this.idPerson = params['idPerson'];
+        //    this.idPost = +params['idPost'];
+        //    // if (isNaN(this.idPost) || isNaN(this.idPerson)) {
+        //    if (isNaN(this.idPost)) {
+        //        console.error(' please provide ID for post to view');
+        //        return;
+        //    } else if (!(this.idPerson)) {
+        //        console.error(' please provide ID for person to view');
+        //        return;
+        //    }
+        //    this.postService.getPostById(this.idPost);
+        //    //   .subscribe(post => {
+        //    //   this.profileService.getProfileById(post.ownerId);
+        //    //   this.profileService.person$.subscribe(res => this.person = res);
+        //    // });
+        //    this.profileService.getProfileById(this.idPerson).subscribe(res => this.person = res);
+
+        //    // this.profileService.person$.subscribe(res => this.person = res);
+
+        //    this.postService.getPersonPosts(this.idPerson);
+        //    this.postService.posts$.subscribe(posts => {
+        //        console.log('Person posts', posts);
+        //        this.personPosts = posts;
+        //    });
+        //});
     }
 
-    onEditClick() {
-        this.router.navigate(['', { outlets: { 'slideRight': ['post-edit', this.idMyPost] } }]);
-        // this.router.navigate(['post-edit/' + this.idMyPost]);
+    getUserRelatedPosts(userId): VOPost[] {
+        console.log(userId);
+        this.postService.getPersonPosts(userId).subscribe(posts => {
+            return posts
+        });
+        return [];
     }
 
     onClickItem(item: VOPost) {
-        this.postService.setSelectedMyPost(item);
+        //this.postService.setSelectedPost(item);
     }
 
-    onDuplicateClick() { }
+    onRequestClick() { }
     onShareClick() { }
-    onHideClick() { }
-    onDeleteClick() { }
-
+    onReportClick() { }
+    onRecommendClick() { }
 }

@@ -1,0 +1,87 @@
+.card-container {
+  margin-bottom: 30px;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+md-card {
+  border: 1px solid lightslategrey;
+  width: 170px;
+  margin: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.card-image {
+  border-radius: 50%;
+  height: 130px;
+  width: auto;
+  margin: -10px 20px 4px !important;
+}
+
+.name, .title, .company, .located {
+  margin: 0;
+  padding: 0;
+  color: grey;
+}
+
+.name {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 12px;
+}
+
+.company {
+  font-size: 14px;
+}
+
+.located {
+  font-size: 10px;
+}
+
+.offerings {
+  text-align: left;
+  width: fit-content;
+  color: grey;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.offerings .value {
+  text-align: center;
+  color: #f57e2e;
+}
+
+.needs {
+  text-align: center;
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  color: grey;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.needs .value {
+  text-align: center;
+  color: #f57e2e;
+}
+
+.btn-container {
+  margin: 5px;
+}
+
+.btn-container .btn-content {
+  width: 50%;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}

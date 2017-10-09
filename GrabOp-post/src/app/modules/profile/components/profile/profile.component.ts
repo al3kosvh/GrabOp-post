@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 
 // Services
@@ -20,46 +19,35 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css'],
-    animations: [
-        trigger('slideInOut', [
-            state('in', style({
-                transform: 'translate3d(0, 0, 0)'
-            })),
-            state('out', style({
-                transform: 'translate3d(100%, 0, 0)'
-            })),
-            transition('in => out', animate('400ms ease-in-out')),
-            transition('out => in', animate('400ms ease-in-out'))
-        ]),
-    ]
+    styleUrls: ['./profile.component.css']    
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-    profile: Models.VOUserExt;
+    profile: VOUserExt = new VOUserExt();
     profileConnectionsCount = 0;
+    myUser: Models.VOUserExt;
     isMyProfile: boolean;
 
     allianceInviteState: string = 'out';
 
-    profilePosts: VOPost[];
-    shortName: string;
-    backgroundPic = "#969696";
-    profilePic = "assets/img/avatar.png";
-    profileContainerMarginTop = -212;
-    btnConnectValue: string;
-    myConnections: Models.VOConnection[];
-    indexConnection: any;
+    private profilePosts: VOPost[];
+    private shortName: string;
+    private backgroundPic = "#969696";
+    private profilePic = "assets/img/avatar.png";
+    private profileContainerMarginTop = -212;
+    private btnConnectValue: string;
+    private myConnections: Models.VOConnection[];
+    private indexConnection: any;
 
-    constructor(
-        private userService: AuthenticationService,
+    constructor(private userService: AuthenticationService,
         private route: ActivatedRoute,
         private profileService: ProfileService,
         private postService: PostService,
         private connectionService: ConnectionService,
-        private dialog: MdDialog
+        private dialog: MdDialog,
+        private router: Router
     ) {
-        this.profile = <Models.VOUserExt>{};
+
     }
 
     ngOnInit() {
@@ -70,6 +58,10 @@ export class ProfileComponent implements OnInit {
                 this.loadMyProfile();
             }
         })
+    }
+
+    ngOnDestroy() {
+        this.router.navigate(['/', {outlets: { aux: null } }]);
     }
 
     loadProfile(id: string) {
@@ -109,7 +101,7 @@ export class ProfileComponent implements OnInit {
 
         this.validateConnection();
 
-        this.postService.getUserPosts(this.profile.id).subscribe(
+        this.postService.getPersonPosts(this.profile.id).subscribe(
             posts => {
                 if (posts) {
                     this.profilePosts = posts;
@@ -178,23 +170,23 @@ export class ProfileComponent implements OnInit {
 
     adminConnection() {
         if (this.btnConnectValue === 'connect') {
-            if (this.profile) {
+            if (this.myUser) {
                 this.setConnection();
             } else {
                 this.userService.getUser().subscribe(
                     user => {
-                        this.profile = user;
+                        this.myUser = user;
                         this.setConnection();
                     }
                 )
             }
         } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-            if (this.profile) {
+            if (this.myUser) {
                 this.confirmConnection();
             } else {
                 this.userService.getUser().subscribe(
                     user => {
-                        this.profile = user;
+                        this.myUser = user;
                         this.confirmConnection();
                     }
                 )
@@ -203,7 +195,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private setConnection() {
-        this.connectionService.setConnection(this.profile.id, this.profile.id, 'make a connection').subscribe(
+        this.connectionService.setConnection(this.myUser.id, this.profile.id, 'make a connection').subscribe(
             respond => {
                 this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
             }
@@ -211,7 +203,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private confirmConnection() {
-        this.connectionService.confirmConnection(this.profile.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+        this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
             respond => {
                 this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
             }

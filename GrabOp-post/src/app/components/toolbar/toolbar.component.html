@@ -5,7 +5,7 @@
   <a class="app-logo" [routerLink]="['/home']">
     <img src="assets/img/transparent_logo.png">
   </a>
-  <search placeholder="Search" fxHide.xs fxFlex.gt-sm="30" fxFlex.lg="20"></search>
+  <search placeholder="Search" icon="suffix" fxHide.xs fxFlex.gt-sm="30" fxFlex.lg="20"></search>
   <!--<md-form-field><input mdInput placeholder="search" /></md-form-field>-->
   <span class="fill-remaining-space"></span>
   <button fxHide.xs md-icon-button [mdMenuTriggerFor]="exploreDropdown">
@@ -41,8 +41,8 @@
     <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','need']}}]">Post need</a>
     <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','offer']}}]">Post offer</a>
   </md-menu>
-  <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
-  <span class="username" [routerLink]="['/profile']">{{user.firstName + user.lastName}}</span>
+  <img (click)="goToProfile()" class="avatar" src="assets/img/temp-users-img/6.jpg">
+  <span class="username" (click)="goToProfile()">{{user.firstName + user.lastName}}</span>
   <span class="separator"></span>
   <button md-icon-button>
     <md-icon>notifications_none</md-icon>

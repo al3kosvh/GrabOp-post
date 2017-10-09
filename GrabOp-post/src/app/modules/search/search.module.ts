@@ -1,22 +1,62 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatIconModule, MatOptionModule, MdInputModule } from '@angular/material';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
+  MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
+  MdExpansionModule, MatAutocompleteModule, MatOptionModule, MdInputModule, MatGridListModule, MdButtonModule, MdCardModule, MdTabsModule, MdSidenavModule
+} from '@angular/material';
+import { RouterModule, Routes } from "@angular/router";
 
-import { SearchComponent } from './components/search/search.component';
+// Shared Modules
+import { SharedModule } from '../shared/shared.module';
+import { PostModule } from '../post/post.module';
+
+// Components
+import { SearchComponent } from "./components/search/search.component";
+import { AdvancedSearchComponent } from "./components/advanced-search/advanced-search.component";
+import { PipesModule } from "../../pipes/pipes.module";
+import { NumberInputComponent } from "./components/numbers/number-input.component";
+import { ConnectionModule } from "../connection/connection.module";
+
+const routes: Routes = [
+  {path: 'advanced-search', component: AdvancedSearchComponent}
+];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatIconModule,
-        MatOptionModule,
-        MdInputModule
-    ],
-    declarations: [SearchComponent],
-    exports: [SearchComponent],
-    providers: [],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    PostModule,
+    ConnectionModule,
+    MatAutocompleteModule,
+    MdExpansionModule,
+    MatOptionModule,
+    MdInputModule,
+    PipesModule,
+    MatGridListModule,
+    MdButtonModule,
+    MdCardModule,
+    MdTabsModule,
+    MdSidenavModule
+  ],
+  declarations: [SearchComponent, AdvancedSearchComponent, NumberInputComponent],
+  exports: [SearchComponent, NumberInputComponent],
+  providers: [],
 })
-export class SearchModule { }
+export class SearchModule {
+}
