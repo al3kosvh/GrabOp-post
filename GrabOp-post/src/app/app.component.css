@@ -2,11 +2,11 @@ md-sidenav {
   margin-top: 64px;
 }
 
-md-sidenav {
+md-sidenav.left {
   background-color: #272727;
 }
 
-md-sidenav md-list a {
+md-sidenav.left md-list a {
   color: white;
   text-decoration: none;
 }

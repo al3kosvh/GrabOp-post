@@ -1,5 +1,29 @@
-div {
-    background: #1a2580;
-    min-height: 200px;
-    min-width: 250px;
+div.alliance-invite {
+  padding: 15px;
+}
+
+img.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+div.post-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+  color: #03a9f4;
+}
+
+  div.post-container button {
+    margin-right: 10px;
+  }
+
+  div.post-title {
+    margin-right: 10px;
+  }
+
+md-list-item {
+  margin-bottom: 10px;
 }

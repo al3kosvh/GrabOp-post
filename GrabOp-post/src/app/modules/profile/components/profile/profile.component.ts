@@ -7,6 +7,7 @@ import { ProfileService } from '../../services/profile.service';
 import { PostService } from '../../../post/services/post.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
+import { SidenavService } from '../../../../services/sidenav.service';
 //import { MyPostsService } from '../../../post/services/my-posts.service';
 
 import { VOUserExt } from "../../../account/models/vouser";
@@ -30,22 +31,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     allianceInviteState: string = 'out';
 
-    private profilePosts: VOPost[];
-    private shortName: string;
-    private backgroundPic = "#969696";
-    private profilePic = "assets/img/avatar.png";
-    private profileContainerMarginTop = -212;
-    private btnConnectValue: string;
-    private myConnections: Models.VOConnection[];
-    private indexConnection: any;
+    profilePosts: VOPost[];
+    shortName: string;
+    backgroundPic = "#969696";
+    profilePic = "assets/img/avatar.png";
+    profileContainerMarginTop = -212;
+    btnConnectValue: string;
+    myConnections: Models.VOConnection[];
+    indexConnection: any;
 
-    constructor(private userService: AuthenticationService,
+    constructor(
+        private userService: AuthenticationService,
         private route: ActivatedRoute,
         private profileService: ProfileService,
         private postService: PostService,
         private connectionService: ConnectionService,
         private dialog: MdDialog,
-        private router: Router
+        private router: Router,
+        private sidenavService: SidenavService
     ) {
 
     }
@@ -61,7 +64,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.router.navigate(['/', {outlets: { aux: null } }]);
+        
+    }
+
+    inviteToAlliance() {
+        this.sidenavService.inviteToAlliance(this.profile);
     }
 
     loadProfile(id: string) {

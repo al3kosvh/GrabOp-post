@@ -21,8 +21,6 @@ export class UserBioComponent implements OnChanges {
     ) { }
 
     ngOnChanges() {
-        if (this.person) {
-            console.log(this.person);            
-        }
+        
     }
 }

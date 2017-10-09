@@ -37,6 +37,7 @@ import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 
 // Services
 import { ToolbarService } from './services/toolbar.service';
+import { SidenavService } from './services/sidenav.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HelpComponent } from './components/help/help.component';
+import { SidenavOptionsComponent } from './components/sidenav-options/sidenav-options.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
@@ -71,7 +73,7 @@ const routes: Routes = [
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
-        MatListModule,                
+        MatListModule,
         PostModule,
         LandingModule,
         HomeModule,
@@ -92,12 +94,14 @@ const routes: Routes = [
         FeedbackComponent,
         TermsOfUseComponent,
         AboutUsComponent,
-        HelpComponent
+        HelpComponent,
+        SidenavOptionsComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MdIconRegistry,
-        ToolbarService
+        ToolbarService,
+        SidenavService
     ],
     entryComponents: [HelpComponent],
     bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
+import { MdSidenav } from '@angular/material';
 
 import { VOUserExt } from '../../../account/models/vouser';
 import { VOPost } from '../../../../models/vos';
@@ -8,63 +9,26 @@ import { VOPost } from '../../../../models/vos';
 import { PostService } from '../../../post/services/post.service';
 
 @Component({
-    selector: 'app-alliance-invite',
+    selector: 'alliance-invite',
     templateUrl: './alliance-invite.component.html',
-    styleUrls: ['./alliance-invite.component.css'],
-    animations: [
-        trigger('visible', [
-            //state('in', style({ transform: 'translateX(0)' })),
-            transition('void => *', [
-                style({ transform: 'translateX(100%)'}),
-                animate(100)
-            ]),
-            transition('* => void', [
-                animate(100, style({ transform: 'translateX(-100%)'}))
-            ])
-        ])
-    ]
+    styleUrls: ['./alliance-invite.component.css']    
 })
 export class AllianceInviteComponent implements OnInit {
-
-    @Input() person: VOUserExt;
+    
+    person: VOUserExt;
     myPosts: VOPost[];
 
-    posts1: VOPost[];
-    posts2: VOPost[];
-
-    model: any = new Object({});
-
-    @Output() state = new EventEmitter<string>();
-
     constructor(
-        private postService: PostService
+        private postService: PostService,
+        private router: Router
     ) { }
 
     ngOnInit() {
-        //this.postService.getMyPosts().subscribe(
-        //    posts => {
-        //        console.log('alliance-invite myPosts', posts);
-        //        this.myPosts = posts;
-        //        // posts.forEach(function (item, i, arr) {
-        //        //   if(!item.alliance){
-        //        //     this.posts1[this.posts1.length] = item;
-        //        //   }
-        //        // });
-        //    });
-        // this.posts.forEach(function (item, i, arr) {
-        //   if(!item.alliance){
-        //     this.posts1[this.posts1.length] = item;
-        //   }
-        // });
+        console.log(this.person);
+        this.postService.getMyPosts().subscribe(
+            posts => {
+                this.myPosts = posts;
+            });
 
     }
-
-    cancelInvitatio() {
-        this.state.emit('out');
-    }
-
-    sendInvitation() {
-        console.log('sendInvitation');
-    }
-
 }

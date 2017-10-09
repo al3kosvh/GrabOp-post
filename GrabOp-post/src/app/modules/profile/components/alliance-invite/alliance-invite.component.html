@@ -1,43 +1,16 @@
-<md-card [@visible]="visible">Hola</md-card>
-<!--<md-card>
-  <md-card-header>
-    <md-card-title>Send an alliance invite to</md-card-title>
-  </md-card-header>
-  <md-card-header>
-    <div md-card-avatar>
-      <img width='30'
-           src='http://res.cloudinary.com/al3kosvh/image/upload/v1468698749/r_max/publicimages/zcccxyporoknp3vsebhl.jpg'/>
-    </div>
-    <md-card-subtitle>{{person?.displayName}}</md-card-subtitle>
-  </md-card-header>
-
-  <md-card-content>
-    <form #f="ngForm"  autocomplete="off" novalidate>
-      <p>Select one of your services to invite {{person?.firstName}} to:</p>
-      <md-radio-group class="radio-group"  *ngFor="let item of myPosts | postsFilterAlliance: person?.id : 'notMember'" [(ngModel)]="myPosts.id" name="posts" >
-        <md-radio-button class="radio-button" value={{item?.id}}>{{item?.title}}</md-radio-button>
-      </md-radio-group>
-
-      <p>{{person?.firstName}} has been invite to:</p>
-      <md-radio-group class="radio-group"  *ngFor="let item of myPosts | postsFilterAlliance: person?.id : 'Sent' " [(ngModel)]="myPosts.id" name="postsSent" >
-        <md-radio-button class="radio-button" value={{item?.id}}>{{item?.title}}</md-radio-button>
-      </md-radio-group>
-
-
-      <p>{{person?.firstName}} is a member of:</p>
-      <md-radio-group class="radio-group"  *ngFor="let item of myPosts | postsFilterAlliance: person?.id : 'Confirmed' " [(ngModel)]="myPosts.id" name="postsConfirmed" >
-        <md-radio-button class="radio-button" value={{item?.id}}>{{item?.title}}</md-radio-button>
-      </md-radio-group>-->
-
-      <!--<md-list>-->
-        <!--<div class="debug">{{ model | json }}</div>-->
-        <!--<div class="debug">{{ f.valid | json }}</div>-->
-      <!--</md-list>-->
-    <!--</form>
-  </md-card-content>
-
-  <md-card-actions>
-    <button md-raised-button color="accent" (click)="cancelInvitatio()">cancel</button>
-    <button md-raised-button color="primary" (click)="sendInvitation()">send invitation</button>
-  </md-card-actions>
-</md-card>-->
+<div class="alliance-invite" fxLayout="column" fxLayoutAlign="center center">  
+  <span>Send an alliance invite to</span>
+  <div fxLayout="row">
+    <img class="avatar" src="assets/img/temp-users-img/6.jpg">
+    <span>{{person?.displayName}}</span>
+  </div>
+  <div>Select one of your services to invite {{person?.displayName}} to:</div>
+  <div class="post-container">
+    <md-list>
+      <md-list-item fxLayout="row" *ngFor="let post of myPosts">
+        <div class="post-title" fxFlex><div fxLayout="column" fxFlex fxLayoutAlign="center start">{{post?.title}}</div></div>
+        <button md-raised-button color="accent">invite</button>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

@@ -210,3 +210,14 @@ div.post-title {
   color: grey;
   padding: 20px 20px 0;
 }
+
+.sidenav-container {
+  width: auto;
+  height: auto;
+}
+
+.sidenav-content {
+  padding: 20px;
+  width: auto;
+  height: auto;
+}
