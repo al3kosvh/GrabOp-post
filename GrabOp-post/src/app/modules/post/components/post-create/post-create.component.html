@@ -1,26 +1,26 @@
 <div class="post-create-container">
   <div><strong>Create your Service {{type}}</strong></div>
-  <md-tab-group dynamicHeight="true">
-    <md-tab>
-      <ng-template md-tab-label>
+  <mat-tab-group dynamicHeight="true">
+    <mat-tab>
+      <ng-template mat-tab-label>
         Basic
       </ng-template>
       <post-basic [model]="model"></post-basic>
-    </md-tab>
-    <md-tab>
-      <ng-template md-tab-label>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Business Style
       </ng-template>
       <post-style [model]="model"></post-style>
-    </md-tab>
-    <md-tab>
-      <ng-template md-tab-label>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Photo/Video
       </ng-template>
       <post-media [model]="model"></post-media>
-    </md-tab>
-  </md-tab-group>
+    </mat-tab>
+  </mat-tab-group>
   <div fxLayout="row-reverse">
-    <button md-raised-button color="primary" (click)="onSaveClick()">Next</button>
+    <button mat-raised-button color="primary" (click)="onSaveClick()">Next</button>
   </div>
 </div>

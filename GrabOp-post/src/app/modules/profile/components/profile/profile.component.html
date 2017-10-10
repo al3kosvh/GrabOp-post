@@ -1,4 +1,4 @@
-<md-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container">
   <div [ngSwitch]="isMyProfile" class="profile" fxLayout="column">
     <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse">
       <div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
@@ -9,19 +9,19 @@
         </div>
         <div class="btn-action-container">
           <div *ngSwitchCase="true">
-            <button md-raised-button color="accent" (click)="editProfile()">edit profile</button>
+            <button mat-raised-button color="accent" (click)="editProfile()">edit profile</button>
           </div>
           <div *ngSwitchCase="false">
             <!--TODO change this for a button-->
-            <md-expansion-panel *ngIf="btnConnectValue !== 'connect'">
-              <md-expansion-panel-header>
+            <mat-expansion-panel *ngIf="btnConnectValue !== 'connect'">
+              <mat-expansion-panel-header>
                 {{ btnConnectValue }}
-              </md-expansion-panel-header>
+              </mat-expansion-panel-header>
               <div class="retract" (click)="adminConnection()">{{ btnConnectValue === 'connected' ? 'disconnect' : 'retract'}}</div>
-            </md-expansion-panel>
-            <button md-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
-            <button md-raised-button color="accent">message</button>
-            <button md-raised-button (click)="inviteToAlliance()" color="accent"><small>invite to</small> alliance</button>
+            </mat-expansion-panel>
+            <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
+            <button mat-raised-button color="accent">message</button>
+            <button mat-raised-button (click)="inviteToAlliance()" color="accent"><small>invite to</small> alliance</button>
           </div>
         </div>
       </div>
@@ -97,8 +97,8 @@
     </div>
   </div>
 
-  <!--<md-sidenav #sidenav position="end" class="sidenav-content">    
+  <!--<mat-sidenav #sidenav position="end" class="sidenav-content">    
     <alliance-invite [sidenav]="sidenav" [person]="profile"></alliance-invite>
-  </md-sidenav>-->
+  </mat-sidenav>-->
 
-</md-sidenav-container>
+</mat-sidenav-container>

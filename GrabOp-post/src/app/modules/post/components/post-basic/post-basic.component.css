@@ -2,10 +2,10 @@ div.post-basic {
   padding: 15px;
 }
 
-md-form-field {
+mat-form-field {
   width: 100%;
 }
 
-md-select {
+mat-select {
   margin-bottom: 15px;
 }

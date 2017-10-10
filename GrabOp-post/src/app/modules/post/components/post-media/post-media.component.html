@@ -3,57 +3,57 @@
     <h5>Photos</h5>
     <div class="frames" fxLayout="row">
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollLeft()"><md-icon>keyboard_arrow_left</md-icon></button>
+        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </div>
       <div fxLayout="row" class="frames-container">
         <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button md-icon-button><md-icon>add</md-icon></button>
+          <button mat-icon-button><mat-icon>add</mat-icon></button>
         </div>
         <div *ngFor="let image of images" class="frame-container">
           <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollRight()"><md-icon>keyboard_arrow_right</md-icon></button>
+        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
-    </div>    
+    </div>
   </div>
   <div>
     <h5>Videos</h5>
     <div class="frames" fxLayout="row">
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollLeft()"><md-icon>keyboard_arrow_left</md-icon></button>
+        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </div>
       <div fxLayout="row" class="frames-container">
         <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button md-icon-button><md-icon>add</md-icon></button>
+          <button mat-icon-button><mat-icon>add</mat-icon></button>
         </div>
         <div *ngFor="let image of images" class="frame-container">
           <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollRight()"><md-icon>keyboard_arrow_right</md-icon></button>
+        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
-    </div>  
+    </div>
   </div>
   <div>
     <h5>Documents</h5>
     <div class="frames" fxLayout="row">
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollLeft()"><md-icon>keyboard_arrow_left</md-icon></button>
+        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </div>
       <div fxLayout="row" class="frames-container">
         <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button md-icon-button><md-icon>add</md-icon></button>
+          <button mat-icon-button><mat-icon>add</mat-icon></button>
         </div>
         <div *ngFor="let image of images" class="frame-container">
           <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center">
-        <button md-icon-button (click)="onScrollRight()"><md-icon>keyboard_arrow_right</md-icon></button>
+        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
   MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
-  MdExpansionModule, MatAutocompleteModule, MatOptionModule, MdInputModule, MatGridListModule, MdButtonModule, MdCardModule, MdTabsModule, MdSidenavModule
+  MatExpansionModule, MatAutocompleteModule, MatOptionModule, MatGridListModule, MatCardModule, MatSidenavModule
 } from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
 
@@ -44,15 +44,12 @@ const routes: Routes = [
     PostModule,
     ConnectionModule,
     MatAutocompleteModule,
-    MdExpansionModule,
+    MatExpansionModule,
     MatOptionModule,
-    MdInputModule,
     PipesModule,
     MatGridListModule,
-    MdButtonModule,
-    MdCardModule,
-    MdTabsModule,
-    MdSidenavModule
+    MatCardModule,
+    MatSidenavModule
   ],
   declarations: [SearchComponent, AdvancedSearchComponent, NumberInputComponent],
   exports: [SearchComponent, NumberInputComponent],

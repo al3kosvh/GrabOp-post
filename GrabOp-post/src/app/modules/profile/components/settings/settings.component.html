@@ -1,13 +1,13 @@
 <div class="settings" fxlayout="row" fxLayoutAlign="center">
   <div fxFlex="90" fxLayout="column">
     <div fxLayout="row">
-      <md-icon class="settings">settings</md-icon>
+      <mat-icon class="settings">settings</mat-icon>
       <h4>Manage account settings</h4>
     </div>
     <div fxLayoutAlign="center">
       <div fxFlex="90" fxlayoutAlign="center">
-        <md-tab-group dynamicHeight="true">
-          <md-tab label="Notifications">
+        <mat-tab-group dynamicHeight="true">
+          <mat-tab label="Notifications">
             <div *ngIf="settings" fxLayout="column">
               <h5>Manage Your Notifications</h5>
               <div>
@@ -24,8 +24,8 @@
                 </div>
               </div>
             </div>
-          </md-tab>
-          <md-tab label="Privacy Settings">
+          </mat-tab>
+          <mat-tab label="Privacy Settings">
             <h5>Privacy Settings</h5>
             <div *ngIf="settings" fxLayout="column">
               <div>
@@ -41,8 +41,8 @@
                 </div>
               </div>
             </div>
-          </md-tab>
-          <md-tab label="Hub">
+          </mat-tab>
+          <mat-tab label="Hub">
             <h5>Hub</h5>
             <div *ngIf="settings" fxLayout="column">
               <div>
@@ -53,14 +53,14 @@
                 </div>
               </div>
             </div>
-          </md-tab>
-          <md-tab label="Security">
+          </mat-tab>
+          <mat-tab label="Security">
             <security-settings [accountId]="accountId"></security-settings>
-          </md-tab>
-          <md-tab label="Email & Username">
+          </mat-tab>
+          <mat-tab label="Email & Username">
             <email-username-settings [accountId]="accountId"></email-username-settings>
-          </md-tab>
-        </md-tab-group>
+          </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
   </div>

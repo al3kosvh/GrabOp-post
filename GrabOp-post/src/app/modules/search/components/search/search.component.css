@@ -5,7 +5,7 @@ div.search-container {
   border-radius: 2px;
 }
 
-  div.search-container md-form-field {
+  div.search-container mat-form-field {
     margin-top: -10px;
     margin-bottom: -17px;
     font-size: 16px;
@@ -15,7 +15,7 @@ div.search-container {
     display: none;
   }
 
-md-form-field md-icon {
+mat-form-field mat-icon {
   position: relative;
   top: 7px;
 }

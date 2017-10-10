@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
     MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
-    MdExpansionModule, MatCardModule, MatSidenavModule
+    MatExpansionModule, MatCardModule, MatSidenavModule
 } from '@angular/material';
 
 // Shared Modules
@@ -64,7 +64,7 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostModule,
-        MdExpansionModule
+        MatExpansionModule
     ],
     declarations: [
         ProfileComponent,

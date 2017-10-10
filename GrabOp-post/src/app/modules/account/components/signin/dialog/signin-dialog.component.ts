@@ -1,6 +1,6 @@
 import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { VOUser } from '../../../models/vouser';
 
 // Services
@@ -19,7 +19,7 @@ export class SignInDialogComponent {
     loading: boolean;
 
     constructor(
-        public dialogRef: MdDialogRef<SignInDialogComponent>,
+        public matDialogRef: MatDialogRef<SignInDialogComponent>,
         private authenticationService: AuthenticationService
     ) {
         this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
@@ -31,7 +31,7 @@ export class SignInDialogComponent {
         this.errorMessage = '';
         this.authenticationService.signIn(this.signinData).subscribe(
             value => {
-                this.dialogRef.close();
+                this.matDialogRef.close();
                 this.loading = false;
             },
             error => {                
@@ -51,6 +51,6 @@ export class SignInDialogComponent {
     }
 
     onClose(): void {
-        this.dialogRef.close();
+        this.matDialogRef.close();
     }
 }

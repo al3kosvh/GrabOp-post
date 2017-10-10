@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
 // Services
 import { AuthenticationService } from '../../services/authentication.service';
@@ -13,11 +13,11 @@ import { SignInDialogComponent } from './dialog/signin-dialog.component';
 export class SignInComponent {
 
     constructor(
-        public dialog: MdDialog
+        public dialog: MatDialog
     ) { }
 
     openDialog(): void {
-        let config: MdDialogConfig = {
+        let config: MatDialogConfig = {
             width: '350px',
         }
         this.dialog.open(SignInDialogComponent, config);

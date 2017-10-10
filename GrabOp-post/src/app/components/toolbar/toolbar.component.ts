@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdSidenav, MdDialog, MdDialogConfig } from '@angular/material';
+import { MatSidenav, MatDialog, MatDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router'; 
 
@@ -18,14 +18,14 @@ import { SidenavService } from '../../services/sidenav.service';
 })
 export class ToolbarComponent implements OnInit {
 
-    @Input() sidenav: MdSidenav;
+    @Input() sidenav: MatSidenav;
     profile_pic: string;
     visible: Observable<boolean>;
     user: Models.VOUserExt;
 
     constructor(
         private authService: AuthenticationService,
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private toolbarService: ToolbarService,
         private sidenavService: SidenavService,
         private router: Router

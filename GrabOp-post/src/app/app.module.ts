@@ -16,7 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import {
-    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry,
+    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MatIconRegistry,
     MatGridListModule
 } from '@angular/material';
 
@@ -99,7 +99,7 @@ const routes: Routes = [
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MdIconRegistry,
+        MatIconRegistry,
         ToolbarService,
         SidenavService
     ],

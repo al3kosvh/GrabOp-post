@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdSidenav } from '@angular/material';
 
 import { VOUserExt } from '../../../account/models/vouser';
 import { VOPost } from '../../../../models/vos';

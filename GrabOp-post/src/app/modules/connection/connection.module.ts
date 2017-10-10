@@ -4,17 +4,16 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import {
   MatAutocompleteModule,
-  MatButtonModule,
   MatChipsModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatSlideToggleModule,
-  MdButtonModule,
-  MdCardModule,
-  MdExpansionModule,
-  MdSidenavModule,
-  MdTabsModule
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatSidenavModule,
+  MatTabsModule
 } from "@angular/material";
 
 import { SharedModule } from "../shared/shared.module";
@@ -41,19 +40,18 @@ const routes: Routes = [
     MatGridListModule,
     MatSlideToggleModule,
     RouterModule.forChild(routes),
-    MdTabsModule,
-    MdButtonModule,
-    MdCardModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatCardModule,
     PipesModule,
-    MdSidenavModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule,
     MatChipsModule,
     MatIconModule,
     MatAutocompleteModule,
-    MdExpansionModule
+    MatExpansionModule
   ],
   declarations: [
     ConnectionComponent,

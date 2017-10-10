@@ -1,7 +1,7 @@
 import { Component, Directive, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RouterOutlet } from '@angular/router';
-import { MdIconRegistry, MdSidenav } from '@angular/material';
+import { MatIconRegistry, MatSidenav } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser'
 
 import { VOUserExt } from './modules/account/models/vouser';
@@ -18,7 +18,7 @@ import { SidenavService } from './services/sidenav.service';
 })
 export class AppComponent implements AfterViewInit {
 
-    @ViewChild("aux") mdSidenav: MdSidenav;
+    @ViewChild("aux") mdSidenav: MatSidenav;
     isLoggedIn: Observable<boolean>;
     user: Models.VOUserExt;
     fixedLayout: string = null;
@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
 
     constructor(
         private authService: AuthenticationService,
-        private mdIconRegistry: MdIconRegistry,
+        private mdIconRegistry: MatIconRegistry,
         private sanitizer: DomSanitizer,
         private toolbarService: ToolbarService,
         private sidenavService: SidenavService

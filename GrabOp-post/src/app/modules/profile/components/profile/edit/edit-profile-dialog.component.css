@@ -7,7 +7,7 @@ div.tab-content {
   padding: 15px;
 }
 
-md-checkbox {
+mat-checkbox {
   margin-bottom: 10px;
 }
 
@@ -16,7 +16,7 @@ button.close {
   margin-right: -15px;
 }
 
-md-form-field {
+mat-form-field {
   width: 100%;
 }
 

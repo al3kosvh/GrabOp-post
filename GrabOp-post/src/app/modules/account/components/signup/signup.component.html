@@ -6,21 +6,21 @@
 
     <form #f="ngForm" autocomplete="off" [formGroup]="formGroup" (ngSubmit)="submit(f.value)">
 
-        <md-horizontal-stepper formArrayName="formArray" linear>
+        <mat-horizontal-stepper formArrayName="formArray" linear>
 
-            <md-step formGroupName="0" [stepControl]="formArray?.get([0])">
-                <md-form-field>
-                    <input mdInput placeholder="First Name" name="firstName" formControlName="firstName" />
-                </md-form-field>
+            <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+                <mat-form-field>
+                    <input matInput placeholder="First Name" name="firstName" formControlName="firstName" />
+                </mat-form-field>
 
-                <md-form-field>
-                    <input mdInput placeholder="Last Name" name="lastName" formControlName="lastName" />
-                </md-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" name="lastName" formControlName="lastName" />
+                </mat-form-field>
 
                 <div>
-                    <md-form-field>
-                        <input mdInput placeholder="User Name" name="username" formControlName="username" />
-                    </md-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="User Name" name="username" formControlName="username" />
+                    </mat-form-field>
                     <img *ngIf="getFormControl(0,'username').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                     <div *ngIf="getFormControlErrors(0,'username')?.usernameTaken">
@@ -32,9 +32,9 @@
                 </div>
 
                 <div>
-                    <md-form-field>
-                        <input mdInput placeholder="Email" name="primaryEmail" formControlName="primaryEmail" />
-                    </md-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Email" name="primaryEmail" formControlName="primaryEmail" />
+                    </mat-form-field>
                     <img *ngIf="getFormControl(0,'primaryEmail').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                     <div *ngIf="getFormControlErrors(0,'primaryEmail')?.emailTaken">
@@ -47,91 +47,91 @@
                 </div>
 
                 <div>
-                    <md-form-field>
-                        <input mdInput type="password" placeholder="Password" name="password" formControlName="password" />
-                    </md-form-field>
-                    <md-form-field>
-                        <input mdInput type="password" placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
-                    </md-form-field>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Password" name="password" formControlName="password" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
+                    </mat-form-field>
                     <div *ngIf="getFormControlErrors(0,'confirmPassword')?.matchPassword">
                         {{ messages.passwordMismatchMessage }}
                     </div>
                 </div>
 
                 <div>
-                    <button type="button" md-raised-button color="primary" mdStepperNext>Next</button>
+                    <button type="button" mat-raised-button color="primary" mdStepperNext>Next</button>
                 </div>
-            </md-step>
+            </mat-step>
 
-            <md-step formGroupName="1" [stepControl]="formArray?.get([1])">
-                <md-form-field>
-                    <input mdInput placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
-                </md-form-field>
+            <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+                <mat-form-field>
+                    <input matInput placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
+                </mat-form-field>
 
-                <md-radio-group name="occupation" formControlName="occupation" (change)="changeOccupation($event.value)">
+                <mat-radio-group name="occupation" formControlName="occupation" (change)="changeOccupation($event.value)">
 
-                    <md-radio-button value="1">
+                    <mat-radio-button value="1">
                         Company
-                    </md-radio-button>
-                    <md-form-field *ngIf="user.occupation == 1">
-                        <input mdInput placeholder="Company" name="company" formControlName="company" />
-                    </md-form-field>
+                    </mat-radio-button>
+                    <mat-form-field *ngIf="user.occupation == 1">
+                        <input matInput placeholder="Company" name="company" formControlName="company" />
+                    </mat-form-field>
 
-                    <md-radio-button value="2">
+                    <mat-radio-button value="2">
                         Self Employed
-                    </md-radio-button>
+                    </mat-radio-button>
 
-                    <md-radio-button value="3">
+                    <mat-radio-button value="3">
                         Seeking an Opportunity
-                    </md-radio-button>
+                    </mat-radio-button>
 
-                    <md-radio-button value="4">
+                    <mat-radio-button value="4">
                         Other
-                    </md-radio-button>
+                    </mat-radio-button>
 
-                </md-radio-group>
-
-                <div>
-                    <button md-button type="button" mdStepperPrevious>Back</button>
-                    <button md-raised-button color="primary" type="button" mdStepperNext>Next</button>
-                </div>
-            </md-step>
-
-            <md-step formGroupName="2" [stepControl]="formArray?.get([2])">
-                <md-form-field>
-                    <input mdInput placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber" />
-                </md-form-field>
-
-                <md-checkbox formControlName="phoneVisible">Make Visible</md-checkbox>
-
-                <md-form-field>
-                    <input mdInput placeholder="Country" name="country" formControlName="country" />
-                </md-form-field>
-
-                <md-form-field>
-                    <input mdInput placeholder="Province" name="province" formControlName="province" />
-                </md-form-field>
-
-                <md-form-field>
-                    <input mdInput placeholder="City" name="city" formControlName="city" />
-                </md-form-field>
+                </mat-radio-group>
 
                 <div>
-                    <button md-button type="button" mdStepperPrevious>Back</button>
-                    <button md-raised-button color="primary" type="button" mdStepperNext>Next</button>
+                    <button mat-button type="button" mdStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" type="button" mdStepperNext>Next</button>
                 </div>
-            </md-step>
+            </mat-step>
 
-            <md-step>
+            <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+                <mat-form-field>
+                    <input matInput placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber" />
+                </mat-form-field>
+
+                <mat-checkbox formControlName="phoneVisible">Make Visible</mat-checkbox>
+
+                <mat-form-field>
+                    <input matInput placeholder="Country" name="country" formControlName="country" />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Province" name="province" formControlName="province" />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="City" name="city" formControlName="city" />
+                </mat-form-field>
+
+                <div>
+                    <button mat-button type="button" mdStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" type="button" mdStepperNext>Next</button>
+                </div>
+            </mat-step>
+
+            <mat-step>
                 <ng-template mdStepLabel>GO</ng-template>
                 You are now done.
                 <div>
-                    <button md-button type="button" mdStepperPrevious>Back</button>
-                    <button md-raised-button color="primary" [disabled]="!f.valid" type="submit">Sign Up</button>
+                    <button mat-button type="button" mdStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" [disabled]="!f.valid" type="submit">Sign Up</button>
                     <img *ngIf="submitting" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                 </div>
-            </md-step>
-        </md-horizontal-stepper>
+            </mat-step>
+        </mat-horizontal-stepper>
     </form>
 </div>

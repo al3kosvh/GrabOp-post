@@ -4,41 +4,41 @@
   
 
   <!--<h4><strong>Update your Service and Alliance {{model.type}}</strong></h4>-->
-  <md-tab-group>
-    <md-tab>
-      <ng-template md-tab-label>
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Basic
       </ng-template>
                         <post-basic [model]="model"></post-basic>
-    </md-tab>
-    <md-tab>
-      <ng-template md-tab-label>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Business Style
       </ng-template>
                         <!--<app-post-edit-style [model]="model"></app-post-edit-style>-->
-    </md-tab>
-    <md-tab>
-      <ng-template md-tab-label>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Photo/Video
       </ng-template>
                         <!--<app-post-edit-media [model]="model"></app-post-edit-media>-->
-    </md-tab>
-    <md-tab>
-      <ng-template md-tab-label>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
         Alliance
       </ng-template>
                         <!--<app-post-edit-alliance [model]="model"></app-post-edit-alliance>-->
-    </md-tab>
-  </md-tab-group>
-  <button md-raised-button
+    </mat-tab>
+  </mat-tab-group>
+  <button mat-raised-button
           color="accent"
           (click)="onCloseClick()">close</button>
   <button *ngIf="model.id"
-          md-raised-button
+          mat-raised-button
           color="primary"
           (click)="onSaveClick()">update</button>
   <button *ngIf="!model.id"
-          md-raised-button
+          mat-raised-button
           color="primary"
 
           (click)="onSaveClick()">save</button>

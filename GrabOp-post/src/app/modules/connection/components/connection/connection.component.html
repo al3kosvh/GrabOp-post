@@ -1,20 +1,20 @@
-<md-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container">
 
-  <md-tab-group position="center">
-    <md-tab label="Active Connections ({{myConnections.length}})">
+  <mat-tab-group position="center">
+    <mat-tab label="Active Connections ({{myConnections.length}})">
 
       <div fxLayout="row" fxLayoutAlign="center">
         <div class="search-container" fxFlex="35" fxFlex.xs="60">
           <form floatPlaceholder="never" fxFlex="35" fxFlex.xs="60">
-            <md-form-field floatPlaceholder="never">
-              <md-icon mdPrefix>search</md-icon>
-              <input mdInput placeholder="Search" name="search" aria-label="Search..." [mdAutocomplete]="auto" [(ngModel)]="search">
-              <md-autocomplete #auto="mdAutocomplete">
-                <md-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
+            <mat-form-field floatPlaceholder="never">
+              <mat-icon matPrefix>search</mat-icon>
+              <input matInput placeholder="Search" name="search" aria-label="Search..." [matAutocomplete]="auto" [(ngModel)]="search">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
                   <span>{{ connection.display_name }}</span>
-                </md-option>
-              </md-autocomplete>
-            </md-form-field>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
           </form>
         </div>
       </div>
@@ -28,8 +28,8 @@
           [sidenav]="sidenav"></app-connect-card>
       </div>
 
-    </md-tab>
-    <md-tab label="Received Requests ({{myConnections.length}})">
+    </mat-tab>
+    <mat-tab label="Received Requests ({{myConnections.length}})">
       <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
         <app-connect-card
           *ngFor="let connection of myConnections | connectionFilter: 1"
@@ -38,8 +38,8 @@
           (onMessage)="onMessage($event)"
           [sidenav]="sidenav"></app-connect-card>
       </div>
-    </md-tab>
-    <md-tab label="Send Requests ({{myConnections.length}})">
+    </mat-tab>
+    <mat-tab label="Send Requests ({{myConnections.length}})">
       <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
         <app-connect-card
           *ngFor="let connection of myConnections | connectionFilter: 1"
@@ -48,12 +48,12 @@
           (onMessage)="onMessage($event)"
           [sidenav]="sidenav"></app-connect-card>
       </div>
-    </md-tab>
-  </md-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 
-  <md-sidenav #sidenav class="sidenav-content">
+  <mat-sidenav #sidenav class="sidenav-content">
     <msg-sidenav [message]="message" [sidenav]="sidenav"></msg-sidenav>
-  </md-sidenav>
+  </mat-sidenav>
 
-</md-sidenav-container>
+</mat-sidenav-container>
 
