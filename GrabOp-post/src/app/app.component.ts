@@ -22,6 +22,7 @@ export class AppComponent implements AfterViewInit {
     isLoggedIn: Observable<boolean>;
     user: Models.VOUserExt;
     fixedLayout: string = null;
+    fix: number = 0;
 
     constructor(
         private authService: AuthenticationService,
@@ -45,9 +46,7 @@ export class AppComponent implements AfterViewInit {
         mdIconRegistry
             .addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/facebook.svg'))
             .addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/twitter.svg'))
-            .addSvgIcon('heart', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/heart.svg'))
-
-        // console.log('appp');
+            .addSvgIcon('heart', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/heart.svg'))        
     }
 
     ngAfterViewInit() {        

@@ -3,12 +3,12 @@ import { VOCategory, VOPost } from '../../../../models/vos';
 import { PostService } from '../../services/post.service';
 
 @Component({
-    selector: 'app-post-edit-basic',
-    templateUrl: './post-edit-basic.component.html',
-    styleUrls: ['./post-edit-basic.component.css']
+    selector: 'post-basic',
+    templateUrl: './post-basic.component.html',
+    styleUrls: ['./post-basic.component.css']
 })
 
-export class PostEditBasicComponent implements OnInit, OnChanges {
+export class PostBasicComponent implements OnInit, OnChanges {
 
     isFormValid: boolean;
 

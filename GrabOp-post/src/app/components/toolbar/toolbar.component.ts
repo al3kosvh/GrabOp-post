@@ -9,6 +9,7 @@ import { HelpComponent } from '../help/help.component';
 // Services
 import { AuthenticationService } from '../../modules/account/services/authentication.service';
 import { ToolbarService } from '../../services/toolbar.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -26,6 +27,7 @@ export class ToolbarComponent implements OnInit {
         private authService: AuthenticationService,
         private dialog: MdDialog,
         private toolbarService: ToolbarService,
+        private sidenavService: SidenavService,
         private router: Router
     ) {
         this.visible = this.toolbarService.isVisible();
@@ -49,5 +51,9 @@ export class ToolbarComponent implements OnInit {
 
     toggleSideNav() {
         this.sidenav.toggle();
+    }
+
+    onCreatePost(type: string) {
+        this.sidenavService.onCreatePost(type);
     }
 }

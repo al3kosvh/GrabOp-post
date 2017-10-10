@@ -38,8 +38,8 @@
     <!--<a md-menu-item [routerLink]="['/post-edit/-1/need']">Post need</a>-->
     <!--<a md-menu-item [routerLink]="['/post-edit/-1/offer']">Post offer</a>-->
 
-    <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','need']}}]">Post need</a>
-    <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','offer']}}]">Post offer</a>
+    <a md-menu-item (click)="onCreatePost('need')">Post need</a>
+    <a md-menu-item (click)="onCreatePost('offer')">Post offer</a>
   </md-menu>
   <img (click)="goToProfile()" class="avatar" src="assets/img/temp-users-img/6.jpg">
   <span class="username" (click)="goToProfile()">{{user.firstName + user.lastName}}</span>

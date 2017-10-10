@@ -1,0 +1,29 @@
+<div class="post-style">
+  <div class="checkbox-container" fxLayout="column">
+    <md-checkbox [(ngModel)]="model.isPartnership" name="partnership">Business Partnership</md-checkbox>
+    <md-checkbox [(ngModel)]="model.isExchange" name="exchange">Exchange</md-checkbox>
+    <md-checkbox [(ngModel)]="model.isDonate" name="donate">Donate</md-checkbox>
+    <md-checkbox [(ngModel)]="model.isInternship" name="internship">Internship</md-checkbox>
+    <md-checkbox [(ngModel)]="model.isMoney" name="money">Money</md-checkbox>
+  </div>
+  <div>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.fixedRateFrom" name="fixedFrom" type="text" placeholder="Fixes $">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.fixedRateTo" name="fixedTo" type="text" placeholder="to">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.hourlyRateFrom" name="hourlyRateFrom" type="text" placeholder="Hourly $">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.hourlyRateTo" name="hourlyRateTo" type="text" placeholder="to">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.commissionFrom" name="commissionFrom" type="text" placeholder="Commission $">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="model.commissionTo" name="commissionTo" type="text" placeholder="to">
+    </md-form-field>
+  </div>
+</div>

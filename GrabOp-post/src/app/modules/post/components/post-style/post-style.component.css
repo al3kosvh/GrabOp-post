@@ -1,0 +1,8 @@
+div.post-style {
+  padding: 15px;
+}
+
+  div.post-style > div {
+    margin-bottom: 15px;
+  }
+

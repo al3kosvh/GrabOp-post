@@ -1,0 +1,25 @@
+<div class="post-basic" fxLayout="column">
+  <md-form-field>
+    <input mdInput [(ngModel)]="model.title" name="title" placeholder="Service Title" required>
+  </md-form-field>
+  <md-form-field>
+    <input mdInput [(ngModel)]="model.country" name="country" placeholder="Country" required>
+  </md-form-field>
+  <md-form-field>
+    <input mdInput [(ngModel)]="model.province" name="province" placeholder="Province" required>
+  </md-form-field>
+  <md-form-field>
+    <input mdInput [(ngModel)]="model.city" name="city" placeholder="City" required>
+  </md-form-field>
+  <md-select [(ngModel)]="model.category" name="categoryid" placeholder="Category">
+    <md-option *ngFor="let category of categories" [value]="category.id">
+      {{category.label}}
+    </md-option>
+  </md-select>
+  <md-form-field>
+    <textarea mdInput [(ngModel)]="model.keywords" name="keywords" placeholder="Keywords"></textarea>
+  </md-form-field>
+  <md-form-field>
+    <textarea mdInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
+  </md-form-field>
+</div>

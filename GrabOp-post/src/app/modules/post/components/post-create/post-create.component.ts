@@ -12,23 +12,22 @@ import { AuthenticationService } from '../../../account/services/authentication.
 import { PostService } from '../../../post/services/post.service';
 
 @Component({
-    selector: 'post-edit',
-    templateUrl: './post-edit.component.html',
-    styleUrls: ['./post-edit.component.css']
+    selector: 'post-create',
+    templateUrl: './post-create.component.html',
+    styleUrls: ['./post-create.component.css']
 })
 
-export class PostEditComponent implements OnInit, OnChanges {
+export class PostCreateComponent implements OnInit, OnChanges {
 
     model: VOPost = new VOPost({});
     // model_id: number = 20;
 
     // myStep: string;
 
-    postType: string;
+    type: string;
 
     constructor(
         private postService: PostService,
-        private router: Router,
         private route: ActivatedRoute,
         private accountService: AuthenticationService,
         private dialog: MdDialog
@@ -65,10 +64,6 @@ export class PostEditComponent implements OnInit, OnChanges {
     loadPost(id: number): void {
         this.postService.getMyPostById(id);
         console.log('load post ' + id);
-    }
-
-    onCloseClick() {
-        this.router.navigate([{ outlets: { 'slideRight': null } }]);
     }
 
     onSaveClick(): void {
