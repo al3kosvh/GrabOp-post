@@ -14,7 +14,7 @@ import {
   MatExpansionModule,
   MatSidenavModule,
   MatTabsModule,
-  MdMenuModule
+  MatMenuModule
 } from "@angular/material";
 
 import { SharedModule } from "../shared/shared.module";
@@ -53,7 +53,7 @@ const routes: Routes = [
     MatIconModule,
     MatAutocompleteModule,
     MatExpansionModule,
-    MdMenuModule
+    MatMenuModule
   ],
   declarations: [
     ConnectionComponent,
