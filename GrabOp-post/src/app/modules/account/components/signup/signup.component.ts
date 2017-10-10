@@ -38,15 +38,15 @@ export class SignUpComponent implements OnInit {
     ngOnInit() {
         this.buildFormGroups();
     }
-    
 
-    private submit(data): void {
+
+    private submit(data?): void {
         this.submitting = true;
         this.messages.submitErrorMessage = '';
-        console.log(data);
+        console.log(this.formArray.get([0]).value);
         this.submitting = false;
     }
-    
+
 
     private changeOccupation(value) {
         console.log(value);
@@ -66,6 +66,7 @@ export class SignUpComponent implements OnInit {
                 this.formBuilder.group({
                     firstName: ['', Validators.required],
                     lastName: ['', Validators.required],
+                    displayName: ['', Validators.required],
                     username: [
                         '',
                         [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],

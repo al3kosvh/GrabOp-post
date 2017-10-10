@@ -12,9 +12,11 @@
                 <md-form-field>
                     <input mdInput placeholder="First Name" name="firstName" formControlName="firstName" />
                 </md-form-field>
-
                 <md-form-field>
                     <input mdInput placeholder="Last Name" name="lastName" formControlName="lastName" />
+                </md-form-field>
+                <md-form-field>
+                    <input mdInput placeholder="Display Name" name="displayName" formControlName="displayName" />
                 </md-form-field>
 
                 <div>
@@ -27,7 +29,7 @@
                         {{ messages.usernameTakenMessage }}
                     </div>
                     <div *ngIf="getFormControlErrors(0,'username')?.connectionError">
-                            {{ messages.connectionErrorMessage }}
+                        {{ messages.connectionErrorMessage }}
                     </div>
                 </div>
 
@@ -41,7 +43,7 @@
                         {{ messages.emailTakenMessage }}
                     </div>
                     <div *ngIf="getFormControlErrors(0,'primaryEmail')?.connectionError">
-                            {{ messages.connectionErrorMessage }}
+                        {{ messages.connectionErrorMessage }}
                     </div>
                     <!--div *ngIf="restoreUsername"><a [routerLink]="['/restore-username']">Restore Username</a> </div-->
                 </div>
@@ -59,7 +61,8 @@
                 </div>
 
                 <div>
-                    <button type="button" md-raised-button color="primary" mdStepperNext>Next</button>
+                    <!--button type="button" md-raised-button color="primary" mdStepperNext>Next</button-->
+                    <button type="submit" md-raised-button color="primary" >Next</button>
                 </div>
             </md-step>
 
