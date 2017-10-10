@@ -69,7 +69,7 @@ export class SignUpComponent implements OnInit {
                     username: [
                         '',
                         [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
-                        Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
+                        //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
                     ],
                     primaryEmail: [
                         '',
