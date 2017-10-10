@@ -322,6 +322,7 @@ export class VOSettings {
     static myProfile: string = VOSettings.server + '/profiles/me?format=json';
     static need: string = 'needs';
     static offer: string = 'offers';
+    static posts: string = 'need-offer/';
     static profile: string = VOSettings.server + '/profiles/{{id}}?format=json';
     static register: string = VOSettings.server + '/register?format=json';
     static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
