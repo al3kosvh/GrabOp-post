@@ -1,12 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA, MdChipInputEvent, ENTER } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
 import { VOUserExt } from '../../../../account/models/vouser';
 
 // Services
 import { ProfileService } from '../../../services/profile.service';
 import { UploadService } from '../../../../account/services/upload.service';
-
-const COMMA = 188;
 
 @Component({
     selector: 'edit-profile-dialog',
@@ -14,7 +12,7 @@ const COMMA = 188;
     styleUrls: ['./edit-profile-dialog.component.css']
 })
 export class EditProfileDialogComponent {
-    
+
     errorMessage: string;
     loading: boolean;
     profile: VOUserExt;
@@ -32,12 +30,10 @@ export class EditProfileDialogComponent {
         { name: 'Lime' },
         { name: 'Apple' },
     ];
-    // Enter, comma
-    separatorKeysCodes = [ENTER, COMMA];
 
     constructor(
-        public dialogRef: MdDialogRef<EditProfileDialogComponent>,
-        @Inject(MD_DIALOG_DATA) public data: any,
+        public dialogRef: MatDialogRef<EditProfileDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
         private profileService: ProfileService,
         private uploadService: UploadService
     ) {
@@ -88,6 +84,54 @@ export class EditProfileDialogComponent {
         }
     }
 
+    onUpLoadProfilePic(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfilePic: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
+    onUpLoadProfileVideo(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfileVideo: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
+    onUpLoadProfileBackgroundPic(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfileBackgroundPic: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
     addSkill(): void {
         this.profile.skillset = this.profile.skillset ? this.profile.skillset : [];
         this.profile.skillset.push(""); console.log('skills======', this.profile.skillset)
@@ -103,7 +147,7 @@ export class EditProfileDialogComponent {
         console.log('onchange', index, event.target.value, this.profile.skillset);
     }
 
-    add(event: MdChipInputEvent): void {
+    add(event: MatChipInputEvent): void {
         let input = event.input;
         let value = event.value;
 

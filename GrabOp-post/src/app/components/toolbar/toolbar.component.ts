@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MdSidenav, MdDialog, MdDialogConfig } from '@angular/material';
+import { MatSidenav, MatDialog, MatDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router'; 
 
@@ -9,6 +9,7 @@ import { HelpComponent } from '../help/help.component';
 // Services
 import { AuthenticationService } from '../../modules/account/services/authentication.service';
 import { ToolbarService } from '../../services/toolbar.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
     selector: 'app-toolbar',
@@ -17,15 +18,16 @@ import { ToolbarService } from '../../services/toolbar.service';
 })
 export class ToolbarComponent implements OnInit {
 
-    @Input() sidenav: MdSidenav;
+    @Input() sidenav: MatSidenav;
     profile_pic: string;
     visible: Observable<boolean>;
     user: Models.VOUserExt;
 
     constructor(
         private authService: AuthenticationService,
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private toolbarService: ToolbarService,
+        private sidenavService: SidenavService,
         private router: Router
     ) {
         this.visible = this.toolbarService.isVisible();
@@ -49,5 +51,9 @@ export class ToolbarComponent implements OnInit {
 
     toggleSideNav() {
         this.sidenav.toggle();
+    }
+
+    onCreatePost(type: string) {
+        this.sidenavService.onCreatePost(type);
     }
 }

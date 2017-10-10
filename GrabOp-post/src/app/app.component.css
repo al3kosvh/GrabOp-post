@@ -1,17 +1,17 @@
-md-sidenav.fixed {
+mat-sidenav.fixed {
   margin-top: 64px;
 }
 
-md-sidenav.left {
+mat-sidenav.left {
   background-color: #272727;
 }
 
-md-sidenav.left md-list a {
+mat-sidenav.left mat-list a {
   color: white;
   text-decoration: none;
 }
 
-  md-sidenav md-list a.menu-active {
+  mat-sidenav mat-list a.menu-active {
     color: #03a9f4;
   }
 
@@ -19,7 +19,7 @@ md-sidenav.left md-list a {
   border-bottom: 1px outset rgba(255, 255, 255, 0.10);
 }
 
-md-sidenav-container.fixed {
+mat-sidenav-container.fixed {
   margin-top: -64px;
   padding-top: 64px;
 }

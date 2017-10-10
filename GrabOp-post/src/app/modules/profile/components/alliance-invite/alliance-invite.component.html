@@ -6,11 +6,11 @@
   </div>
   <div>Select one of your services to invite {{person?.displayName}} to:</div>
   <div class="post-container">
-    <md-list>
-      <md-list-item fxLayout="row" *ngFor="let post of myPosts">
+    <mat-list>
+      <mat-list-item fxLayout="row" *ngFor="let post of myPosts">
         <div class="post-title" fxFlex><div fxLayout="column" fxFlex fxLayoutAlign="center start">{{post?.title}}</div></div>
-        <button md-raised-button color="accent">invite</button>
-      </md-list-item>
-    </md-list>
+        <button mat-raised-button color="accent">invite</button>
+      </mat-list-item>
+    </mat-list>
   </div>
 </div>

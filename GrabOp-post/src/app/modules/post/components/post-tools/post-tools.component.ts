@@ -3,12 +3,12 @@ import { VOService } from '../../../../models/vos';
 import { PostService } from '../../services/post.service';
 
 @Component({
-    selector: 'app-post-edit-tools',
-    templateUrl: './post-edit-tools.component.html',
-    styleUrls: ['./post-edit-tools.component.css']
+    selector: 'post-tools',
+    templateUrl: './post-tools.component.html',
+    styleUrls: ['./post-tools.component.css']
 })
 
-export class PostEditToolsComponent implements OnInit {
+export class PostToolsComponent implements OnInit {
 
     currentService: VOService;
 

@@ -2,12 +2,12 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 
 @Component({
-    selector: 'app-post-edit-style',
-    templateUrl: './post-edit-style.component.html',
-    styleUrls: ['./post-edit-style.component.css']
+    selector: 'post-style',
+    templateUrl: './post-style.component.html',
+    styleUrls: ['./post-style.component.css']
 })
 
-export class PostEditStyleComponent implements OnInit, OnChanges {
+export class PostStyleComponent implements OnInit, OnChanges {
 
     @Input() model: VOPost;
     @Input() model_id: number;

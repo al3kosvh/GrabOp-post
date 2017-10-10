@@ -5,12 +5,12 @@ import { PostService } from '../../services/post.service';
 import { UploadService } from '../../../account/services/upload.service';
 
 @Component({
-    selector: 'app-post-edit-media',
-    templateUrl: './post-edit-media.component.html',
-    styleUrls: ['./post-edit-media.component.css']
+    selector: 'post-media',
+    templateUrl: './post-media.component.html',
+    styleUrls: ['./post-media.component.css']
 })
 
-export class PostEditMediaComponent implements OnInit, OnChanges {
+export class PostMediaComponent implements OnInit, OnChanges {
 
     @Input() model: VOPost;
     // images: VOImage[];

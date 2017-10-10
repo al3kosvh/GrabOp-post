@@ -1,6 +1,6 @@
 
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import { MdSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material';
 
 // Services
 import { SidenavService } from '../../services/sidenav.service';
@@ -12,7 +12,7 @@ import { SidenavService } from '../../services/sidenav.service';
 })
 export class SidenavOptionsComponent {
 
-    @Input() sidenav: MdSidenav;
+    @Input() sidenav: MatSidenav;
 
     constructor(
         private sidenavService: SidenavService,        

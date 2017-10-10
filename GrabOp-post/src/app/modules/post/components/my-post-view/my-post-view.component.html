@@ -41,11 +41,11 @@
     </div>
     <div class="post-info-container" fxLayout="column" fxFlexOffset="10">
       <div class="post-options" fxLayout="column">
-        <button md-raised-button color="primary" (click)="onRequestClick()">edit</button>
-        <button md-raised-button color="primary" (click)="onShareClick()">duplicate</button>
-        <button md-raised-button color="primary" (click)="onReportClick()">share</button>
-        <button md-raised-button color="primary" (click)="onReportClick()">hide service</button>
-        <button md-raised-button color="warn" (click)="onReportClick()">delete service</button>
+        <button mat-raised-button color="primary" (click)="onRequestClick()">edit</button>
+        <button mat-raised-button color="primary" (click)="onShareClick()">duplicate</button>
+        <button mat-raised-button color="primary" (click)="onReportClick()">share</button>
+        <button mat-raised-button color="primary" (click)="onReportClick()">hide service</button>
+        <button mat-raised-button color="warn" (click)="onReportClick()">delete service</button>
       </div>
       <div class="user-info" fxLayout="column">
         <div fxLayout="row">
@@ -69,11 +69,11 @@
         <div class="bussines-styles-info" fxLayout="row">
           <div class="post-info-left" fxLayout="column">
             <div class="options">
-              <md-icon>compare_arrows</md-icon>
-              <md-icon>group</md-icon>
-              <md-icon>favorite</md-icon>
-              <md-icon>school</md-icon>
-              <md-icon>local_offer</md-icon>
+              <mat-icon>compare_arrows</mat-icon>
+              <mat-icon>group</mat-icon>
+              <mat-icon>favorite</mat-icon>
+              <mat-icon>school</mat-icon>
+              <mat-icon>local_offer</mat-icon>
             </div>
           </div>
           <div class="post-info-right" fxLayout="column" fxLayoutAlign="center end">
@@ -89,8 +89,8 @@
       <div *ngIf="post?.allianceMembers && post.allianceMembers.length > 0" class="alliance-members-list">
         Alliance Members: ({{post?.allianceMembers ? post.allianceMembers.length : 0}})
         <div fxLayout="column">
-          <md-list>
-            <md-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
+          <mat-list>
+            <mat-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
               <div fxLayout="column" fxLayoutAlign="center center">
                 <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
               </div>
@@ -98,16 +98,16 @@
                 <span>{{member.displayName}}</span>
                 <span>{{member.jobtitle}}</span>
               </div>
-            </md-list-item>           
-          </md-list>
+            </mat-list-item>           
+          </mat-list>
         </div>       
       </div>
 
       <!--<div class="recomended-list">
         Service Recomended by: ({{post?.allianceMembers ? post.allianceMembers.length : 0}})
         <div fxLayout="column">
-          <md-list>
-            <md-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
+          <mat-list>
+            <mat-list-item *ngFor="let member of post?.allianceMembers" fxLayout="row">
               <div fxLayout="column" fxLayoutAlign="center center">
                 <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
               </div>
@@ -115,8 +115,8 @@
                 <span>{{member.displayName}}</span>
                 <span>{{member.jobtitle}}</span>
               </div>
-            </md-list-item>
-          </md-list>
+            </mat-list-item>
+          </mat-list>
         </div>
       </div>-->
     </div>

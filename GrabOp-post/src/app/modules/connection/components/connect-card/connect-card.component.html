@@ -1,7 +1,7 @@
 <div class="card-container">
-  <md-card>
+  <mat-card [routerLink]="['/profile', connection.id]">
     <img md-card-image class="card-image" src="assets/img/avatar.png"/>
-    <md-card-content>
+    <mat-card-content>
       <div class="center">
         <h4 class="name">{{ connection.display_name }}</h4>
         <p class="title">{{ connection.jobtitle }}</p>
@@ -18,36 +18,36 @@
           <div class="value">{{ connection.needs }}</div>
         </div>
       </div>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
   <div class="btn-container">
     <div fxLayout="row" class="margin-top-10" *ngIf="tab=='connections'">
       <div class="btn-content" fxLayout="column">
-        <button md-raised-button (click)="disconnect()">disconnect</button>
+        <button mat-raised-button (click)="disconnect()">disconnect</button>
       </div>
       <div class="btn-content" fxLayout="column" fxLayoutAlign="center end">
-        <button md-raised-button color="primary" (click)="openMessage();">message</button>
+        <button mat-raised-button color="primary" (click)="openMessage();">message</button>
       </div>
     </div>
 
     <div fxLayout="row" class="margin-top-10" *ngIf="tab=='connections'">
       <div class="center" fxLayout="column" fxLayoutAlign="center">
-        <md-slide-toggle align="end" color="accent">Trusted</md-slide-toggle>
+        <mat-slide-toggle align="end" color="accent">Trusted</mat-slide-toggle>
       </div>
     </div>
 
     <div fxLayout="row" class="margin-top-10" *ngIf="tab=='received'">
       <div class="btn-content" fxLayout="column">
-        <button md-raised-button (click)="disconnect()">decline</button>
+        <button mat-raised-button (click)="disconnect()">decline</button>
       </div>
       <div class="btn-content" fxLayout="column" fxLayoutAlign="center end">
-        <button md-raised-button color="primary" (click)="accept()">accept</button>
+        <button mat-raised-button color="primary" (click)="accept()">accept</button>
       </div>
     </div>
 
     <div fxLayout="row" class="margin-top-10" *ngIf="tab=='sent'">
       <div class="center" fxLayout="column" fxLayoutAlign="center">
-        <button md-raised-button color="primary" (click)="disconnect()">retract</button>
+        <button mat-raised-button color="primary" (click)="disconnect()">retract</button>
       </div>
     </div>
 

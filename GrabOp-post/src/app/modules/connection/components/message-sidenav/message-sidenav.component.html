@@ -1,16 +1,16 @@
 <form #f="ngForm" autocomplete="off" novalidate fxLayout="column">
-  <md-form-field>
-    <input mdInput placeholder="Subject" name="subject" [(ngModel)]="message.subject" required #subject="ngModel" />
-  </md-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Subject" name="subject" [(ngModel)]="message.subject" required #subject="ngModel" />
+  </mat-form-field>
 
-  <md-form-field>
-    <textarea mdInput placeholder="Body" name="body" [(ngModel)]="message.body" required #body="ngModel"></textarea>
-  </md-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Body" name="body" [(ngModel)]="message.body" required #body="ngModel"></textarea>
+  </mat-form-field>
   <div class="options" fxLayout="row">
-    <button md-raised-button color="basic" (click)="sidenav.close()">
+    <button mat-raised-button color="basic" (click)="sidenav.close()">
       Cancel
     </button>
-    <button md-raised-button color="accent" [disabled]="!f.valid" (click)="sendMessage()">
+    <button mat-raised-button color="accent" [disabled]="!f.valid" (click)="sendMessage()">
       Send
     </button>
     <img *ngIf="loading"

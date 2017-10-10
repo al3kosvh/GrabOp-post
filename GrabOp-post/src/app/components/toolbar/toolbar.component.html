@@ -1,60 +1,60 @@
-<md-toolbar *ngIf="visible | async">
-  <button md-icon-button (click)="toggleSideNav()">
-    <md-icon>menu</md-icon>
+<mat-toolbar *ngIf="visible | async">
+  <button mat-icon-button (click)="toggleSideNav()">
+    <mat-icon>menu</mat-icon>
   </button>
   <a class="app-logo" [routerLink]="['/home']">
     <img src="assets/img/transparent_logo.png">
   </a>
   <search placeholder="Search" icon="suffix" fxHide.xs fxFlex.gt-sm="30" fxFlex.lg="20"></search>
-  <!--<md-form-field><input mdInput placeholder="search" /></md-form-field>-->
+  <!--<mat-form-field><input matInput placeholder="search" /></mat-form-field>-->
   <span class="fill-remaining-space"></span>
-  <button fxHide.xs md-icon-button [mdMenuTriggerFor]="exploreDropdown">
-    <md-icon>person_pin_circle</md-icon>
+  <button fxHide.xs mat-icon-button [matMenuTriggerFor]="exploreDropdown">
+    <mat-icon>person_pin_circle</mat-icon>
   </button>
-  <md-menu fxHide.xs #exploreDropdown="mdMenu" [overlapTrigger]="false">
+  <mat-menu fxHide.xs #exploreDropdown="matMenu" [overlapTrigger]="false">
     <span class='menu-section'>Business style</span>
     <div *ngFor='let option of ["Business Partnership","Exchange","Internship","Donate","Money"]'>
-      <button md-menu-item>
+      <button mat-menu-item>
         {{option}}
       </button>
     </div>
     <span class='menu-section'>Category</span>
     <div *ngFor='let option of ["Entertainment","Fashion","Finance"]'>
-      <button md-menu-item>
+      <button mat-menu-item>
         {{option}}
       </button>
     </div>
-  </md-menu>
-  <button fxHide.xs md-icon-button modal (click)='openHelp()'>
-    <md-icon>info</md-icon>
+  </mat-menu>
+  <button fxHide.xs mat-icon-button modal (click)='openHelp()'>
+    <mat-icon>info</mat-icon>
   </button>
-  <button fxHide.xs md-icon-button [mdMenuTriggerFor]="appPost">
-    <md-icon>add_circle</md-icon>
+  <button fxHide.xs mat-icon-button [matMenuTriggerFor]="appPost">
+    <mat-icon>add_circle</mat-icon>
   </button>
   <span fxHide.xs>Post</span>
-  <md-menu #appPost="mdMenu" [overlapTrigger]="false">
-    <!--<a md-menu-item [routerLink]="['/post-edit',{type:'need'}]">Post need</a>-->
-    <!--<a md-menu-item [routerLink]="['/post-edit',{type:'offer'}]">Post offer</a>-->
-    <!--<a md-menu-item [routerLink]="['/post-edit/-1/need']">Post need</a>-->
-    <!--<a md-menu-item [routerLink]="['/post-edit/-1/offer']">Post offer</a>-->
+  <mat-menu #appPost="matMenu" [overlapTrigger]="false">
+    <!--<a mat-menu-item [routerLink]="['/post-edit',{type:'need'}]">Post need</a>-->
+    <!--<a mat-menu-item [routerLink]="['/post-edit',{type:'offer'}]">Post offer</a>-->
+    <!--<a mat-menu-item [routerLink]="['/post-edit/-1/need']">Post need</a>-->
+    <!--<a mat-menu-item [routerLink]="['/post-edit/-1/offer']">Post offer</a>-->
 
-    <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','need']}}]">Post need</a>
-    <a md-menu-item [routerLink]="[{outlets: {'slideRight': ['post-edit','-1','offer']}}]">Post offer</a>
-  </md-menu>
+    <a mat-menu-item (click)="onCreatePost('need')">Post need</a>
+    <a mat-menu-item (click)="onCreatePost('offer')">Post offer</a>
+  </mat-menu>
   <img (click)="goToProfile()" class="avatar" src="assets/img/temp-users-img/6.jpg">
   <span class="username" (click)="goToProfile()">{{user.firstName + user.lastName}}</span>
   <span class="separator"></span>
-  <button md-icon-button>
-    <md-icon>notifications_none</md-icon>
+  <button mat-icon-button>
+    <mat-icon>notifications_none</mat-icon>
   </button>
-  <button md-icon-button [mdMenuTriggerFor]="appMenu">
-    <md-icon>more_vert</md-icon>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
   </button>
-  <md-menu #appMenu="mdMenu" [overlapTrigger]="false">
-    <button md-menu-item routerLink="/settings/{{user.id}}">Settings</button>
-    <button md-menu-item routerLink="/how-it-works">How it Works</button>
-    <button md-menu-item routerLink="/feedback">Feedback</button>
-    <button md-menu-item routerLink="/terms-of-use">Terms of Use</button>
-    <button md-menu-item routerLink="/signout">Sign out</button>
-  </md-menu>
-</md-toolbar>
+  <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item routerLink="/settings/{{user.id}}">Settings</button>
+    <button mat-menu-item routerLink="/how-it-works">How it Works</button>
+    <button mat-menu-item routerLink="/feedback">Feedback</button>
+    <button mat-menu-item routerLink="/terms-of-use">Terms of Use</button>
+    <button mat-menu-item routerLink="/signout">Sign out</button>
+  </mat-menu>
+</mat-toolbar>

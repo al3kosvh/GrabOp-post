@@ -2,17 +2,18 @@
 import { Injectable, Component, ComponentFactory, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { MdSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material';
 
 import { VOUserExt } from '../modules/account/models/vouser';
 
 import { AllianceInviteComponent } from '../modules/profile/components/alliance-invite/alliance-invite.component';
 import { SignUpComponent } from '../modules/account/components/signup/signup.component';
+import { PostCreateComponent } from '../modules/post/components/post-create/post-create.component';
 
 @Injectable()
 export class SidenavService {
 
-    sidenav: MdSidenav;
+    sidenav: MatSidenav;
     viewContainerRef: ViewContainerRef;
     data: any;
 
@@ -20,7 +21,7 @@ export class SidenavService {
         private componentFactoryResolver: ComponentFactoryResolver
     ) { }
 
-    registerSidenav(sidenav: MdSidenav) {
+    registerSidenav(sidenav: MatSidenav) {
         this.sidenav = sidenav;
     }
 
@@ -51,6 +52,15 @@ export class SidenavService {
         const ref = this.viewContainerRef.createComponent(factory);
         //let instance: any = ref.instance;
         //instance.person = person;
+        this.sidenav.open();
+    }
+
+    onCreatePost(type: string) {
+        this.viewContainerRef.clear();
+        const factory = this.componentFactoryResolver.resolveComponentFactory(PostCreateComponent);
+        const ref = this.viewContainerRef.createComponent(factory);
+        let instance: any = ref.instance;
+        instance.type = type;
         this.sidenav.open();
     }
 

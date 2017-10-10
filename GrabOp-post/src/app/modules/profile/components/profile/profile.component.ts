@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 // Services
 import { ProfileService } from '../../services/profile.service';
@@ -20,7 +20,7 @@ import { VideoProfileDialogComponent } from './video/video-profile-dialog.compon
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']    
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         private profileService: ProfileService,
         private postService: PostService,
         private connectionService: ConnectionService,
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private router: Router,
         private sidenavService: SidenavService
     ) {
@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        
+
     }
 
     inviteToAlliance() {
@@ -126,7 +126,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     editProfile(): void {
-        let config: MdDialogConfig = {
+        let config: MatDialogConfig = {
             width: '80%',
             data: { profile: this.profile }
         };
@@ -150,7 +150,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     playVideo() {
-        let config: MdDialogConfig = {
+        let config: MatDialogConfig = {
             width: '400px',
             data: this.profile.video || 'http://localhost:8080/video/AviciiAddictedToYou.mp4'
         };
