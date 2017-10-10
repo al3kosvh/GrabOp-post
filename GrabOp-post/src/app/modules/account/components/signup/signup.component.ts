@@ -43,8 +43,17 @@ export class SignUpComponent implements OnInit {
     private submit(data?): void {
         this.submitting = true;
         this.messages.submitErrorMessage = '';
-        console.log(this.formArray.get([0]).value);
-        this.submitting = false;
+        console.log('values to submit: ',this.formArray.get([0]).value);
+        this.signupService.register(this.formArray.get([0]).value).subscribe(
+            value => {
+                this.submitting = false;
+            },
+            error => {
+                this.submitting = false;
+                this.messages.submitErrorMessage = error.statusText;
+            }
+        );
+
     }
 
 
