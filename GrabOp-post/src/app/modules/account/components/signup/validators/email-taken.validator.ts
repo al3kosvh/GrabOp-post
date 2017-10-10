@@ -14,7 +14,7 @@ export class EmailTakenValidator {
                 .debounceTime(400)
                 .mergeMap(value => {
                     return new Observable((observer: any) => {
-                        signupService.verifyEmail(email).subscribe(
+                        signupService.checkEmailExistence(email).subscribe(
                             value => { observer.next(value ? { emailTaken: true } : null) },
                             error => { observer.next({ connectionError: true }) }
                         )

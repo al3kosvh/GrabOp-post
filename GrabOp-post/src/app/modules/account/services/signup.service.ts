@@ -47,22 +47,26 @@ export class SignUpService {
        }).catch(this.handleError);
      }*/
 
-    verifyEmail(token: string) {
-        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
-        let url: string = VOSettings.verifyemail;
+    checkEmailExistence(email: string) {
+        let url: string = VOSettings.checkEmailExistence.replace("{{email}}", email);
+        return this.http.get(url).map(res => {
+            return res.exists == "existing";
+        });
+    }
 
+    verifyEmail(token: string) {        
+        let url: string = VOSettings.verifyemail;
         return this.http.post(url, token).map(res => {
-            console.log('verifyEmail post res ', res);
             return res;
         });
     }
 
-    verifyUsername(token: string) {
+    verifyUsername(username: string) {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
         let url: string = VOSettings.verifyemail;
 
-        return this.http.post(url, token).map(res => {
-            console.log('verifyEmail post res ', res);
+        return this.http.post(url, username).map(res => {
+            console.log('verifyUsername post res ', res);
             return res;
         });
     }

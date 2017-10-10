@@ -306,6 +306,7 @@ export class VOSettings {
     // static server: string = 'http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1';
     static server: string = 'http://localhost:53822/api/v1';
 
+    static checkEmailExistence: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
     static connection_GetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
     static connection_GetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connection_GetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
