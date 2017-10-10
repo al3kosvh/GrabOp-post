@@ -27,8 +27,9 @@ export class AuthenticationService {
         this.getUser().subscribe(
             user => {
                 var isLoggedIn = user ? true : false;
-                if (this.loggedIn.getValue() != isLoggedIn)
+                if (this.loggedIn.getValue() != isLoggedIn){
                     isLoggedIn ? this.router.navigate(['/home']) : this.router.navigate(['/guest']);
+                }
 
                 this.loggedIn.next(isLoggedIn);
             });
@@ -66,7 +67,7 @@ export class AuthenticationService {
         }).flatMap((user: Models.VOUser) => {
             return this.getUserExtended().map((userExt: Models.VOUserExt) => {
                 userExt.token = { value: user.sessionId };
-                this.saveUser(userExt);
+                this.saveUser(userExt, authData.rememberMe);
                 return userExt;
             });
         });
@@ -92,7 +93,8 @@ export class AuthenticationService {
         return this.storage.user.asObservable();
     }
 
-    saveUser(user: Models.VOUserExt): void {
+    saveUser(user: Models.VOUserExt, remember: boolean): void {
+        this.storage.remember(remember);
         this.storage.setUser(user);
         this.storage.setToken(user.token);
     }
