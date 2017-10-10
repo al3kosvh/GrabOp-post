@@ -38,9 +38,6 @@ export class ConnectionService {
         // TODO api url to make a connection request on profile and confirm request, is the same with different params, but not working
         let url = VOSettings.connection_MakeRequest.replace(<any>'{{sender}}', sender.toString()).replace(<any>'{{receiver}}', receiver.toString());
         return this.http.post(url, { accept: accept, connectionid: connectionId, confirmer })
-            .map(res => {
-                return res.json();
-            })
             .catch(this.handleError);
     }
 

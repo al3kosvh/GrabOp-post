@@ -12,7 +12,7 @@ import { UploadService } from '../../../../account/services/upload.service';
     styleUrls: ['./edit-profile-dialog.component.css']
 })
 export class EditProfileDialogComponent {
-    
+
     errorMessage: string;
     loading: boolean;
     profile: VOUserExt;
@@ -73,6 +73,54 @@ export class EditProfileDialogComponent {
             this.uploadService.upload(event).subscribe(
                 dataFile => {
                     console.log("EditProfileDialog dataFile: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
+    onUpLoadProfilePic(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfilePic: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
+    onUpLoadProfileVideo(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfileVideo: ", dataFile)
+                },
+                err => {
+                    console.log("EditProfileDialog err: ", err.json())
+                },
+                () => {
+
+                }
+            )
+        }
+    }
+
+    onUpLoadProfileBackgroundPic(event?: Event): void {
+        if (event) {
+            this.uploadService.upload(event).subscribe(
+                dataFile => {
+                    console.log("EditProfileDialog dataProfileBackgroundPic: ", dataFile)
                 },
                 err => {
                     console.log("EditProfileDialog err: ", err.json())

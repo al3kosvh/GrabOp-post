@@ -1,6 +1,6 @@
 <div class="card-container">
-  <mat-card>
-    <img mat-card-image class="card-image" src="assets/img/avatar.png"/>
+  <mat-card [routerLink]="['/profile', connection.id]">
+    <img md-card-image class="card-image" src="assets/img/avatar.png"/>
     <mat-card-content>
       <div class="center">
         <h4 class="name">{{ connection.display_name }}</h4>
@@ -24,15 +24,34 @@
 
     <div fxLayout="row" class="margin-top-10">
       <div class="center" fxLayout="column" fxLayoutAlign="center">
-        <mat-expansion-panel *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
-          <mat-expansion-panel-header>
+        <!--<md-expansion-panel *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
+          <md-expansion-panel-header>
             {{ btnConnectValue }}
-          </mat-expansion-panel-header>
+          </md-expansion-panel-header>
           <div class="retract" *ngIf="btnConnectValue == 'connection sent'" (click)="accept()">retract</div>
           <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="accept()">accept</div>
           <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="decline()">decline</div>
-        </mat-expansion-panel>
-        <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">connect</button>
+        </md-expansion-panel>-->
+        <button md-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">connect</button>
+
+        <div class="container-btn-connection-option" *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
+          <button md-raised-button color="accent" [mdMenuTriggerFor]="appConnectionOption">
+            {{ btnConnectValue }}
+            | V
+          </button>
+          <md-menu #appConnectionOption="mdMenu" [overlapTrigger]="false">
+            <a md-menu-item  *ngIf="btnConnectValue == 'connection sent'" (click)="accept()">
+              retract
+            </a>
+            <a md-menu-item *ngIf="btnConnectValue != 'connection sent'" (click)="accept()">
+              accept
+            </a>
+            <a md-menu-item  *ngIf="btnConnectValue != 'connection sent'" (click)="decline()">
+              decline
+            </a>
+          </md-menu>
+        </div>
+
       </div>
     </div>
 

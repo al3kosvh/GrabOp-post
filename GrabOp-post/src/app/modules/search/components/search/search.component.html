@@ -1,6 +1,6 @@
 <div class="search-container" fxFlex>
   <form (ngSubmit)="onSubmit()">
-    <mat-form-field floatPlaceholder="never" fxFlex>
+    <mat-form-field floatPlaceholder="never" fxFlex fxFlex="100">
       <mat-icon *ngIf="icon == 'prefix'" matPrefix>search</mat-icon>
       <input matInput placeholder="{{placeholder}}" aria-label="Search" [matAutocomplete]="auto" [formControl]="searchCtrl">
       <mat-icon *ngIf="icon == 'suffix'" matSuffix>search</mat-icon>

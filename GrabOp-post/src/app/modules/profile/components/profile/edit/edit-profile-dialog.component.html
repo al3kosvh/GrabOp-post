@@ -50,7 +50,7 @@
           </mat-form-field>
           <div fxLayout="row" fxLayout.xs="column">
             <div fxLayout="column" fxFlex="50">
-              <mat-form-field *ngIf="profile.occupation === 0">
+              <mat-form-field *ngIf="profile.occupation === 2">
                 <input matInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel" />
               </mat-form-field>
               <mat-radio-group class="radio-group" name="occupation" [(ngModel)]="profile.occupation">
@@ -63,7 +63,7 @@
               <div class="container-file" fxLayout="row">
                 <div class="document-view" fxLayout="column" fxLayoutAlign="center center">
                   <img class="file" [src]="iconFileResume">
-                  <span>Test dile 1</span>
+                  <span>Test file 1</span>
                   <span>{{ fileResume }}</span>
                 </div>
                 <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
@@ -83,7 +83,7 @@
               <button mat-icon-button color="primary" (click)="deleteSkill(i)">
                 <mat-icon>remove_circle</mat-icon>
               </button>
-              <!--TODO when add two or more input and change value in one this value replicate to other are empty but only in view, data profile.skillset is right-->
+              <!--TODO when add two or more input and change value, in one this value replicate to other empty, but only in view, data profile.skillset is right-->
               <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />
             </div>
           </div>
@@ -99,7 +99,7 @@
             </div>
             <div fxLayout="column">
               <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                <input type="file" accept="image/gif, image/jpeg, image/png" (change)="onUpLoadProfilePic($event)" />
                 add photo
               </a>
             </div>
@@ -111,7 +111,7 @@
             </div>
             <div fxLayout="column">
               <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                <input type="file" accept="video/*" (change)="onUpLoadProfileVideo($event)" />
                 add video
               </a>
             </div>
@@ -123,7 +123,7 @@
             </div>
             <div fxLayout="column">
               <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
-                <input type="file" accept="application/pdf, application/msword" (change)="onUpLoadFile($event)" />
+                <input type="file" accept="image/gif, image/jpeg, image/png" (change)="onUpLoadProfileBackgroundPic($event)" />
                 backfround image
               </a>
             </div>
