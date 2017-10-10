@@ -16,7 +16,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import {
-    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MdIconRegistry,
+    MatToolbarModule, MatSidenavModule, MatMenuModule, MatButtonModule, MatIconModule, MatListModule, MatIconRegistry,
     MatGridListModule
 } from '@angular/material';
 
@@ -37,6 +37,7 @@ import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 
 // Services
 import { ToolbarService } from './services/toolbar.service';
+import { SidenavService } from './services/sidenav.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { HelpComponent } from './components/help/help.component';
+import { SidenavOptionsComponent } from './components/sidenav-options/sidenav-options.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/guest', pathMatch: 'full' },
@@ -55,7 +57,7 @@ const routes: Routes = [
     { path: 'feedback', component: FeedbackComponent },
     { path: 'terms-of-use', component: TermsOfUseComponent },
     { path: 'about-us', component: AboutUsComponent },
-    { path: '**', component: PageNotFoundComponent }
+    { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -72,7 +74,6 @@ const routes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatListModule,
-        RouterModule.forRoot(routes),        
         PostModule,
         LandingModule,
         HomeModule,
@@ -81,7 +82,8 @@ const routes: Routes = [
         ConnectionModule,
         OpportunityModule,
         ProfileModule,
-        SearchModule
+        SearchModule,
+        RouterModule.forRoot(routes)
     ],
     declarations: [
         AppComponent,
@@ -92,12 +94,14 @@ const routes: Routes = [
         FeedbackComponent,
         TermsOfUseComponent,
         AboutUsComponent,
-        HelpComponent
+        HelpComponent,
+        SidenavOptionsComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MdIconRegistry,
-        ToolbarService
+        MatIconRegistry,
+        ToolbarService,
+        SidenavService
     ],
     entryComponents: [HelpComponent],
     bootstrap: [AppComponent]

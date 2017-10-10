@@ -35,23 +35,23 @@ span.comments {
 }
 
 
-md-card {
+mat-card {
   padding: 0px;
   margin: 10px;
 }
 
-md-card-header {
+mat-card-header {
   padding: 10px;
   background-color: lightslategrey;
   color: white;
   font-weight: 600;
 }
 
-md-card-title {
+mat-card-title {
   margin-bottom: 0px;
 }
 
-md-card-content {
+mat-card-content {
   text-align: center;
   padding: 20px 0px 20px 0px;
   color: lightslategrey;

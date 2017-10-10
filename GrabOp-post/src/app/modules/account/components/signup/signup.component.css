@@ -1,0 +1,12 @@
+button.close {
+  margin-top: -20px;
+  margin-right: -20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+div.signup {
+  width: 400px;
+}

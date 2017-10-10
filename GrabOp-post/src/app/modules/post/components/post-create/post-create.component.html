@@ -1,0 +1,26 @@
+<div class="post-create-container">
+  <div><strong>Create your Service {{type}}</strong></div>
+  <mat-tab-group dynamicHeight="true">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Basic
+      </ng-template>
+      <post-basic [model]="model"></post-basic>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Business Style
+      </ng-template>
+      <post-style [model]="model"></post-style>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Photo/Video
+      </ng-template>
+      <post-media [model]="model"></post-media>
+    </mat-tab>
+  </mat-tab-group>
+  <div fxLayout="row-reverse">
+    <button mat-raised-button color="primary" (click)="onSaveClick()">Next</button>
+  </div>
+</div>

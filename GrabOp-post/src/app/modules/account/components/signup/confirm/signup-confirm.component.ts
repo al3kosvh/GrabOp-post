@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 //import {UserEditService} from '../../../user-edit/user-edit.service';
 import { SignUpService } from '../../../services/signup.service';
 
@@ -16,7 +16,7 @@ export class SignUpConfirmComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private signupService: SignUpService,
-        private dialog: MdDialog
+        private matDialog: MatDialog
     ) { }
 
     ngOnInit() {
@@ -31,7 +31,7 @@ export class SignUpConfirmComponent implements OnInit {
     verifyEmail(token) {
         this.signupService.verifyEmail(token).subscribe(res => {
             console.log('Registration confirmed ', res);
-            let dialogRef = this.dialog.open(ModalAlertComponent, { data: 'Registration confirmed' });
+            let dialogRef = this.matDialog.open(ModalAlertComponent, { data: 'Registration confirmed' });
             dialogRef.afterClosed().subscribe(res => {
                 if (res === 'OK') {
                     this.router.navigate(['/guest', { login: 'login' }]);
@@ -39,7 +39,7 @@ export class SignUpConfirmComponent implements OnInit {
             });
             // this.router.navigate(['/guest', { username: user, foo: 'foo' }]);
         }, error => {
-            let dialogRef = this.dialog.open(ModalAlertComponent, { data: 'Server error. Please try next time.' });
+            let dialogRef = this.matDialog.open(ModalAlertComponent, { data: 'Server error. Please try next time.' });
             console.error(' error login');
         });
     }

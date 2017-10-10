@@ -1,0 +1,11 @@
+div.post-basic {
+  padding: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-select {
+  margin-bottom: 15px;
+}

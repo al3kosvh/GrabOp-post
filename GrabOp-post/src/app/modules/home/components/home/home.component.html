@@ -1,7 +1,7 @@
-<div *ngIf="user" fxLayout="column">
+<div *ngIf="person" fxLayout="column">
   <div class="first-row" fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
-    <user-bio [user]="user"></user-bio>
-    <profile-progress [user]="user"></profile-progress>
+    <user-bio [person]="person"></user-bio>
+    <profile-progress [person]="person"></profile-progress>
     <div class="announce" fxLayout="column">
       <span class="title">GrabOp thought of the day</span>
       <p>
@@ -11,56 +11,56 @@
         <div class="comments-info">
           <a class="comments-count" href="#"><span>0</span></a> <span class="comments">Comments</span>
         </div>
-        <button md-raised-button color="accent" (click)="openComment()">comment</button>
-        <button md-raised-button color="accent">share</button>
+        <button mat-raised-button color="accent" (click)="openComment()">comment</button>
+        <button mat-raised-button color="accent">share</button>
       </div>
     </div>
   </div>
   <div class="second-row" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Profile Views</md-card-title>
-      </md-card-header>
-      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Profile Views</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         132,000
-      </md-card-content>
-    </md-card>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Connections</md-card-title>
-      </md-card-header>
-      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Connections</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         {{connectionsCount}}
-      </md-card-content>
-    </md-card>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Trusted By</md-card-title>
-      </md-card-header>
-      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Trusted By</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         812
-      </md-card-content>
-    </md-card>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Alliance Members</md-card-title>
-      </md-card-header>
-      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Alliance Members</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         300
-      </md-card-content>
-    </md-card>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Total Sales</md-card-title>
-      </md-card-header>
-      <md-card-content fxLayout="column" fxLayoutAlign="center center">
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Total Sales</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         20,000
-      </md-card-content>
-    </md-card>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 
-<span class="posts-title">People offering what you need:</span>
+<span *ngIf="myPosts.length > 0" class="posts-title">People offering what you need:</span>
 <div class="posts">
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<span class="posts-title">People who need what your offering:</span>
+<span *ngIf="myPosts.length > 0" class="posts-title">People who need what your offering:</span>
 <div class="posts">
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <div *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">

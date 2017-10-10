@@ -1,26 +1,29 @@
-:host {
-    /*background: #1a2580;*/
-    color: #fff;
-    position: fixed;
-    left: auto;
-    top: 20px;
-    right: 0;
-    bottom: 0;
-    width: 20%;
-    min-width: 250px;
-    z-index: 9999;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+div.alliance-invite {
+  padding: 15px;
 }
 
-.radio-group {
-    display: inline-flex;
-    flex-direction: column;
+img.avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.radio-button {
-    margin: 5px;
+div.post-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+  color: #03a9f4;
 }
 
-.selected-value {
-    margin: 15px 0;
+  div.post-container button {
+    margin-right: 10px;
+  }
+
+  div.post-title {
+    margin-right: 10px;
+  }
+
+mat-list-item {
+  margin-bottom: 10px;
 }

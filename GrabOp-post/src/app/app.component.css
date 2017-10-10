@@ -1,32 +1,33 @@
-md-sidenav {
+mat-sidenav.fixed {
   margin-top: 64px;
 }
 
-md-sidenav {
+mat-sidenav.left {
   background-color: #272727;
 }
 
-md-sidenav md-list a {
+mat-sidenav.left mat-list a {
   color: white;
   text-decoration: none;
 }
 
-  md-sidenav md-list a.menu-active {
+  mat-sidenav mat-list a.menu-active {
     color: #03a9f4;
   }
 
 .mat-list-item {
-  border-bottom: 1px outset white;
+  border-bottom: 1px outset rgba(255, 255, 255, 0.10);
 }
 
-md-sidenav-container.fixed {
+mat-sidenav-container.fixed {
   margin-top: -64px;
   padding-top: 64px;
 }
 
-div.slideRight {
+div.slideRight {  
   position: fixed;
-  z-index: 1000;
+  left: auto;
+  top: 100px;
+  right: 0;  
+  z-index: 9999;
 }
-
-

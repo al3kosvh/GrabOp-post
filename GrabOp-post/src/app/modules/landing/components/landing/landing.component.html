@@ -8,18 +8,18 @@
         </div>
         <div class="options">
           <div *ngIf="isLoggedIn | async">
-            <button md-raised-button color="accent" routerLink="/home">HOME</button>
-            <button md-raised-button color="accent" routerLink="/signout">SIGN OUT</button>
+            <button mat-raised-button color="accent" routerLink="/home">HOME</button>
+            <button mat-raised-button color="accent" routerLink="/signout">SIGN OUT</button>
           </div>
           <div *ngIf="!(isLoggedIn | async)">
-            <!--button md-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button-->
-            <account-signup></account-signup>
+            <!--button mat-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button-->
+            <button mat-raised-button color="accent" (click)="onSignUp()">JOIN US</button>            
             <account-signin></account-signin>
           </div>
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="center">
-          <search placeholder="star your search here" fxFlex="35" fxFlex.xs="60"></search>
+          <search placeholder="star your search here" icon="prefix" fxFlex="35" fxFlex.xs="60"></search>
       </div>
     </div>
   </div>
@@ -50,20 +50,20 @@
           <li>Expand your business</li>
         </ul>
         <div fxLayout="row" fxLayoutAlign="end">
-          <button md-raised-button color="accent">Learn more</button>
+          <button mat-raised-button color="accent">Learn more</button>
         </div>
       </div>
     </div>
   </div>
 
-  <md-grid-list cols="2" rowHeight="9:10">
+  <mat-grid-list cols="2" rowHeight="9:10">
 
     <h2 class="heading">Featured Services</h2>
 
     <div *ngFor="let item of postNeed; let i=index">
-      <md-grid-tile *ngIf="i<4">
+      <mat-grid-tile *ngIf="i<4">
         <post-card [post]="item"></post-card>
-      </md-grid-tile>
+      </mat-grid-tile>
     </div>
-  </md-grid-list>
+  </mat-grid-list>
 </div>

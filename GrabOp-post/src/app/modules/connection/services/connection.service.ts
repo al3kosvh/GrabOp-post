@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+
 import { VOSettings } from '../../../models/vos';
 import { HttpService } from '../../account/services/http.service';
-import { mapGetPerson } from "../../../utils/map-functions";
+
+import { mapGetPerson } from '../../../utils/map-functions';
 
 @Injectable()
 export class ConnectionService {
@@ -39,43 +41,42 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-  getMyConnections(): Observable<Models.VOConnection[]> {
-    let url = VOSettings.connection_GetMyConnections;
-    console.log('getMyConnections', url);
-    return this.http.get(url)
-      .catch(this.handleError);
-  }
+    getMyConnections(): Observable<Models.VOConnection[]> {
+        let url = VOSettings.connection_GetMyConnections;
+        return this.http.get(url)
+            .catch(this.handleError);
+    }
 
-  getProfileConnections(id: string): Observable<Models.VOConnection[]> {
-    let url = VOSettings.connection_GetProfileConnections.replace(<any>'{{id}}', id);
-    return this.http.get(url)
-      .catch(this.handleError);
-  }
+    getProfileConnections(id: string): Observable<Models.VOConnection[]> {
+        let url = VOSettings.connection_GetProfileConnections.replace(<any>'{{id}}', id);
+        return this.http.get(url)
+            .catch(this.handleError);
+    }
 
-  sendMessage(id: string, senderid: string, body: string, subject?: string): Observable<any> {
-    let url = VOSettings.sendMessage.replace(<any>'{{id}}', id);
-    return this.http.post(url, {id, senderid, body, subject})
-      .catch(this.handleError);
-  }
+    sendMessage(id: number, senderid: number, body: string, subject?: string): Observable<any> {
+        let url = VOSettings.sendMessage.replace(<any>'{{id}}', id.toString());
+        return this.http.post(url, { id, senderid, body, subject })
+            .catch(this.handleError);
+    }
 
-  private handleError(error: any) {
-    let errMsg = (error.message) ? error.message :
-      console.error(error);
-    return Observable.throw(errMsg);
-  }
+    private handleError(error: any) {
+        let errMsg = (error.message) ? error.message :
+            console.error(error);
+        return Observable.throw(errMsg);
+    }
 
-  public validateUrlProfile(id: string, router: Router): Observable<boolean> {
-    return this.http.get(VOSettings.myProfile).map(res => {
-        const myProfile = mapGetPerson(res);
-        if (id.toString() == myProfile.id.toString()) {
-          router.navigate(['/connections']);
-          return false;
-        }
-        return true;
-      })
-      .catch((error: any) => {
-        return new Observable<boolean>();
-      });
-  }
+    public validateUrlProfile(id: number, router: Router): Observable<boolean> {
+        return this.http.get(VOSettings.myProfile).map(res => {
+            const myProfile = mapGetPerson(res);
+            if (id == myProfile.id) {
+                router.navigate(['/connections']);
+                return false;
+            }
+            return true;
+        })
+            .catch((error: any) => {
+                return new Observable<boolean>();
+            });
+    }
 
 }

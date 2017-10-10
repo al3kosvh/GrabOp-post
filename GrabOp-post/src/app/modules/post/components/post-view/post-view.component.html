@@ -1,85 +1,140 @@
-<md-grid-list cols="3" rowHeight="70px">
-  <md-grid-tile colspan="3">
-    <h2>POST VIEW</h2>
-  </md-grid-tile>
-</md-grid-list>
-
-<md-grid-list cols="3" rowHeight="500px">
-  <md-grid-tile [colspan]="2">
-    <md-grid-list cols="1" rowHeight="500px" style="width: 100%">
-      <md-grid-tile>
-        <app-post-details [post]="post"></app-post-details>
-      </md-grid-tile>
-      <!--<md-grid-tile>-->
-      <!--<md-grid-list cols="1" rowHeight="200px" style="width: 100%">-->
-      <!--<md-grid-tile>-->
-      <!--<md-grid-list cols="2" rowHeight="300px" style="width: 100%">-->
-      <!--<h3>Posts need</h3>-->
-      <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'need'; let i=index">-->
-      <!--<md-grid-tile *ngIf="i<4">-->
-      <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
-      <!--</md-grid-tile>-->
-      <!--</div>-->
-      <!--</md-grid-list>-->
-      <!--</md-grid-tile>-->
-      <!--<md-grid-tile>-->
-      <!--<md-grid-list cols="2"  rowHeight="200px" style="width: 100%">-->
-      <!--<h3>Posts offer</h3>-->
-      <!--<div (click)="onClickItem(item)" *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">-->
-      <!--<md-grid-tile *ngIf="i<4">-->
-      <!--<app-posts-card [post]="item" [viewDetailsButton]="true"></app-posts-card>-->
-      <!--</md-grid-tile>-->
-      <!--</div>-->
-      <!--</md-grid-list>-->
-      <!--</md-grid-tile>-->
-      <!--</md-grid-list>-->
-      <!--</md-grid-tile>-->
-    </md-grid-list>
-  </md-grid-tile>
-
-  <md-grid-tile [colspan]="1">
-    <md-grid-list cols="1" rowHeight="250" style="width: 100%">
-      <md-grid-tile>
-        <md-list>
-          <md-list-item>
-            <button md-raised-button color="primary" (click)="onRequestClick()">request service</button>
-          </md-list-item>
-          <md-list-item>
-            <button md-raised-button color="primary" (click)="onShareClick()">share</button>
-          </md-list-item>
-          <md-list-item>
-            <button md-raised-button color="primary" (click)="onReportClick()">report</button>
-          </md-list-item>
-          <!--<md-list-item>-->
-          <!--service recommended by-->
-          <!--</md-list-item>-->
-          <!--<md-list-item>-->
-          <!--<button md-raised-button color="primary" (click)="onRecommendClick()">recommended this post</button>-->
-          <!--</md-list-item>-->
-        </md-list>
-      </md-grid-tile>
-      <md-grid-tile>
-        <app-post-info [post]="post" [person]="person"></app-post-info>
-      </md-grid-tile>
-    </md-grid-list>
-  </md-grid-tile>
-</md-grid-list>
-
-
-<span class="posts-title">People offering what you need:</span>
-<div class="posts">
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-    <div *ngFor="let item of myPosts | postsFilter:'need'; let i=index">
-      <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+<div>
+  <div fxLayout="row" class="post-view" fxLayoutAlign="center">
+    <div fxLayout="column" fxFlex="40">
+      <div fxLayout="row" class="post-info-top">
+        <div class="star-post-container" fxLayout="column" fxLayoutAlign="center center">
+          <img src="assets/img/star-post.png" />
+        </div>
+        <div class="star-post-text">Offering</div>
+        <div fxLayout="column" fxLayoutAlign="end start" fxFlex>
+          <span class="post-title">Title of Service</span>
+          <span class="post-location">Toronto, Otario</span>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="end end">
+          <div>Page Views: <span class="views-value">500</span></div>
+        </div>
+      </div>
+      <div class="post-background" fxLayout="row"></div>
+      <div class="images-container" fxLayout="row" fxLayoutAlign="space-between">
+        <div class="image-container" fxFlex="24"></div>
+        <div class="image-container" fxFlex="24"></div>
+        <div class="image-container" fxFlex="24"></div>
+        <div class="image-container" fxFlex="24"></div>
+      </div>
+      <div fxLayout="row" class="description">
+        <p>
+          This is where all the awesome details of the service will go. We will give lost of room for the description. If there are absolutely no pictures, video or documents attached in the service details screen then the service description will move up on the this page.................under the Service title...................all the boxes where the attachments are supposed to be will be removed if there are no attachments.
+        </p>
+      </div>
+      <span *ngIf="personPosts.length" class="posts-title">Other Offerings by Tim White:</span>
+      <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
+        <div *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
+          <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+        </div>
+      </div>
+      <span *ngIf="personPosts.length != 0" class="posts-title">Other Needs of Tim White:</span>
+      <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
+        <div *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
+          <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<span class="posts-title">People who need what your offering:</span>
-<div class="posts">
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-    <div *ngFor="let item of myPosts | postsFilter:'offer'; let i=index">
-      <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+    <div class="post-info-container" fxLayout="column" fxFlexOffset="10">
+      <div class="post-options">
+        <div>
+          <button fxFlex mat-raised-button color="primary" (click)="onRequestClick()">request service</button>
+        </div>
+        <div>
+          <button fxFlex mat-raised-button color="primary" (click)="onShareClick()">share</button>
+          <button fxFlex fxFlexOffset="5px" mat-raised-button color="primary" (click)="onReportClick()">report</button>
+        </div>
+      </div>
+      <div class="user-info" fxLayout="column">
+        <div fxLayout="row">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <span>Posted by:</span>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center start">
+            <span>Tim White</span>
+            <span>Hamilton, Ontario</span>
+          </div>
+        </div>
+        <div>
+          Posted on: April 10th, 2016
+        </div>
+      </div>
+      <div class="bussines-styles">
+        Bussines styles of interest:
+        <div class="bussines-styles-info" fxLayout="row">
+          <div class="post-info-left" fxLayout="column">
+            <div class="options">
+              <mat-icon>compare_arrows</mat-icon>
+              <mat-icon>group</mat-icon>
+              <mat-icon>favorite</mat-icon>
+              <mat-icon>school</mat-icon>
+              <mat-icon>local_offer</mat-icon>
+            </div>
+          </div>
+          <div class="post-info-right" fxLayout="column" fxLayoutAlign="center end">
+            <span class="text">comm</span>
+            <span class="number">100</span>
+            <span class="text">fixed rate</span>
+            <span class="number">$50000</span>
+            <span class="text">hourly rate</span>
+            <span class="number">$100</span>
+          </div>
+        </div>
+      </div>
+      <div class="recomended-list">
+        Service Recomended by: (4)
+        <div fxLayout="column">
+          <mat-list>
+            <mat-list-item fxLayout="row">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center start">
+                <span>Tim White</span>
+                <span>Hamilton, Ontario</span>
+              </div>
+            </mat-list-item>
+            <mat-list-item fxLayout="row">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center start">
+                <span>Tim White</span>
+                <span>Hamilton, Ontario</span>
+              </div>
+            </mat-list-item>
+            <mat-list-item fxLayout="row">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center start">
+                <span>Tim White</span>
+                <span>Hamilton, Ontario</span>
+              </div>
+            </mat-list-item>
+            <mat-list-item fxLayout="row">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <img [routerLink]="['/profile']" class="avatar" src="assets/img/temp-users-img/6.jpg">
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center start">
+                <span>Tim White</span>
+                <span>Hamilton, Ontario</span>
+              </div>
+            </mat-list-item>
+          </mat-list>
+          
+        </div>
+        <div>
+          <button fxFlex mat-raised-button color="primary" (click)="onRequestClick()">recomended this service</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

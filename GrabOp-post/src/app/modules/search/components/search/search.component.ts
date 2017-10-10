@@ -10,70 +10,48 @@ import { VOPost } from "../../../../models/vos";
 import { PostService } from "../../../post/services/post.service";
 
 @Component({
-  selector: 'search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+    selector: 'search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
 
-  @Input() placeholder?: string;
-  searchCtrl: FormControl;
-  filteredPosts: Observable<VOPost[]>;
+    @Input() placeholder?: string;
+    searchCtrl: FormControl;
+    filteredPosts: Observable<VOPost[]>;
+    @Input() icon?: string; // prefix, suffix
 
-  posts: VOPost[];
+    posts: VOPost[];
 
-  states: any[] = [
-    {
-      name: 'Arkansas',
-      population: '2.978M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: ''
-    },
-    {
-      name: 'California',
-      population: '39.14M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: ''
-    },
-    {
-      name: 'Florida',
-      population: '20.27M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: ''
-    },
-    {
-      name: 'Texas',
-      population: '27.47M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: ''
+    states: any[] = [];
+
+    constructor(
+        private router: Router,
+        private postService: PostService
+    ) {
+        this.searchCtrl = new FormControl();
+        this.postService.getPersonPosts(16).subscribe(posts => {
+            if (posts) {
+                this.posts = posts;
+
+                this.filteredPosts = this.searchCtrl.valueChanges
+                    .startWith(null)
+                    .map(post => post && typeof post === 'object' ? post.province : post)
+                    .map(name => name ? this.filter(name) : this.posts.slice());
+
+            }
+        })
     }
-  ];
 
-  constructor(private router: Router,
-              private postService: PostService) {
-    this.searchCtrl = new FormControl();
-    this.postService.getUserPosts(16).subscribe(posts => {
-      if (posts) {
-        this.posts = posts;
+    filter(name: string): VOPost[] {
+        return this.posts.filter(option =>
+            option.city.toLowerCase().indexOf(name.toLowerCase()) === 0
+            || option.province.toLowerCase().indexOf(name.toLowerCase()) === 0
+            || option.country.toLowerCase().indexOf(name.toLowerCase()) === 0
+        );
+    }
 
-        this.filteredPosts = this.searchCtrl.valueChanges
-          .startWith(null)
-          .map(post => post && typeof post === 'object' ? post.province : post)
-          .map(name => name ? this.filter(name) : this.posts.slice());
-
-      }
-    })
-  }
-
-  filter(name: string): VOPost[] {
-    return this.posts.filter(option =>
-      option.city.toLowerCase().indexOf(name.toLowerCase()) === 0
-      || option.province.toLowerCase().indexOf(name.toLowerCase()) === 0
-      || option.country.toLowerCase().indexOf(name.toLowerCase()) === 0
-    );
-  }
-
-  onSubmit() {
-    this.router.navigate(['/advanced-search', {search: this.searchCtrl.value}]);
-  }
+    onSubmit() {
+        this.router.navigate(['/advanced-search', { search: this.searchCtrl.value }]);
+    }
 }

@@ -14,17 +14,18 @@ div.star img {
   z-index: 60;
 }
 
-div.star span {
-  position: fixed;
+div.star div.percent {
+  position: relative;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: -55px;
   z-index: 60;
   font-weight: 700;
 }
 
 div.background-container {
   z-index: 20;
-  position: fixed;
+  margin-top: -53px;
+  position: relative;
   width: 90px;
   height: 86px;
   margin-bottom: 25px;

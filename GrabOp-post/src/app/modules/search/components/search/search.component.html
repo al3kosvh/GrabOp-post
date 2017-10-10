@@ -1,13 +1,14 @@
 <div class="search-container" fxFlex>
-  <form floatPlaceholder="never" fxFlex="100" (ngSubmit)="onSubmit()">
-    <md-form-field floatPlaceholder="never" fxFlex="100">
-      <md-icon mdPrefix>search</md-icon>
-      <input mdInput placeholder="{{placeholder}}" aria-label="Search" [mdAutocomplete]="auto" [formControl]="searchCtrl">
-      <md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSubmit()">
-        <md-option *ngFor="let post of filteredPosts | async" [value]="post.city">
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field floatPlaceholder="never" fxFlex fxFlex="100">
+      <mat-icon *ngIf="icon == 'prefix'" matPrefix>search</mat-icon>
+      <input matInput placeholder="{{placeholder}}" aria-label="Search" [matAutocomplete]="auto" [formControl]="searchCtrl">
+      <mat-icon *ngIf="icon == 'suffix'" matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSubmit()">
+        <mat-option *ngFor="let post of filteredPosts | async" [value]="post.city">
           <span>{{ post.city + ' | ' + post.province + ' | ' + post.country}}</span>
-        </md-option>
-      </md-autocomplete>
-    </md-form-field>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </form>
 </div>

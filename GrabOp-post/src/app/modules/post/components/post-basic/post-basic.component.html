@@ -1,0 +1,25 @@
+<div class="post-basic" fxLayout="column">
+  <mat-form-field>
+    <input matInput [(ngModel)]="model.title" name="title" placeholder="Service Title" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="model.country" name="country" placeholder="Country" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="model.province" name="province" placeholder="Province" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="model.city" name="city" placeholder="City" required>
+  </mat-form-field>
+  <mat-select [(ngModel)]="model.category" name="categoryid" placeholder="Category">
+    <mat-option *ngFor="let category of categories" [value]="category.id">
+      {{category.label}}
+    </mat-option>
+  </mat-select>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="model.keywords" name="keywords" placeholder="Keywords"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
+  </mat-form-field>
+</div>

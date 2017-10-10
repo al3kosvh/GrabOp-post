@@ -33,9 +33,9 @@ export class PostService {
         //this.selectedMyPost$ = this.selectedMyPostSub.asObservable();
     }
 
-    getUserPosts(userId: number): Observable<VOPost[]> {
+    getPersonPosts(personId: number): Observable<VOPost[]> {
         let url: string = VOSettings.getPosts;
-        return this.http.get(url.replace(<any>'{{id}}', userId.toString())).map(mapGetPosts)
+        return this.http.get(url.replace(<any>'{{id}}', personId.toString())).map(mapGetPosts)
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -52,8 +52,6 @@ export class PostService {
         return this.http.get(url.replace(<any>'{{id}}', postId)).map(mapGetPost)
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
-
-
 
     updatePost(post: VOPost): void {
         let url: string;

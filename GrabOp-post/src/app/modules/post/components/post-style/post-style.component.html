@@ -1,0 +1,29 @@
+<div class="post-style">
+  <div class="checkbox-container" fxLayout="column">
+    <mat-checkbox [(ngModel)]="model.isPartnership" name="partnership">Business Partnership</mat-checkbox>
+    <mat-checkbox [(ngModel)]="model.isExchange" name="exchange">Exchange</mat-checkbox>
+    <mat-checkbox [(ngModel)]="model.isDonate" name="donate">Donate</mat-checkbox>
+    <mat-checkbox [(ngModel)]="model.isInternship" name="internship">Internship</mat-checkbox>
+    <mat-checkbox [(ngModel)]="model.isMoney" name="money">Money</mat-checkbox>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.fixedRateFrom" name="fixedFrom" type="text" placeholder="Fixes $">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.fixedRateTo" name="fixedTo" type="text" placeholder="to">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.hourlyRateFrom" name="hourlyRateFrom" type="text" placeholder="Hourly $">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.hourlyRateTo" name="hourlyRateTo" type="text" placeholder="to">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.commissionFrom" name="commissionFrom" type="text" placeholder="Commission $">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="model.commissionTo" name="commissionTo" type="text" placeholder="to">
+    </mat-form-field>
+  </div>
+</div>

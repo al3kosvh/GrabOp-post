@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="src\app\components\about-us\about-us.component.ts" />
+    <None Remove="src\app\components\sidenav-options\about-us.component.ts" />
     <None Remove="src\app\modules\account\components\settings.enum.ts" />
     <None Remove="src\app\modules\profile\components\settings\email-username-settings\security-settings.component.ts" />
     <None Remove="src\app\modules\profile\components\settings\setting.component.ts" />
@@ -25,6 +25,7 @@
     <None Remove="src\app\modules\profile\models\profile.d.ts" />
     <None Remove="src\app\modules\search\components\search\search.component.ts" />
     <None Remove="src\app\modules\search\search.module.ts" />
+    <None Remove="src\app\services\sidenav.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\about-us\about-us.component.ts" />
     <TypeScriptCompile Include="src\app\components\feedback\feedback.component.ts" />
     <TypeScriptCompile Include="src\app\components\terms-of-use\terms-of-use.component.ts" />
     <TypeScriptCompile Include="src\app\components\how-it-works\how-it-works.component.ts" />
-    <TypeScriptCompile Include="src\app\components\about-us\about-us.component.ts" />
+    <TypeScriptCompile Include="src\app\components\sidenav-options\sidenav-options.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\security-settings\security-settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\email-username-settings\email-username-settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-select\setting-select.component.ts" />
@@ -54,6 +56,7 @@
     <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
+    <TypeScriptCompile Include="src\app\services\sidenav.service.ts" />
   </ItemGroup>
 
   <ItemGroup>

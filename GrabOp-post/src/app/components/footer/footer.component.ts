@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 // Services
 import { AuthenticationService } from '../../modules/account/services/authentication.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
     selector: 'app-footer',
@@ -16,11 +17,16 @@ export class FooterComponent implements OnInit {
 
     constructor(
         private auth: AuthenticationService,
+        private sidenavService: SidenavService
     ) {
         this.isLoggedIn = this.auth.isLoggedIn();
     }
 
     ngOnInit() {
 
+    }
+
+    onSignUp() {
+        this.sidenavService.signUp();
     }
 }

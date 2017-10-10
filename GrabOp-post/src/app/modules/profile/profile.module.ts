@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatIconModule, MatCheckboxModule, MatRadioModule, MatButtonModule, MatTabsModule, MatInputModule,
     MatSlideToggleModule, MatSliderModule, MatSelectModule, MatProgressSpinnerModule, MatChipsModule,
-    MdExpansionModule
+    MatExpansionModule, MatCardModule, MatSidenavModule
 } from '@angular/material';
 
 // Shared Modules
@@ -37,8 +37,9 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
+    { path: 'alliance-invite', component: AllianceInviteComponent, outlet: 'aux', data: {animation: 'in'} },
     { path: 'profile/:id', component: ProfileComponent, canActivate: [ProfileGuard] },
-    { path: 'settings/:id', component: SettingsComponent }
+    { path: 'settings/:id', component: SettingsComponent },
 ];
 
 @NgModule({
@@ -55,13 +56,15 @@ const routes: Routes = [
         MatSelectModule,
         MatProgressSpinnerModule,
         MatChipsModule,
+        MatCardModule,
+        MatSidenavModule,
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
         PipesModule,
         PostModule,
-        MdExpansionModule
+        MatExpansionModule
     ],
     declarations: [
         ProfileComponent,
@@ -75,6 +78,9 @@ const routes: Routes = [
         SecuritySettingsComponent,
         EmailUsernameSettingsComponent,
         VideoProfileDialogComponent
+    ],
+    exports: [
+        AllianceInviteComponent
     ],
     providers: [
         ProfileService,

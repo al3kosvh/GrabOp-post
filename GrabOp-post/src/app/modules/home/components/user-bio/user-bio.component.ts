@@ -13,23 +13,14 @@ import { ProfileService } from '../../../profile/services/profile.service';
 })
 export class UserBioComponent implements OnChanges {
 
-    @Input() user: VOUserExt;
-    location: Models.ProfileLocation;
+    @Input() person: VOUserExt;    
 
     constructor(
         public modal: ModalWindowService,
         private profileService: ProfileService
-    ) {
-        this.location = <Models.ProfileLocation>{};
-    }
+    ) { }
 
     ngOnChanges() {
-        if (this.user) {
-            this.profileService.getProfileLocation(this.user.id, 1).subscribe(
-                location => {
-                    this.location = location
-                }
-            );
-        }
+        
     }
 }
