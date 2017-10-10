@@ -1,6 +1,5 @@
 import { Component, Inject, EventEmitter, Output, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MdDialog, MdDialogRef } from '@angular/material';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //Validators
@@ -26,13 +25,12 @@ export class SignUpComponent implements OnInit {
     private messages = {
         submitErrorMessage: "",
         emailTakenMessage: "This email is already taken",
-        passwordMismatchMessage: "Password mismatch, retype it",
+        passwordMismatchMessage: "Password mismatch",
         usernameTakenMessage: "This username is not available",
         connectionErrorMessage: "Connection error"
     };
 
     constructor(
-        //public dialogRef: MdDialogRef<SignUpDialogComponent>,
         private formBuilder: FormBuilder,
         private signupService: SignUpService
     ) { }
@@ -40,47 +38,7 @@ export class SignUpComponent implements OnInit {
     ngOnInit() {
         this.buildFormGroups();
     }
-
-    checkEmail(email) {
-        //this.checkingEmail = true;
-        this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: true });
-        this.signupService.verifyEmail(email).subscribe(
-            value => {
-                //      this.checkingEmail = false;
-                console.log(value);
-                this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: false });
-            },
-            error => {
-                //    this.checkingEmail = false;
-                this.formArray.get([0]).get('primaryEmail').setErrors({ InvalidEmail: true });
-                switch (error.status) {
-                    case 0:
-                        //          this.emailMessage = 'Conection error';
-                        break;
-                    default:
-                    //        this.emailMessage = error.statusText;
-                }
-            });
-    }
-
-    checkUsername(username) {
-        /*this.checkingUsername = true;
-        this.signupService.verifyEmail(username).subscribe(
-            value => {
-                this.checkingUsername = false;
-                console.log(value);
-            },
-            error => {
-                this.checkingUsername = false;
-                switch (error.status) {
-                    case 0:
-                        this.usernameMessage = 'Conection error';
-                        break;
-                    default:
-                        this.usernameMessage = error.statusText;
-                }
-            });*/
-    }
+    
 
     private submit(data): void {
         this.submitting = true;
@@ -88,10 +46,7 @@ export class SignUpComponent implements OnInit {
         console.log(data);
         this.submitting = false;
     }
-
-    private close(): void {
-        //this.dialogRef.close();
-    }
+    
 
     private changeOccupation(value) {
         console.log(value);
@@ -119,7 +74,7 @@ export class SignUpComponent implements OnInit {
                     primaryEmail: [
                         '',
                         [Validators.required, Validators.email],
-                        EmailTakenValidator.createValidator(this.signupService)
+                        Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
                     ],
                     password: ['', [Validators.required, Validators.minLength(6)]],
                     confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
