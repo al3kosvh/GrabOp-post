@@ -86,3 +86,11 @@ md-card {
 .margin-top-10 {
   margin-top: 10px;
 }
+
+.container-btn-connection-option {
+  width: 100%;
+}
+
+md-menu {
+  width: 100%;
+}
