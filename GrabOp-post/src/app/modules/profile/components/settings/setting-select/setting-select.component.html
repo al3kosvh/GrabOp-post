@@ -1,5 +1,7 @@
-<mat-select fxFlex (change)="onChange()" placeholder="{{setting.description}}" [(ngModel)]="value" name="unit">
-  <mat-option *ngFor="let unit of units" [value]="unit">
-    {{unit}}
-  </mat-option>
-</mat-select>  
+<mat-form-field>
+  <mat-select fxFlex (change)="onChange()" placeholder="{{setting.description}}" [(ngModel)]="value" name="unit">
+    <mat-option *ngFor="let unit of units" [value]="unit">
+      {{unit}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
