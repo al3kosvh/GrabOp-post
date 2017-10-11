@@ -22,6 +22,10 @@ div.star div.percent {
   font-weight: 700;
 }
 
+div.percent {
+  height: 14px;
+}
+
 div.background-container {
   z-index: 20;
   margin-top: -53px;

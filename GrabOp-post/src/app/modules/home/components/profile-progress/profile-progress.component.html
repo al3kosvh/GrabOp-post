@@ -1,10 +1,10 @@
 <div class="completeness" fxLayout="column" fxLayoutAlign="center center">
   <span class="title">Your Profile Completeness</span>
   <div class="star" fxLayout="column" fxLayoutAlign="center center">
-    <img #star src='assets/img/star.png' />
-    <div class="percent"><span>{{percent}}%</span></div>
+    <img src='assets/img/star.png' />
+    <div class="percent"><span *ngIf="visible">{{percent}}%</span></div>
     <div class="background-container" fxLayout="column-reverse">
-      <div [ngStyle]="{'height.px': (0.7 * percent)}" class="background"></div>
+      <div *ngIf="visible" [ngStyle]="{'height.px': (0.7 * percent)}" class="background"></div>
     </div>    
   </div>
   <a [routerLink]="['/profile']">Enhance your Profile</a>
