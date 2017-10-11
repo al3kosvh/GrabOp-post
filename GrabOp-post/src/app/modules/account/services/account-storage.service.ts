@@ -6,8 +6,13 @@ export class AccountStorageService {
 
     user: BehaviorSubject<Models.VOUserExt> = new BehaviorSubject(null);
     token: BehaviorSubject<Models.Token> = new BehaviorSubject(null);
+    
+    private storage;
 
     constructor() {
+
+        this.defineStorage();
+
         window.addEventListener("storage",
             event => {
                 if (event.key.startsWith("user")) {
@@ -19,49 +24,54 @@ export class AccountStorageService {
                     return;
                 }
             });
+
         this.loadUser();
         this.loadToken();
     }
 
     getUser(): Models.VOUserExt {
-        let base64User: string = localStorage.getItem('user');
+        let base64User: string = this.storage.getItem('user');
         if (base64User)
             return JSON.parse(atob(base64User));
         return null;
     }
 
     getToken(): Models.Token {
-        let base64Token: string = localStorage.getItem('token');
+        let base64Token: string = this.storage.getItem('token');
         if (base64Token)
             return JSON.parse(atob(base64Token));
         return null;
     }
 
     setUser(user: Models.VOUserExt) {
-        localStorage.setItem('user', btoa(JSON.stringify(user)));
+        this.storage.setItem('user', btoa(JSON.stringify(user)));
         this.user.next(user);
     }
 
     setToken(token: Models.Token) {
-        localStorage.setItem('token', btoa(JSON.stringify(token)));
+        this.storage.setItem('token', btoa(JSON.stringify(token)));
         this.token.next(token);
     }
 
     clearStorage() {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
+        this.storage.removeItem('user');
+        this.storage.removeItem('token');
         this.user.next(null);
         this.token.next(null);
     }
 
     removeUser() {
-        localStorage.removeItem('user');
+        this.storage.removeItem('user');
         this.user.next(null);
     }
 
     removeToken() {
-        localStorage.removeItem('token');
+        this.storage.removeItem('token');
         this.token.next(null);
+    }
+
+    remember(remember: boolean) {
+        remember ? this.storage = localStorage : this.storage = sessionStorage;
     }
 
     private loadUser() {
@@ -70,5 +80,9 @@ export class AccountStorageService {
 
     private loadToken() {
         this.token.next(this.getToken());
+    }
+
+    private defineStorage() {
+        this.remember(!!localStorage.getItem('token'));
     }
 }

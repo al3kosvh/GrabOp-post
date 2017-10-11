@@ -306,45 +306,39 @@ export class VOSettings {
     // static server: string = 'http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1';
     static server: string = 'http://localhost:53822/api/v1';
 
-    static signinUrl = VOSettings.server + '/auth?format=json';
-    static signoutUrl = VOSettings.server + '/auth/logout?format=json';
-    static register: string = VOSettings.server + '/register?format=json';
-    static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
-    static getMyPosts: string = VOSettings.server + '/services/myservices?format=json';
-    static getPosts: string = VOSettings.server + '/profiles/{{id}}/services?format=json';
-    static getPostById: string = VOSettings.server + '/services/{{id}}?format=json';
-    static updateNeedPost: string = VOSettings.server + '/services/needs/{{id}}?format=json';
-    static updateOfferPost: string = VOSettings.server + '/services/offers/{{id}}?format=json';
-    static createNeedPost: string = VOSettings.server + '/services/needs?format=json';
-    static createOfferPost: string = VOSettings.server + '/services/offers?format=json';
-
-    static updateProfile: string = VOSettings.server + '/profiles/{{id}}/?format=json';
-
-    static myProfile: string = VOSettings.server + '/profiles/me?format=json';
-    static profile: string = VOSettings.server + '/profiles/{{id}}?format=json';
+    static checkEmailExistence: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
     static connection_GetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
     static connection_GetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connection_GetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
     static connection_MakeRequest: string = VOSettings.server + '/profiles/{{sender}}/connectionsInvite/{{receiver}}?format=json';
-    static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
-    // static profile: string = VOSettings.server+'/profiles/{{id}}?format=json';
-    // static register: string = 'register';
+    static createNeedPost: string = VOSettings.server + '/services/needs?format=json';
+    static createOfferPost: string = VOSettings.server + '/services/offers?format=json';
+    static getMyPosts: string = VOSettings.server + '/services/myservices?format=json';
+    static getPostById: string = VOSettings.server + '/services/{{id}}?format=json';
+    static getPosts: string = VOSettings.server + '/profiles/{{id}}/services?format=json';
+    static images: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
+    static images_small: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
     static myposts: string = 'myservices';
-    static posts: string = 'need-offer/';
+    static myProfile: string = VOSettings.server + '/profiles/me?format=json';
     static need: string = 'needs';
     static offer: string = 'offers';
-
-
-
-    static upload: string = 'api/upload.php';
+    static posts: string = 'need-offer/';
+    static profile: string = VOSettings.server + '/profiles/{{id}}?format=json';
+    static register: string = VOSettings.server + '/register?format=json';
+    static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
-    static toggleSetting: string = VOSettings.server + '/profiles/{id}/settings/{settingId}?format=json';
-    // static settings: string = 'api/settings.php';
-    static images: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
+    static signinUrl = VOSettings.server + '/auth?format=json';
+    static signoutUrl = VOSettings.server + '/auth/logout?format=json';
     static SMALL: string = 't_thumbnail';
-    static images_small: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
     static statistics: string = 'api/get_statistics.php';
+    static toggleSetting: string = VOSettings.server + '/profiles/{id}/settings/{settingId}?format=json';
+    static updateNeedPost: string = VOSettings.server + '/services/needs/{{id}}?format=json';
+    static updateOfferPost: string = VOSettings.server + '/services/offers/{{id}}?format=json';
+    static updateProfile: string = VOSettings.server + '/profiles/{{id}}/?format=json';
+    static upload: string = 'api/upload.php';
+    static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
 
+    // static settings: string = 'api/settings.php';
     //static _user: VOUser;
 
     //

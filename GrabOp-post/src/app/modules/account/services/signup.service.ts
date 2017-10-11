@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-//import { Http, Response, URLSearchParams, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { VOSettings, VOResult } from "../../../models/vos";
@@ -9,6 +8,7 @@ import { VOUser, VOUserExt } from '../models/vouser';
 import { HttpService } from './http.service';
 import { Router } from '@angular/router';
 
+import { mapRegisterParametersVOToSO } from "../../../utils/map-functions";
 
 @Injectable()
 export class SignUpService {
@@ -47,22 +47,34 @@ export class SignUpService {
        }).catch(this.handleError);
      }*/
 
-    verifyEmail(token: string) {
-        // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
-        let url: string = VOSettings.verifyemail;
+    register(newUser: Models.VORegisterParameters): Observable<Models.RegisterResponse> {
+        let url: string = VOSettings.register;
+        return this.http.post(url, mapRegisterParametersVOToSO(newUser)).map(response => {
+            console.log('register post res ', response);
+            return response as Models.RegisterResponse;
+        });
+    }
 
+    checkEmailExistence(email: string) {
+        let url: string = VOSettings.checkEmailExistence.replace("{{email}}", email);
+        return this.http.get(url).map(res => {
+            return res.exists == "existing";
+        });
+    }
+
+    verifyEmail(token: string) {
+        let url: string = VOSettings.verifyemail;
         return this.http.post(url, token).map(res => {
-            console.log('verifyEmail post res ', res);
             return res;
         });
     }
 
-    verifyUsername(token: string) {
+    verifyUsername(username: string) {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
         let url: string = VOSettings.verifyemail;
 
-        return this.http.post(url, token).map(res => {
-            console.log('verifyEmail post res ', res);
+        return this.http.post(url, username).map(res => {
+            console.log('verifyUsername post res ', res);
             return res;
         });
     }

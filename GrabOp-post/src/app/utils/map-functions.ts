@@ -540,3 +540,16 @@ export function mapAuthResponseToUser(authResponse: Models.SOAuthenticateRespons
         token: { value: authResponse.session_id }
     }
 }
+
+export function mapRegisterParametersVOToSO(rp: Models.VORegisterParameters): Models.SORegisterParameters {
+    return {
+        UserName: rp.username,
+        FirstName: rp.firstName,
+        LastName: rp.lastName,
+        DisplayName: rp.displayName,
+        Email: rp.email,
+        Password: rp.password,
+        AutoLogin: rp.autoLogin,
+        Continue: rp.continue,
+    }
+}

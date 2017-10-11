@@ -38,15 +38,24 @@ export class SignUpComponent implements OnInit {
     ngOnInit() {
         this.buildFormGroups();
     }
-    
 
-    private submit(data): void {
+
+    private submit(data?): void {
         this.submitting = true;
         this.messages.submitErrorMessage = '';
-        console.log(data);
-        this.submitting = false;
+        console.log('values to submit: ',this.formArray.get([0]).value);
+        this.signupService.register(this.formArray.get([0]).value).subscribe(
+            value => {
+                this.submitting = false;
+            },
+            error => {
+                this.submitting = false;
+                this.messages.submitErrorMessage = error.statusText;
+            }
+        );
+
     }
-    
+
 
     private changeOccupation(value) {
         console.log(value);
@@ -66,10 +75,11 @@ export class SignUpComponent implements OnInit {
                 this.formBuilder.group({
                     firstName: ['', Validators.required],
                     lastName: ['', Validators.required],
+                    displayName: ['', Validators.required],
                     username: [
                         '',
                         [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
-                        Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
+                        //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
                     ],
                     primaryEmail: [
                         '',

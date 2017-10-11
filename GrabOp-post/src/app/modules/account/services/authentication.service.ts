@@ -66,7 +66,8 @@ export class AuthenticationService {
         }).flatMap((user: Models.VOUser) => {
             return this.getUserExtended().map((userExt: Models.VOUserExt) => {
                 userExt.token = { value: user.sessionId };
-                this.saveUser(userExt);
+                //this.saveUser(userExt, authData.rememberMe);
+                this.saveUser(userExt, false);
                 return userExt;
             });
         });
@@ -92,7 +93,8 @@ export class AuthenticationService {
         return this.storage.user.asObservable();
     }
 
-    saveUser(user: Models.VOUserExt): void {
+    saveUser(user: Models.VOUserExt, remember: boolean): void {
+        this.storage.remember(remember);
         this.storage.setUser(user);
         this.storage.setToken(user.token);
     }
