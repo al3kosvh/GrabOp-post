@@ -519,12 +519,33 @@ export function mapUploadRes(res: any): VOpost_attachment {
 export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
     return {
         id: user.id,
-        role: user.type,
-        username: user.user_name,
-        primaryEmail: user.primary_email,
-        displayName: user.display_name,
         firstName: user.first_name,
-        lastName: user.last_name
+        lastName: user.last_name,
+        displayName: user.display_name,
+        primaryEmail: user.primary_email,
+        username: user.user_name,
+        role: user.type,
+        phoneNumber: user.phone_number,
+        profileImage: user.profile_pic,
+        backgroundImage: user.background_pic,
+        jobtitle: user.jobtitle,
+        company: user.company,
+        description: user.description,
+        distance: user.distance,
+        numberOfOpps: user.number_of_opps,
+        occupation: user.occupation,
+        needs: user.needs,
+        offers: user.offers,
+        url: user.url,
+        video: user.bideo,
+        resume: user.resume,
+        province: user.province,
+        city: user.city,
+        country: user.country,
+        latitude: user.latitude,
+        longitude: user.longitude,
+        skillset: user.skillset,
+        interests: user.interests
     }
 }
 

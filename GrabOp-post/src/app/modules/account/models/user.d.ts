@@ -14,7 +14,7 @@ declare module Models {
         jobtitle: string;
         company: string;
         description: string;
-        distance: string;
+        distance: number;
         number_of_opps: number;
         occupation: number;
         needs: number;
@@ -50,7 +50,7 @@ declare module Models {
     }
 
     interface VOUserExt extends VOUser {
-        background_pic?: string;
+        backgroundImage?: string;
         video?: string;
         resume?: string;
         province?: string;
@@ -60,7 +60,7 @@ declare module Models {
         longitude?: number;
         skillset?: string[];
         interests?: string[];
-        profile_pic?: string;
+        profileImage?: string;
         jobtitle?: string;
         company?: string;
         occupation?: number;
