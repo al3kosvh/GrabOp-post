@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AccountStorageService } from './account-storage.service';
+import { ErrorService } from '../../shared/services/error.service';
 
 @Injectable()
 export class HttpService {
@@ -10,7 +11,8 @@ export class HttpService {
 
     constructor(
         private http: Http,
-        private storage: AccountStorageService
+        private storage: AccountStorageService,
+        private errorService: ErrorService
     ) {
         this.setHeaders();
     }
@@ -39,32 +41,47 @@ export class HttpService {
     }
 
     public get(url: string, options?: RequestOptions): Observable<any> {
-        return this.http.get(url, this.getHeaders(options)).map(response => response.json());
+        return this.http.get(url, this.getHeaders(options))
+            .catch(this.handleError)
+            .map(response => response.json());
     }
 
     public post(url: string, body: any, options?: RequestOptions): Observable<any> {
-        return this.http.post(url, body, this.getHeaders(options)).map(response => response.json());
+        return this.http.post(url, body, this.getHeaders(options))
+            .catch(this.handleError)
+            .map(response => response.json());
     }
 
     public put(url: string, body: any, options?: RequestOptions): Observable<any> {
-        return this.http.put(url, body, this.getHeaders(options)).map(response => response.json());
+        return this.http.put(url, body, this.getHeaders(options))
+            .catch(this.handleError)
+            .map(response => response.json());
     }
 
     public delete(url: string, options?: RequestOptions): Observable<any> {
-        return this.http.delete(url, this.getHeaders(options)).map(response => response.json());
+        return this.http.delete(url, this.getHeaders(options))
+            .catch(this.handleError)
+            .map(response => response.json());
     }
 
     public patch(url: string, body: any, options?: RequestOptions): Observable<Response> {
-        return this.http.patch(url, this.getHeaders(options));
+        return this.http.patch(url, this.getHeaders(options))
+            .catch(this.handleError);
     }
 
     public head(url: string, options?: RequestOptions): Observable<Response> {
-        return this.http.head(url, this.getHeaders(options));
+        return this.http.head(url, this.getHeaders(options))
+            .catch(this.handleError);
     }
 
     public options(url: string, options?: RequestOptions): Observable<Response> {
-        return this.http.options(url, this.getHeaders(options));
+        return this.http.options(url, this.getHeaders(options))
+            .catch(this.handleError);
     }
 
+    private handleError(error: any) {
+        let message = this.errorService.resolve(error);
+        return Observable.throw(message);
+    }
 
 }
