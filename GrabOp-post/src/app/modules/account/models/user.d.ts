@@ -1,24 +1,34 @@
 declare module Models {
 
     interface SOUser {
+        id: number;
+        first_name: string;
+        last_name: string;
+        display_name: string;
+        primary_email: string;
+        user_name: string;
+        type: string;
+        phone_number: string;
+        profile_pic: string;
+        background_pic: string;
+        jobtitle: string;
         company: string;
         description: string;
-        display_name: string;
         distance: string;
-        first_name: string;
-        id: number;
-        jobtitle: string;
-        last_name: string;
-        needs: number;
         number_of_opps: number;
         occupation: number;
+        needs: number;
         offers: number;
-        phone_number: string;
-        primary_email: string;
-        profile_pic: string;
-        type: string;
         url: string;
-        user_name: string;
+        bideo: string;
+        resume: string;
+        province: string;
+        city: string;
+        country: string;
+        latitude: number;
+        longitude: number;
+        skillset: string[];
+        interests: string[];
     }
 
     interface VOUser {
