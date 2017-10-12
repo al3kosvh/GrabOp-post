@@ -95,7 +95,7 @@
 
           <div class="container-file" fxLayout="row">
             <div class="document-view" fxLayout="column">
-              <img class="image" [src]="profile.profile_pic">
+              <img class="image" [src]="profile.profileImage">
             </div>
             <div fxLayout="column">
               <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">
@@ -119,7 +119,7 @@
 
           <div class="container-file" fxLayout="row">
             <div class="document-view" fxLayout="column">
-              <img [src]="profile.background_pic">
+              <img [src]="profile.backgroundImage">
             </div>
             <div fxLayout="column">
               <a mat-raised-button color="accent" class="btn-file" [class.disabled]="!f.valid" (click)="onUpLoadFile()">

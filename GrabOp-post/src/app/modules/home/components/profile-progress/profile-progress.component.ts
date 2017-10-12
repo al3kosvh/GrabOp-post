@@ -25,7 +25,7 @@ export class ProfileProgressComponent implements OnChanges {
       if (this.checkRequiredFields()) this.percent += 50;
 
       // Proﬁle picture   10 % 
-      if (this.person.profile_pic) this.percent += 10;
+      if (this.person.profileImage) this.percent += 10;
 
       // First service posting 6 % 
       if (this.person.offers > 0) this.percent += 6;
@@ -37,7 +37,7 @@ export class ProfileProgressComponent implements OnChanges {
       if (this.person.resume) this.percent += 4;
 
       // Background picture 3 %
-      if (this.person.background_pic) this.percent += 3;
+      if (this.person.backgroundImage) this.percent += 3;
 
       // First project 2 % 
       //if (this.user) this.percent += 2;

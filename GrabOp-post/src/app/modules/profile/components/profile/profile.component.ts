@@ -103,8 +103,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
         this.profile = profile;
         this.shortName = (this.profile.firstName ? this.profile.firstName.trim().charAt(0) + '.' : '') + (this.profile.lastName ? this.profile.lastName.trim().charAt(0) : '');
-        this.backgroundPic = this.profile.background_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.background_pic + ")" : this.backgroundPic;
-        this.profilePic = this.profile.profile_pic ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profile_pic + ")" : this.profilePic;
+        this.backgroundPic = this.profile.backgroundImage ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.backgroundImage + ")" : this.backgroundPic;
+        this.profilePic = this.profile.profileImage ? 'url(https://res.cloudinary.com/al3kosvh/image/upload/t_thumbnail/v1468698749/' + this.profile.profileImage + ")" : this.profilePic;
 
         this.validateConnection();
 

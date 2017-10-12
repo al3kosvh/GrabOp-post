@@ -50,7 +50,7 @@ export class VOUser {
 
 
 export class VOUserExt extends VOUser {
-  background_pic?: string;
+  backgroundImage?: string;
   video?: string;
   resume?: string;
   province?: string;
@@ -60,7 +60,7 @@ export class VOUserExt extends VOUser {
   longitude?: number;
   skillset?: string[];
   interests?: string[];
-  profile_pic?: string;
+  profileImage?: string;
   jobtitle?: string;
   company?: string;
   occupation?: number;

@@ -1,5 +1,9 @@
 declare module Models {
 
+    enum UserRole {
+        ADMIN, USER
+    }
+
     interface SOUser {
         id: number;
         first_name: string;

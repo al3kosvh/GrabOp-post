@@ -425,7 +425,7 @@ export function mapGetPerson(res): VOUserExt {
         firstName: account.first_name,
         lastName: account.last_name,
 
-        background_pic: account.background_pic,
+        backgroundImage: account.background_pic,
         video: account.bideo, // ????? bideo
         resume: account.resume,
         province: account.province,
@@ -435,7 +435,7 @@ export function mapGetPerson(res): VOUserExt {
         longitude: account.longitude,
         skillset: account.skillset,
         interests: account.interests,
-        profile_pic: account.profile_pic,
+        profileImage: account.profile_pic,
         jobtitle: account.jobtitle,
         company: account.company,
         occupation: account.occupation,
