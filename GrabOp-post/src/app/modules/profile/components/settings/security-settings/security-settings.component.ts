@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 // Services
 import { AuthenticationService } from '../../../../account/services/authentication.service';
 import { SettingsService } from '../../../services/settings.service';
-import { ErrorService } from '../../../../shared/services/error.service';
+import { HttpErrorService } from '../../../../shared/services/http-error.service';
 
 @Component({
     selector: 'security-settings',
@@ -20,7 +20,6 @@ export class SecuritySettingsComponent {
     constructor(
         private accountService: AuthenticationService,
         private settingsService: SettingsService,
-        private error: ErrorService
     ) {
         this.model = <Models.ChangeUserPassword>{};
     }
@@ -32,7 +31,6 @@ export class SecuritySettingsComponent {
                 this.inProcess = false;
             },
             error => {
-                this.error.resolve(error);
                 this.inProcess = false
             }
         );

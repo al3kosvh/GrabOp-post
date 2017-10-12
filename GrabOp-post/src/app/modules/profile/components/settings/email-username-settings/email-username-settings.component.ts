@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
 // Services
 import { AuthenticationService } from '../../../../account/services/authentication.service';
 import { SettingsService } from '../../../services/settings.service';
-import { ErrorService } from '../../../../shared/services/error.service';
 
 @Component({
     selector: 'email-username-settings',
@@ -19,8 +18,7 @@ export class EmailUsernameSettingsComponent {
 
     constructor(
         private accountService: AuthenticationService,
-        private settingsService: SettingsService,
-        private error: ErrorService
+        private settingsService: SettingsService
     ) {
         this.model = {
             email: '',
@@ -35,7 +33,6 @@ export class EmailUsernameSettingsComponent {
         //        this.inProcess = false;
         //    },
         //    error => {
-        //        this.error.resolve(error);
         //        this.inProcess = false
         //    }
         //);
