@@ -15,7 +15,6 @@ export class SignInDialogComponent {
 
     user: Observable<VOUser>;
     signinData: Models.SignIn;
-    errorMessage: string;
     loading: boolean;
 
     constructor(
@@ -28,23 +27,12 @@ export class SignInDialogComponent {
 
     onSubmit(): void {
         this.loading = true;
-        this.errorMessage = '';
         this.authenticationService.signIn(this.signinData).subscribe(
             value => {
                 this.matDialogRef.close();
                 this.loading = false;
             },
             error => {                
-                switch (error.status) {
-                    case 0:
-                        this.errorMessage = 'Conection error';
-                        break;
-                    case 401:
-                        this.errorMessage = 'Username or password incorrect';
-                        break;
-                    default:
-                        this.errorMessage = error.statusText;
-                }
                 this.loading = false;
             }
         );

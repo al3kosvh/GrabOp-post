@@ -2,8 +2,6 @@
 
     <h3>Sign Up</h3>
 
-    <div *ngIf="messages.submitErrorMessage && !submitting">{{ messages.submitErrorMessage }}</div>
-
     <form #f="ngForm" autocomplete="off" [formGroup]="formGroup" (ngSubmit)="submit(f.value)">
 
         <mat-horizontal-stepper formArrayName="formArray" linear>

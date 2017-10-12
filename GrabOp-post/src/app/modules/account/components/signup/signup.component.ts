@@ -23,7 +23,6 @@ export class SignUpComponent implements OnInit {
     private submitting = false;
 
     private messages = {
-        submitErrorMessage: "",
         emailTakenMessage: "This email is already taken",
         passwordMismatchMessage: "Password mismatch",
         usernameTakenMessage: "This username is not available",
@@ -42,7 +41,6 @@ export class SignUpComponent implements OnInit {
 
     private submit(data?): void {
         this.submitting = true;
-        this.messages.submitErrorMessage = '';
         console.log('values to submit: ',this.formArray.get([0]).value);
         this.signupService.register(this.formArray.get([0]).value).subscribe(
             value => {
@@ -50,7 +48,6 @@ export class SignUpComponent implements OnInit {
             },
             error => {
                 this.submitting = false;
-                this.messages.submitErrorMessage = error.statusText;
             }
         );
 
