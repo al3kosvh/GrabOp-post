@@ -39,7 +39,6 @@ declare module Models {
         username: string;
         password?: string;
         primaryEmail: string;
-        emailVisible?: boolean;
         displayName: string;
         token?: Models.Token;
         isLogin?: boolean;
@@ -69,7 +68,6 @@ declare module Models {
         url?: string;
         description?: string;
         phoneNumber?: string;
-        phoneVisible?: boolean;
         distance?: number;
         offers?: number;
         needs?: number;

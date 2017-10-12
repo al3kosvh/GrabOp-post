@@ -99,7 +99,6 @@ export class SignUpComponent implements OnInit {
 
                 this.formBuilder.group({
                     phoneNumber: ['', Validators.required],
-                    phoneVisible: ['', Validators.nullValidator],
                     country: ['', Validators.required],
                     province: ['', Validators.required],
                     city: ['', Validators.required],
