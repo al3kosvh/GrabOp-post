@@ -46,7 +46,7 @@ export class AuthenticationService {
         });
     }
 
-    signIn(authData: Models.SignIn): Observable<Models.VOUserExt> {
+    signIn(authData: Models.SOAuthenticateBasic): Observable<Models.VOUserExt> {
         let url: string = VOSettings.signinUrl;
 
         return this.http.post(url, authData).map(response => {

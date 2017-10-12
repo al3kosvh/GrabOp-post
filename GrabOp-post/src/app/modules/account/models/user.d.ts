@@ -74,38 +74,6 @@ declare module Models {
         numberOfOpps?: number;
     }
 
-    interface SOResponseStatus {
-        ErrorCode: string;
-        Message: string;
-        StackTrace: string;
-        Errors: SOResponseError[];
-    }
-
-    // SOResponseError - made for myself
-    interface SOResponseError {
-        ErrorCode: string;
-        FieldName: string;
-        Message: string;
-        Meta: any;
-    }
-
-
-    interface SOAuthenticate {
-        UserName: string;
-        Password: string;
-        provider: string;
-        nonce: string;
-        UseTokenCookie: boolean;
-    }
-
-    interface SOAuthenticateResponse {
-        user_id: number;
-        session_id: string;
-        user_name: string;
-        display_name: string;
-        bearer_token: string;
-        response_status: SOResponseStatus;
-    }
 
     // server model
 

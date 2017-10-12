@@ -14,7 +14,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 export class SignInDialogComponent {
 
     user: Observable<VOUser>;
-    signinData: Models.SignIn;
+    signinData: Models.SOAuthenticateBasic;
     loading: boolean;
 
     constructor(
