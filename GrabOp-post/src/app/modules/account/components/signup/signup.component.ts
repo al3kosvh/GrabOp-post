@@ -1,4 +1,4 @@
-import { Component, Inject, EventEmitter, Output, OnInit } from '@angular/core';
+﻿import { Component, Inject, EventEmitter, Output, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -41,8 +41,10 @@ export class SignUpComponent implements OnInit {
 
     private submit(data?): void {
         this.submitting = true;
-        console.log('values to submit: ',this.formArray.get([0]).value);
-        this.signupService.register(this.formArray.get([0]).value).subscribe(
+        console.log('values to submit: ', this.formGroup.value);
+        //console.log('values to submit: ',this.formArray.get([0]).value);
+        //this.signupService.register(this.formArray.get([0]).value).subscribe(
+        this.signupService.register(this.formGroup.value).subscribe(
             value => {
                 this.submitting = false;
             },
@@ -61,12 +63,31 @@ export class SignUpComponent implements OnInit {
         }
     }
 
-    get formArray(): AbstractControl | null {
+    /*get formArray(): AbstractControl | null {
         return this.formGroup.get('formArray');
-    }
+    }*/
 
     private buildFormGroups() {
+
         this.formGroup = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            displayName: ['', Validators.required],
+            username: [
+                '',
+                [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
+                //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
+            ],
+            primaryEmail: [
+                '',
+                [Validators.required, Validators.email],
+                Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
+            ],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        });
+
+        /*this.formGroup = this.formBuilder.group({
 
             formArray: this.formBuilder.array([
                 this.formBuilder.group({
@@ -104,14 +125,22 @@ export class SignUpComponent implements OnInit {
                     city: ['', Validators.required],
                 }),
             ])
-        });
+        });*/
     }
 
-    private getFormControlErrors(formArrayIndex: number, controlName: string) {
+    private getFormControlErrors(controlName: string) {
+        return this.formGroup.get(controlName).errors;
+    }
+
+    private getFormControl(controlName: string) {
+        return this.formGroup.get(controlName);
+    }
+
+    /*private getFormControlErrors(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName).errors;
     }
 
     private getFormControl(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName);
-    }
+    }*/
 }
