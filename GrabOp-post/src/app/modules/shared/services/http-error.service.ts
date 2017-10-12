@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { SnackBarService } from './snackbar.service';
 
 @Injectable()
-export class ErrorService {
+export class HttpErrorService {
 
     constructor(
         private snackBarService: SnackBarService

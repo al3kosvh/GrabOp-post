@@ -18,11 +18,11 @@ import { MatImageDirective } from "./directives/mat-image.directive";
 // Services
 import { ModalWindowService } from './services/modal-window.service';
 import { SnackBarService } from './services/snackbar.service';
-import { ErrorService } from './services/error.service';
+import { HttpErrorService } from './services/http-error.service';
 
 @NgModule({
-    imports: [        
-        FormsModule,        
+    imports: [
+        FormsModule,
         FlexLayoutModule,
         MatInputModule,
         MatListModule,
@@ -31,12 +31,12 @@ import { ErrorService } from './services/error.service';
     exports: [
         FlexLayoutModule,
         MatImageDirective,
-        MembersListComponent,        
+        MembersListComponent,
         ListRowComponent,
         ModalAlertComponent,
-        ModalPromptComponent        
+        ModalPromptComponent
     ],
-    declarations: [        
+    declarations: [
         MatImageDirective,
         ListRowComponent,
         ModalAlertComponent,
@@ -46,7 +46,7 @@ import { ErrorService } from './services/error.service';
     providers: [
         ModalWindowService,
         SnackBarService,
-        ErrorService,
+        HttpErrorService,
         MatSnackBar
     ],
     entryComponents: [

@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AccountStorageService } from './account-storage.service';
-import { ErrorService } from '../../shared/services/error.service';
+import { HttpErrorService } from '../../shared/services/http-error.service';
 
 @Injectable()
 export class HttpService {
@@ -12,7 +12,7 @@ export class HttpService {
     constructor(
         private http: Http,
         private storage: AccountStorageService,
-        private errorService: ErrorService
+        private errorService: HttpErrorService
     ) {
         this.setHeaders();
     }
