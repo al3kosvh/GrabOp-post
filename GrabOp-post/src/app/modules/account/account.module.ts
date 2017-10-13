@@ -13,11 +13,11 @@ import { SharedModule } from '../shared/shared.module';
 
 //Account Components
 import { AccountRecoverComponent } from './components/recover/recover.component';
-import { SignUpComponent } from './components/signup/signup.component';
-import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
+import { SignUpComponent } from './components/signup/signup.component';
+import { SignUpConfirmComponent } from './components/signup/confirm/signup-confirm.component';
 
 //Account Services
 import { AccountStorageService } from './services/account-storage.service';

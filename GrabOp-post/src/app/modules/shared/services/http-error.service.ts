@@ -39,7 +39,7 @@ export class HttpErrorService {
     };
 
     resolve(error): string {
-        console.log(error);
+        console.log('HttpErrorService: ',error);
         let reason = this.errors[error.status];
         if (!reason) reason = error.statusText;
         this.snackBarService.show(reason, 'Error');
