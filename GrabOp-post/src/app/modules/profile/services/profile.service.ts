@@ -7,7 +7,6 @@ import { HttpService } from '../../account/services/http.service';
 
 import { VOSettings } from '../../../models/vos';
 import { mapGetPerson, mapUpdateProfileClientToServer } from '../../../utils/map-functions';
-import { VOUserExt } from "../../account/models/vouser";
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
@@ -21,9 +20,8 @@ export class ProfileService {
         this.url = VOSettings.server + '/profiles/';
     }
 
-    public getProfile(): Observable<VOUserExt> {
-        return this.http.get(VOSettings.myProfile).map(mapGetPerson)
-            .catch((error: any) => Observable.throw(error || 'Server error'));
+    public getProfile(): Observable<Models.VOUserExt> {
+        return this.http.get(VOSettings.myProfile).map(mapGetPerson);
     }
 
     public validateUrlProfile(id: number, router: Router): Observable<boolean> {
@@ -34,26 +32,20 @@ export class ProfileService {
                 return false;
             }
             return true;
-        })
-            .catch((error: any) => {
-                return new Observable<boolean>();
-            });
+        });
     }
 
     public getProfileLocation(id: number, type: number): Observable<Models.ProfileLocation> {
-        return this.http.get(this.url + id.toString() + '/location?format=json&type=' + type)
-          .catch((error: any) => Observable.throw(error || 'Server error'));
+        return this.http.get(this.url + id.toString() + '/location?format=json&type=' + type);
     }
 
     public getProfileById(id: string): Observable<Models.VOUserExt> {
-        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id))
-            .catch((error: any) => Observable.throw(error || 'Server error'));
+        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id));
     }
 
-    public updateProfile(person: VOUserExt): Observable<VOUserExt> {
+    public updateProfile(person: Models.VOUserExt): Observable<Models.VOUserExt> {
         return this.http.put(VOSettings.updateProfile.replace(<any>'{{id}}', person.id.toString()), mapUpdateProfileClientToServer(person))
-            .map(res => res)
-            .catch((error: any) => Observable.throw(error || 'Server error'));
+            .map(res => res);
     }
 
 }

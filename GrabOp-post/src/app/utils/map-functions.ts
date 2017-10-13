@@ -5,7 +5,7 @@ import {
     SOupdate_profile_req, SOattachment
 } from '../models/server-objects';
 import { SONeedUpdateNeed } from '../models/sos';
-import { VOUserExt, VOUser } from '../modules/account/models/vouser';
+//import { VOUserExt, VOUser } from '../modules/account/models/vouser';
 import 'rxjs/add/operator/map';
 
 // private mapPostSend(post:VOPost): SONeed_UpdateNeed {
@@ -406,7 +406,7 @@ export function mapGetPosts(res): any[] {
 //   }
 // }
 
-export function mapGetPerson(res): VOUserExt {
+export function mapGetPerson(res): Models.VOUserExt {
 
     let account: SOaccount_expanded = res;
     //  console.log('mapGetPerson res', res);
@@ -450,7 +450,7 @@ export function mapGetPerson(res): VOUserExt {
     }
 }
 
-export function mapUpdateProfileClientToServer(user: VOUserExt): any {
+export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
     const map = {
         id: 'id',
         sessionId: 'session_id',
