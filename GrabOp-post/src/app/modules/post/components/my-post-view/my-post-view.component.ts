@@ -15,7 +15,7 @@ export class MyPostViewComponent implements OnInit {
 
     idPost: number;
     idPerson: string;
-    person: VOUserExt;
+    person: Models.VOUserExt;
     personLocation: Models.ProfileLocation;
     post: VOPost = new VOPost({});
     // myPosts: VOPost[];

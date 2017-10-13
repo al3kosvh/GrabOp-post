@@ -15,7 +15,7 @@ export class EditProfileDialogComponent {
 
     errorMessage: string;
     loading: boolean;
-    profile: VOUserExt;
+    profile: Models.VOUserExt;
     occupations = [
         { value: 1, name: "Self Employed" },
         { value: 2, name: "Company" },

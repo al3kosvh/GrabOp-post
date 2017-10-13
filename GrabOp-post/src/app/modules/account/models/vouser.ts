@@ -37,7 +37,7 @@ export class VOUser {
   primaryEmail: string;
   emailVisible?: boolean;
   displayName: string;
-  token?: string;
+  token?: Models.Token;
   isLogin?: boolean;
   firstName: string;
   lastName: string;

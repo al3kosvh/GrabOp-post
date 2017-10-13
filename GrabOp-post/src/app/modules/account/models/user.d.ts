@@ -36,7 +36,7 @@ declare module Models {
     }
 
     interface VOUser {
-        id: number;
+        id?: number;
         sessionId?: string;
         role?: string;
         username: string;
