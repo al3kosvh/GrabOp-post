@@ -55,37 +55,35 @@ export class SignUpComponent implements OnInit {
 
     }
 
-
     private changeOccupation(value) {
-        console.log(value);
         if (value == "1") {
             this.user.company = '';
         }
     }
 
-    /*get formArray(): AbstractControl | null {
-        return this.formGroup.get('formArray');
-    }*/
-
     private buildFormGroups() {
 
-        this.formGroup = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            displayName: ['', Validators.required],
-            username: [
-                '',
-                [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
-                //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
-            ],
-            primaryEmail: [
-                '',
-                [Validators.required, Validators.email],
-                Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
-            ],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-        });
+        this.formGroup = this.formBuilder.group(
+            {
+                firstName: ['', Validators.required],
+                lastName: ['', Validators.required],
+                displayName: ['', Validators.required],
+                username: [
+                    '',
+                    [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9_-]{3,20}$')]
+                ],
+                primaryEmail: [
+                    '',
+                    [Validators.required, Validators.email],
+                    Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
+                ],
+                password: ['', [Validators.required, Validators.minLength(6)]],
+                confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+            },
+            {
+                validator: MatchPasswordValidator.matchPassword
+            }
+        );
 
         /*this.formGroup = this.formBuilder.group({
 
@@ -135,6 +133,10 @@ export class SignUpComponent implements OnInit {
     private getFormControl(controlName: string) {
         return this.formGroup.get(controlName);
     }
+
+    /*get formArray(): AbstractControl | null {
+        return this.formGroup.get('formArray');
+    }*/
 
     /*private getFormControlErrors(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName).errors;
