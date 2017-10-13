@@ -3,7 +3,7 @@
   <router-outlet name="aux" #outlet="outlet"></router-outlet>
 </div>
 <mat-sidenav-container [ngClass]="fixedLayout">
-  <mat-sidenav class="left" #sidenav [position]="start">
+  <mat-sidenav class="left" #sidenav [position]="start" [ngClass]="fixedLayout">
     <a mat-button style="height: 0; position: absolute;">
       <!-- 'absorbs' the behavior -->
     </a>
