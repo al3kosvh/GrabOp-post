@@ -73,6 +73,11 @@ export class AuthenticationService {
         });
     }
 
+    recoverRequest(usernameOrEmail: string) {
+        let url: string = VOSettings.recoverRequestUrl;
+        return this.http.post(url, { "userNameOrEmail": usernameOrEmail });
+    }
+
     getUserExtended(): Observable<Models.VOUserExt> {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/profiles/me?format=json';
         let url: string = VOSettings.myProfile;

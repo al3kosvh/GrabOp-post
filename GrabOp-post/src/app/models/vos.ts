@@ -324,6 +324,7 @@ export class VOSettings {
     static offer: string = 'offers';
     static posts: string = 'need-offer/';
     static profile: string = VOSettings.server + '/profiles/{{id}}?format=json';
+    static recoverRequestUrl: string = VOSettings.server + '/passwordforgot?format=json';
     static register: string = VOSettings.server + '/register?format=json';
     static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
