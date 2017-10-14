@@ -25,6 +25,7 @@
     <None Remove="src\app\modules\profile\models\profile.d.ts" />
     <None Remove="src\app\modules\search\components\search\search.component.ts" />
     <None Remove="src\app\modules\search\search.module.ts" />
+    <None Remove="src\app\modules\shared\services\location.service.ts" />
     <None Remove="src\app\services\sidenav.service.ts" />
   </ItemGroup>
 
@@ -44,6 +45,7 @@
     <TypeScriptCompile Include="src\app\components\terms-of-use\terms-of-use.component.ts" />
     <TypeScriptCompile Include="src\app\components\how-it-works\how-it-works.component.ts" />
     <TypeScriptCompile Include="src\app\components\sidenav-options\sidenav-options.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\post\models\categories.d.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\security-settings\security-settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\email-username-settings\email-username-settings.component.ts" />
     <TypeScriptCompile Include="src\app\modules\profile\components\settings\setting-select\setting-select.component.ts" />
@@ -56,12 +58,12 @@
     <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\shared\services\location.service.ts" />
     <TypeScriptCompile Include="src\app\services\sidenav.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="src\app\modules\connection\models\" />
-    <Folder Include="src\app\modules\post\models\" />
   </ItemGroup>
 
   <PropertyGroup>
