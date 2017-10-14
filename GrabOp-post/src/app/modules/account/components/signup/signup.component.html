@@ -1,135 +1,132 @@
-﻿<div class="signup" fxLayout="column">
+<div class="signup" fxLayout="column">
 
-  <h3>Sign Up</h3>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <h3>Sign Up</h3>
+    </div>
 
-  <form #f="ngForm" autocomplete="off" [formGroup]="formGroup" (ngSubmit)="submit(f.value)">
+    <form #f="ngForm" autocomplete="off" [formGroup]="formGroup" (ngSubmit)="submit(f.value)">
 
-    <div *ngIf="messages.submitMessage">{{ messages.submitMessage }}</div>
+        <div *ngIf="messages.submitMessage">{{ messages.submitMessage }}</div>
 
-    <mat-horizontal-stepper formArrayName="formArray" linear>
+        <mat-horizontal-stepper formArrayName="formArray" linear>
 
-      <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
-        <mat-form-field>
-          <input matInput placeholder="First Name" name="firstName" formControlName="firstName" />
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Last Name" name="lastName" formControlName="lastName" />
-        </mat-form-field>
+            <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+                <mat-form-field>
+                    <input matInput placeholder="First Name" name="firstName" formControlName="firstName" />
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" name="lastName" formControlName="lastName" />
+                </mat-form-field>
 
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="User Name" name="username" formControlName="username" />
-          </mat-form-field>
-          <img *ngIf="getFormControl(0,'username').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-          />
-          <div *ngIf="getFormControlErrors(0,'username')?.usernameTaken">
-            {{ messages.usernameTakenMessage }}
-          </div>
-          <div *ngIf="getFormControlErrors(0,'username')?.connectionError">
-            {{ messages.connectionErrorMessage }}
-          </div>
-        </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="User Name" name="username" formControlName="username" />
+                    </mat-form-field>
+                    <img *ngIf="getFormControl(0,'username').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <div *ngIf="getFormControlErrors(0,'username')?.usernameTaken">
+                        {{ messages.usernameTakenMessage }}
+                    </div>
+                    <div *ngIf="getFormControlErrors(0,'username')?.connectionError">
+                        {{ messages.connectionErrorMessage }}
+                    </div>
+                </div>
 
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Email" name="primaryEmail" formControlName="primaryEmail" />
-          </mat-form-field>
-          <img *ngIf="getFormControl(0,'primaryEmail').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-          />
-          <div *ngIf="getFormControlErrors(0,'primaryEmail')?.emailTaken">
-            {{ messages.emailTakenMessage }}
-          </div>
-          <div *ngIf="getFormControlErrors(0,'primaryEmail')?.connectionError">
-            {{ messages.connectionErrorMessage }}
-          </div>
-        </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Email" name="primaryEmail" formControlName="primaryEmail" />
+                    </mat-form-field>
+                    <img *ngIf="getFormControl(0,'primaryEmail').status === 'PENDING'" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <div *ngIf="getFormControlErrors(0,'primaryEmail')?.emailTaken">
+                        {{ messages.emailTakenMessage }}
+                    </div>
+                    <div *ngIf="getFormControlErrors(0,'primaryEmail')?.connectionError">
+                        {{ messages.connectionErrorMessage }}
+                    </div>
+                </div>
 
-        <div>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Password" name="password" formControlName="password"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
-          </mat-form-field>
-          <div *ngIf="getFormControlErrors(0,'confirmPassword')?.matchPassword">
-            {{ messages.passwordMismatchMessage }}
-          </div>
-        </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Password" name="password" formControlName="password" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
+                    </mat-form-field>
+                    <div *ngIf="getFormControlErrors(0,'confirmPassword')?.matchPassword">
+                        {{ messages.passwordMismatchMessage }}
+                    </div>
+                </div>
 
-        <div>
-          <button type="button" mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </mat-step>
+                <div>
+                    <button type="button" mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+            </mat-step>
 
-      <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
-        <mat-form-field>
-          <input matInput [(ngModel)]="user.jobtitle" placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
-        </mat-form-field>
+            <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.jobtitle" placeholder="Job Title" name="jobtitle" formControlName="jobTitle" />
+                </mat-form-field>
 
-        <mat-radio-group [(ngModel)]="user.occupation" name="occupation" formControlName="occupation" (change)="changeOccupation($event.value)">
+                <mat-radio-group [(ngModel)]="user.occupation" name="occupation" formControlName="occupation" (change)="changeOccupation($event.value)">
 
-          <mat-radio-button value="1">
-            Company
-          </mat-radio-button>
-          <mat-form-field *ngIf="user.occupation == 1">
-            <input matInput [(ngModel)]="user.company" placeholder="Company" name="company" formControlName="company" />
-          </mat-form-field>
+                    <mat-radio-button value="1">
+                        Company
+                    </mat-radio-button>
+                    <mat-form-field *ngIf="user.occupation == 1">
+                        <input matInput [(ngModel)]="user.company" placeholder="Company" name="company" formControlName="company" />
+                    </mat-form-field>
 
-          <mat-radio-button value="2">
-            Self Employed
-          </mat-radio-button>
+                    <mat-radio-button value="2">
+                        Self Employed
+                    </mat-radio-button>
 
-          <mat-radio-button value="3">
-            Seeking an Opportunity
-          </mat-radio-button>
+                    <mat-radio-button value="3">
+                        Seeking an Opportunity
+                    </mat-radio-button>
 
-          <mat-radio-button value="4">
-            Other
-          </mat-radio-button>
+                    <mat-radio-button value="4">
+                        Other
+                    </mat-radio-button>
 
-        </mat-radio-group>
+                </mat-radio-group>
 
-        <div>
-          <button mat-button type="button" matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
-        </div>
-      </mat-step>
+                <div>
+                    <button mat-button type="button" matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
+                </div>
+            </mat-step>
 
-      <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
-        <mat-form-field>
-          <input matInput [(ngModel)]="user.phone" placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber"
-          />
-        </mat-form-field>
+            <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.phone" placeholder="Phone Number" name="phone" type="tel" formControlName="phoneNumber" />
+                </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [(ngModel)]="user.country" placeholder="Country" name="country" formControlName="country" />
-        </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.country" placeholder="Country" name="country" formControlName="country" />
+                </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [(ngModel)]="user.province" placeholder="Province" name="province" formControlName="province" />
-        </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.province" placeholder="Province" name="province" formControlName="province" />
+                </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [(ngModel)]="user.city" placeholder="City" name="city" formControlName="city" />
-        </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="user.city" placeholder="City" name="city" formControlName="city" />
+                </mat-form-field>
 
-        <div>
-          <button mat-button type="button" matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
-        </div>
-      </mat-step>
+                <div>
+                    <button mat-button type="button" matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" type="button" matStepperNext>Next</button>
+                </div>
+            </mat-step>
 
-      <mat-step>
-        <ng-template matStepLabel>GO</ng-template>
-        You are now done.
-        <div>
-          <button mat-button type="button" matStepperPrevious>Back</button>
-          <button mat-raised-button color="primary" [disabled]="!f.valid" type="submit">Sign Up</button>
-          <img *ngIf="submitting" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-          />
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </form>
+            <mat-step>
+                <ng-template matStepLabel>GO</ng-template>
+                You are now done.
+                <div>
+                    <button mat-button type="button" matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" [disabled]="!f.valid" type="submit">Sign Up</button>
+                    <img *ngIf="submitting" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </form>
 </div>
