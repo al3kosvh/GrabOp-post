@@ -337,6 +337,7 @@ export class VOSettings {
     static updateProfile: string = VOSettings.server + '/profiles/{{id}}/?format=json';
     static upload: string = 'api/upload.php';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
+    static getCategories: string = VOSettings.server + '/categories/?format=json';
 
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;
