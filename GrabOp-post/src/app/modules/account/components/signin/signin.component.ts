@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { Component } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 // Services
 import { AuthenticationService } from '../../services/authentication.service';
