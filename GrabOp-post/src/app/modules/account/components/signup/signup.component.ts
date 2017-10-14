@@ -18,11 +18,12 @@ import { SignUpService } from '../../services/signup.service';
 })
 export class SignUpComponent implements OnInit {
 
-    private user: Models.VOUserExt = { occupation: 1 } as Models.VOUserExt;
+    private user: Models.VOUserExt = { occupation: 1, role: "user" } as Models.VOUserExt;
     private formGroup: FormGroup;
     private submitting = false;
 
     private messages = {
+        submitMessage: "",
         emailTakenMessage: "This email is already taken",
         passwordMismatchMessage: "Password mismatch",
         usernameTakenMessage: "This username is not available",
@@ -39,55 +40,46 @@ export class SignUpComponent implements OnInit {
     }
 
 
-    private submit(data?): void {
+    private submit(): void {
         this.submitting = true;
-        console.log('values to submit: ', this.formGroup.value);
-        //console.log('values to submit: ',this.formArray.get([0]).value);
+        this.messages.submitMessage = "";
+        let registerData: Models.VORegisterParameters = this.formArray.get([0]).value as Models.VORegisterParameters;
+
+        //console.log('values to submit: ', this.formArray.get([0]).value);
         //this.signupService.register(this.formArray.get([0]).value).subscribe(
-        this.signupService.register(this.formGroup.value).subscribe(
+        this.signupService.register(registerData).subscribe(
             value => {
-                this.submitting = false;
+                console.log('register ok', value);
+                this.user.id = value;
+                console.log('register ok', this.user);
+                this.signupService.registerContinue(this.user).subscribe(
+                    value => {
+                        console.log('profile update ok', value);
+                        this.submitting = false;
+                    },
+                    error => {
+                        this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the proces."
+                        this.submitting = false;
+                    }
+                );
             },
             error => {
                 this.submitting = false;
             }
         );
+        this.submitting = false;
 
     }
 
-
     private changeOccupation(value) {
-        console.log(value);
         if (value == "1") {
             this.user.company = '';
         }
     }
 
-    /*get formArray(): AbstractControl | null {
-        return this.formGroup.get('formArray');
-    }*/
-
     private buildFormGroups() {
 
         this.formGroup = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            displayName: ['', Validators.required],
-            username: [
-                '',
-                [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
-                //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
-            ],
-            primaryEmail: [
-                '',
-                [Validators.required, Validators.email],
-                Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
-            ],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-        });
-
-        /*this.formGroup = this.formBuilder.group({
 
             formArray: this.formBuilder.array([
                 this.formBuilder.group({
@@ -96,7 +88,7 @@ export class SignUpComponent implements OnInit {
                     displayName: ['', Validators.required],
                     username: [
                         '',
-                        [Validators.required, Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
+                        [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
                         //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
                     ],
                     primaryEmail: [
@@ -125,22 +117,18 @@ export class SignUpComponent implements OnInit {
                     city: ['', Validators.required],
                 }),
             ])
-        });*/
+        });
     }
 
-    private getFormControlErrors(controlName: string) {
-        return this.formGroup.get(controlName).errors;
+    get formArray(): AbstractControl | null {
+        return this.formGroup.get('formArray');
     }
 
-    private getFormControl(controlName: string) {
-        return this.formGroup.get(controlName);
-    }
-
-    /*private getFormControlErrors(formArrayIndex: number, controlName: string) {
+    private getFormControlErrors(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName).errors;
     }
 
     private getFormControl(formArrayIndex: number, controlName: string) {
         return this.formArray.get([formArrayIndex]).get(controlName);
-    }*/
+    }
 }

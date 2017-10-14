@@ -80,7 +80,9 @@ export class HttpService {
     }
 
     private handleError(error: any) {
+        console.log('http service handleError: ', error);
         let message = this.errorService.resolve(error);
+        console.log('http service handleError: ', message);
         return Observable.throw(message);
     }
 

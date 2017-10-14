@@ -8,7 +8,7 @@ import { VOUser, VOUserExt } from '../models/vouser';
 import { HttpService } from './http.service';
 import { Router } from '@angular/router';
 
-import { mapRegisterParametersVOToSO } from "../../../utils/map-functions";
+import { mapRegisterParametersVOToSO, mapUpdateProfileClientToServer } from "../../../utils/map-functions";
 
 @Injectable()
 export class SignUpService {
@@ -47,12 +47,21 @@ export class SignUpService {
        }).catch(this.handleError);
      }*/
 
-    register(newUser: Models.VORegisterParameters): Observable<Models.RegisterResponse> {
-        let url: string = VOSettings.register;
-        return this.http.post(url, mapRegisterParametersVOToSO(newUser)).map(response => {
-            console.log('register post res ', response);
-            return response as Models.RegisterResponse;
+    registerContinue(user: Models.VOUserExt): Observable<any> {
+        let url: string = VOSettings.updateProfile.replace(<any>'{{id}}', user.id.toString());
+        return this.http.post(url, mapUpdateProfileClientToServer(user)).map(response => {
+            console.log('register continue res ', response);
+            return response;
         });
+    }
+
+    register(newUser: Models.VORegisterParameters): Observable<number> {
+        let url: string = VOSettings.register;
+        return this.http.post(url, mapRegisterParametersVOToSO(newUser))
+            .map(response => {
+                console.log('register res ', response);
+                return response.user_id as number;
+            });
     }
 
     checkEmailExistence(email: string) {
@@ -69,7 +78,7 @@ export class SignUpService {
         });
     }
 
-    verifyUsername(username: string) {
+    /*checkUsernameExistence(username: string) {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
         let url: string = VOSettings.verifyemail;
 
@@ -77,7 +86,7 @@ export class SignUpService {
             console.log('verifyUsername post res ', res);
             return res;
         });
-    }
+    }*/
 
 
     // confirmPassword(password: string, ctrl: FormControl) {

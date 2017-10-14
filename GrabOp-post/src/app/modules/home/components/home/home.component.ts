@@ -20,7 +20,7 @@ import { ProfileService } from '../../../profile/services/profile.service';
 export class HomeComponent implements OnInit, OnChanges {
     stats: any;
     connectionsCount: number;
-    person: VOUserExt;
+    person: Models.VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
     myPosts: VOPost[];

@@ -15,7 +15,7 @@ import { ProfileService } from '../../../profile/services/profile.service';
 })
 export class MyPostsComponent implements OnInit {
 
-    user: VOUserExt;
+    user: Models.VOUserExt;
     postsNeed: VOPost[];
     postsOffer: VOPost[];
 
