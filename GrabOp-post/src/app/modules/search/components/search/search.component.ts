@@ -52,6 +52,10 @@ export class SearchComponent {
     }
 
     onSubmit() {
-        this.router.navigate(['/advanced-search', { search: this.searchCtrl.value }]);
+        if (this.searchCtrl.value && this.searchCtrl.value.toString().trim()) {
+          this.router.navigate(['/advanced-search', { search: this.searchCtrl.value }]);
+        } else {
+          this.router.navigate(['/advanced-search']);
+        }
     }
 }

@@ -59,6 +59,8 @@ export class AdvancedSearchComponent implements OnInit {
         this.route.params.subscribe((params: Params) => {
             if (params['search']) {
                 this.filters.search = params['search'];
+            } else {
+              this.filters.search = '';
             }
             this.advancedSearch();
         });

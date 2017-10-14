@@ -78,7 +78,7 @@ export class SignUpService {
         });
     }
 
-    /*checkUsernameExistence(username: string) {
+    checkUsernameExistence(username: string) {
         // let url: string = 'http://ec2-34-209-89-37.us-west-2.compute.amazonaws.com/api/v1/verifyemail?format=json';
         let url: string = VOSettings.verifyemail;
 
@@ -86,7 +86,7 @@ export class SignUpService {
             console.log('verifyUsername post res ', res);
             return res;
         });
-    }*/
+    }
 
 
     // confirmPassword(password: string, ctrl: FormControl) {
