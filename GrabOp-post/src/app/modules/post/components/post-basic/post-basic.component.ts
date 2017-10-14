@@ -32,6 +32,10 @@ export class PostBasicComponent implements OnInit, OnChanges {
       this.postService.getCategories().subscribe(categories => this.categories = categories);        
     }
 
+    onNext() {
+        console.log(this.model);
+    }
+
     loadService(): void {
         /*console.log('loadService()' +this.my_service_id)
          if(isNaN(this.my_service_id)) return;

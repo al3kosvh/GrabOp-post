@@ -14,10 +14,10 @@ export class UsernameTakenValidator {
                 .debounceTime(400)
                 .mergeMap(value => {
                     return new Observable((observer: any) => {
-                        signupService.verifyUsername(username).subscribe(
-                            taken => { observer.next(taken ? { usernameTaken: true } : null) },
-                            error => { observer.next({ connectionError: true }) }
-                        )
+                        //signupService.verifyUsername(username).subscribe(
+                        //    taken => { observer.next(taken ? { usernameTaken: true } : null) },
+                        //    error => { observer.next({ connectionError: true }) }
+                        //)
                     });
                 }).mergeMap(stat => {
                     control.setErrors(stat);

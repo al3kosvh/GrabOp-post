@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-
+import { MatDialog, MatDialogConfig, MatExpansionPanel } from '@angular/material';
 // Services
 import { ProfileService } from '../../services/profile.service';
 import { PostService } from '../../../post/services/post.service';
@@ -175,7 +174,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
     }
 
-    adminConnection() {
+
+
+
+    adminConnection(expansion: MatExpansionPanel) {
+        expansion.close();
         if (this.btnConnectValue === 'connect') {
             if (this.myUser) {
                 this.setConnection();

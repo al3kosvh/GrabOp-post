@@ -29,8 +29,7 @@ export class PostMediaComponent implements OnInit, OnChanges {
     ) {
     }
 
-    ngOnInit(): void {
-        console.log('model', this.model);
+    ngOnInit(): void {        
         this.attachments = this.model.attachments;
         /*console.log(this.model);
          if(this.model.attachments){
