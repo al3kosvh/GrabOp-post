@@ -1,7 +1,6 @@
 import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { VOUser } from '../../../models/vouser';
 
 // Services
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -13,9 +12,9 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SignInDialogComponent {
 
-    user: Observable<VOUser>;
-    signinData: Models.SOAuthenticateBasic;
-    loading: boolean;
+    private user: Observable<Models.VOUser>;
+    private signinData: Models.SOAuthenticateBasic;
+    private loading: boolean;
 
     constructor(
         public matDialogRef: MatDialogRef<SignInDialogComponent>,
