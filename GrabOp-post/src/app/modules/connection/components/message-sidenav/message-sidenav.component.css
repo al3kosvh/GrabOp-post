@@ -1,0 +1,7 @@
+.options button:first-child {
+  margin-right: 2px;
+}
+
+.options button:last-child {
+  margin-left: 2px;
+}

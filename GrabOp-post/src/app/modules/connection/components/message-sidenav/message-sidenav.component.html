@@ -7,10 +7,10 @@
     <textarea matInput placeholder="Body" name="body" [(ngModel)]="message.body" required #body="ngModel"></textarea>
   </mat-form-field>
   <div class="options" fxLayout="row">
-    <button mat-raised-button color="basic" (click)="sidenav.close()">
+    <button mat-raised-button color="basic" fxLayout="column" fxFlex="50" (click)="sidenav.close()">
       Cancel
     </button>
-    <button mat-raised-button color="accent" [disabled]="!f.valid" (click)="sendMessage()">
+    <button mat-raised-button color="accent" fxLayout="column" fxFlex="50" [disabled]="!f.valid" (click)="sendMessage()">
       Send
     </button>
     <img *ngIf="loading"
