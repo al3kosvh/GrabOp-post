@@ -9,6 +9,7 @@ import { VOUserExt } from '../modules/account/models/vouser';
 import { AllianceInviteComponent } from '../modules/profile/components/alliance-invite/alliance-invite.component';
 import { SignUpComponent } from '../modules/account/components/signup/signup.component';
 import { PostCreateComponent } from '../modules/post/components/post-create/post-create.component';
+import { MessageSideNavComponent } from '../modules/connection/components/message-sidenav/message-sidenav.component';
 
 @Injectable()
 export class SidenavService {
@@ -64,7 +65,20 @@ export class SidenavService {
       let instance: any = ref.instance;
       instance.type = type;
       self.sidenav.open();
-    }, this.getTimerValue());    
+    }, this.getTimerValue());
+  }
+
+  onMessage(msg: Models.VOMessage) {
+    let self = this;
+    setTimeout(function () {
+      self.viewContainerRef.clear();
+      const factory = self.componentFactoryResolver.resolveComponentFactory(MessageSideNavComponent);
+      const ref = self.viewContainerRef.createComponent(factory);
+      let instance: any = ref.instance;
+      instance.message = msg;
+      instance.sidenav = self.sidenav;
+      self.sidenav.open();
+    }, this.getTimerValue());
   }
 
   getTimerValue(): number {

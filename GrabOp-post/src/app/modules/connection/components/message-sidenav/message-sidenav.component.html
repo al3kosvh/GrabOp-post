@@ -1,9 +1,9 @@
-<form #f="ngForm" autocomplete="off" novalidate fxLayout="column">
-  <mat-form-field>
+<form #f="ngForm" class="container-msg" autocomplete="off" novalidate fxLayout="column">
+  <mat-form-field class="full-width">
     <input matInput placeholder="Subject" name="subject" [(ngModel)]="message.subject" required #subject="ngModel" />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="full-width">
     <textarea matInput placeholder="Body" name="body" [(ngModel)]="message.body" required #body="ngModel"></textarea>
   </mat-form-field>
   <div class="options" fxLayout="row">

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ConnectionService } from "../../services/connection.service";
+import { MatSidenav } from '@angular/material';
 
 @Component({
     selector: 'msg-sidenav',
@@ -9,7 +10,7 @@ import { ConnectionService } from "../../services/connection.service";
 export class MessageSideNavComponent implements OnInit {
 
     @Input() message: Models.VOMessage;
-    @Input() sidenav;
+    @Input() sidenav: MatSidenav;
     loading = false;
 
     constructor(private connectionService: ConnectionService) {

@@ -1,7 +1,16 @@
+.container-msg {
+  padding: 15px;
+  width: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
+
 .options button:first-child {
-  margin-right: 2px;
+  margin-right: 5px;
 }
 
 .options button:last-child {
-  margin-left: 2px;
+  margin-left: 5px;
 }
