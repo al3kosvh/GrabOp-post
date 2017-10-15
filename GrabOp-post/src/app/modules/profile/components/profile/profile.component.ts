@@ -177,27 +177,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     adminConnection() {
         if (this.btnConnectValue === 'connect') {
-            if (this.myUser) {
+          this.checkUser(
+            () => {
                 this.setConnection();
-            } else {
-                this.userService.getUser().subscribe(
-                    user => {
-                        this.myUser = user;
-                        this.setConnection();
-                    }
-                )
-            }
+            })
         } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-            if (this.myUser) {
-                this.confirmConnection();
-            } else {
-                this.userService.getUser().subscribe(
-                    user => {
-                        this.myUser = user;
-                        this.confirmConnection();
-                    }
-                )
-            }
+          this.checkUser(
+            () => {
+              this.confirmConnection();
+            })
         }
     }
 
@@ -216,5 +204,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
         )
     }
+
+  checkUser(cb) {
+    if (this.myUser) {
+      cb()
+    } else {
+      this.userService.getUser().subscribe(
+        user => {
+          this.myUser = user;
+          cb()
+        }
+      )
+    }
+  }
+
+  openMessage() {
+    this.checkUser(
+      () => {
+        this.sidenavService.onMessage({
+          id: this.myUser.id,
+          senderid: this.profile.id
+        });
+      })
+  }
 
 }
