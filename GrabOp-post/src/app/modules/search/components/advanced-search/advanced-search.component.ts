@@ -187,4 +187,11 @@ export class AdvancedSearchComponent implements OnInit {
         }
     }
 
+  onKeyUp(event) {
+    if (event.keyCode == 27) {
+      this.filters[event.target.name] = '';
+      this.advancedSearch();
+    }
+  }
+
 }

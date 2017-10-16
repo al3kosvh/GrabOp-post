@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()">
     <mat-form-field floatPlaceholder="never" fxFlex fxFlex="100">
       <mat-icon *ngIf="icon == 'prefix'" matPrefix>search</mat-icon>
-      <input matInput placeholder="{{placeholder}}" aria-label="Search" [matAutocomplete]="auto" [formControl]="searchCtrl">
+      <input matInput placeholder="{{placeholder}}" aria-label="Search" (keyup)="onKeyUp($event)" [matAutocomplete]="auto" [formControl]="searchCtrl">
       <mat-icon *ngIf="icon == 'suffix'" matSuffix>search</mat-icon>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSubmit()">
         <mat-option *ngFor="let post of filteredPosts | async" [value]="post.city">

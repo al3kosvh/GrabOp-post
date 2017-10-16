@@ -4,19 +4,19 @@
     <form #f="ngForm" autocomplete="off" novalidate class="form-filters">
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Search" name="search" [(ngModel)]="filters.search" #search="ngModel"/>
+        <input matInput placeholder="Search" name="search" [(ngModel)]="filters.search" #search="ngModel" (keyup)="onKeyUp($event)"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Country" name="country" [(ngModel)]="filters.country" #country="ngModel"/>
+        <input matInput placeholder="Country" name="country" [(ngModel)]="filters.country" #country="ngModel" (keyup)="onKeyUp($event)"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Province" name="province" [(ngModel)]="filters.province" #province="ngModel"/>
+        <input matInput placeholder="Province" name="province" [(ngModel)]="filters.province" #province="ngModel" (keyup)="onKeyUp($event)"/>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="City" name="city" [(ngModel)]="filters.city" #city="ngModel"/>
+        <input matInput placeholder="City" name="city" [(ngModel)]="filters.city" #city="ngModel" (keyup)="onKeyUp($event)"/>
       </mat-form-field>
 
       <h4 class="title">Business Style</h4>
