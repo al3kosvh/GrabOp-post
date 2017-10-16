@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: 'app-number-input',
@@ -9,7 +9,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
 export class NumberInputComponent {
 
   @Output() onValue = new EventEmitter<any>();
-  value: string;
+  @Input() value: string;
   focus = false;
 
   constructor() {
@@ -20,7 +20,7 @@ export class NumberInputComponent {
     this.focus = true;
   }
 
-  onBlur() {
+  onChange() {
     this.focus = false;
     // TODO emit a number
     this.onValue.emit(this.value);
