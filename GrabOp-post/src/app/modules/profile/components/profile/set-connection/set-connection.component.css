@@ -1,0 +1,22 @@
+.title {
+  color: gray;
+  padding: 0 15px;
+  margin: 0;
+}
+
+.container-msg {
+  padding: 15px;
+  width: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.options button:first-child {
+  margin-right: 5px;
+}
+
+.options button:last-child {
+  margin-left: 5px;
+}

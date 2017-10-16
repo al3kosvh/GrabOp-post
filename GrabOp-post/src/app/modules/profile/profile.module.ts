@@ -25,6 +25,7 @@ import { SettingSelectComponent } from './components/settings/setting-select/set
 import { SecuritySettingsComponent } from './components/settings/security-settings/security-settings.component';
 import { EmailUsernameSettingsComponent } from './components/settings/email-username-settings/email-username-settings.component';
 import { VideoProfileDialogComponent } from './components/profile/video/video-profile-dialog.component';
+import { SetConnectionComponent } from './components/profile/set-connection/set-connection.component';
 
 // Services
 import { ProfileService } from './services/profile.service';
@@ -77,18 +78,23 @@ const routes: Routes = [
         SettingSelectComponent,
         SecuritySettingsComponent,
         EmailUsernameSettingsComponent,
-        VideoProfileDialogComponent
+        VideoProfileDialogComponent,
+        SetConnectionComponent
     ],
     exports: [
-        AllianceInviteComponent
+        AllianceInviteComponent,
+      SetConnectionComponent
     ],
     providers: [
         ProfileService,
         SettingsService,
         ProfileGuard
     ],
-    entryComponents: [EditProfileDialogComponent,
-        VideoProfileDialogComponent]
+    entryComponents: [
+      EditProfileDialogComponent,
+        VideoProfileDialogComponent,
+      SetConnectionComponent
+    ]
 })
 
 export class ProfileModule { }

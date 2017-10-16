@@ -10,6 +10,7 @@ import { AllianceInviteComponent } from '../modules/profile/components/alliance-
 import { SignUpComponent } from '../modules/account/components/signup/signup.component';
 import { PostCreateComponent } from '../modules/post/components/post-create/post-create.component';
 import { MessageSideNavComponent } from '../modules/connection/components/message-sidenav/message-sidenav.component';
+import { SetConnectionComponent } from "../modules/profile/components/profile/set-connection/set-connection.component";
 
 @Injectable()
 export class SidenavService {
@@ -77,6 +78,21 @@ export class SidenavService {
       let instance: any = ref.instance;
       instance.message = msg;
       instance.sidenav = self.sidenav;
+      self.sidenav.open();
+    }, this.getTimerValue());
+  }
+
+  setConnection(userId: number, profile: VOUserExt, cb: any) {
+    let self = this;
+    setTimeout(function () {
+      self.viewContainerRef.clear();
+      const factory = self.componentFactoryResolver.resolveComponentFactory(SetConnectionComponent);
+      const ref = self.viewContainerRef.createComponent(factory);
+      let instance: any = ref.instance;
+      instance.sidenav = self.sidenav;
+      instance.userId = userId;
+      instance.profile = profile;
+      instance.cb = cb;
       self.sidenav.open();
     }, this.getTimerValue());
   }
