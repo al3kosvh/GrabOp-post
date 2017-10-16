@@ -23,11 +23,11 @@ div.star-post-container {
   width: 150px;
   height: 171px;
   z-index: 10;
-  position: fixed;
+  position: absolute;
 }
 
 div.star-post-text {
-  position: fixed;
+  position: absolute;
   margin-top: 90px;
   margin-left: 6px;
   color: white;
