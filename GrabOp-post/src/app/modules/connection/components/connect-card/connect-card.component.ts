@@ -62,7 +62,8 @@ export class ConnectCardComponent implements OnInit {
             () => {
               this.sidenavService.onMessage({
                 id: this.user.id,
-                senderid: this.connection.id
+                senderid: this.connection.id,
+                senderName: this.connection.display_name
               });
             })
     }

@@ -220,7 +220,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       () => {
         this.sidenavService.onMessage({
           id: this.myUser.id,
-          senderid: this.profile.id
+          senderid: this.profile.id,
+          senderName: this.profile.firstName
         });
       })
   }

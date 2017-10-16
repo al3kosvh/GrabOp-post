@@ -1,4 +1,4 @@
-<h4 class="title">Connection Message to {{ profile.displayName }}</h4>
+<h4 class="title">Connection Message{{ profile.displayName ? 'to ' + profile.displayName : '' }}</h4>
 
 <form #f="ngForm" class="container-msg" autocomplete="off" novalidate fxLayout="column">
   <mat-form-field class="full-width">

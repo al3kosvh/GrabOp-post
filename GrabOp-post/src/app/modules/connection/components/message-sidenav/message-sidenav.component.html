@@ -1,3 +1,5 @@
+<h4 class="title">Message {{ message.senderName ? 'to ' + message.senderName : '' }}</h4>
+
 <form #f="ngForm" class="container-msg" autocomplete="off" novalidate fxLayout="column">
   <mat-form-field class="full-width">
     <input matInput placeholder="Subject" name="subject" [(ngModel)]="message.subject" required #subject="ngModel" />
