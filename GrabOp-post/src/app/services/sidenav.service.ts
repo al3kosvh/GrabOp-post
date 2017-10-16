@@ -82,7 +82,7 @@ export class SidenavService {
     }, this.getTimerValue());
   }
 
-  setConnection(userId: number, profile: VOUserExt, cb: any) {
+  setConnection(userId: number, senderId: number, displayName: string, cb: any) {
     let self = this;
     setTimeout(function () {
       self.viewContainerRef.clear();
@@ -91,7 +91,8 @@ export class SidenavService {
       let instance: any = ref.instance;
       instance.sidenav = self.sidenav;
       instance.userId = userId;
-      instance.profile = profile;
+      instance.senderId = senderId;
+      instance.displayName = displayName;
       instance.cb = cb;
       self.sidenav.open();
     }, this.getTimerValue());

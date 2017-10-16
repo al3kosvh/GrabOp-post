@@ -187,7 +187,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     let me = this;
     this.sidenavService.setConnection(
       this.myUser.id,
-      this.profile,
+      this.profile.id,
+      this.profile.displayName,
       respond => {
         me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
       }

@@ -3,7 +3,6 @@ import { MatSidenav } from '@angular/material';
 
 // Services
 import { ConnectionService } from "../../../../connection/services/connection.service";
-import { VOUserExt } from "../../../../account/models/vouser";
 
 @Component({
     selector: 'app-set-connection',
@@ -15,7 +14,8 @@ export class SetConnectionComponent implements OnInit{
   message: string;
   @Input() sidenav: MatSidenav;
   @Input() userId: number;
-  @Input() profile: VOUserExt;
+  @Input() senderId: number;
+  @Input() displayName: number;
   @Input() cb: any;
 
     constructor(
@@ -29,7 +29,7 @@ export class SetConnectionComponent implements OnInit{
     }
 
   private setConnection() {
-    this.connectionService.setConnection(this.userId, this.profile.id, this.message).subscribe(this.cb)
+    this.connectionService.setConnection(this.userId, this.senderId, this.message).subscribe(this.cb)
   }
 
 }
