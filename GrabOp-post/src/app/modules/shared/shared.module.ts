@@ -20,6 +20,9 @@ import { ModalWindowService } from './services/modal-window.service';
 import { SnackBarService } from './services/snackbar.service';
 import { HttpErrorService } from './services/http-error.service';
 
+// Pipes
+import { TruncateTextPipe } from './pipes/truncate.pipe';
+
 @NgModule({
     imports: [
         FormsModule,
@@ -34,20 +37,23 @@ import { HttpErrorService } from './services/http-error.service';
         MembersListComponent,
         ListRowComponent,
         ModalAlertComponent,
-        ModalPromptComponent
+        ModalPromptComponent,
+        TruncateTextPipe
     ],
     declarations: [
         MatImageDirective,
         ListRowComponent,
         ModalAlertComponent,
         ModalPromptComponent,
-        MembersListComponent
+        MembersListComponent,
+        TruncateTextPipe
     ],
     providers: [
         ModalWindowService,
         SnackBarService,
         HttpErrorService,
-        MatSnackBar
+        MatSnackBar,
+        TruncateTextPipe
     ],
     entryComponents: [
         ModalAlertComponent,
