@@ -15,7 +15,7 @@
   </div>
 
   <mat-card-content>
-    <div class="post-info">Interior display including 3d Art direction, inferior</div>
+    <div class="post-info">{{post.description | truncate: 43 }}</div>
     <div fxLayout="row">
       <div class="post-info-left" fxLayout="column">
         <div class="options">
@@ -35,40 +35,5 @@
         <span class="number">$100</span>
       </div>
     </div>
-  </mat-card-content>
-
-  <!--<mat-grid-list cols="12" rowHeight="1:3">
-          <mat-grid-tile [colspan]="12">
-              <div class="deviceText-{{size}}">
-                  <span>{{post?.title}}</span>
-              </div>
-          </mat-grid-tile>
-              <mat-grid-tile class='vdivide' [colspan]="6">
-                <mat-list dense>
-                              <mat-list-item>
-                                <small>{{post?.city}},{{post?.province}}</small>
-                              </mat-list-item>
-                            <mat-list-item>
-                              <mat-icon *ngFor="let icon of ['swap_horizontal', 'account_box','favorite','school']">
-                                {{icon}}
-                              </mat-icon>
-                            </mat-list-item>
-                </mat-list>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="6">
-                <mat-list>
-                 <mat-list-item>
-                   <small mat-line>
-                    Comm: ${{post?.commissionFrom}} to {{post?.commissionTo}}
-                   </small>
-                   <small mat-line>
-                    Fixed rate: ${{post?.fixedRateFrom}} to {{post?.fixedRateTo}}
-                   </small>
-                   <small mat-line>
-                     Hourly rate: ${{post?.hourlyRateFrom}} to {{post?.hourlyRateTo}}
-                   </small>
-                 </mat-list-item>
-                </mat-list>
-              </mat-grid-tile>
-  </mat-grid-list>-->
+  </mat-card-content> 
 </mat-card>

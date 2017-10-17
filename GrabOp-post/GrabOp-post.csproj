@@ -25,6 +25,7 @@
     <None Remove="src\app\modules\profile\models\profile.d.ts" />
     <None Remove="src\app\modules\search\components\search\search.component.ts" />
     <None Remove="src\app\modules\search\search.module.ts" />
+    <None Remove="src\app\modules\shared\pipes\truncate.pipe.ts" />
     <None Remove="src\app\modules\shared\services\location.service.ts" />
     <None Remove="src\app\services\sidenav.service.ts" />
   </ItemGroup>
@@ -58,6 +59,7 @@
     <TypeScriptCompile Include="src\app\modules\profile\services\settings.service.ts" />
     <TypeScriptCompile Include="src\app\modules\search\components\search\search.component.ts" />
     <TypeScriptCompile Include="src\app\modules\search\search.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\shared\pipes\truncate.pipe.ts" />
     <TypeScriptCompile Include="src\app\modules\shared\services\location.service.ts" />
     <TypeScriptCompile Include="src\app\services\sidenav.service.ts" />
   </ItemGroup>
