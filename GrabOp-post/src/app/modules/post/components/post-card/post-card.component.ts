@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 // import {PostsService} from "../../posts/posts.service";
 // import {ActivatedRoute, Router} from '@angular/router';
 
+// Services
+import { SidenavService } from '../../../../services/sidenav.service';
+
 @Component({
     selector: 'post-card',
     templateUrl: './post-card.component.html',
@@ -26,7 +29,8 @@ export class PostCardComponent implements OnInit {
     accountIMG = '';
     // imgURL = 'url(img/img-girl.jpg)';
     constructor(
-        private router: Router
+        private router: Router,
+        private sidenavService: SidenavService
         // router: Router,
         // route: ActivatedRoute) {
     ) {
@@ -43,6 +47,10 @@ export class PostCardComponent implements OnInit {
 
     onViewDetails() {
         this.router.navigate(['myposts/view/', this.post.id]);
+    }
+
+    onEdit() {
+        this.sidenavService.onEditPost(this.post);
     }
 
 }
