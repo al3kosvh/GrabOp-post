@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
+import { MatMenuTrigger } from '@angular/material';
+import { Router } from '@angular/router';
 // import {PostsService} from "../../posts/posts.service";
 // import {ActivatedRoute, Router} from '@angular/router';
 
@@ -10,6 +12,7 @@ import { VOPost } from '../../../../models/vos';
 })
 export class PostCardComponent implements OnInit {
 
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
     @Input() post: VOPost;
     @Input() editButton: boolean;
     @Input() viewDetailsButton: boolean;
@@ -23,7 +26,7 @@ export class PostCardComponent implements OnInit {
     accountIMG = '';
     // imgURL = 'url(img/img-girl.jpg)';
     constructor(
-        // private postsService: PostsService,
+        private router: Router
         // router: Router,
         // route: ActivatedRoute) {
     ) {
@@ -32,6 +35,14 @@ export class PostCardComponent implements OnInit {
 
     ngOnInit() {
         // this.postsService
+    }
+
+    showOptions(event: MouseEvent) {
+        this.trigger.openMenu();
+    }
+
+    onViewDetails() {
+        this.router.navigate(['myposts/view/', this.post.id]);
     }
 
 }

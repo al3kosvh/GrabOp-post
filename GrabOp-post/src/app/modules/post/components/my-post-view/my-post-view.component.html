@@ -29,13 +29,13 @@
       <span *ngIf="personPosts.length" class="posts-title">Similar Services Others are Offering:</span>
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
         <div *ngFor="let item of personPosts | postsFilter:'need'; let i=index">
-          <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+          <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
         </div>
       </div>
       <span *ngIf="personPosts.length != 0" class="posts-title">Similar Services Others Need:</span>
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
         <div *ngFor="let item of personPosts | postsFilter:'offer'; let i=index">
-          <post-card (click)="onClickItem(item)" [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+          <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
         </div>
       </div>
     </div>

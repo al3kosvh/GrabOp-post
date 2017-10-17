@@ -1,5 +1,15 @@
 <mat-card [class.selected]="post.isSelected">
-  <img class="post-image" src="{{postImage}}" />
+    <mat-menu #appMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="onViewDetails()"> View Details </button>
+        <button mat-menu-item> Edit </button>
+        <button mat-menu-item> Edit Alliance </button>
+        <button mat-menu-item> Duplicate </button>
+        <button mat-menu-item> Share </button>
+        <button mat-menu-item> Hide </button>
+        <button mat-menu-item> Delete Services </button>
+    </mat-menu>
+    <button mat-icon-button class="options" [matMenuTriggerFor]="appMenu"><mat-icon>more_vert</mat-icon></button>
+  <img  (click)="showOptions($event)" class="post-image" src="{{postImage}}" />
   <!--<mat-chip-list>
     <mat-chip color="accent" selected>{{post?.id}}</mat-chip>
     <mat-chip *ngIf="editButton"><a mat-raised-button [routerLink]="['/post-edit/'+ post.id]">Edit</a></mat-chip>
@@ -14,11 +24,11 @@
     <div class="count">24</div>
   </div>
 
-  <mat-card-content>
+  <mat-card-content (click)="showOptions($event)">
     <div class="post-info">{{post.description | truncate: 43 }}</div>
     <div fxLayout="row">
       <div class="post-info-left" fxLayout="column">
-        <div class="options">
+        <div>
           <mat-icon>compare_arrows</mat-icon>
           <mat-icon>group</mat-icon>
           <mat-icon>favorite</mat-icon>

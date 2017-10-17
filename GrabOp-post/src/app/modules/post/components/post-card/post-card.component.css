@@ -10,6 +10,21 @@ mat-card {
   padding-bottom: 5px;
 }
 
+button.options {
+    position: absolute;
+    left: 140px;
+    z-index: 1020;
+    color: white;
+}
+
+mat-card-content {
+    cursor: pointer;
+}
+
+div.options.right {
+    background-color: red;
+}
+
 img.post-image {
   width: 170px;
   height: 130px;
@@ -67,7 +82,7 @@ div.post-info-left {
   border-right: 1px solid lightgray;
 }
 
-  div.post-info-left div.options mat-icon {
+  div.post-info-left > div mat-icon {
     font-size: 20px;
     width: 18px;
     height: 18px;

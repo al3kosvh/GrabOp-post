@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {
     MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatSlideToggleModule,
-    MatTabsModule, MatInputModule, MatSelectModule, MatCheckboxModule
+    MatTabsModule, MatInputModule, MatSelectModule, MatCheckboxModule, MatMenuModule
 } from '@angular/material';
 
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
@@ -62,6 +62,7 @@ const myRoute: Routes = [
         MatInputModule,
         MatSelectModule,
         MatCheckboxModule,
+        MatMenuModule,
         RouterModule.forChild(myRoute)
     ],
     declarations: [
