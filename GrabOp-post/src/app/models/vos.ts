@@ -306,7 +306,7 @@ export class VOSettings {
     // static server: string = 'http://grabop2api-dev.us-west-2.elasticbeanstalk.com/api/v1';
     static server: string = 'http://localhost:53822/api/v1';
 
-    static checkEmailExistence: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
+    static checkEmailExistenceUrl: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
     static connection_GetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
     static connection_GetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connection_GetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
@@ -324,7 +324,9 @@ export class VOSettings {
     static offer: string = 'offers';
     static posts: string = 'need-offer/';
     static profile: string = VOSettings.server + '/profiles/{{id}}?format=json';
-    static register: string = VOSettings.server + '/register?format=json';
+    static recoverRequestUrl: string = VOSettings.server + '/passwordforgot?format=json';
+    static registerUrl: string = VOSettings.server + '/register?format=json';
+    static resetPasswordUrl: string = VOSettings.server + '/resetpassword?format=json';
     static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
     static signinUrl = VOSettings.server + '/auth?format=json';
@@ -337,6 +339,7 @@ export class VOSettings {
     static updateProfile: string = VOSettings.server + '/profiles/{{id}}/?format=json';
     static upload: string = 'api/upload.php';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
+    static getCategories: string = VOSettings.server + '/categories/?format=json';
 
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;

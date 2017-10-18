@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { VOPost } from '../../../../models/vos';
 import { VOUserExt } from "../../../account/models/vouser";
@@ -21,8 +20,7 @@ export class MyPostsComponent implements OnInit {
 
     constructor(
         private postService: PostService,
-        private profileService: ProfileService,
-        private router: Router
+        private profileService: ProfileService
     ) {
         this.postsNeed = [];
         this.postsOffer = [];
@@ -38,10 +36,6 @@ export class MyPostsComponent implements OnInit {
             this.postsNeed = posts.filter(post => post.type == "need");
             this.postsOffer = posts.filter(post => post.type == "offer");
         });
-    }
-
-    onClickPost(post: VOPost) {
-        this.router.navigate(['myposts/view/', post.id]);
-    }
+    }    
     
 }

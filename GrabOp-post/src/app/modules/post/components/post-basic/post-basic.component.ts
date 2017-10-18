@@ -15,7 +15,7 @@ export class PostBasicComponent implements OnInit, OnChanges {
     @Input() model: VOPost;
     @Input() model_id: number;
     @Output() f: boolean;
-    categories: VOCategory[];
+    categories: Models.Category[];
 
     constructor(
         private postService: PostService
@@ -29,8 +29,11 @@ export class PostBasicComponent implements OnInit, OnChanges {
 
     }
     ngOnInit(): void {
-        // this.postEditService.getCategories().then( res => this.categories = res);
-        // this.loadService();
+      this.postService.getCategories().subscribe(categories => this.categories = categories);        
+    }
+
+    onNext() {
+        console.log(this.model);
     }
 
     loadService(): void {

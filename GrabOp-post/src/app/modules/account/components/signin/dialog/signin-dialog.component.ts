@@ -1,10 +1,11 @@
-import { Component, Inject, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { VOUser } from '../../../models/vouser';
+import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
-// Services
+//App Services
 import { AuthenticationService } from '../../../services/authentication.service';
+
+//App Components
+import { RecoverLauncherComponent } from '../../recover/launcher/recover-launcher.component';
 
 @Component({
     selector: 'signin-dialog',
@@ -13,11 +14,11 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SignInDialogComponent {
 
-    user: Observable<VOUser>;
-    signinData: Models.SOAuthenticateBasic;
-    loading: boolean;
+    private signinData: Models.SOAuthenticateBasic;
+    private loading: boolean;
 
     constructor(
+        public dialog: MatDialog,
         public matDialogRef: MatDialogRef<SignInDialogComponent>,
         private authenticationService: AuthenticationService
     ) {
@@ -32,7 +33,7 @@ export class SignInDialogComponent {
                 this.matDialogRef.close();
                 this.loading = false;
             },
-            error => {                
+            error => {
                 this.loading = false;
             }
         );
