@@ -73,9 +73,14 @@ export class AuthenticationService {
         });
     }
 
-    recoverRequest(usernameOrEmail: string) {
+    recoverRequest(emailOrPhone: string) {
         let url: string = VOSettings.recoverRequestUrl;
-        return this.http.post(url, { "userNameOrEmail": usernameOrEmail });
+        return this.http.post(url, { "userNameOrEmail": emailOrPhone });
+    }
+
+    resetPassword(code: string, newPassword: string) {
+        let url: string = VOSettings.resetPasswordUrl;
+        return this.http.post(url, { "token": code, "newPassword": newPassword });
     }
 
     getUserExtended(): Observable<Models.VOUserExt> {

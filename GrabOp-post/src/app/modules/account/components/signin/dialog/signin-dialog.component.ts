@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
-// Services
+//App Services
 import { AuthenticationService } from '../../../services/authentication.service';
 
-//Components
-import { RecoverRequestComponent } from '../../recover/request/recover-request.component';
+//App Components
+import { RecoverLauncherComponent } from '../../recover/launcher/recover-launcher.component';
 
 @Component({
     selector: 'signin-dialog',
@@ -37,14 +37,6 @@ export class SignInDialogComponent {
                 this.loading = false;
             }
         );
-    }
-
-    openRecover(): void {
-        this.matDialogRef.close();
-        let config: MatDialogConfig = {
-            width: '350px',
-        }
-        this.dialog.open(RecoverRequestComponent, config);
     }
 
     onClose(): void {

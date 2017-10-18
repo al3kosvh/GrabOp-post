@@ -6,7 +6,3 @@ button.close {
 mat-form-field {
   width: 100%;
 }
-
-.open-recover:hover{
-  cursor:pointer;
-}

@@ -12,8 +12,8 @@ import {
 import { SharedModule } from '../shared/shared.module';
 
 //Account Components
-import { AccountRecoverComponent } from './components/recover/recover.component';
-import { RecoverRequestComponent } from './components/recover/request/recover-request.component';
+import { AccountRecoverComponent } from './components/recover/account-recover.component';
+import { RecoverLauncherComponent } from './components/recover/launcher/recover-launcher.component';
 import { SignInComponent } from './components/signin/signin.component';
 import { SignInDialogComponent } from './components/signin/dialog/signin-dialog.component';
 import { SignOutComponent } from './components/signout/signout.component';
@@ -51,13 +51,13 @@ const routes: Routes = [
         SharedModule
     ],
     exports: [
-        RecoverRequestComponent,
+        RecoverLauncherComponent,
         SignInComponent,
         SignOutComponent
     ],
     declarations: [
         AccountRecoverComponent,
-        RecoverRequestComponent,
+        RecoverLauncherComponent,
         SignUpComponent,
         SignInComponent,
         SignInDialogComponent,
@@ -73,7 +73,7 @@ const routes: Routes = [
         UploadService
     ],
     entryComponents: [
-        RecoverRequestComponent,
+        AccountRecoverComponent,
         SignInDialogComponent,
         SignUpComponent
     ]

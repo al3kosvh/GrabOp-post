@@ -56,7 +56,7 @@ export class SignUpService {
     }
 
     register(newUser: Models.VORegisterParameters): Observable<number> {
-        let url: string = VOSettings.register;
+        let url: string = VOSettings.registerUrl;
         return this.http.post(url, mapRegisterParametersVOToSO(newUser))
             .map(response => {
                 console.log('register res ', response);
@@ -65,7 +65,7 @@ export class SignUpService {
     }
 
     checkEmailExistence(email: string) {
-        let url: string = VOSettings.checkEmailExistence.replace("{{email}}", email);
+        let url: string = VOSettings.checkEmailExistenceUrl.replace("{{email}}", email);
         return this.http.get(url).map(res => {
             return res.exists == "existing";
         });
