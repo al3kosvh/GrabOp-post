@@ -12,6 +12,7 @@ import {
 // Shared Modules
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
+import { SearchModule } from '../search/search.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
@@ -65,7 +66,8 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostModule,
-        MatExpansionModule
+        MatExpansionModule,
+        SearchModule
     ],
     declarations: [
         ProfileComponent,

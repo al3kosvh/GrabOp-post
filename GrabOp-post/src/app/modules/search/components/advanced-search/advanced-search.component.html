@@ -45,11 +45,11 @@
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           $
         </div>
-        <app-number-input [value]="filters.fixed.start" (onValue)="filters.fixed.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.fixed.start" (onValue)="filters.fixed.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-simple-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-        <app-number-input [value]="filters.fixed.end" (onValue)="filters.fixed.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.fixed.end" (onValue)="filters.fixed.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-simple-input>
       </div>
 
       <div fxlayout="row" class="full-width numbers-container">
@@ -60,11 +60,11 @@
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           $
         </div>
-        <app-number-input [value]="filters.hourly.start" (onValue)="filters.hourly.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.hourly.start" (onValue)="filters.hourly.start = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-simple-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-        <app-number-input [value]="filters.hourly.end" (onValue)="filters.hourly.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.hourly.end" (onValue)="filters.hourly.end = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-simple-input>
       </div>
 
       <div fxlayout="row" class="full-width numbers-container">
@@ -75,11 +75,11 @@
         <div fxLayout="column" fxFlex="5" fxLayoutAlign="center center" class="symbol">
           %
         </div>
-        <app-number-input [value]="filters.commission.start" (onValue)="filters.commission.start = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.commission.start" (onValue)="filters.commission.start = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-simple-input>
         <div fxLayout="column" fxFlex="10" fxLayoutAlign="center center">
           to
         </div>
-        <app-number-input [value]="filters.commission.end" (onValue)="filters.commission.end = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-number-input>
+        <app-simple-input [value]="filters.commission.end" (onValue)="filters.commission.end = $event" fxLayout="column" fxFlex="25"  fxLayoutAlign="center center"></app-simple-input>
       </div>
 
       <div fxlayout="row" class="full-width btn-container" fxLayoutAlign="center center">

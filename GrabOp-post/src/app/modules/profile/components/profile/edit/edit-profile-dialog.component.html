@@ -83,8 +83,9 @@
               <button mat-icon-button color="primary" (click)="deleteSkill(i)">
                 <mat-icon>remove_circle</mat-icon>
               </button>
+              <app-simple-input [value]="skill" (onValue)="profile.skillset[i] = $event" fxLayout="column" fxFlex="25" fxLayoutAlign="center center"></app-simple-input>
               <!--TODO when add two or more input and change value, in one this value replicate to other empty, but only in view, data profile.skillset is right-->
-              <input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />
+              <!--<input placeholder="" [name]="skill + i" [value]="skill" (blur)="onchangeSkill($event, i)" required />-->
             </div>
           </div>
         </div>

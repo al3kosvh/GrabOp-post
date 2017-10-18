@@ -1,15 +1,15 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-number-input',
-  templateUrl: './number-input.component.html',
-  styleUrls: ['./number-input.component.css']
+  selector: 'app-simple-input',
+  templateUrl: './simple-input.component.html',
+  styleUrls: ['./simple-input.component.css']
 })
-// TODO validate only input number
-export class NumberInputComponent {
+
+export class SimpleInputComponent {
 
   @Output() onValue = new EventEmitter<any>();
-  @Input() value: string;
+  @Input() value: any;
   focus = false;
 
   constructor() {
@@ -20,9 +20,13 @@ export class NumberInputComponent {
     this.focus = true;
   }
 
+  onBlur() {
+    this.focus = false;
+  }
+
   onChange() {
     this.focus = false;
-    // TODO emit a number
+    this.value = this.value.toString().trim();
     this.onValue.emit(this.value);
   }
 
