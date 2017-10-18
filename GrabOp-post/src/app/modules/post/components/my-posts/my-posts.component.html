@@ -2,7 +2,7 @@
   <mat-tab [label]="'My Offerings (' + postsOffer.length + ')'">
     <div class="posts" fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
       <div *ngFor="let post of postsOffer">
-        <post-card (click)="onClickPost(post)" [post]="post" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+        <post-card [post]="post" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
       </div>
     </div>
   </mat-tab>
@@ -10,7 +10,7 @@
   <mat-tab [label]="'My Needs (' + postsNeed.length + ')'">
     <div class="posts" fxLayout="row" fxLayoutAlign="start" fxLayoutWrap>
       <div *ngFor="let post of postsNeed">
-        <post-card (click)="onClickPost(post)" [post]="post" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+        <post-card [post]="post" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
       </div>
     </div>
   </mat-tab>

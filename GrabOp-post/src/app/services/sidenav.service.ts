@@ -5,10 +5,12 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { MatSidenav } from '@angular/material';
 
 import { VOUserExt } from '../modules/account/models/vouser';
+import { VOPost } from '../models/vos';
 
 import { AllianceInviteComponent } from '../modules/profile/components/alliance-invite/alliance-invite.component';
 import { SignUpComponent } from '../modules/account/components/signup/signup.component';
 import { PostCreateComponent } from '../modules/post/components/post-create/post-create.component';
+import { PostEditComponent } from '../modules/post/components/post-edit/post-edit.component';
 
 @Injectable()
 export class SidenavService {
@@ -65,6 +67,18 @@ export class SidenavService {
       instance.type = type;
       self.sidenav.open();
     }, this.getTimerValue());    
+  }
+
+  onEditPost(post: VOPost) {
+      let self = this;
+      setTimeout(function () {
+          self.viewContainerRef.clear();
+          const factory = self.componentFactoryResolver.resolveComponentFactory(PostEditComponent);
+          const ref = self.viewContainerRef.createComponent(factory);
+          let instance: any = ref.instance;
+          instance.post = post;
+          self.sidenav.open();
+      }, this.getTimerValue());
   }
 
   getTimerValue(): number {

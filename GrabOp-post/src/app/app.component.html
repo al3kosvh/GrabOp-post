@@ -1,39 +1,41 @@
 <app-toolbar [sidenav]=sidenav *ngIf="isLoggedIn | async"></app-toolbar>
 <div class="slideRight" [ngClass]="fixedLayout">
-  <router-outlet name="aux" #outlet="outlet"></router-outlet>
+    <router-outlet name="aux" #outlet="outlet"></router-outlet>
 </div>
 <mat-sidenav-container [ngClass]="fixedLayout">
-  <mat-sidenav class="left" #sidenav [position]="start" [ngClass]="fixedLayout">
-    <a mat-button style="height: 0; position: absolute;">
-      <!-- 'absorbs' the behavior -->
-    </a>
-    <mat-list>
-      <a mat-list-item routerLink="/guest" routerLinkActive="menu-active" (click)="sidenav.toggle()">Guest</a>
-      <a mat-list-item routerLink="/home" routerLinkActive="menu-active" (click)="sidenav.toggle()">Home</a>
-      <a mat-list-item routerLink="/profile" routerLinkActive="menu-active" (click)="sidenav.toggle()">Profile</a>
-      <a mat-list-item routerLink="/advanced-search" routerLinkActive="menu-active" (click)="sidenav.toggle()">Search</a>
-      <a mat-list-item [routerLink]="['/settings/', user ? user.id : '']" routerLinkActive="menu-active" (click)="sidenav.toggle()">Settings</a>
-      <a mat-list-item routerLink="/myposts" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
-      <a mat-list-item routerLink="/connections" routerLinkActive="menu-active" (click)="sidenav.toggle()">Connections hub</a>
-      <a mat-list-item routerLink="/projects" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Projects</a>
-      <a mat-list-item routerLink="messages" routerLinkActive="menu-active" (click)="sidenav.toggle()">Messages</a>
-      <a mat-list-item routerLink="/user-edit" routerLinkActive="menu-active" (click)="sidenav.toggle()">User Edit</a>
-      <a mat-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]" routerLinkActive="menu-active" (click)="sidenav.toggle()">Post Edit</a>
-      <!--<a mat-list-item routerLink="/post-edit/7">Post Edit</a>-->
-      <a mat-list-item routerLink="/opportunity/overview" routerLinkActive="menu-active" (click)="sidenav.toggle()">Opportunity overview</a>
-      <a mat-list-item routerLink="/opportunity/negotiation/7/5" routerLinkActive="menu-active" (click)="sidenav.toggle()">Opportunity negotiation</a>
-      <a mat-list-item routerLink="/posts/my-preview/7" routerLinkActive="menu-active" (click)="sidenav.toggle()">My Post View</a>
-      <a mat-list-item routerLink="/posts/person-preview/47/17" routerLinkActive="menu-active" (click)="sidenav.toggle()">Post View</a>
-      <!--<a mat-list-item [routerLink]="[{outlets: {'slideRight': null}}]">Post Edit Close</a>-->
-    </mat-list>
-  </mat-sidenav>
+    <mat-sidenav class="left" #sidenav [position]="start" [ngClass]="fixedLayout">
+        <a mat-button style="height: 0; position: absolute;">
+            <!-- 'absorbs' the behavior -->
+        </a>
+        <mat-list>
+            <a mat-list-item routerLink="/guest" routerLinkActive="menu-active" (click)="sidenav.toggle()">Guest</a>
+            <a mat-list-item routerLink="/home" routerLinkActive="menu-active" (click)="sidenav.toggle()">Home</a>
+            <a mat-list-item routerLink="/profile" routerLinkActive="menu-active" (click)="sidenav.toggle()">Profile</a>
+            <a mat-list-item routerLink="/advanced-search" routerLinkActive="menu-active" (click)="sidenav.toggle()">Search</a>
+            <a mat-list-item [routerLink]="['/settings/', user ? user.id : '']" routerLinkActive="menu-active" (click)="sidenav.toggle()">Settings</a>
+            <a mat-list-item routerLink="/myposts" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Services</a>
+            <a mat-list-item routerLink="/connections" routerLinkActive="menu-active" (click)="sidenav.toggle()">Connections hub</a>
+            <a mat-list-item routerLink="/projects" routerLinkActive="menu-active" (click)="sidenav.toggle()">Manage Projects</a>
+            <a mat-list-item routerLink="messages" routerLinkActive="menu-active" (click)="sidenav.toggle()">Messages</a>
+            <a mat-list-item routerLink="/user-edit" routerLinkActive="menu-active" (click)="sidenav.toggle()">User Edit</a>
+            <a mat-list-item [routerLink]="[{outlets: {'slideRight': ['post-edit','7']}}]" routerLinkActive="menu-active" (click)="sidenav.toggle()">Post Edit</a>
+            <!--<a mat-list-item routerLink="/post-edit/7">Post Edit</a>-->
+            <a mat-list-item routerLink="/opportunity/overview" routerLinkActive="menu-active" (click)="sidenav.toggle()">Opportunity overview</a>
+            <a mat-list-item routerLink="/opportunity/negotiation/7/5" routerLinkActive="menu-active" (click)="sidenav.toggle()">Opportunity negotiation</a>
+            <a mat-list-item routerLink="/posts/my-preview/7" routerLinkActive="menu-active" (click)="sidenav.toggle()">My Post View</a>
+            <a mat-list-item routerLink="/posts/person-preview/47/17" routerLinkActive="menu-active" (click)="sidenav.toggle()">Post View</a>
+            <!--<a mat-list-item [routerLink]="[{outlets: {'slideRight': null}}]">Post Edit Close</a>-->
+        </mat-list>
+    </mat-sidenav>
 
-  <mat-sidenav #aux position="end" mode="over" [ngClass]="fixedLayout">
-    <sidenav-options [sidenav]="aux"></sidenav-options>
-  </mat-sidenav>
+    <mat-sidenav #aux position="end" mode="over" [ngClass]="fixedLayout">
+        <sidenav-options [sidenav]="aux"></sidenav-options>
+    </mat-sidenav>
 
-  <router-outlet></router-outlet>
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
 
-  <app-footer></app-footer>
+    <app-footer></app-footer>
 
 </mat-sidenav-container>
