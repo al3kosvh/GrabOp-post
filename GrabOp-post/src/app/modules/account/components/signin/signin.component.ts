@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
-// Services
+//App Services
 import { AuthenticationService } from '../../services/authentication.service';
-import { SignInDialogComponent } from './dialog/signin-dialog.component';
+
+//App Components
+import { RecoverLauncherComponent } from '../recover/launcher/recover-launcher.component';
 
 @Component({
     selector: 'account-signin',
@@ -12,15 +14,32 @@ import { SignInDialogComponent } from './dialog/signin-dialog.component';
 })
 export class SignInComponent {
 
-    constructor(
-        public dialog: MatDialog
-    ) { }
+    private signinData: Models.SOAuthenticateBasic;
+    private loading: boolean;
 
-    openDialog(): void {
-        let config: MatDialogConfig = {
-            width: '350px',
-        }
-        this.dialog.open(SignInDialogComponent, config);
+    constructor(
+        public dialog: MatDialog,
+        public matDialogRef: MatDialogRef<SignInComponent>,
+        private authenticationService: AuthenticationService
+    ) {
+        this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };
+        this.loading = false;
     }
 
+    onSubmit(): void {
+        this.loading = true;
+        this.authenticationService.signIn(this.signinData).subscribe(
+            value => {
+                this.matDialogRef.close();
+                this.loading = false;
+            },
+            error => {
+                this.loading = false;
+            }
+        );
+    }
+
+    onClose(): void {
+        this.matDialogRef.close();
+    }
 }
