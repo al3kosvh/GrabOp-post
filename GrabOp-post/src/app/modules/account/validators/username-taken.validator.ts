@@ -1,23 +1,23 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-import { SignUpService } from '../../../services/signup.service';
+import { SignUpService } from '../services/signup.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-export class EmailTakenValidator {
+export class UsernameTakenValidator {
 
     static createValidator(signupService: SignUpService): AsyncValidatorFn {
         return (control: AbstractControl): Observable<any> => {
-            let email = control.value;
+            let username = control.value;
             return control
                 .valueChanges
                 .debounceTime(400)
                 .mergeMap(value => {
                     return new Observable((observer: any) => {
-                        signupService.checkEmailExistence(email).subscribe(
-                            value => { observer.next(value ? { emailTaken: true } : null) },
-                            error => { observer.next({ connectionError: true }) }
-                        )
+                        //signupService.verifyUsername(username).subscribe(
+                        //    taken => { observer.next(taken ? { usernameTaken: true } : null) },
+                        //    error => { observer.next({ connectionError: true }) }
+                        //)
                     });
                 }).mergeMap(stat => {
                     control.setErrors(stat);

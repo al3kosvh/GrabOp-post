@@ -1,11 +1,11 @@
-﻿import { Component, Inject, EventEmitter, Output, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //Validators
-import { MatchPasswordValidator } from './validators/password-match.validator';
-import { EmailTakenValidator } from './validators/email-taken.validator';
-import { UsernameTakenValidator } from './validators/username-taken.validator';
+import { MatchPasswordValidator } from '../../validators/password-match.validator';
+import { EmailTakenValidator } from '../../validators/email-taken.validator';
+import { UsernameTakenValidator } from '../../validators/username-taken.validator';
 
 // Services
 import { AuthenticationService } from '../../services/authentication.service';
@@ -38,7 +38,6 @@ export class SignUpComponent implements OnInit {
     ngOnInit() {
         this.buildFormGroups();
     }
-
 
     private submit(): void {
         this.submitting = true;
