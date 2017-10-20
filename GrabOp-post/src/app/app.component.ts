@@ -1,7 +1,7 @@
 import { Component, Directive, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RouterOutlet } from '@angular/router';
-import { MatIconRegistry, MatSidenav } from '@angular/material';
+import { MatIconRegistry, MatSidenav, MatSnackBar } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser'
 
 import { VOUserExt } from './modules/account/models/vouser';
@@ -14,7 +14,7 @@ import { SidenavService } from './services/sidenav.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],    
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
 
@@ -27,6 +27,7 @@ export class AppComponent implements AfterViewInit {
     constructor(
         private authService: AuthenticationService,
         private mdIconRegistry: MatIconRegistry,
+        private matSnackBar: MatSnackBar,
         private sanitizer: DomSanitizer,
         private toolbarService: ToolbarService,
         private sidenavService: SidenavService
@@ -46,10 +47,10 @@ export class AppComponent implements AfterViewInit {
         mdIconRegistry
             .addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/facebook.svg'))
             .addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/twitter.svg'))
-            .addSvgIcon('heart', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/heart.svg'))        
+            .addSvgIcon('heart', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img//icons/heart.svg'))
     }
 
-    ngAfterViewInit() {        
+    ngAfterViewInit() {
         this.sidenavService.registerSidenav(this.mdSidenav);
     }
 

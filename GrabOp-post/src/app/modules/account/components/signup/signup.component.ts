@@ -2,14 +2,15 @@
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-//Validators
+//App Validators
 import { MatchPasswordValidator } from '../../validators/password-match.validator';
 import { EmailTakenValidator } from '../../validators/email-taken.validator';
 import { UsernameTakenValidator } from '../../validators/username-taken.validator';
 
-// Services
+//App Services
 import { AuthenticationService } from '../../services/authentication.service';
 import { SignUpService } from '../../services/signup.service';
+import { UploadService } from '../../services/upload.service';
 
 @Component({
     selector: 'signup',
@@ -18,21 +19,22 @@ import { SignUpService } from '../../services/signup.service';
 })
 export class SignUpComponent implements OnInit {
 
-    private user: Models.VOUserExt = { occupation: 1, role: "user" } as Models.VOUserExt;
     private formGroup: FormGroup;
     private submitting = false;
+    private user: Models.VOUserExt = { occupation: 1, role: "user" } as Models.VOUserExt;
 
     private messages = {
-        submitMessage: "",
+        connectionErrorMessage: "Connection error",
         emailTakenMessage: "This email is already taken",
         passwordMismatchMessage: "Password mismatch",
-        usernameTakenMessage: "This username is not available",
-        connectionErrorMessage: "Connection error"
+        submitMessage: "",
+        usernameTakenMessage: "This username is not available"
     };
 
     constructor(
         private formBuilder: FormBuilder,
-        private signupService: SignUpService
+        private signupService: SignUpService,
+        private uploadService: UploadService
     ) { }
 
     ngOnInit() {
@@ -44,20 +46,17 @@ export class SignUpComponent implements OnInit {
         this.messages.submitMessage = "";
         let registerData: Models.VORegisterParameters = this.formArray.get([0]).value as Models.VORegisterParameters;
 
-        //console.log('values to submit: ', this.formArray.get([0]).value);
-        //this.signupService.register(this.formArray.get([0]).value).subscribe(
         this.signupService.register(registerData).subscribe(
             value => {
                 console.log('register ok', value);
                 this.user.id = value;
-                console.log('register ok', this.user);
                 this.signupService.registerContinue(this.user).subscribe(
                     value => {
                         console.log('profile update ok', value);
                         this.submitting = false;
                     },
                     error => {
-                        this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the proces."
+                        this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
                         this.submitting = false;
                     }
                 );
@@ -68,6 +67,20 @@ export class SignUpComponent implements OnInit {
         );
         this.submitting = false;
 
+    }
+
+    uploadFile(event): void {
+        console.log("SignUp uploadFile: ", event);
+        if (event.target.files) {
+            this.uploadService.uploadFile(event.target.files[0]).subscribe(
+                value => {
+                    console.log("SignUp upload ok: ", value);
+                },
+                error => {
+                    console.log("SignUp upload error: ", error);
+                }
+            )
+        }
     }
 
     private changeOccupation(value) {

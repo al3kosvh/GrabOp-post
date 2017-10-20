@@ -41,7 +41,7 @@ export class PostMediaComponent implements OnInit {
     }
 
     upload(input) {
-        this.uploadService.upload(input)
+        this.uploadService.uploadFile(input.target.files[0])
             .subscribe(res => {
                 console.log('upload res', res);
                 res.parentid = this.model.id;

@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
 // Services
 import { AuthenticationService } from '../../../../account/services/authentication.service';
 import { SettingsService } from '../../../services/settings.service';
-import { HttpErrorService } from '../../../../shared/services/http-error.service';
 
 @Component({
     selector: 'security-settings',

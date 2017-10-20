@@ -7,7 +7,7 @@ import { Observer } from "rxjs/Observer"
 import { VOPost } from '../../../../models/vos';
 
 // Components
-import { SignInComponent } from '../../../account/components/signin/signin.component';
+import { SignInLauncherComponent } from '../../../account/components/signin/launcher/signin-launcher.component';
 import { SignUpComponent } from '../../../account/components/signup/signup.component';
 
 // Services
