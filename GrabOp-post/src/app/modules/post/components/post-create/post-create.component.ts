@@ -32,7 +32,9 @@ export class PostCreateComponent implements OnInit {
         private route: ActivatedRoute,
         private accountService: AuthenticationService,
         private matDialog: MatDialog
-    ) { }
+    ) {
+        this.model.isPublic = true;
+    }
 
     ngOnInit(): void { }
 
