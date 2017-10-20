@@ -101,7 +101,7 @@ const routes: Routes = [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MatIconRegistry,
         ToolbarService,
-        SidenavService
+        SidenavService,
     ],
     entryComponents: [HelpComponent],
     bootstrap: [AppComponent]

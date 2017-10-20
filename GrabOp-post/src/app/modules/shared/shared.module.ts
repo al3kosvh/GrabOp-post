@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatListModule, MatSnackBarModule, MatSnackBarContainer, MatSnackBar } from '@angular/material';
+import { MatInputModule, MatListModule, MatSnackBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -18,8 +18,6 @@ import { MatImageDirective } from "./directives/mat-image.directive";
 // Services
 import { ModalWindowService } from './services/modal-window.service';
 import { SnackBarService } from './services/snackbar.service';
-import { HttpErrorService } from './services/http-error.service';
-
 // Pipes
 import { TruncateTextPipe } from './pipes/truncate.pipe';
 
@@ -51,14 +49,11 @@ import { TruncateTextPipe } from './pipes/truncate.pipe';
     providers: [
         ModalWindowService,
         SnackBarService,
-        HttpErrorService,
-        MatSnackBar,
         TruncateTextPipe
     ],
     entryComponents: [
         ModalAlertComponent,
-        ModalPromptComponent,
-        MatSnackBarContainer
+        ModalPromptComponent
     ]
 })
 export class SharedModule { }
