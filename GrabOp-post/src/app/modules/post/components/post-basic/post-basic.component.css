@@ -5,3 +5,7 @@ div.post-basic {
 mat-form-field {
   width: 100%;
 }
+
+div.options button {
+    margin-right: 5px;
+}

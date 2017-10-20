@@ -12,15 +12,16 @@ import 'rxjs/add/operator/map';
 // export function mapPostSend(post: VOPost): any {
 
 export function mapAttachments_req(attachments: VOpost_attachment[]): SOattachment[] {
-    return attachments.map(function (attachment) {
-        return {
-            Id: attachment.id,
-            Name: attachment.name,
-            Type: attachment.type,
-            Prefix: attachment.prefix,
-            IsDefault: attachment.is_default
-        }
-    });
+    if (attachments)
+        return attachments.map(function (attachment) {
+            return {
+                Id: attachment.id,
+                Name: attachment.name,
+                Type: attachment.type,
+                Prefix: attachment.prefix,
+                IsDefault: attachment.is_default
+            }
+        });
 }
 
 export function mapPostSend_CreateNeed(post: VOPost): Need_CreateNeed {

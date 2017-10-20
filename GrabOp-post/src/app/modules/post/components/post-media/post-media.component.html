@@ -1,59 +1,65 @@
-<div class="post-edit">
-  <div>
-    <h5>Photos</h5>
-    <div class="frames" fxLayout="row">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
-      </div>
-      <div fxLayout="row" class="frames-container">
-        <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button mat-icon-button><mat-icon>add</mat-icon></button>
+<form>
+    <div class="post-edit">
+        <div>
+            <h5>Photos</h5>
+            <div class="frames" fxLayout="row">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                </div>
+                <div fxLayout="row" class="frames-container">
+                    <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-icon-button><mat-icon>add</mat-icon></button>
+                    </div>
+                    <div *ngFor="let image of images" class="frame-container">
+                        <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                </div>
+            </div>
         </div>
-        <div *ngFor="let image of images" class="frame-container">
-          <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
+        <div>
+            <h5>Videos</h5>
+            <div class="frames" fxLayout="row">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                </div>
+                <div fxLayout="row" class="frames-container">
+                    <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-icon-button><mat-icon>add</mat-icon></button>
+                    </div>
+                    <div *ngFor="let image of images" class="frame-container">
+                        <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
+        <div>
+            <h5>Documents</h5>
+            <div class="frames" fxLayout="row">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                </div>
+                <div fxLayout="row" class="frames-container">
+                    <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
+                        <button mat-icon-button><mat-icon>add</mat-icon></button>
+                    </div>
+                    <div *ngFor="let image of images" class="frame-container">
+                        <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div>
-    <h5>Videos</h5>
-    <div class="frames" fxLayout="row">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
-      </div>
-      <div fxLayout="row" class="frames-container">
-        <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button mat-icon-button><mat-icon>add</mat-icon></button>
-        </div>
-        <div *ngFor="let image of images" class="frame-container">
-          <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
-        </div>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
+    <div class="options" fxLayout="row-reverse">
+        <button mat-raised-button color="primary" (click)="onSaveClick()">Create</button>
+        <button mat-button (click)="onCancelClick()">Cancel</button>
     </div>
-  </div>
-  <div>
-    <h5>Documents</h5>
-    <div class="frames" fxLayout="row">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
-      </div>
-      <div fxLayout="row" class="frames-container">
-        <div class="frame-container" fxLayout="column" fxLayoutAlign="center center">
-          <button mat-icon-button><mat-icon>add</mat-icon></button>
-        </div>
-        <div *ngFor="let image of images" class="frame-container">
-          <img class="thumbnail" [src]="image.url" (mouseenter)="onMouseEnter(image)" (mouseleave)="onMouseLeave()" />
-        </div>
-      </div>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-icon-button (click)="onScrollRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
-      </div>
-    </div>
-  </div>
-</div>
+</form>

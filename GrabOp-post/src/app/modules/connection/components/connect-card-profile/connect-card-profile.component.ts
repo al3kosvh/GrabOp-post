@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 // Services
 import { ConnectionService } from "../../services/connection.service";
 import { AuthenticationService } from "../../../account/services/authentication.service";
+import { SidenavService } from "../../../../services/sidenav.service";
 
 @Component({
   selector: 'app-connect-card-profile',
@@ -15,7 +16,9 @@ export class ConnectCardProfileComponent implements OnInit {
   private indexConnection: any;
   user: Models.VOUserExt;
 
-  constructor(private connectionService: ConnectionService, private userService: AuthenticationService) {
+  constructor(private connectionService: ConnectionService,
+              private userService: AuthenticationService,
+              private sidenavService: SidenavService) {
   }
 
   ngOnInit() {
@@ -70,11 +73,16 @@ export class ConnectCardProfileComponent implements OnInit {
 
   setConnection() {
     this.checkUser(() => {
-      this.connectionService.setConnection(this.user.id, this.connection.id, 'make a connection').subscribe(
+
+      let me = this;
+      this.sidenavService.setConnection(
+        this.user.id,
+        this.connection.id,
+        this.connection.display_name,
         respond => {
-          this.btnConnectValue = respond.status === 1 ? 'connection sent' : 'connect';
+          me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
         }
-      )
+      );
     })
   }
 

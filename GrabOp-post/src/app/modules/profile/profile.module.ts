@@ -12,6 +12,7 @@ import {
 // Shared Modules
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
+import { SearchModule } from '../search/search.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
@@ -25,6 +26,7 @@ import { SettingSelectComponent } from './components/settings/setting-select/set
 import { SecuritySettingsComponent } from './components/settings/security-settings/security-settings.component';
 import { EmailUsernameSettingsComponent } from './components/settings/email-username-settings/email-username-settings.component';
 import { VideoProfileDialogComponent } from './components/profile/video/video-profile-dialog.component';
+import { SetConnectionComponent } from './components/profile/set-connection/set-connection.component';
 
 // Services
 import { ProfileService } from './services/profile.service';
@@ -64,7 +66,8 @@ const routes: Routes = [
         SharedModule,
         PipesModule,
         PostModule,
-        MatExpansionModule
+        MatExpansionModule,
+        SearchModule
     ],
     declarations: [
         ProfileComponent,
@@ -77,18 +80,23 @@ const routes: Routes = [
         SettingSelectComponent,
         SecuritySettingsComponent,
         EmailUsernameSettingsComponent,
-        VideoProfileDialogComponent
+        VideoProfileDialogComponent,
+        SetConnectionComponent
     ],
     exports: [
-        AllianceInviteComponent
+        AllianceInviteComponent,
+      SetConnectionComponent
     ],
     providers: [
         ProfileService,
         SettingsService,
         ProfileGuard
     ],
-    entryComponents: [EditProfileDialogComponent,
-        VideoProfileDialogComponent]
+    entryComponents: [
+      EditProfileDialogComponent,
+        VideoProfileDialogComponent,
+      SetConnectionComponent
+    ]
 })
 
 export class ProfileModule { }

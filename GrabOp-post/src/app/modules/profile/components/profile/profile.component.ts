@@ -174,50 +174,63 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
     }
 
+  adminConnection(expansion: MatExpansionPanel) {
+      expansion.close();
+    if (this.btnConnectValue === 'connect') {
+      this.checkUser(
+        () => {
+          this.setConnection();
+        })
+    } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
+      this.checkUser(
+        () => {
+          this.confirmConnection();
+        })
+    }
+  }
 
+  private setConnection() {
+    let me = this;
+    this.sidenavService.setConnection(
+      this.myUser.id,
+      this.profile.id,
+      this.profile.displayName,
+      respond => {
+        me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+      }
+    );
+  }
 
+  private confirmConnection() {
+    this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+      respond => {
+        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+      }
+    )
+  }
 
-    adminConnection(expansion: MatExpansionPanel) {
-        expansion.close();
-        if (this.btnConnectValue === 'connect') {
-            if (this.myUser) {
-                this.setConnection();
-            } else {
-                this.userService.getUser().subscribe(
-                    user => {
-                        this.myUser = user;
-                        this.setConnection();
-                    }
-                )
-            }
-        } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-            if (this.myUser) {
-                this.confirmConnection();
-            } else {
-                this.userService.getUser().subscribe(
-                    user => {
-                        this.myUser = user;
-                        this.confirmConnection();
-                    }
-                )
-            }
+  checkUser(cb) {
+    if (this.myUser) {
+      cb()
+    } else {
+      this.userService.getUser().subscribe(
+        user => {
+          this.myUser = user;
+          cb()
         }
+      )
     }
+  }
 
-    private setConnection() {
-        this.connectionService.setConnection(this.myUser.id, this.profile.id, 'make a connection').subscribe(
-            respond => {
-                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-            }
-        )
-    }
-
-    private confirmConnection() {
-        this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
-            respond => {
-                this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-            }
-        )
-    }
+  openMessage() {
+    this.checkUser(
+      () => {
+        this.sidenavService.onMessage({
+          id: this.myUser.id,
+          senderid: this.profile.id,
+          senderName: this.profile.firstName
+        });
+      })
+  }
 
 }

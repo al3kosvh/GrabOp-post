@@ -16,7 +16,7 @@ import { PostModule } from '../post/post.module';
 import { SearchComponent } from "./components/search/search.component";
 import { AdvancedSearchComponent } from "./components/advanced-search/advanced-search.component";
 import { PipesModule } from "../../pipes/pipes.module";
-import { NumberInputComponent } from "./components/numbers/number-input.component";
+import { SimpleInputComponent } from "./components/input/simple-input.component";
 import { ConnectionModule } from "../connection/connection.module";
 
 const routes: Routes = [
@@ -51,8 +51,8 @@ const routes: Routes = [
     MatCardModule,
     MatSidenavModule
   ],
-  declarations: [SearchComponent, AdvancedSearchComponent, NumberInputComponent],
-  exports: [SearchComponent, NumberInputComponent],
+  declarations: [SearchComponent, AdvancedSearchComponent, SimpleInputComponent],
+  exports: [SearchComponent, SimpleInputComponent],
   providers: [],
 })
 export class SearchModule {

@@ -1,59 +1,44 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-tab-group position="center" dynamicHeight="true">
+  <mat-tab label="Active Connections ({{myConnections.length}})">
 
-  <mat-tab-group position="center" dynamicHeight="true">
-    <mat-tab label="Active Connections ({{myConnections.length}})">
-
-      <div fxLayout="row" fxLayoutAlign="center">
-        <div class="search-container" fxFlex="35" fxFlex.xs="60">
-          <form floatPlaceholder="never" fxFlex="100" fxFlex.xs="100">
-            <mat-form-field floatPlaceholder="never" fxFlex="100">
-              <mat-icon matPrefix>search</mat-icon>
-              <input matInput placeholder="Search" name="search" aria-label="Search..." [matAutocomplete]="auto" [(ngModel)]="search">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
-                  <span>{{ connection.display_name }}</span>
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </form>
-        </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <div class="search-container" fxFlex="35" fxFlex.xs="60">
+        <form floatPlaceholder="never" fxFlex="100" fxFlex.xs="100">
+          <mat-form-field floatPlaceholder="never" fxFlex="100">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput placeholder="Search" name="search" aria-label="Search..." [matAutocomplete]="auto" [(ngModel)]="search">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
+                <span>{{ connection.display_name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
       </div>
+    </div>
 
-      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-        <app-connect-card
-          *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search"
-          [tab]='tab[0]'
-          [connection]="connection"
-          (onMessage)="onMessage($event)"
-          [sidenav]="sidenav"></app-connect-card>
-      </div>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card
+        *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search"
+        [tab]='tab[0]'
+        [connection]="connection"></app-connect-card>
+    </div>
 
-    </mat-tab>
-    <mat-tab label="Received Requests ({{myConnections.length}})">
-      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-        <app-connect-card
-          *ngFor="let connection of myConnections | connectionFilter: 1"
-          [tab]='tab[1]'
-          [connection]="connection"
-          (onMessage)="onMessage($event)"
-          [sidenav]="sidenav"></app-connect-card>
-      </div>
-    </mat-tab>
-    <mat-tab label="Send Requests ({{myConnections.length}})">
-      <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-        <app-connect-card
-          *ngFor="let connection of myConnections | connectionFilter: 1"
-          [tab]='tab[2]'
-          [connection]="connection"
-          (onMessage)="onMessage($event)"
-          [sidenav]="sidenav"></app-connect-card>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
-
-  <mat-sidenav #sidenav class="sidenav-content">
-    <msg-sidenav [message]="message" [sidenav]="sidenav"></msg-sidenav>
-  </mat-sidenav>
-
-</mat-sidenav-container>
-
+  </mat-tab>
+  <mat-tab label="Received Requests ({{myConnections.length}})">
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card
+        *ngFor="let connection of myConnections | connectionFilter: 1"
+        [tab]='tab[1]'
+        [connection]="connection"></app-connect-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Send Requests ({{myConnections.length}})">
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
+      <app-connect-card
+        *ngFor="let connection of myConnections | connectionFilter: 1"
+        [tab]='tab[2]'
+        [connection]="connection"></app-connect-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -141,11 +141,11 @@ export class EditProfileDialogComponent {
         this.profile.skillset.splice(index, 1);
     }
 
-    onchangeSkill(event, index): void {
+    /*onchangeSkill(event, index): void {
         event.preventDefault();
         this.profile.skillset[index] = event.target.value;
         console.log('onchange', index, event.target.value, this.profile.skillset);
-    }
+    }*/
 
     add(event: MatChipInputEvent): void {
         let input = event.input;

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOImage, VOPost, VOpost_attachment } from '../../../../models/vos';
 // import {UploadService} from '../../myservices/upload-service';
 import { PostService } from '../../services/post.service';
@@ -10,13 +10,14 @@ import { UploadService } from '../../../account/services/upload.service';
     styleUrls: ['./post-media.component.css']
 })
 
-export class PostMediaComponent implements OnInit, OnChanges {
+export class PostMediaComponent implements OnInit {
 
     @Input() model: VOPost;
+    @Output() onCancel = new EventEmitter<number>();
+    @Output() onSave = new EventEmitter();
     // images: VOImage[];
     attachments: VOpost_attachment[] = [];
     // attachments_ext: VOpost_attachment_ext[] = [];
-    @Input() model_id: number;
 
     currentImage: VOImage;
     // @Output() selected$: EventEmitter<VOImage> = new EventEmitter<VOImage>();
@@ -37,13 +38,6 @@ export class PostMediaComponent implements OnInit, OnChanges {
          //this.images = this.model.attachments.filter((item:VOImage)=>{return item.type=='image'})
          }
          else this.images=[];*/
-    }
-
-    ngOnChanges(obj: any): void {
-        console.log('ngOnChanges', obj);
-        // if (obj.model && obj.model.currentValue.id) {
-        //   this.loadAttachments(obj.model.currentValue.id);
-        // }
     }
 
     upload(input) {
@@ -98,27 +92,27 @@ export class PostMediaComponent implements OnInit, OnChanges {
     }
 
 
-    onImageUploadChange($evt): void {
+    //onImageUploadChange($evt): void {
 
-        let files: FileList = $evt.target.files;
-        if (files.length) {
-            let form: FormData = new FormData();
-            let file: File = files[0];
-            form.append('file', file);
-            // if (files[0].size < 2000000) {
-            //   this.uploadSerevice.upload(form, 'post_attachments', this.model.id.toString()).done(res => {
-            //     console.log(res);
-            //     if (res.success == 'success') {
-            //       let img: VOImage = new VOImage({src: res.result, type: 'image', posts_id: this.model.id, dirty: true});
-            //       this.currentImage = img;
-            //       this.saveAttachment(img);
-            //       // this.model.attachments = this.images.length;
-            //     }
-            //   });
-            // }
-            // else alert('File should be less then 2 Megabite');
-        }
-    }
+    //    let files: FileList = $evt.target.files;
+    //    if (files.length) {
+    //        let form: FormData = new FormData();
+    //        let file: File = files[0];
+    //        form.append('file', file);
+    //        // if (files[0].size < 2000000) {
+    //        //   this.uploadSerevice.upload(form, 'post_attachments', this.model.id.toString()).done(res => {
+    //        //     console.log(res);
+    //        //     if (res.success == 'success') {
+    //        //       let img: VOImage = new VOImage({src: res.result, type: 'image', posts_id: this.model.id, dirty: true});
+    //        //       this.currentImage = img;
+    //        //       this.saveAttachment(img);
+    //        //       // this.model.attachments = this.images.length;
+    //        //     }
+    //        //   });
+    //        // }
+    //        // else alert('File should be less then 2 Megabite');
+    //    }
+    //}
 
     // loadAttachments(id: number): void {
     //   this.postEditService.getAttachments(this.model.id).then(
@@ -127,5 +121,13 @@ export class PostMediaComponent implements OnInit, OnChanges {
     //       console.log(res);
     //     });
     // }
+
+    onSaveClick() {
+        this.onSave.emit();
+    }
+
+    onCancelClick() {
+        this.onCancel.emit();
+    }
 
 }

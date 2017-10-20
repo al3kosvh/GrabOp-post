@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 // Services
 import { ConnectionService } from "../../services/connection.service";
 import { AuthenticationService } from "../../../account/services/authentication.service";
+import { SidenavService } from "../../../../services/sidenav.service";
 
 @Component({
     selector: 'app-connect-card',
@@ -11,11 +12,10 @@ import { AuthenticationService } from "../../../account/services/authentication.
 export class ConnectCardComponent implements OnInit {
     @Input() tab;
     @Input() connection: Models.VOConnection;
-    @Input() sidenav;
-    @Output() onMessage = new EventEmitter<Models.VOMessage>();
     user: Models.VOUserExt;
 
-    constructor(private connectionService: ConnectionService, private userService: AuthenticationService) {
+    constructor(private connectionService: ConnectionService, private userService: AuthenticationService,
+                private sidenavService: SidenavService) {
     }
 
     ngOnInit() {
@@ -60,11 +60,11 @@ export class ConnectCardComponent implements OnInit {
     openMessage() {
         this.checkUser(
             () => {
-                this.onMessage.emit({
-                    id: this.user.id,
-                    senderid: this.connection.id
-                });
-                this.sidenav.open()
+              this.sidenavService.onMessage({
+                id: this.user.id,
+                senderid: this.connection.id,
+                senderName: this.connection.display_name
+              });
             })
     }
 
