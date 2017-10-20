@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 
 @Component({
@@ -7,15 +7,22 @@ import { VOPost } from '../../../../models/vos';
     styleUrls: ['./post-style.component.css']
 })
 
-export class PostStyleComponent implements OnInit, OnChanges {
+export class PostStyleComponent implements OnInit {
 
     @Input() model: VOPost;
-    @Input() model_id: number;
+    @Output() onCancel = new EventEmitter();
+    @Output() onNext = new EventEmitter<number>();
 
     constructor() { }
 
-    ngOnChanges(obj: any): void { }
-
     ngOnInit(): void { }
+
+    onNextClick() {
+        this.onNext.emit(2);
+    }
+
+    onCancelClick() {
+        this.onCancel.emit();
+    }
 
 }

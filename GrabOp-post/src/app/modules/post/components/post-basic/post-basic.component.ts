@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOCategory, VOPost } from '../../../../models/vos';
 import { PostService } from '../../services/post.service';
 
@@ -8,43 +8,29 @@ import { PostService } from '../../services/post.service';
     styleUrls: ['./post-basic.component.css']
 })
 
-export class PostBasicComponent implements OnInit, OnChanges {
-
-    isFormValid: boolean;
+export class PostBasicComponent implements OnInit {
 
     @Input() model: VOPost;
-    @Input() model_id: number;
-    @Output() f: boolean;
+    @Output() onCancel = new EventEmitter<number>();
+    @Output() onNext = new EventEmitter();
     categories: Models.Category[];
 
     constructor(
         private postService: PostService
     ) {
-        //this.postEditService.getCategories().then( res => this.categories = res);
+       
     }
 
-    ngOnChanges(obj: any): void {
-        // console.log(obj)
-        // if(obj.my_service_id && this.my_service_id !== obj.my_service_id)  this.loadService();
-
-    }
     ngOnInit(): void {
       this.postService.getCategories().subscribe(categories => this.categories = categories);        
     }
 
-    onNext() {
-        console.log(this.model);
+    onNextClick() {
+        this.onNext.emit(1);
     }
 
-    loadService(): void {
-        /*console.log('loadService()' +this.my_service_id)
-         if(isNaN(this.my_service_id)) return;
-         this.myService.getPostById(this.my_service_id).subscribe(
-         res=>{
-         this.currentService = res;
-         //console.log(services);
-         }
-         )*/
+    onCancelClick() {        
+        this.onCancel.emit();
     }
 
 }

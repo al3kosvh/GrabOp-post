@@ -1,6 +1,6 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSidenav } from '@angular/material';
 
 import { VOPost } from '../../../../models/vos';
 
@@ -17,14 +17,15 @@ import { PostService } from '../../../post/services/post.service';
     styleUrls: ['./post-create.component.css']
 })
 
-export class PostCreateComponent implements OnInit, OnChanges {
+export class PostCreateComponent implements OnInit {
 
+    @Input() sidenav: MatSidenav;
     model: VOPost = new VOPost({});
+    selectedIndex = 0;
+
     // model_id: number = 20;
 
     // myStep: string;
-
-    type: string;
 
     constructor(
         private postService: PostService,
@@ -33,55 +34,28 @@ export class PostCreateComponent implements OnInit, OnChanges {
         private matDialog: MatDialog
     ) { }
 
-    ngOnChanges(obj: any): void {
-        // console.log(obj)
-        // if(obj.my_service_id && this.my_service_id !== obj.my_service_id)  this.loadService();
-    }
+    ngOnInit(): void { }
 
-    ngOnInit(): void {
+    onSavePost(): void {
 
-        //this.postService.my.subscribe(post => this.model = post);
-
-        //this.postService.selectedMyPost$.subscribe(post => this.postService.setPost(post));
-
-        //this.route.params.subscribe(params => {
-        //    console.log(params);
-        //    // this.myStep =  params['step'] || 'basic';
-        //    const id = +params['id'];
-        //    if (params['type']) {
-        //        this.model = new VOPost({ type: params['type'] })
-        //    } else {
-        //        if (isNaN(id)) {
-        //            console.error(' please provide ID for service to edit');
-        //            return;
-        //        }
-        //        this.loadPost(id);
-        //    }
-        //});
-
-    }
-
-    onSaveClick(): void {
-        // console.log(this.myServiceService);
-        if (this.model.id) {
-            this.postService.updatePost(this.model)
-            //.subscribe(res => {
-            //    console.log('updatePost', res);
-            //    if (res.id) {
-            //        this.dialog.open(ModalAlertComponent, { data: 'Post updated.' });
-            //    }
-            //}
-            //);
-        } else {
-            this.postService.insertPost(this.model)
-                .subscribe(res => {
-                    console.log('insertPost', res);
-                    if (res.id) {
-                        this.matDialog.open(ModalAlertComponent, { data: 'New post saved.' });
-                    }
+        this.postService.insertPost(this.model)
+            .subscribe(res => {                
+                if (res.id) {
+                    this.matDialog.open(ModalAlertComponent, { data: 'New post saved.' });
                 }
-                );
-        }
+            },
+            error => {
+                console.log(error);
+            });
+
+    }
+
+    onNext(index: number) {
+        this.selectedIndex = index;
+    }
+
+    onCancel() {
+        this.sidenav.close();
     }
 
 }
