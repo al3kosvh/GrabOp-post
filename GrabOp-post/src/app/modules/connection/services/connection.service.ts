@@ -59,6 +59,11 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
+    getMyConversation(): Observable<any> {
+        return this.http.get(VOSettings.getMyConversation)
+            .catch(this.handleError);
+    }
+
     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             console.error(error);

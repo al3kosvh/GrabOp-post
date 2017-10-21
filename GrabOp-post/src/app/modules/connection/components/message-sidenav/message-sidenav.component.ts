@@ -20,6 +20,19 @@ export class MessageSideNavComponent implements OnInit {
         if (!this.message) {
             this.message = { id: null, senderid: null, body: '', subject: '' };
         }
+        this.connectionService.getMyConversation()
+            .subscribe(
+                res => {
+                    console.log('Respond get my messages success', res);
+                    // add Message success
+                },
+                err => {
+                    console.log('Respond get my messages err: ', err)
+                },
+                () => {
+
+                }
+            )
     }
 
     sendMessage() {

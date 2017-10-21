@@ -328,6 +328,7 @@ export class VOSettings {
     static registerUrl: string = VOSettings.server + '/register?format=json';
     static resetPasswordUrl: string = VOSettings.server + '/resetpassword?format=json';
     static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
+    static getMyConversation: string = VOSettings.server + '/conversations/myconversations?format=json';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
     static signinUrl = VOSettings.server + '/auth?format=json';
     static signoutUrl = VOSettings.server + '/auth/logout?format=json';
