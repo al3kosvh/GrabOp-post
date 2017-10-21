@@ -33,10 +33,9 @@ export class SettingSlideToggleComponent implements OnInit {
         }
     }
 
-    onToggle() {
-        let stringValue = this.value ? "1" : "0";
+    onToggle() {        
 
-        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, stringValue).subscribe(
+        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, this.value ? "1" : "0").subscribe(
             setting => {
                 //console.log(setting);
             }

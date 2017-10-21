@@ -35,9 +35,8 @@ export class SettingSliderComponent implements OnInit {
     }
 
     onChange() {
-        let stringValue = this.value.toString();
 
-        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, stringValue).subscribe(
+        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, this.value.toString()).subscribe(
             setting => {
                 //console.log(setting);
             }
