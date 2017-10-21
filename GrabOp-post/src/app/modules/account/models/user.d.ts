@@ -75,6 +75,7 @@ declare module Models {
         offers?: number;
         needs?: number;
         numberOfOpps?: number;
+        type?: string;
     }
 
 

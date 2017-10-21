@@ -415,7 +415,7 @@ export function mapGetPerson(res): Models.VOUserExt {
         id: account.id,
         // sessionId: account,
         // userId:account,
-        // role: account.type,
+        type: account.type,
         username: account.user_name,
         // password:account,
         primaryEmail: account.primary_email,
@@ -476,7 +476,7 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
         longitude: 'longitude',
         skillset: 'skillset',
         interests: 'interests',
-        profile_pic: 'profile_pic',
+        profileImage: 'profile_pic',
         jobtitle: 'jobtitle',
         company: 'company',
         occupation: 'occupation',
@@ -492,12 +492,21 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
         post: 'post'
     };
     let tmp = {};
-    for (let i in user) {
+    for (let i in map) {
         if (i == 'id') {
             tmp['id'] = user.id;
             continue;
         }
         tmp[map[i]] = user[i];
+    }
+    if (!tmp['latitude']) {
+        tmp['latitude'] = 0.0;
+    }
+    if (!tmp['longitude']) {
+        tmp['longitude'] = 0.0;
+    }
+    if (!tmp['type']) {
+        tmp['type'] = 'user';
     }
     return tmp;
 }
