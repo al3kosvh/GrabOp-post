@@ -1,1 +1,3 @@
-﻿<button mat-raised-button color="accent" (click)="openDialog()">SIGN IN</button>
+﻿<button *ngIf="!asLink" mat-raised-button color="accent" (click)="openDialog()">Sign In</button>
+
+<a *ngIf="asLink" class="open-signin" (click)="openDialog()">Sign In</a>
