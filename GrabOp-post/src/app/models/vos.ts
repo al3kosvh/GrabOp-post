@@ -340,6 +340,7 @@ export class VOSettings {
     static upload: string = 'api/upload.php';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
     static getCategories: string = VOSettings.server + '/categories/?format=json';
+    static deleteService: string = VOSettings.server + '/services/{{id}}?format=json';
 
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;

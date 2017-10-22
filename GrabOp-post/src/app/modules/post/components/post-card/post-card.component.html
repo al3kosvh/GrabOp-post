@@ -6,7 +6,7 @@
         <button mat-menu-item> Duplicate </button>
         <button mat-menu-item> Share </button>
         <button mat-menu-item> Hide </button>
-        <button mat-menu-item> Delete Services </button>
+        <button mat-menu-item (click)="onDelete()"> Delete Services </button>
     </mat-menu>
     <button mat-icon-button class="options" [matMenuTriggerFor]="appMenu"><mat-icon>more_vert</mat-icon></button>
   <img  (click)="showOptions($event)" class="post-image" src="{{postImage}}" />

@@ -2,11 +2,12 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
-// import {PostsService} from "../../posts/posts.service";
 // import {ActivatedRoute, Router} from '@angular/router';
 
 // Services
 import { SidenavService } from '../../../../services/sidenav.service';
+import { PostService } from '../../services/post.service';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
 
 @Component({
     selector: 'post-card',
@@ -30,9 +31,10 @@ export class PostCardComponent implements OnInit {
     // imgURL = 'url(img/img-girl.jpg)';
     constructor(
         private router: Router,
-        private sidenavService: SidenavService
-        // router: Router,
-        // route: ActivatedRoute) {
+        private sidenavService: SidenavService,
+        private snackBarService: SnackBarService,
+        private postService: PostService 
+        // route: ActivatedRoute
     ) {
 
     }
@@ -51,6 +53,13 @@ export class PostCardComponent implements OnInit {
 
     onEdit() {
         this.sidenavService.onEditPost(this.post);
+    }
+
+    onDelete() {
+        this.postService.deleteService(this.post.id).subscribe(result => {
+            if (result)
+                this.snackBarService.showMessage(result);
+        });
     }
 
 }
