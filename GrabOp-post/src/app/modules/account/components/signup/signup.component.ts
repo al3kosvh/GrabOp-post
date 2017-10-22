@@ -25,10 +25,10 @@ export class SignUpComponent implements OnInit {
 
     private messages = {
         connectionErrorMessage: "Connection error",
-        emailTakenMessage: "This email is already taken",
+        emailTakenMessage: "That email is already in use",
         passwordMismatchMessage: "Password mismatch",
         submitMessage: "",
-        usernameTakenMessage: "This username is not available"
+        usernameTakenMessage: "That username is not available"
     };
 
     constructor(
@@ -89,7 +89,6 @@ export class SignUpComponent implements OnInit {
                 this.formBuilder.group({
                     firstName: ['', Validators.required],
                     lastName: ['', Validators.required],
-                    displayName: ['', Validators.required],
                     username: [
                         '',
                         [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
