@@ -16,7 +16,7 @@ import { SearchModule } from '../search/search.module';
 
 // Components
 import { ProfileComponent } from './components/profile/profile.component';
-import { EditProfileDialogComponent } from './components/profile/edit/edit-profile-dialog.component';
+import { EditProfileComponent } from './components/profile/edit/edit-profile.component';
 import { ResumeComponent } from './components/resume/resume.component';
 import { AllianceInviteComponent } from './components/alliance-invite/alliance-invite.component';
 import { SettingsComponent } from './components/settings/settings.component';
@@ -71,7 +71,7 @@ const routes: Routes = [
     ],
     declarations: [
         ProfileComponent,
-        EditProfileDialogComponent,
+        EditProfileComponent,
         ResumeComponent,
         AllianceInviteComponent,
         SettingsComponent,
@@ -93,7 +93,7 @@ const routes: Routes = [
         ProfileGuard
     ],
     entryComponents: [
-      EditProfileDialogComponent,
+      EditProfileComponent,
         VideoProfileDialogComponent,
       SetConnectionComponent
     ]

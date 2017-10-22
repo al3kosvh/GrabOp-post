@@ -13,7 +13,7 @@ import { VOUserExt } from "../../../account/models/vouser";
 import { VOPost } from '../../../../models/vos';
 
 import { ModalPromptComponent } from '../../../shared/components/modal-prompt/modal-prompt.component';
-import { EditProfileDialogComponent } from './edit/edit-profile-dialog.component';
+import { EditProfileComponent } from './edit/edit-profile.component';
 import { VideoProfileDialogComponent } from './video/video-profile-dialog.component';
 
 @Component({
@@ -125,11 +125,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     editProfile(): void {
-        let config: MatDialogConfig = {
-            width: '80%',
-            data: { profile: this.profile }
-        };
-        this.dialog.open(EditProfileDialogComponent, config);
+        this.sidenavService.onEditProfile(this.profile);
     }
 
     allianceInvite() {

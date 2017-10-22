@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent } from '@angular/material';
 import { VOUserExt } from '../../../../account/models/vouser';
 
@@ -8,14 +8,14 @@ import { UploadService } from '../../../../account/services/upload.service';
 
 @Component({
     selector: 'edit-profile-dialog',
-    templateUrl: './edit-profile-dialog.component.html',
-    styleUrls: ['./edit-profile-dialog.component.css']
+    templateUrl: './edit-profile.component.html',
+    styleUrls: ['./edit-profile.component.css']
 })
-export class EditProfileDialogComponent {
+export class EditProfileComponent {
 
     errorMessage: string;
     loading: boolean;
-    profile: Models.VOUserExt;
+    @Input() profile: Models.VOUserExt;
     occupations = [
         { value: 1, name: "Self Employed" },
         { value: 2, name: "Company" },
@@ -32,14 +32,10 @@ export class EditProfileDialogComponent {
     ];
 
     constructor(
-        public dialogRef: MatDialogRef<EditProfileDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
         private profileService: ProfileService,
         private uploadService: UploadService
     ) {
         this.loading = false;
-        // with this not replicate the values, only after save update values
-        this.profile = data.profile;
     }
 
     onSubmit(): void {
@@ -56,10 +52,6 @@ export class EditProfileDialogComponent {
                 this.loading = false;
             }
         )
-    }
-
-    onClose(): void {
-        this.dialogRef.close();
     }
 
     resetCompany(): void {

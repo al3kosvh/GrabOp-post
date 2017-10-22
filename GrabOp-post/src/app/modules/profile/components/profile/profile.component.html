@@ -23,7 +23,7 @@
             </div>
             <div>
               <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
-              <button mat-raised-button color="accent">message</button>
+              <button mat-raised-button color="accent" (click)="openMessage()">message</button>
               <button mat-raised-button (click)="inviteToAlliance()" color="accent">invite to alliance</button>
             </div>
           </div>
