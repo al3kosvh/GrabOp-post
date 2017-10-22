@@ -341,6 +341,11 @@ export class VOSettings {
     static upload: string = 'api/upload.php';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
     static getCategories: string = VOSettings.server + '/categories/?format=json';
+    static createAlliance: string = VOSettings.server + '/alliances/?format=json';
+    static updateAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static terminateAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static getAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static getMyAlliances: string = VOSettings.server + '/alliances/myalliances/?format=json';
 
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;

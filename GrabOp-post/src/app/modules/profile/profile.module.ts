@@ -31,6 +31,7 @@ import { SetConnectionComponent } from './components/profile/set-connection/set-
 // Services
 import { ProfileService } from './services/profile.service';
 import { SettingsService } from './services/settings.service';
+import { AllianceService } from './services/alliance.service';
 import { ProfileGuard } from './services/profile.guard';
 
 // Pipes
@@ -90,6 +91,7 @@ const routes: Routes = [
     providers: [
         ProfileService,
         SettingsService,
+        AllianceService,
         ProfileGuard
     ],
     entryComponents: [
