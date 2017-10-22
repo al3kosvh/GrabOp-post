@@ -62,7 +62,7 @@ const routes: Routes = [
         SignInComponent,
         SignInLauncherComponent,
         SignOutComponent,
-        SignUpConfirmComponent
+        SignUpConfirmComponent,
     ],
     providers: [
         AccountStorageService,
@@ -75,7 +75,8 @@ const routes: Routes = [
     entryComponents: [
         AccountRecoverComponent,
         SignInComponent,
-        SignUpComponent
+        SignUpComponent,
+        SignUpConfirmComponent
     ]
 })
 export class AccountModule { }

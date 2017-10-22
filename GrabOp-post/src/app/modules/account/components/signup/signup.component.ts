@@ -46,27 +46,19 @@ export class SignUpComponent implements OnInit {
         this.messages.submitMessage = "";
         let registerData: Models.VORegisterParameters = this.formArray.get([0]).value as Models.VORegisterParameters;
 
-        this.signupService.register(registerData).subscribe(
-            value => {
-                console.log('register ok', value);
-                this.user.id = value;
-                this.signupService.registerContinue(this.user).subscribe(
-                    value => {
-                        console.log('profile update ok', value);
-                        this.submitting = false;
-                    },
-                    error => {
-                        this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
-                        this.submitting = false;
-                    }
-                );
-            },
-            error => {
+        this.signupService.register(registerData)
+            .switchMap(userId => {
+                console.log('register ok, user ID: ', userId);
+                this.user.id = userId;
+                return this.signupService.registerContinue(this.user);
+            })
+            .subscribe(value => {
+                console.log('profile update ok', value);
                 this.submitting = false;
-            }
-        );
-        this.submitting = false;
-
+            }, error => {
+                this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
+                this.submitting = false;
+            });
     }
 
     uploadFile(event): void {

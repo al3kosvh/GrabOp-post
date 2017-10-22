@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalAlertComponent } from '../../../../shared/components/modal-alert/modal-alert.component';
-import { MatDialog } from '@angular/material';
-//import {UserEditService} from '../../../user-edit/user-edit.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
+//App Components
+import { SignInLauncherComponent } from '../../signin/launcher/signin-launcher.component';
+
+//App Services
 import { SignUpService } from '../../../services/signup.service';
 
 @Component({
@@ -10,38 +13,58 @@ import { SignUpService } from '../../../services/signup.service';
     templateUrl: './signup-confirm.component.html',
     styleUrls: ['./signup-confirm.component.css']
 })
-export class SignUpConfirmComponent implements OnInit {
+export class SignUpConfirmComponent implements AfterViewInit {
+
+    @ViewChild(TemplateRef) ref;
+
+    private message = "";
+    private verified = false;
+    private dialogRef: MatDialogRef<any>;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private signupService: SignUpService,
-        private matDialog: MatDialog
-    ) { }
-
-    ngOnInit() {
-        let token = this.route.snapshot.params.token;
-        console.log('token ', token);
-        this.verifyEmail(token);
-        // this.router.params.subscribe({
-        //   console.log('p', params.to);
-        // })
+        private dialog: MatDialog
+    ) {
     }
 
-    verifyEmail(token) {
-        this.signupService.verifyEmail(token).subscribe(res => {
-            console.log('Registration confirmed ', res);
-            let dialogRef = this.matDialog.open(ModalAlertComponent, { data: 'Registration confirmed' });
-            dialogRef.afterClosed().subscribe(res => {
-                if (res === 'OK') {
-                    this.router.navigate(['/guest', { login: 'login' }]);
-                }
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.verifyEmail();
+        }, 0);
+    }
+
+    verifyEmail() {
+        let token = this.route.snapshot.params.token;
+        if (!token) {
+            this.signupService.verifyEmail(token).subscribe(res => {
+                this.message = 'Registration confirmed.';
+                this.verified = true;
+                this.openDialog();
+            }, error => {
+                this.message = 'Error verifing email.';
+                this.openDialog();
             });
-            // this.router.navigate(['/guest', { username: user, foo: 'foo' }]);
-        }, error => {
-            let dialogRef = this.matDialog.open(ModalAlertComponent, { data: 'Server error. Please try next time.' });
-            console.error(' error login');
+        } else {
+            this.back();
+        }
+    }
+
+    openDialog(): void {
+        this.dialogRef = this.dialog.open(this.ref, { width: '250px' });
+
+        this.dialogRef.afterClosed().subscribe(() => {
+            this.back();
         });
+    }
+
+    closeDialog(): void {
+        this.dialogRef.close();
+    }
+
+    back() {
+        this.router.navigate(['../']);
     }
 
 }

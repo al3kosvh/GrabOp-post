@@ -8,11 +8,19 @@ import { PostModule } from '../post/post.module';
 import { AccountModule } from '../account/account.module';
 import { SearchModule } from '../search/search.module';
 
-// Components
+//App Components
+//import { SignUpConfirmLauncherComponent } from '../account/components/signup/confirm/launcher/signup-confirm-launcher.component';
+import { SignUpConfirmComponent } from '../account/components/signup/confirm/signup-confirm.component';
+
+//Module Components
 import { LandingComponent } from "./components/landing/landing.component";
 
 const routes: Routes = [
-    { path: 'guest', component: LandingComponent },
+    {
+        path: 'guest', component: LandingComponent, children: [
+            { path: 'verify-email', component: SignUpConfirmComponent }
+        ]
+    }
 ]
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatListModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatSnackBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -25,7 +25,7 @@ import { TruncateTextPipe } from './pipes/truncate.pipe';
     imports: [
         FormsModule,
         FlexLayoutModule,
-        MatInputModule,
+        MatButtonModule,
         MatListModule,
         MatSnackBarModule
     ],

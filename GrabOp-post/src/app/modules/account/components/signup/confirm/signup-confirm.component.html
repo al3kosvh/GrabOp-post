@@ -1,3 +1,14 @@
-<p>
-  login-new-confirm works!
-</p>
+<ng-template>
+  <mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <p>{{message}}</p>
+      <p *ngIf="verified">
+        Try to <span><account-signin-launcher [asLink]="true" (click)="closeDialog()" ></account-signin-launcher></span>
+      </p>
+    </div>
+  </mat-dialog-content>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  </div>
+</ng-template>
