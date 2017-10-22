@@ -216,6 +216,7 @@ export class PostService {
 
     insertPost(post: VOPost): Observable<VOPost> {
 
+
         let postType: string = post.type;
         // delete post.type;
         let url: string;
@@ -233,6 +234,8 @@ export class PostService {
             url = VOSettings.createOfferPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.offer + VOSettings.format_json;
         }
+
+        console.log(reqData);
 
         return this.http.post(url, reqData)
             // .map((res) => {

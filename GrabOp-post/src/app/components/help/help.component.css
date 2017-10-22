@@ -1,4 +1,41 @@
-.full-width {
-  width: 90%;
-  border: 1px solid lightblue;
+
+textarea {
+    width: 464px;
+    height: 220px;
+    resize: none;
 }
+
+div.close {
+    margin-right: -20px;
+    margin-top: -20px;
+}
+
+h3 {
+    margin: 0px;
+    color: #767778;
+}
+
+div.attachments {
+    border: 1px solid #A9A9A9;
+    margin-top: -5px;
+}
+
+    div.attachments button {
+        padding-left: 0px;
+        text-align: start;
+        color: #767778;
+        border-radius: 0px;
+    }
+
+        div.attachments button:last-child {
+            padding-left: 5px;
+            border-left: 1px solid #A9A9A9;
+        }
+
+div.options {
+    margin-top: 10px;
+}
+
+    div.options button:last-child {
+        margin-right: 5px;
+    }
