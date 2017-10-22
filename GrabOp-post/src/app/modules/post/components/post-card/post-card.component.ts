@@ -40,7 +40,7 @@ export class PostCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.postsService
+        //console.log(this.post);
     }
 
     showOptions(event: MouseEvent) {
