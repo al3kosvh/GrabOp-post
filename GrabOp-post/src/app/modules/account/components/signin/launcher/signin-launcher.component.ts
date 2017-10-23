@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 // Services
@@ -12,8 +12,11 @@ import { SignInComponent } from '../signin.component';
 })
 export class SignInLauncherComponent {
 
+    @Input()
+    asLink: boolean = false;
+
     constructor(
-        public dialog: MatDialog
+        private dialog: MatDialog
     ) { }
 
     openDialog(): void {

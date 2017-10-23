@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <div>
   <div id='banner'>
     <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
@@ -8,13 +9,14 @@
         </div>
         <div class="options">
           <div *ngIf="isLoggedIn | async">
-            <button mat-raised-button color="accent" routerLink="/home">HOME</button>
-            <button mat-raised-button color="accent" routerLink="/signout">SIGN OUT</button>
+            <button mat-raised-button color="accent" routerLink="/home">Home</button>
+            <button mat-raised-button color="accent" routerLink="/signout">Sign Out</button>
           </div>
           <div *ngIf="!(isLoggedIn | async)">
             <!--button mat-raised-button color="accent" [routerLink]="['/', {outlets: { slideRight: ['join-us']}}]">JOIN US</button-->
-            <button mat-raised-button color="accent" (click)="onSignUp()">JOIN US</button>            
+            <button mat-raised-button color="accent" (click)="onSignUp()">Join Us</button>            
             <account-signin-launcher></account-signin-launcher>
+            
           </div>
         </div>
       </div>

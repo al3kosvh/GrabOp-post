@@ -19,16 +19,17 @@ import { UploadService } from '../../services/upload.service';
 })
 export class SignUpComponent implements OnInit {
 
-    private formGroup: FormGroup;
+    private formGroupJoin: FormGroup;
+    private formGroupContinuation: FormGroup;
     private submitting = false;
-    private user: Models.VOUserExt = { occupation: 1, role: "user" } as Models.VOUserExt;
+    private user: Models.VOUserExt = { occupation: 2, role: "user" } as Models.VOUserExt;
 
     private messages = {
         connectionErrorMessage: "Connection error",
-        emailTakenMessage: "This email is already taken",
+        emailTakenMessage: "That email is already in use",
         passwordMismatchMessage: "Password mismatch",
         submitMessage: "",
-        usernameTakenMessage: "This username is not available"
+        usernameTakenMessage: "That username is not available"
     };
 
     constructor(
@@ -41,35 +42,39 @@ export class SignUpComponent implements OnInit {
         this.buildFormGroups();
     }
 
-    private submit(): void {
+    private join() {
         this.submitting = true;
-        this.messages.submitMessage = "";
-        let registerData: Models.VORegisterParameters = this.formArray.get([0]).value as Models.VORegisterParameters;
+        let registerData: Models.VORegisterParameters = this.formGroupJoin.value as Models.VORegisterParameters;
 
         this.signupService.register(registerData).subscribe(
-            value => {
-                console.log('register ok', value);
-                this.user.id = value;
-                this.signupService.registerContinue(this.user).subscribe(
-                    value => {
-                        console.log('profile update ok', value);
-                        this.submitting = false;
-                    },
-                    error => {
-                        this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
-                        this.submitting = false;
-                    }
-                );
+            userId => {
+                console.log('register ok, user ID: ', userId);
+                this.user.id = userId;
+                this.submitting = false;
             },
             error => {
                 this.submitting = false;
             }
         );
-        this.submitting = false;
-
     }
 
-    uploadFile(event): void {
+    private joinContinuation(): void {
+        this.submitting = true;
+        this.messages.submitMessage = "";
+
+        this.signupService.registerContinue(this.user).subscribe(
+            value => {
+                console.log('profile update ok', value);
+                this.submitting = false;
+            },
+            error => {
+                this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
+                this.submitting = false;
+            }
+        );
+    }
+
+    private uploadFile(event): void {
         console.log("SignUp uploadFile: ", event);
         if (event.target.files) {
             this.uploadService.uploadFile(event.target.files[0]).subscribe(
@@ -91,31 +96,31 @@ export class SignUpComponent implements OnInit {
 
     private buildFormGroups() {
 
-        this.formGroup = this.formBuilder.group({
+        this.formGroupJoin = this.formBuilder.group(
+            {
+                firstName: ['', Validators.required],
+                lastName: ['', Validators.required],
+                username: [
+                    '',
+                    [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
+                    //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
+                ],
+                primaryEmail: [
+                    '',
+                    [Validators.required, Validators.email],
+                    Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
+                ],
+                password: ['', [Validators.required, Validators.minLength(6)]],
+                confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+            },
+            {
+                validator: MatchPasswordValidator.matchPassword
+            }
+        );
+
+        this.formGroupContinuation = this.formBuilder.group({
 
             formArray: this.formBuilder.array([
-                this.formBuilder.group({
-                    firstName: ['', Validators.required],
-                    lastName: ['', Validators.required],
-                    displayName: ['', Validators.required],
-                    username: [
-                        '',
-                        [Validators.required, Validators.minLength(6), Validators.pattern('^[A-Za-z0-9_-]{3,20}$')],
-                        //Validators.composeAsync([UsernameTakenValidator.createValidator(this.signupService)])
-                    ],
-                    primaryEmail: [
-                        '',
-                        [Validators.required, Validators.email],
-                        Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
-                    ],
-                    password: ['', [Validators.required, Validators.minLength(6)]],
-                    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-                },
-                    {
-                        validator: MatchPasswordValidator.matchPassword
-                    }
-                ),
-
                 this.formBuilder.group({
                     jobTitle: ['', Validators.required],
                     occupation: ['1', Validators.required],
@@ -133,7 +138,7 @@ export class SignUpComponent implements OnInit {
     }
 
     get formArray(): AbstractControl | null {
-        return this.formGroup.get('formArray');
+        return this.formGroupContinuation.get('formArray');
     }
 
     private getFormControlErrors(formArrayIndex: number, controlName: string) {
