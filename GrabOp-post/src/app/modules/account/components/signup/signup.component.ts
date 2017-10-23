@@ -21,8 +21,11 @@ export class SignUpComponent implements OnInit {
 
     private formGroupJoin: FormGroup;
     private formGroupContinuation: FormGroup;
+    private formGroupNewEmail: FormGroup;
     private submitting = false;
+    private done = false;
     private user: Models.VOUserExt = { occupation: 2, role: "user" } as Models.VOUserExt;
+    private newEmail: string;
 
     private messages = {
         connectionErrorMessage: "Connection error",
@@ -66,6 +69,7 @@ export class SignUpComponent implements OnInit {
             value => {
                 console.log('profile update ok', value);
                 this.submitting = false;
+                this.done = true;
             },
             error => {
                 this.messages.submitMessage = "Couldn't submit some data. Check your email to complete the process."
@@ -85,6 +89,25 @@ export class SignUpComponent implements OnInit {
                     console.log("SignUp upload error: ", error);
                 }
             )
+        }
+    }
+
+    private resendEmail() {
+        if (this.newEmail && !this.formGroupNewEmail.errors) {
+            this.user.primaryEmail = this.newEmail;
+            this.signupService.registerContinue(this.user).subscribe(
+                value => {
+                    console.log('change email ok', value);
+                    this.submitting = false;
+                    this.newEmail = "";
+                },
+                error => {
+                    this.submitting = false;
+                }
+            );
+        } else {
+            //resend email
+            // API not ready for that 
         }
     }
 
@@ -123,7 +146,7 @@ export class SignUpComponent implements OnInit {
             formArray: this.formBuilder.array([
                 this.formBuilder.group({
                     jobTitle: ['', Validators.required],
-                    occupation: ['1', Validators.required],
+                    occupation: ['2', Validators.required],
                     company: ['', Validators.nullValidator],
                 }),
 
@@ -135,6 +158,15 @@ export class SignUpComponent implements OnInit {
                 }),
             ])
         });
+
+        this.formGroupNewEmail = this.formBuilder.group(
+            {
+                newEmail: [
+                    '',
+                    [Validators.email],
+                    Validators.composeAsync([EmailTakenValidator.createValidator(this.signupService)])
+                ]
+            });
     }
 
     get formArray(): AbstractControl | null {

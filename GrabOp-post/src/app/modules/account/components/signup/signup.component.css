@@ -11,7 +11,15 @@ div.signup {
   width: 400px;
 }
 
-div.tab-content, .join-form {
+.signup-align-center{
+  text-align: center;
+}
+
+.signup-align-end{
+  text-align: end;
+}
+
+div.tab-content, .join-form, .message, .signup-done {
   padding: 15px;
 }
 
