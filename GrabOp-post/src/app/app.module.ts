@@ -30,6 +30,7 @@ import { ConnectionModule } from './modules/connection/connection.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { SearchModule } from './modules/search/search.module';
+import { MessageModule } from './modules/message/message.module';
 
 // Pipes
 import { PipesModule } from './pipes/pipes.module';
@@ -83,6 +84,7 @@ const routes: Routes = [
         OpportunityModule,
         ProfileModule,
         SearchModule,
+        MessageModule,
         RouterModule.forRoot(routes)
     ],
     declarations: [

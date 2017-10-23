@@ -1,0 +1,37 @@
+<div fxlayout="row">
+    <div class="title" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+        <h3>Messages</h3>
+    </div>
+</div>
+
+<div class="container-messages" fxLayout="row">
+    <ul class="contact" fxLayout="column" fxFlex="40">
+        <li class="item" *ngFor="let contact of contacts; let i = index" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
+                <img class="avatars" [src]="contact.img">
+            </div>
+            <div fxLayout="column" fxFlex="70">
+                <div>
+                    <span class="name">{{ contact.name }}</span>
+                    <small class="date">{{ contact.lastConversation.date }}</small>
+                </div>
+                <div fxLayout="column">
+                    <p>{{ contact.lastConversation.body }}</p>
+                </div>
+                <div class="btn-close" [style.display]="i == showBtn ? 'block' : 'none'">
+                    <mat-icon>close</mat-icon>
+                </div>
+            </div>
+        </li>
+    </ul>
+    
+    <div class="body-messages" fxLayout="column" fxFlex="60">
+        <div class="container-body-messages">
+            <div class="user-name" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+                <img [src]="conversation.avatar">
+                <span>{{ conversation.userName }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
