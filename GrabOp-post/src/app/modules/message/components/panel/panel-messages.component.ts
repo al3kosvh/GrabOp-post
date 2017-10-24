@@ -53,9 +53,30 @@ export class PanelMassagesComponent {
             {body: 'I have to leave, see you latter', date: '5:20p.m', me: true},
         ]
     };
+    writingMessage = {body: '', date: '', me: true};
 
     constructor() {
 
+    }
+
+    onSendMessage() {
+        let date = new Date();
+        this.writingMessage.date = date.getHours() + ':' + date.getMinutes();
+        this.conversation.conversations.push(this.writingMessage);
+        this.writingMessage = {body: '', date: '', me: true};
+    }
+
+    onChangeConversation(contact) {
+        this.conversation = {
+            userName: contact.name,
+                avatar: contact.img,
+            conversations: [
+            {body: 'Yes, why not', date: '5:18p.m', me: false},
+            {body: 'Because...', date: '5:19p.m', me: false},
+            {body: 'And...', date: '5:19p.m', me: true},
+            {body: contact.lastConversation.body, date: contact.lastConversation.date, me: false},
+        ]
+        }
     }
 
     showCloseBtn(index) {
@@ -67,12 +88,11 @@ export class PanelMassagesComponent {
     }
 
     fileCapture(event) {
-        this.showBtn = -1;
+
     }
 
     imageCapture(event) {
-        this.showBtn = -1;
-    }
 
+    }
 
 }

@@ -28,7 +28,7 @@
         </div>
         
         <ul fxLayout="column">
-            <li class="item" *ngFor="let contact of contacts; let i = index" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
+            <li class="item" *ngFor="let contact of contacts; let i = index" (click)="onChangeConversation(contact)" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
                 <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
                     <img class="avatars" [src]="contact.img">
                 </div>
@@ -71,7 +71,7 @@
         <form class="container-type-message">
             <div fxLayout="row">
                 <mat-form-field class="full-width">
-                    <textarea matInput placeholder="Type your message..." name="resume"></textarea>
+                    <textarea matInput placeholder="Type your message..." name="resume" [(ngModel)]="writingMessage.body"></textarea>
                 </mat-form-field>
             </div>
             <div fxLayout="row" class="container-btn">
@@ -89,7 +89,7 @@
                     <!-- TODO emoji-->
                 </div>
                 <div fxLayout="row-reverse" class="full-width">
-                    <button mat-raised-button color="accent">
+                    <button mat-raised-button color="accent" (click)="onSendMessage()">
                         Send
                     </button>
                 </div>
