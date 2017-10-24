@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from "rxjs/Observer"
+import { Observer } from "rxjs/Observer";
 
+//Models
 import { VOPost } from '../../../../models/vos';
 
 // Components

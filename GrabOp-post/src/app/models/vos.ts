@@ -346,7 +346,7 @@ export class VOSettings {
     static terminateAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
     static getAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
     static getMyAlliances: string = VOSettings.server + '/alliances/myalliances/?format=json';
-
+    static deleteService: string = VOSettings.server + '/services/{{id}}?format=json';
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;
 

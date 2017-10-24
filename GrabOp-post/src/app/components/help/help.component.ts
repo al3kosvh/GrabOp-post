@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+﻿import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -10,12 +10,12 @@ export class HelpComponent implements OnInit {
 
   comment: string;
   comment_file: any;
-  comment_image: any;
+  comment_image: any; 
 
   constructor(
-    public dialogRef: MatDialogRef<HelpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) { }
+      public dialogRef: MatDialogRef<HelpComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit() {
   }
@@ -24,7 +24,7 @@ export class HelpComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(): void {
-    this.dialogRef.close();
+  onSubmit(): void {      
+      this.dialogRef.close();      
   }
 }

@@ -6,44 +6,38 @@
         <button mat-menu-item> Duplicate </button>
         <button mat-menu-item> Share </button>
         <button mat-menu-item> Hide </button>
-        <button mat-menu-item> Delete Services </button>
+        <button mat-menu-item (click)="onDelete()"> Delete Services </button>
     </mat-menu>
     <button mat-icon-button class="options" [matMenuTriggerFor]="appMenu"><mat-icon>more_vert</mat-icon></button>
-  <img  (click)="showOptions($event)" class="post-image" src="{{postImage}}" />
-  <!--<mat-chip-list>
-    <mat-chip color="accent" selected>{{post?.id}}</mat-chip>
-    <mat-chip *ngIf="editButton"><a mat-raised-button [routerLink]="['/post-edit/'+ post.id]">Edit</a></mat-chip>
-    <mat-chip *ngIf="editButton"><a mat-raised-button [routerLink]="['',{outlets: {'slideRight': ['post-edit', post.id]}}]">Edit</a></mat-chip>
-    <mat-chip *ngIf="viewDetailsButton"><a mat-raised-button [routerLink]="['/posts/person-preview/'+ post.id + '/' + idPerson]">view details</a></mat-chip>
-    <mat-chip *ngIf="viewMyDetailsButton"><a mat-raised-button [routerLink]="['/posts/my-preview/'+ post.id]">view details</a></mat-chip>
-  </mat-chip-list>-->
-  <div class="account-image-container" fxLayout="row-reverse">
-    <img class="account-image" src="{{accountImage}}" />
-    <button class="join-alliance" mat-raised-button color="warn">join alliance</button>
-    <div fxFlex></div>    
-    <div class="count">24</div>
-  </div>
-
-  <mat-card-content (click)="showOptions($event)">
-    <div class="post-info">{{post.description | truncate: 43 }}</div>
-    <div fxLayout="row">
-      <div class="post-info-left" fxLayout="column">
-        <div>
-          <mat-icon>compare_arrows</mat-icon>
-          <mat-icon>group</mat-icon>
-          <mat-icon>favorite</mat-icon>
-          <mat-icon>school</mat-icon>
-          <mat-icon>local_offer</mat-icon>
-        </div>
-      </div>
-      <div class="post-info-right" fxLayout="column" fxLayoutAlign="center end">
-        <span class="text">comm</span>
-        <span class="number">100</span>
-        <span class="text">fixed rate</span>
-        <span class="number">$50000</span>
-        <span class="text">hourly rate</span>
-        <span class="number">$100</span>
-      </div>
+    <img (click)="showOptions($event)" class="post-image" src="{{postImage}}" />
+    <div class="account-image-container" fxLayout="row-reverse">
+        <img class="account-image" src="{{accountImage}}" />
+        <button class="join-alliance" mat-raised-button color="warn">join alliance</button>
+        <div fxFlex></div>
+        <div class="count">{{post.allianceMembers.length}}</div>
     </div>
-  </mat-card-content> 
+
+    <mat-card-content (click)="showOptions($event)">
+        <div class="post-info">{{post.description | truncate: 43 }}</div>
+        <div fxLayout="row">            
+            <div class="post-info-left" fxLayout="column">
+                <div class="city-province" fxLayout="row">{{post.city}}, {{post.province}}</div>
+                <div class="post-style">
+                    <mat-icon [ngClass]="{'activeStyle': post.isExchange}">compare_arrows</mat-icon>
+                    <mat-icon [ngClass]="{'activeStyle': post.isPartnership}">group</mat-icon>
+                    <mat-icon [ngClass]="{'activeStyle': post.isDonate}">favorite</mat-icon>
+                    <mat-icon [ngClass]="{'activeStyle': post.isInternship}">school</mat-icon>
+                    <mat-icon [ngClass]="{'activeStyle': post.isMoney}">local_offer</mat-icon>
+                </div>
+            </div>
+            <div class="post-info-right" fxLayout="column" fxLayoutAlign="center end">
+                <span class="text">comm</span>
+                <span class="number">${{post.commissionFrom}} - ${{post.commissionTo}}</span>
+                <span class="text">fixed rate</span>
+                <span class="number">${{post.fixedRateFrom}} - ${{post.fixedRateTo}}</span>
+                <span class="text">hourly rate</span>
+                <span class="number">${{post.hourlyRateFrom}} - ${{post.hourlyRateTo}}</span>
+            </div>
+        </div>
+    </mat-card-content>
 </mat-card>

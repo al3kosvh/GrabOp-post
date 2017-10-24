@@ -60,9 +60,9 @@ export class EditProfileComponent {
         }
     }
 
-    onUpLoadFile(event?: Event): void {
-        if (event) {
-            this.uploadService.upload(event).subscribe(
+    onUpLoadFile(event): void {
+        if (event.target.files) {
+            this.uploadService.uploadFile(event.target.files[0]).subscribe(
                 dataFile => {
                     console.log("EditProfileDialog dataFile: ", dataFile)
                 },
@@ -76,9 +76,9 @@ export class EditProfileComponent {
         }
     }
 
-    onUpLoadProfilePic(event?: Event): void {
-        if (event) {
-            this.uploadService.upload(event).subscribe(
+    onUpLoadProfilePic(event): void {
+        if (event.target.files) {
+            this.uploadService.uploadFile(event.target.files[0]).subscribe(
                 dataFile => {
                     console.log("EditProfileDialog dataProfilePic: ", dataFile)
                 },
@@ -92,9 +92,9 @@ export class EditProfileComponent {
         }
     }
 
-    onUpLoadProfileVideo(event?: Event): void {
-        if (event) {
-            this.uploadService.upload(event).subscribe(
+    onUpLoadProfileVideo(event): void {
+        if (event.target.files) {
+            this.uploadService.uploadFile(event.target.files[0]).subscribe(
                 dataFile => {
                     console.log("EditProfileDialog dataProfileVideo: ", dataFile)
                 },
@@ -108,9 +108,9 @@ export class EditProfileComponent {
         }
     }
 
-    onUpLoadProfileBackgroundPic(event?: Event): void {
-        if (event) {
-            this.uploadService.upload(event).subscribe(
+    onUpLoadProfileBackgroundPic(event): void {
+        if (event.target.files) {
+            this.uploadService.uploadFile(event.target.files[0]).subscribe(
                 dataFile => {
                     console.log("EditProfileDialog dataProfileBackgroundPic: ", dataFile)
                 },

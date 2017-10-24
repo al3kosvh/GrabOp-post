@@ -29,15 +29,14 @@ export class SettingSliderComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.setting.fieldtype == "number") {
+        if (this.setting.field_type == "number") {
             this.value = Number.parseInt(this.setting.value);
         }
     }
 
     onChange() {
-        let stringValue = this.value.toString();
 
-        this.settingsService.toggleSetting(this.userId, this.setting.settingid, stringValue).subscribe(
+        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, this.value.toString()).subscribe(
             setting => {
                 //console.log(setting);
             }

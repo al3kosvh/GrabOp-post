@@ -28,15 +28,14 @@ export class SettingSlideToggleComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.setting.fieldtype == "bool") {
+        if (this.setting.field_type == "bool") {
             this.value = (this.setting.value == "1") ? true : false;
         }
     }
 
-    onToggle() {
-        let stringValue = !this.value ? "1" : "0";
+    onToggle() {        
 
-        this.settingsService.toggleSetting(this.userId, this.setting.settingid, stringValue).subscribe(
+        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, this.value ? "1" : "0").subscribe(
             setting => {
                 //console.log(setting);
             }

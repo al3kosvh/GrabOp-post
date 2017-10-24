@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //App Services
 import { AuthenticationService } from '../../services/authentication.service';
@@ -18,8 +18,7 @@ export class SignInComponent {
     private loading: boolean;
 
     constructor(
-        public dialog: MatDialog,
-        public matDialogRef: MatDialogRef<SignInComponent>,
+        private matDialogRef: MatDialogRef<SignInComponent>,
         private authenticationService: AuthenticationService
     ) {
         this.signinData = { username: 'al3kosvh@gmail.com', password: 'mio,mio', rememberMe: false };

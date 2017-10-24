@@ -53,6 +53,13 @@ export class PostService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
+    deleteService(postId: number): Observable<any> {
+        let url: string = VOSettings.deleteService;
+
+        return this.http.delete(url.replace(<any>'{{id}}', postId.toString()))
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+    }
+
     updatePost(post: VOPost): void {
         let url: string;
         if (post.type == 'need') url = VOSettings.updateNeedPost.replace(<any>'{{id}}', post.id.toString());
@@ -216,6 +223,7 @@ export class PostService {
 
     insertPost(post: VOPost): Observable<VOPost> {
 
+
         let postType: string = post.type;
         // delete post.type;
         let url: string;
@@ -233,6 +241,8 @@ export class PostService {
             url = VOSettings.createOfferPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.offer + VOSettings.format_json;
         }
+
+        console.log(reqData);
 
         return this.http.post(url, reqData)
             // .map((res) => {
