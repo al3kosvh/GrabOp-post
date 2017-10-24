@@ -4,26 +4,49 @@
     </div>
 </div>
 
+<div fxLayout="row">
+    <div class="container-btn-new-msg" fxLayout="column" fxFlex="30">
+        <div>
+            <button mat-raised-button color="accent">
+                New Message
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="container-messages" fxLayout="row">
-    <ul class="contact" fxLayout="column" fxFlex="30">
-        <li class="item" *ngFor="let contact of contacts; let i = index" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
-            <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
-                <img class="avatars" [src]="contact.img">
+    <div class="contact" fxLayout="column" fxFlex="30">
+        <div fxLayout="row">
+            <div class="search-container">
+                <form floatPlaceholder="never">
+                    <mat-form-field floatPlaceholder="never">
+                        <mat-icon matPrefix>search</mat-icon>
+                        <input matInput placeholder="Search" name="search" aria-label="Search...">
+                    </mat-form-field>
+                </form>
             </div>
-            <div fxLayout="column" fxFlex="70">
-                <div>
-                    <span class="name">{{ contact.name }}</span>
-                    <small class="date">{{ contact.lastConversation.date }}</small>
+        </div>
+        
+        <ul fxLayout="column">
+            <li class="item" *ngFor="let contact of contacts; let i = index" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
+                    <img class="avatars" [src]="contact.img">
                 </div>
-                <div fxLayout="column">
-                    <p>{{ contact.lastConversation.body }}</p>
+                <div fxLayout="column" fxFlex="70">
+                    <div>
+                        <span class="name">{{ contact.name }}</span>
+                        <small class="date">{{ contact.lastConversation.date }}</small>
+                    </div>
+                    <div fxLayout="column">
+                        <p>{{ contact.lastConversation.body }}</p>
+                    </div>
+                    <div class="btn-close" [style.display]="i == showBtn ? 'block' : 'none'">
+                        <mat-icon>close</mat-icon>
+                    </div>
                 </div>
-                <div class="btn-close" [style.display]="i == showBtn ? 'block' : 'none'">
-                    <mat-icon>close</mat-icon>
-                </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
     
     <div class="container-body-messages" fxLayout="column" fxFlex="70">
         <div class="user-name" fxLayout="row" fxLayoutAlign="center center">
