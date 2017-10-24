@@ -1,6 +1,12 @@
+.title {
+    color: gray;
+    padding-left: 15px;
+}
+
 form.form-edit-profile {
   height: auto;
   margin-top: -20px;
+    padding: 0 15px;
 }
 
 div.tab-content {

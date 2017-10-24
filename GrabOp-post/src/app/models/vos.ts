@@ -328,6 +328,7 @@ export class VOSettings {
     static registerUrl: string = VOSettings.server + '/register?format=json';
     static resetPasswordUrl: string = VOSettings.server + '/resetpassword?format=json';
     static sendMessage: string = VOSettings.server + '/messages/{{id}}?format=json';
+    static getMyConversation: string = VOSettings.server + '/conversations/myconversations?format=json';
     static settings: string = VOSettings.server + '/profiles/{id}/settings?format=json';
     static signinUrl = VOSettings.server + '/auth?format=json';
     static signoutUrl = VOSettings.server + '/auth/logout?format=json';
@@ -340,8 +341,12 @@ export class VOSettings {
     static upload: string = 'api/upload.php';
     static verifyemail: string = VOSettings.server + '/verifyemail?format=json';
     static getCategories: string = VOSettings.server + '/categories/?format=json';
+    static createAlliance: string = VOSettings.server + '/alliances/?format=json';
+    static updateAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static terminateAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static getAlliance: string = VOSettings.server + '/alliances/{{id}}/?format=json';
+    static getMyAlliances: string = VOSettings.server + '/alliances/myalliances/?format=json';
     static deleteService: string = VOSettings.server + '/services/{{id}}?format=json';
-
     // static settings: string = 'api/settings.php';
     //static _user: VOUser;
 

@@ -1,4 +1,4 @@
-<div class="alliance-invite" fxLayout="column" fxLayoutAlign="center center">  
+<div class="alliance-invite" fxLayout="column" fxLayoutAlign="center center">
   <span>Send an alliance invite to</span>
   <div fxLayout="row">
     <img class="avatar" src="assets/img/temp-users-img/6.jpg">
@@ -9,7 +9,7 @@
     <mat-list>
       <mat-list-item fxLayout="row" *ngFor="let post of myPosts">
         <div class="post-title" fxFlex><div fxLayout="column" fxFlex fxLayoutAlign="center start">{{post?.title}}</div></div>
-        <button mat-raised-button color="accent">invite</button>
+        <button mat-raised-button color="accent" (click)="invite(post)">invite</button>
       </mat-list-item>
     </mat-list>
   </div>

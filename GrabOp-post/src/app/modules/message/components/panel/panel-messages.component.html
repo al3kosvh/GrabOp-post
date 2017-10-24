@@ -1,0 +1,101 @@
+<div fxlayout="row">
+    <div class="title" fxLayout="row" fxLayoutAlign="center center" fxFlex="100">
+        <h3>Messages</h3>
+    </div>
+</div>
+
+<div fxLayout="row">
+    <div class="container-btn-new-msg" fxLayout="column" fxFlex="30">
+        <div>
+            <button mat-raised-button color="accent">
+                New Message
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container-messages" fxLayout="row">
+    <div class="contact" fxLayout="column" fxFlex="30">
+        <div fxLayout="row">
+            <div class="search-container">
+                <form floatPlaceholder="never">
+                    <mat-form-field floatPlaceholder="never">
+                        <mat-icon matPrefix>search</mat-icon>
+                        <input matInput placeholder="Search" name="search" aria-label="Search...">
+                    </mat-form-field>
+                </form>
+            </div>
+        </div>
+        
+        <ul fxLayout="column">
+            <li class="item" *ngFor="let contact of contacts; let i = index" (click)="onChangeConversation(contact)" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
+                    <img class="avatars" [src]="contact.img">
+                </div>
+                <div fxLayout="column" fxFlex="70">
+                    <div>
+                        <span class="name">{{ contact.name }}</span>
+                        <small class="date">{{ contact.lastConversation.date }}</small>
+                    </div>
+                    <div fxLayout="column">
+                        <p>{{ contact.lastConversation.body }}</p>
+                    </div>
+                    <div class="btn-close" [style.display]="i == showBtn ? 'block' : 'none'">
+                        <mat-icon>close</mat-icon>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="container-body-messages" fxLayout="column" fxFlex="70">
+        <div class="user-name" fxLayout="row" fxLayoutAlign="center center">
+            <img [src]="conversation.avatar">
+            <span>{{ conversation.userName }}</span>
+        </div>
+        <div class="container-conversation">
+            <div *ngFor="let bodyConversation of conversation.conversations; let i = index">
+                
+                <div *ngIf="i == 0" class="position-relative" fxLayout="column" fxLayoutAlign="center center">
+                    <span class="line">{{ bodyConversation.date }}</span>
+                </div>
+                <div [fxLayout]="bodyConversation.me ? 'row-reverse' : 'row'">
+                    <div class="conversation" fxLayout="column">
+                        <div class="body" [ngClass]="bodyConversation.me ? 'me' : ''">{{ bodyConversation.body }}</div>
+                        <div class="date" [ngClass]="bodyConversation.me ? 'me' : ''">{{ bodyConversation.date }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <form class="container-type-message">
+            <div fxLayout="row">
+                <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Type your message..." name="resume" [(ngModel)]="writingMessage.body"></textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" class="container-btn">
+                <div fxLayout="row">
+                    <input type="file" hidden (change)="fileCapture($event)" name="file" #file/>
+                    <button type="button" mat-button (click)="file.click()">
+                        <mat-icon>attachment</mat-icon>
+                        Add Files
+                    </button>
+                    <input type="file" hidden (change)="imageCapture($event)" name="image" #image accept="image/gif, image/jpeg, image/png"/>
+                    <button type="button" mat-button (click)="image.click()">
+                        <mat-icon>add_a_photo</mat-icon>
+                        Add Photos
+                    </button>
+                    <!-- TODO emoji-->
+                </div>
+                <div fxLayout="row-reverse" class="full-width">
+                    <button mat-raised-button color="accent" (click)="onSendMessage()">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </form>
+    
+    </div>
+</div>
+

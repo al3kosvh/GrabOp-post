@@ -13,6 +13,7 @@ import { PostCreateComponent } from '../modules/post/components/post-create/post
 import { PostEditComponent } from '../modules/post/components/post-edit/post-edit.component';
 import { MessageSideNavComponent } from '../modules/connection/components/message-sidenav/message-sidenav.component';
 import { SetConnectionComponent } from "../modules/profile/components/profile/set-connection/set-connection.component";
+import { EditProfileComponent } from "../modules/profile/components/profile/edit/edit-profile.component";
 
 @Injectable()
 export class SidenavService {
@@ -81,6 +82,18 @@ export class SidenavService {
             let instance: any = ref.instance;
             instance.message = msg;
             instance.sidenav = self.sidenav;
+            self.sidenav.open();
+        }, this.getTimerValue());
+    }
+
+    onEditProfile(profile: Models.VOUserExt) {
+        let self = this;
+        setTimeout(function () {
+            self.viewContainerRef.clear();
+            const factory = self.componentFactoryResolver.resolveComponentFactory(EditProfileComponent);
+            const ref = self.viewContainerRef.createComponent(factory);
+            let instance: any = ref.instance;
+            instance.profile = profile;
             self.sidenav.open();
         }, this.getTimerValue());
     }
