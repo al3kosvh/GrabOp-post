@@ -110,16 +110,13 @@ export class HttpService {
 
     private handleError(error: any) {
 
-        let reason: Models.Notification = { message: "", action: 'Close' };
-
         if (typeof error._body == 'string') {
             let body = JSON.parse(error._body);
-            reason.message = body.response_status.message;
+            this.snackBarService.showMessage(body.response_status.message);
         } else {
-            reason.message = this.errors[error.status].reason;
+            this.snackBarService.showMessage(this.errors[error.status].reason);
         }
 
-        this.snackBarService.showMessage(reason);
         return Observable.create(error);
     }
 }
