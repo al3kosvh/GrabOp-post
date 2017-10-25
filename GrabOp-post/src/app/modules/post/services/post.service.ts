@@ -187,13 +187,6 @@ export class PostService {
     //   }
     // }
 
-
-    handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            console.error(error);
-        return Observable.throw(errMsg);
-    }
-
     // ????????????????????????????????????????
 
     // deletePost(post: VOPost): void {
@@ -226,13 +219,11 @@ export class PostService {
 
         let postType: string = post.type;
         // delete post.type;
-        let url: string;
-
-        post.categoryId = 1;
+        let url: string;        
         let reqData: any;
         // let req = {};
 
-        if (postType == 'need') {
+        if (postType == 'need') {            
             reqData = mapPostSend_CreateNeed(post);
             url = VOSettings.createNeedPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.need + VOSettings.format_json;
@@ -244,14 +235,9 @@ export class PostService {
 
         console.log(reqData);
 
-        return this.http.post(url, reqData)
-            // .map((res) => {
-            //   console.log('res', res);
-            //   console.log('res.json', res);
-            //   return res;
-            // })
+        return this.http.post(url, reqData)           
             .map(mapGetPost)
-            .catch(this.handleError);
+            .catch((error: any) => Observable.throw(error));
     }
 
     deleteAttachment(psot_id: number, id: number) {

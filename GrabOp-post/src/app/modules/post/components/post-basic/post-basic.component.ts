@@ -27,10 +27,10 @@ export class PostBasicComponent implements OnInit {
 
     onNextClick() {
         this.onNext.emit(1);
+        console.log(this.model);
     }
 
     onCancelClick() {        
         this.onCancel.emit();
     }
-
 }

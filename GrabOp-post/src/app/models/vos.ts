@@ -202,8 +202,7 @@ export class VOPost {
     longitude?: number;
 
     isOpenToAllianace: boolean;
-    isVisibleToPublic: boolean;
-
+    //isVisibleToPublic: boolean;
 
     type: string;
     selected: boolean;

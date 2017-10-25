@@ -13,7 +13,9 @@ export class PostStyleComponent implements OnInit {
     @Output() onCancel = new EventEmitter();
     @Output() onNext = new EventEmitter<number>();
 
-    constructor() { }
+    constructor() {
+        
+    }
 
     ngOnInit(): void { }
 
