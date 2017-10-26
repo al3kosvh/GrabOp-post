@@ -24,7 +24,7 @@ import { RouterModule, Routes } from "@angular/router";
 // Shared Modules
 import { SharedModule } from '../shared/shared.module';
 import { PostModule } from '../post/post.module';
-import { PipesModule } from '../../pipes/pipes.module';
+import { PanelMessageFilterPipe } from './pipes/panel-message-filter.pipe';
 // Components
 import { PanelMassagesComponent } from "./components/panel/panel-messages.component";
 
@@ -51,7 +51,6 @@ const routes: Routes = [
         ReactiveFormsModule,
         SharedModule,
         PostModule,
-        PipesModule,
         MatAutocompleteModule,
         MatExpansionModule,
         MatOptionModule,
@@ -59,9 +58,9 @@ const routes: Routes = [
         MatCardModule,
         MatSidenavModule
     ],
-    declarations: [PanelMassagesComponent],
+    declarations: [PanelMassagesComponent, PanelMessageFilterPipe],
     exports: [],
-    providers: [],
+    providers: [PanelMessageFilterPipe],
 })
 export class MessageModule {
 }
