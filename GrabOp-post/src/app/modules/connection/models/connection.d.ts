@@ -1,9 +1,9 @@
 declare module Models {
 
   interface VOConnection extends Models.SOUser {
-    connection_id: number,
-    connection_status: number,
-    connection_status_date: string,
+    connectionId: number,
+    connectionStatus: number,
+    connectionStatusDate: string,
     trusted: boolean,
   }
 
@@ -12,6 +12,6 @@ declare module Models {
     sender: number,
     receiver: number,
     status: number,
-    status_date: string
+    statusDate: string
   }
 }

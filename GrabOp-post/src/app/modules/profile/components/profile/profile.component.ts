@@ -161,7 +161,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id) {
                             this.indexConnection = i;
-                            this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection request sent' : 'connected';
+                            this.btnConnectValue = this.myConnections[i].connectionStatus === 1 ? 'connection request sent' : 'connected';
                             break;
                         }
                     }
@@ -198,7 +198,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private confirmConnection() {
-    this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+    this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connectionId, 0, false).subscribe(
       respond => {
         this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
       }

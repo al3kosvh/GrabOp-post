@@ -13,7 +13,7 @@
             <input matInput [(ngModel)]="model.city" name="city" placeholder="City" required>
         </mat-form-field>
         <mat-form-field>
-            <mat-select [(ngModel)]="model.category" name="categoryid" placeholder="Category">
+            <mat-select [(ngModel)]="model.categoryId" name="categoryid" placeholder="Category">
                 <mat-option *ngFor="let category of categories" [value]="category.id">
                     {{category.name}}
                 </mat-option>

@@ -31,8 +31,8 @@ export class ConnectCardProfileComponent implements OnInit {
             if (this.connection.id == this.myConnections[i].id) {
               this.indexConnection = i;
               // TODO what is the state describe in connection_status
-              this.btnConnectValue = this.myConnections[i].connection_status === 1 ? 'connection sent' :
-                (this.myConnections[i].connection_status === 2 ? 'connection received' : 'connected');
+              this.btnConnectValue = this.myConnections[i].connectionStatus === 1 ? 'connection sent' :
+                (this.myConnections[i].connectionStatus === 2 ? 'connection received' : 'connected');
               break;
             }
           }
@@ -53,7 +53,7 @@ export class ConnectCardProfileComponent implements OnInit {
 
   accept() {
     this.checkUser(() => {
-      this.connectionService.confirmConnection(this.user.id, this.connection.id, this.myConnections[this.indexConnection].connection_id, 0, true).subscribe(
+      this.connectionService.confirmConnection(this.user.id, this.connection.id, this.myConnections[this.indexConnection].connectionId, 0, true).subscribe(
         respond => {
           this.btnConnectValue = respond.status === 1 ? this.btnConnectValue : 'connected';
         }
@@ -63,7 +63,7 @@ export class ConnectCardProfileComponent implements OnInit {
 
   decline() {
     this.checkUser(() => {
-      this.connectionService.confirmConnection(this.user.id, this.connection.id, this.myConnections[this.indexConnection].connection_id, 0, false).subscribe(
+      this.connectionService.confirmConnection(this.user.id, this.connection.id, this.myConnections[this.indexConnection].connectionId, 0, false).subscribe(
         respond => {
           this.btnConnectValue = respond.status === 1 ? this.btnConnectValue : 'connect';
         }
@@ -78,7 +78,7 @@ export class ConnectCardProfileComponent implements OnInit {
       this.sidenavService.setConnection(
         this.user.id,
         this.connection.id,
-        this.connection.display_name,
+        this.connection.displayName,
         respond => {
           me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
         }

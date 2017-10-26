@@ -1,16 +1,16 @@
 declare module Models {
 
     interface Setting {
-        setting_id: number;
+        settingId: number;
         description: string;
         name: string;
-        field_type: string;
+        fieldType: string;
         value: string;
     }
 
     interface ChangeUserPassword  {        
-        old_password: string;
-        new_password: string;
-        confirmed_password: string;
+        oldPassword: string;
+        newPassword: string;
+        confirmedPassword: string;
     }
 }

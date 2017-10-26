@@ -25,9 +25,11 @@ import { PostToolsComponent } from './components/post-tools/post-tools.component
 // Services
 import { PostService } from './services/post.service';
 
-import { PipesModule } from '../../pipes/pipes.module';
-import { SharedModule } from '../shared/shared.module';
+// Pipes
+import { PostsFilterAlliancePipe } from './pipes/posts-filter-alliance.pipe';
+import { PostsFilterPipe } from './pipes/posts-filter.pipe';
 
+import { SharedModule } from '../shared/shared.module';
 
 const myRoute: Routes = [
     //{ path: 'my-preview/:idMyPost', component: MyPostViewComponent },
@@ -51,7 +53,6 @@ const myRoute: Routes = [
     imports: [
         CommonModule,
         FormsModule,
-        PipesModule,
         SharedModule,
         MatGridListModule,
         MatCardModule,
@@ -78,13 +79,15 @@ const myRoute: Routes = [
         PostBasicComponent,
         PostToolsComponent,
         PostStyleComponent,
-        PostCreateComponent
+        PostCreateComponent,
+        PostsFilterAlliancePipe,
+        PostsFilterPipe
     ],
     exports: [
-        PostCardComponent
+        PostCardComponent, PostsFilterAlliancePipe, PostsFilterPipe
     ],
     providers: [
-        PostService
+        PostService, PostsFilterAlliancePipe, PostsFilterPipe
     ],
     entryComponents: [PostCreateComponent]
 })

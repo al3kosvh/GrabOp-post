@@ -49,7 +49,7 @@ export class ConnectCardComponent implements OnInit {
     }
 
     private adminConnection(accept) {
-        this.connectionService.confirmConnection(this.user.id, this.connection.id, this.connection.connection_id, 0, accept)
+        this.connectionService.confirmConnection(this.user.id, this.connection.id, this.connection.connectionId, 0, accept)
             .subscribe(
             res => {
                 console.log('Respond Connection', res);
@@ -63,7 +63,7 @@ export class ConnectCardComponent implements OnInit {
               this.sidenavService.onMessage({
                 id: this.user.id,
                 senderid: this.connection.id,
-                senderName: this.connection.display_name
+                senderName: this.connection.displayName
               });
             })
     }

@@ -3,7 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { VOPost, VOResult, VOSettings, VOImage } from "../../../models/vos";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { mapGetPosts, mapGetPost, mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSend_UpdateNeed, mapPostSend_UpdateOffer } from '../../../utils/map-functions';
+import {
+    mapGetPosts, mapGetPost, mapPostSendCreateNeed, mapPostSendCreateOffer,
+    mapPostSendUpdateNeed, mapPostSendUpdateOffer
+} from '../../../utils/map-functions';
 
 // Services
 import { HttpService } from "../../account/services/http.service";
@@ -187,13 +190,6 @@ export class PostService {
     //   }
     // }
 
-
-    handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            console.error(error);
-        return Observable.throw(errMsg);
-    }
-
     // ????????????????????????????????????????
 
     // deletePost(post: VOPost): void {
@@ -226,32 +222,25 @@ export class PostService {
 
         let postType: string = post.type;
         // delete post.type;
-        let url: string;
-
-        post.categoryId = 1;
+        let url: string;        
         let reqData: any;
         // let req = {};
 
-        if (postType == 'need') {
-            reqData = mapPostSend_CreateNeed(post);
+        if (postType == 'need') {            
+            reqData = mapPostSendCreateNeed(post);
             url = VOSettings.createNeedPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.need + VOSettings.format_json;
         } else if (postType == 'offer') {
-            reqData = mapPostSend_CreateOffer(post);
+            reqData = mapPostSendCreateOffer(post);
             url = VOSettings.createOfferPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.offer + VOSettings.format_json;
         }
 
         console.log(reqData);
 
-        return this.http.post(url, reqData)
-            // .map((res) => {
-            //   console.log('res', res);
-            //   console.log('res.json', res);
-            //   return res;
-            // })
+        return this.http.post(url, reqData)           
             .map(mapGetPost)
-            .catch(this.handleError);
+            .catch((error: any) => Observable.throw(error));
     }
 
     deleteAttachment(psot_id: number, id: number) {
