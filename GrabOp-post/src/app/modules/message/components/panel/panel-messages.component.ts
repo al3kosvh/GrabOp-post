@@ -54,6 +54,7 @@ export class PanelMassagesComponent {
         ]
     };
     writingMessage = {body: '', date: '', me: true};
+    search: string;
 
     constructor() {
 

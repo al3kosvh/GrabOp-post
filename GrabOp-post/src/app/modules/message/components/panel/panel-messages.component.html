@@ -21,14 +21,14 @@
                 <form floatPlaceholder="never">
                     <mat-form-field floatPlaceholder="never">
                         <mat-icon matPrefix>search</mat-icon>
-                        <input matInput placeholder="Search" name="search" aria-label="Search...">
+                        <input matInput placeholder="Search" name="search" aria-label="Search..." [(ngModel)]="search">
                     </mat-form-field>
                 </form>
             </div>
         </div>
         
         <ul fxLayout="column">
-            <li class="item" *ngFor="let contact of contacts; let i = index" (click)="onChangeConversation(contact)" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
+            <li class="item" *ngFor="let contact of contacts | panelMessageFilter: search; let i = index" (click)="onChangeConversation(contact)" (mouseover)="showCloseBtn(i)" (mouseleave)="hideCloseBtn()">
                 <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
                     <img class="avatars" [src]="contact.img">
                 </div>

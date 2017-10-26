@@ -4,6 +4,7 @@ import { PostsFilterPipe } from './posts-filter.pipe';
 import { PostsFilterAlliancePipe } from './posts-filter-alliance.pipe';
 import { ConnectionFilterPipe } from './connection-filter.pipe';
 import { ConnectionSearchPipe } from './connection-search.pipe';
+import { PanelMessageFilterPipe } from './panel-message-filter.pipe';
 
 @NgModule({
     imports: [
@@ -13,13 +14,15 @@ import { ConnectionSearchPipe } from './connection-search.pipe';
         PostsFilterPipe,
         PostsFilterAlliancePipe,
         ConnectionFilterPipe,
-        ConnectionSearchPipe
+        ConnectionSearchPipe,
+        PanelMessageFilterPipe
     ],
     exports: [
         PostsFilterPipe,
         PostsFilterAlliancePipe,
         ConnectionFilterPipe,
-        ConnectionSearchPipe
+        ConnectionSearchPipe,
+        PanelMessageFilterPipe
     ]
 })
 export class PipesModule {
