@@ -15,11 +15,11 @@ declare module Models {
     }
 
     interface SOAuthenticateResponse {
-        user_id: number;
-        session_id: string;
-        user_name: string;
-        display_name: string;
-        bearer_token: string;
-        response_status: SOResponseStatus;
+        userId: number;
+        sessionId: string;
+        username: string;
+        displayName: string;
+        bearerToken: string;
+        responseStatus: SOResponseStatus;
     }
 }

@@ -32,10 +32,6 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { SearchModule } from './modules/search/search.module';
 import { MessageModule } from './modules/message/message.module';
 
-// Pipes
-import { PipesModule } from './pipes/pipes.module';
-import { PostsFilterPipe } from './pipes/posts-filter.pipe';
-
 // Services
 import { ToolbarService } from './services/toolbar.service';
 import { SidenavService } from './services/sidenav.service';
@@ -79,7 +75,6 @@ const routes: Routes = [
         LandingModule,
         HomeModule,
         SharedModule,
-        PipesModule,
         ConnectionModule,
         OpportunityModule,
         ProfileModule,

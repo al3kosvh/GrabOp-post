@@ -44,9 +44,10 @@ export class PostCreateComponent implements OnInit {
     onSavePost(): void {
 
         this.postService.insertPost(this.model)
-            .subscribe(res => {
-                if (res.id) {
-                    this.snackbarService.showMessage(res.title);
+            .subscribe(post => {
+                if (post) {
+                    this.snackbarService.showMessage('Post ' + post.type + ' Created');
+                    this.sidenav.close();
                 }
             });
 

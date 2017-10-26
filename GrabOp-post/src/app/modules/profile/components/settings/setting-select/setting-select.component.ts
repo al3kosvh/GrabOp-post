@@ -36,14 +36,14 @@ export class SettingSelectComponent implements OnInit {
             default:
         }
 
-        if (this.setting.field_type == "string") {
+        if (this.setting.fieldType == "string") {
             this.value = this.setting.value;
         }
     }
 
     onChange() {
 
-        this.settingsService.toggleSetting(this.userId, this.setting.setting_id, this.value).subscribe(
+        this.settingsService.toggleSetting(this.userId, this.setting.settingId, this.value).subscribe(
             setting => {
                 //console.log(setting);
             }

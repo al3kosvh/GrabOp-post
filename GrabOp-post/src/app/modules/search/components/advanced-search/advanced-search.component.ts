@@ -135,12 +135,12 @@ export class AdvancedSearchComponent implements OnInit {
           if (
             this.checkFilters()
             || this.match(search, connections[i].description)
-            || this.match(search, connections[i].display_name)
+            || this.match(search, connections[i].displayName)
             || this.match(search, connections[i].company)
-            || this.match(search, connections[i].jobtitle)
-            || this.match(search, connections[i].user_name)
-            || this.match(search, connections[i].first_name)
-            || this.match(search, connections[i].last_name)
+            || this.match(search, connections[i].jobTitle)
+            || this.match(search, connections[i].username)
+            || this.match(search, connections[i].firstName)
+            || this.match(search, connections[i].lastName)
           ) {
             result.push(connections[i]);
             this.peopleCant++;

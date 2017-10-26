@@ -1,19 +1,19 @@
 
-export interface SOservice_req {
+export interface SOServiceReq {
     title: string;
     summary: string;
-    category_id: number;
-    is_exchange: boolean;
-    is_donation: boolean;
-    is_internship: boolean;
-    is_partnership: boolean;
-    is_money: boolean;
-    commission_from?: number;
-    commission_to?: number;
-    fixed_rate_from?: number;
-    fixed_rate_to?: number;
-    hourly_rate_from?: number;
-    hourly_rate_to?: number;
+    categoryId: number;
+    isExchange: boolean;
+    isDonation: boolean;
+    isInternship: boolean;
+    isPartnership: boolean;
+    isMoney: boolean;
+    commissionFrom?: number;
+    commissionTo?: number;
+    fixedRateFrom?: number;
+    fixedRateTo?: number;
+    hourlyRateFrom?: number;
+    hourlyRateTo?: number;
     latitude?: number;
     longitude?: number;
     city: string;
@@ -23,40 +23,40 @@ export interface SOservice_req {
     pictures?: string[];
     videos?: string[];
     documents?: string[];
-    attachments?: SOattachment[];
+    attachments?: SOAttachment[];
 }
 
-export interface Need_CreateNeed extends SOservice_req {
-    is_public: boolean;
+export interface CreateNeed extends SOServiceReq {
+    isPublic: boolean;
 }
 
-export interface Need_UpdateNeed extends SOservice_req {
+export interface UpdateNeed extends SOServiceReq {
     id: number;
-    is_public: boolean;
+    isPublic: boolean;
 }
 
-export interface Offer_CreateOffer extends SOservice_req {
+export interface CreateOffer extends SOServiceReq {
     isAllianceOpen?: boolean;
     isAllianceBlackBox?: boolean;
     isAllianceMemberTotalVisible?: boolean;
     allianceMembers?: boolean;
 }
 
-export interface Offer_UpdateOffer extends SOservice_req {
+export interface UpdateOffer extends SOServiceReq {
     id: number;
-    owner_id: number;
-    is_available: boolean;
+    ownerId: number;
+    isAvailable: boolean;
 }
 
-export interface SOattachment {
-    Id: number;
-    Name: string;
-    Type: string;
-    Prefix: string;
-    IsDefault: boolean;
+export interface SOAttachment {
+    id: number;
+    name: string;
+    type: string;
+    prefix: string;
+    isDefault: boolean;
 }
 
-export interface SOupdate_profile_req {
+export interface SOUpdateProfileReq {
     id?: number;
     email: string;
     post: string;
@@ -66,17 +66,17 @@ export interface SOupdate_profile_req {
     country: string;
     latitude?: number;
     longitude?: number;
-    profile_pic: string;
-    background_pic: string;
+    profilePic: string;
+    backgroundPic: string;
     video: string;
     resume: string;
     skillset?: string[];
     interests?: string[];
     type: string;
-    firstname?: string;
-    lastname?: string;
+    firstName?: string;
+    lastName?: string;
     occupation?: number;
-    jobtitle?: string;
+    jobTitle?: string;
     company?: string;
     name?: string;
     url?: string;
@@ -85,134 +85,134 @@ export interface SOupdate_profile_req {
 
 // ----------- response objects -----------
 
-export interface SOemail_existence_query {
+export interface SOEmailExistenceQuery {
     email: string;
     exists: string;
 }
 
-export interface SOconnection_get_profile_connections_count {
+export interface SOConnectionGetProfileConnectionsCount {
     id: number;
 }
 
-export interface SOprofile_connections_count {
+export interface SOProfileConnectionsCount {
     SOcount: number;
 }
 
-export interface SOexpanded_connection {
-    display_name: string;
+export interface SOExpandedConnection {
+    displayName: string;
     email: string;
-    first_name: string;
-    full_name: string;
+    firstName: string;
+    fullName: string;
     id: number;
-    connection_id: number;
+    connectionId: number;
     trusted: boolean;
-    connection_status: number;
-    connection_status_date: any;
+    connectionStatus: number;
+    connectionStatusDate: any;
     // connection_status_date : SOdate_time; // ??????
 }
 
 export interface SOconversation_query_result {
-    conversationid: number;
-    creatorid: number;
-    messageid: number;
+    conversationId: number;
+    creatorId: number;
+    messageId: number;
     subject: string;
     body: string;
-    sent_date: any;
+    sentDate: any;
     // sent_date : Date; // ?????
-    senderid: number;
+    senderId: number;
 }
 
-export interface SOconversation_members_query_result {
-    conversationid: number;
+export interface SOConversationMembersQueryResult {
+    conversationId: number;
 }
 
-export interface SOaccount_get_my_conversations_repons {
-    convesation: SOconversation;
-    conversation_members: SOaccount[];
-    lastmessage: SOmessage;
-    last_message_sender_id: number;
+export interface SOAccountGetMyConversationsRepons {
+    convesation: SOConversation;
+    conversationMembers: SOAccount[];
+    lastMessage: SOMessage;
+    lastMessageSenderId: number;
 }
 
-export interface SObusiness_instance {
-    valuebit: boolean;
-    valuefrom: number;
-    valueto: number;
-    business_typeid: number;
+export interface SOBusinessInstance {
+    valueBit: boolean;
+    valueFrom: number;
+    valueTo: number;
+    businessTypeId: number;
 }
 
-export interface SOservice {
+export interface SOService {
     id: number;
     type: string;
     title: string;
     summary?: string;
     // created_date: any;
-    created_date?: Date; // ??????
-    creator_id?: number; // is it owner_id ???
-    category_id: number;
+    createdDate?: Date; // ??????
+    creatorId?: number; // is it owner_id ???
+    categoryId: number;
     status?: number;
     latitude?: number;
     longitude?: number;
     city: string;
     province: string;
     country: string;
-    is_available: boolean;
-    owner_id: number;
-    is_public: boolean; // is it isAvailable ???
-    visit_count?: number;
+    isAvailable: boolean;
+    ownerId: number;
+    isPublic: boolean; // is it isAvailable ???
+    visitCount?: number;
 }
 
-export interface SOservice_expanded extends SOservice {
+export interface SOServiceExpanded extends SOService {
     portafolio?: string;
-    alliance?: SOalliance;
+    alliance?: SOAlliance;
     keywords?: string[];
-    is_exchange: boolean;
-    is_donation: boolean;
-    is_internship: boolean;
-    is_partnership: boolean;
-    commission_from?: number;
-    commission_to?: number;
-    fixed_rate_from?: number;
-    fixed_rate_to?: number;
-    hourly_rate_from?: number;
-    hourly_rate_to?: number;
+    isExchange: boolean;
+    isDonation: boolean;
+    isInternship: boolean;
+    isPartnership: boolean;
+    commissionFrom?: number;
+    commissionTo?: number;
+    fixedRateFrom?: number;
+    fixedRateTo?: number;
+    hourlyRateFrom?: number;
+    hourlyRateTo?: number;
     // attachments: any;
-    attachments?: SOservice_attachment[]; // ??????
+    attachments?: SOServiceAttachment[]; // ??????
 }
 
-export interface SOaccount extends SOuser_auth {
-    primary_email_confirmed: boolean;
-    email_confirmed: boolean;
-    login_count: number;
-    email_verification_token: string;
-    modified_date: any;
+export interface SOAccount extends SOUserAuth {
+    primaryEmailConfirmed: boolean;
+    emailConfirmed: boolean;
+    loginCount: number;
+    emailVerificationToken: string;
+    modifiedDate: any;
     // modified_date: Date; // ?????????
     status: number;
     post: string;
 }
 
-export interface SOv_account {
+export interface SOvAccount {
     id: number;
     type: string; // role
-    user_name: string;
-    primary_email: string;
-    display_name: string;
-    phone_number: string;
-    profile_pic: string;
-    jobtitle: string;
+    userName: string;
+    primaryEmail: string;
+    displayName: string;
+    phoneNumber: string;
+    profilePic: string;
+    jobTitle: string;
     company: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     occupation?: number;
     url: string;
     description: string;
     offers: number;
     needs: number;
-    number_of_opps?: number;
+    numberOfOpps?: number;
     distance?: number;
 }
 
-export interface SOaccount_expanded extends SOv_account {
-    background_pic: string;
+export interface SOAccountExpanded extends SOvAccount {
+    backgroundPic: string;
     bideo: string; // bideo ?????  video
     resume: string;
     province: string;
@@ -224,13 +224,13 @@ export interface SOaccount_expanded extends SOv_account {
     interests: string[];
 }
 
-export interface SOalliance_member extends SOv_account {
-    allianceid?: number;
-    membership_status: string;
-    has_tasks: boolean;
+export interface SOAllianceMember extends SOvAccount {
+    allianceId?: number;
+    membershipStatus: string;
+    hasTasks: boolean;
 }
 
-export interface SOsetting {
+export interface SOSetting {
     settingid: number;
     name: string;
     value: string;
@@ -247,113 +247,113 @@ export interface SOMessage {
     // sentDate: Date; // ??????
 }
 
-export interface SOuser_auth {
+export interface SOUserAuth {
     address: string;
     address2: string;
     date: any;
     // date: birth_date; // ???????
-    birth_date_raw: string;
+    birthDateRaw: string;
     city: string;
     company: string;
     country: string;
-    created_date: any;
+    createdDate: any;
     // created_date: date_time; // ???????
     culture: string;
-    digest_ha1_hash: string;
-    display_name: string;
+    digestHa1Hash: string;
+    displayName: string;
     email: string;
-    first_name: string;
-    full_name: string;
+    firstName: string;
+    fullName: string;
     gender: string;
     id: number;
-    invalid_login_attempts: number;
+    invalidLoginAttempts: number;
     language: string;
-    last_login_attempt?: any;
+    lastLoginAttempt?: any;
     // last_login_attempt?: date; // ???????
-    last_name: string;
-    locked_date?: any;
+    lastName: string;
+    lockedDate?: any;
     // locked_date?: date; // ???????
-    mail_address: string;
+    mailAddress: string;
     meta: any;
-    modified_date: any;
+    modifiedDate: any;
     // modified_date: date_time;  // ???????
     nickname: string;
-    password_hash: string;
+    passwordHash: string;
     permissions: string[];
-    phone_number: string;
-    postal_code: string;
-    primary_email: string;
-    recovery_token: string;
-    ref_id?: number;
-    ref_id_str: string;
+    phoneNumber: string;
+    postalCode: string;
+    primaryEmail: string;
+    recoveryToken: string;
+    refId?: number;
+    refIdStr: string;
     roles: string[];
     salt: string;
     state: string;
-    time_zone: string;
-    user_name: string;
+    timeZone: string;
+    userName: string;
 }
 
-export interface SOalliance {
+export interface SOAlliance {
     id: number;
-    is_black_box: boolean;
-    is_open: boolean;
-    is_member_total_visible: boolean;
-    is_active: boolean;
+    isBlackBox: boolean;
+    isOpen: boolean;
+    isMemberTotalVisible: boolean;
+    isActive: boolean;
     // created_date: any;
-    created_date: Date; // ???????
-    offerid: number;
+    createdDate: Date; // ???????
+    offerId: number;
     // members : any;
-    members: SOalliance_member[];
-    alliance_members_count: number;
+    members: SOAllianceMember[];
+    allianceMembersCount: number;
 }
 
-export interface SOtrusted_connection {
-    connection_id: number;
+export interface SOTrustedConnection {
+    connectionId: number;
 }
 
-export interface SOuser {
+export interface SOUser {
     id: number;
-    user_name: string;
-    primary_email: string;
-    display_name: string;
-    phone_number: string;
-    profile_pic: string;
-    jobtitle: string;
+    userName: string;
+    primaryEmail: string;
+    displayName: string;
+    phoneNumber: string;
+    profilePic: string;
+    jobTitle: string;
     company: string;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     occupation: number;
     offers: number;
     needs: number;
-    number_of_opps: number;
+    numberOfOpps: number;
     distance: number;
 }
 
-export interface SOcompany {
+export interface SOCompany {
     id: number;
-    user_name: string;
-    primary_email: string;
-    display_name: string;
-    phone_number: string;
-    profile_pic: string;
+    userName: string;
+    primaryEmail: string;
+    displayName: string;
+    phoneNumber: string;
+    profilePic: string;
     url: string;
     description: string;
     offers: number;
     needs: number;
-    number_of_opps: number;
+    numberOfOpps: number;
     distance: number;
 }
 
-export interface SOmessage {
+export interface SOMessage {
     id: number;
-    senderid: number;
+    senderId: number;
     subject: string;
     body: string;
-    sent_date: any;
+    sentDate: any;
     // sent_date: date; // ???????
 }
 
-export interface SOlocation {
+export interface SOLocation {
     id: number;
     // id: number { set; get; }  // ???????
     longitude?: number;
@@ -363,39 +363,39 @@ export interface SOlocation {
     country: string;
 }
 
-export interface SOconversation {
+export interface SOConversation {
     id: number;
-    created_date: any;
+    createdDate: any;
     // created_date: date; // ???????
-    creatorid: number;
+    creatorId: number;
 }
 
-export interface SOconnection {
+export interface SOConnection {
     id: number;
     sender: number;
     receiver: number;
     status: number;
-    status_date: any;
+    statusDate: any;
     // status_date: date;// ???????
 }
 
-export interface SObusiness_type_instance {
+export interface SOBusinessTypeInstance {
     id: number;
     valuebit: boolean;
-    valuefrom: number;
-    valueto: number;
-    business_typeid: number;
-    serviceid: number;
+    valueFrom: number;
+    valueTo: number;
+    businessTypeId: number;
+    serviceId: number;
     name: string;
 }
 
-export interface SOservice_attachment {
-    parentid: number;
+export interface SOServiceAttachment {
+    parentId: number;
     id: number;
     name: string;
     type: string;
     prefix: string;
-    is_default: boolean;
+    isDefault: boolean;
 }
 
 // export interface SOattachment {
@@ -411,7 +411,7 @@ export interface SOservice_attachment {
 //   parentid: number;
 // }
 
-export interface SOentity_attachment {
+export interface SOEntityAttachment {
     name: string;
     type: string;
 }

@@ -3,7 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { VOPost, VOResult, VOSettings, VOImage } from "../../../models/vos";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { mapGetPosts, mapGetPost, mapPostSend_CreateNeed, mapPostSend_CreateOffer, mapPostSend_UpdateNeed, mapPostSend_UpdateOffer } from '../../../utils/map-functions';
+import {
+    mapGetPosts, mapGetPost, mapPostSendCreateNeed, mapPostSendCreateOffer,
+    mapPostSendUpdateNeed, mapPostSendUpdateOffer
+} from '../../../utils/map-functions';
 
 // Services
 import { HttpService } from "../../account/services/http.service";
@@ -224,11 +227,11 @@ export class PostService {
         // let req = {};
 
         if (postType == 'need') {            
-            reqData = mapPostSend_CreateNeed(post);
+            reqData = mapPostSendCreateNeed(post);
             url = VOSettings.createNeedPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.need + VOSettings.format_json;
         } else if (postType == 'offer') {
-            reqData = mapPostSend_CreateOffer(post);
+            reqData = mapPostSendCreateOffer(post);
             url = VOSettings.createOfferPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.offer + VOSettings.format_json;
         }

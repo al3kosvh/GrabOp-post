@@ -6,20 +6,20 @@ declare module Models {
 
     interface SOUser {
         id: number;
-        first_name: string;
-        last_name: string;
-        display_name: string;
-        primary_email: string;
-        user_name: string;
+        firstName: string;
+        lastName: string;
+        displayName: string;
+        primaryEmail: string;
+        username: string;
         type: string;
-        phone_number: string;
-        profile_pic: string;
-        background_pic: string;
-        jobtitle: string;
+        phoneNumber: string;
+        profilePic: string;
+        backgroundPic: string;
+        jobTitle: string;
         company: string;
         description: string;
         distance: number;
-        number_of_opps: number;
+        numberOfOpps: number;
         occupation: number;
         needs: number;
         offers: number;
@@ -110,21 +110,21 @@ declare module Models {
     interface SOvAccount {
         id: number;
         type: string;
-        user_name: string;
-        primary_email: string;
-        display_name: string;
-        phone_number: string;
-        profile_pic: string;
+        userName: string;
+        primaryEmail: string;
+        displayName: string;
+        phoneNumber: string;
+        profilePic: string;
         jobtitle: string;
         company: string;
-        first_name: string;
-        last_name: string;
+        firstName: string;
+        lastName: string;
         occupation: number;
         url: string;
         description: string;
         offers: number;
         needs: number;
-        number_of_opps: number;
+        numberOfOpps: number;
         distance: number;
     }
 
