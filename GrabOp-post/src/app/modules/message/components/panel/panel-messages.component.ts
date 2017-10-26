@@ -14,7 +14,7 @@ export class PanelMassagesComponent {
             img: 'assets/img/1x.jpg',
             lastConversation: {
                 body: 'I have to leave, see you latter',
-                date: '5:18p.m'
+                date: '5:18 p.m'
             }
         },
         {
@@ -47,10 +47,10 @@ export class PanelMassagesComponent {
         userName: 'Angela P.',
         avatar: 'assets/img/1x.jpg',
         conversations: [
-            {body: 'Yes, why not', date: '5:18p.m', me: false},
-            {body: 'Because...', date: '5:19p.m', me: false},
-            {body: 'And...', date: '5:19p.m', me: true},
-            {body: 'I have to leave, see you latter', date: '5:20p.m', me: true},
+            {body: 'Yes, why not', date: '5:18 p.m', me: false},
+            {body: 'Because...', date: '5:19 p.m', me: false},
+            {body: 'And...', date: '5:19 p.m', me: true},
+            {body: 'I have to leave, see you latter', date: '5:20 p.m', me: true},
         ]
     };
     writingMessage = {body: '', date: '', me: true};
@@ -60,10 +60,20 @@ export class PanelMassagesComponent {
     }
 
     onSendMessage() {
-        let date = new Date();
-        this.writingMessage.date = date.getHours() + ':' + date.getMinutes();
+        this.writingMessage.date = this.getFormatDate();
         this.conversation.conversations.push(this.writingMessage);
         this.writingMessage = {body: '', date: '', me: true};
+    }
+
+    getFormatDate(format?: string) {
+        let date = new Date(), hours = date.getHours(), minutes = date.getMinutes();
+        if (format && format == '24') {
+            return hours + ':' + minutes + ' h';
+        } else if (hours > 12) {
+            return (hours - 12) + ':' + minutes + ' p.m';
+        } else {
+            return hours + ':' + minutes + ' a.m';
+        }
     }
 
     onChangeConversation(contact) {
