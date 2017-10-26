@@ -1,10 +1,12 @@
 <ng-template>
   <mat-dialog-content>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <p>{{message}}</p>
-      <p *ngIf="verified">
-        Try to <span><account-signin-launcher [asLink]="true" (click)="closeDialog()" ></account-signin-launcher></span>
-      </p>
+    <div *ngIf="verified" fxLayout="row" fxLayoutAlign="center">
+      <p>Congratz! You have confirmed your account</p>
+      <p>Now go Grab Opportunities</p>
+      <p>Good luck from your GrabOp team!</p>
+    </div>
+    <div *ngIf="!verified" fxLayout="row" fxLayoutAlign="center">
+      {{message}}
     </div>
   </mat-dialog-content>
 

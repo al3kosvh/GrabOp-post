@@ -38,8 +38,7 @@ export class SignUpConfirmComponent implements AfterViewInit {
     verifyEmail() {
         let token = this.route.snapshot.params.token;
         if (!token) {
-            this.signupService.verifyEmail(token).subscribe(res => {
-                this.message = 'Registration confirmed.';
+            this.signupService.verifyEmail(token).subscribe(res => {                
                 this.verified = true;
                 this.openDialog();
             }, error => {
@@ -54,13 +53,17 @@ export class SignUpConfirmComponent implements AfterViewInit {
     openDialog(): void {
         this.dialogRef = this.dialog.open(this.ref, { width: '250px' });
 
-        this.dialogRef.afterClosed().subscribe(() => {
-            this.back();
+        this.dialogRef.afterClosed().subscribe(() => {            
+            //TODO: login before redirecto to HOME
+            if(this.verified)
+                this.router.navigate(['/home']);
+            else
+                this.back();
         });
     }
 
     closeDialog(): void {
-        this.dialogRef.close();
+        this.dialogRef.close();        
     }
 
     back() {
