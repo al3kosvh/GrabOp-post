@@ -21,6 +21,7 @@ import { PostBasicComponent } from './components/post-basic/post-basic.component
 import { PostMediaComponent } from './components/post-media/post-media.component';
 import { PostStyleComponent } from './components/post-style/post-style.component';
 import { PostToolsComponent } from './components/post-tools/post-tools.component';
+import { PostsFramesComponent } from './components/post-frames/post-frames.component';
 
 // Services
 import { PostService } from './services/post.service';
@@ -81,10 +82,11 @@ const myRoute: Routes = [
         PostStyleComponent,
         PostCreateComponent,
         PostsFilterAlliancePipe,
-        PostsFilterPipe
+        PostsFilterPipe,
+        PostsFramesComponent
     ],
     exports: [
-        PostCardComponent, PostsFilterAlliancePipe, PostsFilterPipe
+        PostCardComponent, PostsFilterAlliancePipe, PostsFilterPipe, PostsFramesComponent
     ],
     providers: [
         PostService, PostsFilterAlliancePipe, PostsFilterPipe

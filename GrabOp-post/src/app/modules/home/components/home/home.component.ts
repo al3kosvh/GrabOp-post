@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-
 import { VOPost } from '../../../../models/vos';
 import { VOUserExt } from "../../../account/models/vouser";
 
@@ -107,10 +106,6 @@ export class HomeComponent implements OnInit, OnChanges {
         this.modal.openWindow(UserCommentsComponent, (res) => {
             console.log('commentcomponent  ', res);
         });
-    }
-
-    onClickItem(item: VOPost) {
-        this.postService.setSelectedMyPost(item);
     }
 
 }

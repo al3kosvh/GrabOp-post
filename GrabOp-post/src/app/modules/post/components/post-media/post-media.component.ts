@@ -4,6 +4,8 @@ import { VOImage, VOPost, VOPostAttachment } from '../../../../models/vos';
 import { PostService } from '../../services/post.service';
 import { UploadService } from '../../../account/services/upload.service';
 
+import * as $ from 'jquery';
+
 @Component({
     selector: 'post-media',
     templateUrl: './post-media.component.html',
@@ -128,6 +130,18 @@ export class PostMediaComponent implements OnInit {
 
     onCancelClick() {
         this.onCancel.emit();
+    }
+
+    onScrollLeft() {
+        $('.images-container').animate({
+            scrollLeft: '-=200'
+        }, 'slow');
+    }
+
+    onScrollRight() {
+        $('.images-container').animate({
+            scrollLeft: '+=200'
+        }, 'slow');
     }
 
 }
