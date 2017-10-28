@@ -63,21 +63,15 @@ export class PostService {
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
-    updatePost(post: VOPost): void {
+    updatePost(post: VOPost): Observable<VOPost> {
         let url: string;
         if (post.type == 'need') url = VOSettings.updateNeedPost.replace(<any>'{{id}}', post.id.toString());
         if (post.type == 'offer') url = VOSettings.updateOfferPost.replace(<any>'{{id}}', post.id.toString());
         console.log('updatePost', url);
 
-        this.http.put(url, post).subscribe(res => {
-            // console.log('updatePost res', res);
-            //this.myPosts.forEach(function (item, i, arr) {
-            //    if (item.id === post.id) {
-            //        arr[i] = post;
-            //    }
-            //});
-            this.broadcastMyPosts();
-        });
+        return this.http.put(url, post)
+            .map(mapGetPost)
+            .catch((error: any) => Observable.throw(error));
     }
 
     getCategories(): Observable<Models.Category[]> {
@@ -112,11 +106,8 @@ export class PostService {
     //    //return arr.length ? arr[0] : null;
     //}
 
-    private selectedMyPostId: number;
-
     getMyPostById(id: number): Observable<VOPost> {
-        // console.log('select post  ' + id);
-        this.selectedMyPostId = id;
+        // console.log('select post  ' + id);        
         let sub: Subject<VOPost> = new Subject();
         // let posts: VOPost[] =  this.myPostsSub.getValue();
         //  console.log('MY posts', this.myPosts);
@@ -222,11 +213,11 @@ export class PostService {
 
         let postType: string = post.type;
         // delete post.type;
-        let url: string;        
+        let url: string;
         let reqData: any;
         // let req = {};
 
-        if (postType == 'need') {            
+        if (postType == 'need') {
             reqData = mapPostSendCreateNeed(post);
             url = VOSettings.createNeedPost;
             // url = VOSettings.server + VOSettings.posts + VOSettings.need + VOSettings.format_json;
@@ -238,7 +229,7 @@ export class PostService {
 
         console.log(reqData);
 
-        return this.http.post(url, reqData)           
+        return this.http.post(url, reqData)
             .map(mapGetPost)
             .catch((error: any) => Observable.throw(error));
     }

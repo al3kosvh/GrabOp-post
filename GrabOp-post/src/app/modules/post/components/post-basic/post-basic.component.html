@@ -26,8 +26,9 @@
             <textarea matInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
         </mat-form-field>
     </div>
-    <div class="options" fxLayout="row-reverse">
-        <button mat-raised-button color="primary" [disabled]="!postBasic.form.valid" (click)="onNextClick()">Next</button>
+    <div [ngSwitch]="action" class="options" fxLayout="row-reverse">
+        <button *ngSwitchCase="postAction.Create" mat-raised-button color="primary" [disabled]="!postBasic.form.valid" (click)="onNextClick()">Next</button>
+        <button *ngSwitchCase="postAction.Update" mat-raised-button color="primary" [disabled]="!postBasic.form.valid" (click)="onSaveClick()">Update</button>
         <button mat-button (click)="onCancelClick()">Cancel</button>
     </div>
 </form>

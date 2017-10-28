@@ -15,6 +15,7 @@ import * as $ from 'jquery';
 export class PostMediaComponent implements OnInit {
 
     @Input() model: VOPost;
+    @Input() action: number;
     @Output() onCancel = new EventEmitter<number>();
     @Output() onSave = new EventEmitter();
     // images: VOImage[];

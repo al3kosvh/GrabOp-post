@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatSidenav } from '@angular/material';
 
 import { VOPost } from '../../../../models/vos';
 
@@ -8,8 +8,11 @@ import { VOPost } from '../../../../models/vos';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 
 // Services
-import { AuthenticationService } from '../../../account/services/authentication.service';
 import { PostService } from '../../../post/services/post.service';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
+
+// Enums
+import { PostAction } from '../../models/post-action.enum';
 
 @Component({
     selector: 'post-edit',
@@ -19,79 +22,40 @@ import { PostService } from '../../../post/services/post.service';
 
 export class PostEditComponent implements OnInit, OnChanges {
 
+    @Input() sidenav: MatSidenav;
     @Input() post: VOPost;
+    action = PostAction.Update;
     model: VOPost = new VOPost({});
-    // model_id: number = 20;
 
-    // myStep: string;
     postType: string;
 
     constructor(
         private postService: PostService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private accountService: AuthenticationService,
-        private matDialog: MatDialog
+        private snackbarService: SnackBarService
     ) { }
 
-    ngOnChanges(obj: any): void {
-        // console.log(obj)
-        // if(obj.my_service_id && this.my_service_id !== obj.my_service_id)  this.loadService();
-    }
+    ngOnChanges(): void { }
 
     ngOnInit(): void {
 
-        //this.postService.my.subscribe(post => this.model = post);
-
-        //this.postService.selectedMyPost$.subscribe(post => this.postService.setPost(post));
-
-        //this.route.params.subscribe(params => {
-        //    console.log(params);
-        //    // this.myStep =  params['step'] || 'basic';
-        //    const id = +params['id'];
-        //    if (params['type']) {
-        //        this.model = new VOPost({ type: params['type'] })
-        //    } else {
-        //        if (isNaN(id)) {
-        //            console.error(' please provide ID for service to edit');
-        //            return;
-        //        }
-        //        this.loadPost(id);
-        //    }
-        //});
-
-    }
-
-    loadPost(id: number): void {
-        this.postService.getMyPostById(id);
-        console.log('load post ' + id);
-    }
-
-    onCloseClick() {
-        this.router.navigate([{ outlets: { 'slideRight': null } }]);
+        console.log(this.post);
+        this.model = JSON.parse(JSON.stringify(this.post));
     }
 
     onSaveClick(): void {
-        // console.log(this.myServiceService);
-        if (this.model.id) {
-            this.postService.updatePost(this.model)
-            //.subscribe(res => {
-            //    console.log('updatePost', res);
-            //    if (res.id) {
-            //        this.dialog.open(ModalAlertComponent, { data: 'Post updated.' });
-            //    }
-            //}
-            //);
-        } else {
-            this.postService.insertPost(this.model)
-                .subscribe(res => {
-                    console.log('insertPost', res);
-                    if (res.id) {
-                        this.matDialog.open(ModalAlertComponent, { data: 'New post saved.' });
-                    }
+
+        this.postService.updatePost(this.model)
+            .subscribe(post => {
+                if (post) {
+                    this.snackbarService.showMessage('Post ' + post.type + ' Update');
+                    this.sidenav.close();
                 }
-                );
-        }
+            });
+
+    }
+
+    onCancel() {
+        this.sidenav.close();
     }
 
 }

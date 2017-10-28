@@ -1,6 +1,11 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOCategory, VOPost } from '../../../../models/vos';
+
+// Services
 import { PostService } from '../../services/post.service';
+
+// Enums
+import { PostAction } from '../../models/post-action.enum';
 
 @Component({
     selector: 'post-basic',
@@ -11,15 +16,16 @@ import { PostService } from '../../services/post.service';
 export class PostBasicComponent implements OnInit {
 
     @Input() model: VOPost;
-    @Output() onCancel = new EventEmitter<number>();
-    @Output() onNext = new EventEmitter();
+    @Input() action: PostAction;
+    @Output() onCancel = new EventEmitter();
+    @Output() onNext = new EventEmitter<number>();
+    @Output() onSave = new EventEmitter();
     categories: Models.Category[];
+    postAction = PostAction;
 
     constructor(
         private postService: PostService
-    ) {
-       
-    }
+    ) { }
 
     ngOnInit(): void {
       this.postService.getCategories().subscribe(categories => this.categories = categories);        
@@ -27,10 +33,13 @@ export class PostBasicComponent implements OnInit {
 
     onNextClick() {
         this.onNext.emit(1);
-        console.log(this.model);
     }
 
     onCancelClick() {        
         this.onCancel.emit();
+    }
+
+    onSaveClick() {       
+        this.onSave.emit();
     }
 }

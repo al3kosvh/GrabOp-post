@@ -10,12 +10,11 @@ import { VOPost } from '../../../../models/vos';
 export class PostStyleComponent implements OnInit {
 
     @Input() model: VOPost;
+    @Input() action: number;
     @Output() onCancel = new EventEmitter();
     @Output() onNext = new EventEmitter<number>();
 
-    constructor() {
-        
-    }
+    constructor() { }
 
     ngOnInit(): void { }
 

@@ -8,9 +8,11 @@ import { VOPost } from '../../../../models/vos';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 
 // Services
-//import { AuthenticationService } from '../../../account/services/authentication.service';
 import { PostService } from '../../../post/services/post.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
+
+// Enums
+import { PostAction } from '../../models/post-action.enum';
 
 @Component({
     selector: 'post-create',
@@ -22,13 +24,12 @@ export class PostCreateComponent implements OnInit {
 
     @Input() sidenav: MatSidenav;
     model: VOPost;
+    action = PostAction.Create;
     selectedIndex = 0;
 
     constructor(
         private postService: PostService,
-        private route: ActivatedRoute,
-        private snackbarService: SnackBarService,
-        //private accountService: AuthenticationService,        
+        private snackbarService: SnackBarService      
     ) {
         this.model = new VOPost({});
         this.model.isPublic = true;
@@ -41,7 +42,7 @@ export class PostCreateComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    onSavePost(): void {
+    onSaveClick(): void {
 
         this.postService.insertPost(this.model)
             .subscribe(post => {
