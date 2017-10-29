@@ -72,4 +72,22 @@ export class PostCardComponent implements OnInit {
             }
         });
     }
+
+    onHide() {
+
+        let data = {
+            title: 'Hide Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.hideService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service hidden!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
 }
