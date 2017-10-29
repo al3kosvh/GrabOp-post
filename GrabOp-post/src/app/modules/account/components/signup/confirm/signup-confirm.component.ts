@@ -18,7 +18,7 @@ export class SignUpConfirmComponent implements AfterViewInit {
     @ViewChild(TemplateRef) ref;
 
     private message = "";
-    private verified = false;
+    private verified = true;
     private dialogRef: MatDialogRef<any>;
 
     constructor(
@@ -51,7 +51,7 @@ export class SignUpConfirmComponent implements AfterViewInit {
     }
 
     openDialog(): void {
-        this.dialogRef = this.dialog.open(this.ref, { width: '250px' });
+        this.dialogRef = this.dialog.open(this.ref, { width: '400px' });
 
         this.dialogRef.afterClosed().subscribe(() => {            
             //TODO: login before redirecto to HOME
@@ -60,10 +60,6 @@ export class SignUpConfirmComponent implements AfterViewInit {
             else
                 this.back();
         });
-    }
-
-    closeDialog(): void {
-        this.dialogRef.close();        
     }
 
     back() {
