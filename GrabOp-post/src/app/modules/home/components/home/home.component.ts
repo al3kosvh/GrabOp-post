@@ -6,7 +6,7 @@ import { VOUserExt } from "../../../account/models/vouser";
 import { UserCommentsComponent } from '../user-comments/user-comments.component';
 
 // Services
-import { ModalWindowService } from '../../../shared/services/modal-window.service';
+import { DialogService } from '../../../shared/services/dialog.service';
 import { PostService } from '../../../post/services/post.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 import { ProfileService } from '../../../profile/services/profile.service';
@@ -17,17 +17,16 @@ import { ProfileService } from '../../../profile/services/profile.service';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
     stats: any;
     connectionsCount: number;
-    person: Models.VOUserExt;
-    postsNeed: VOPost[];
-    postsOffer: VOPost[];
+    person: Models.VOUserExt;    
     myPosts: VOPost[];
 
     constructor(
         private postService: PostService,
         private connectionService: ConnectionService,
-        private modal: ModalWindowService,
+        private dialog: DialogService,
         private profileService: ProfileService
     ) {
         this.stats = {
@@ -57,7 +56,7 @@ export class HomeComponent implements OnInit {
 
     openComment() {
 
-        this.modal.openWindow(UserCommentsComponent, (res) => {
+        this.dialog.open(UserCommentsComponent, (res) => {
             console.log('commentcomponent  ', res);
         });
     }

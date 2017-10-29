@@ -12,7 +12,6 @@ import { SidenavService } from '../../../../services/sidenav.service';
 import { VOUserExt } from "../../../account/models/vouser";
 import { VOPost } from '../../../../models/vos';
 
-import { ModalPromptComponent } from '../../../shared/components/modal-prompt/modal-prompt.component';
 import { EditProfileComponent } from './edit/edit-profile.component';
 import { VideoProfileDialogComponent } from './video/video-profile-dialog.component';
 

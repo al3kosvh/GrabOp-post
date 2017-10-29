@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatListModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatSnackBarModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 //import {PostsList} from "./posts-list";
@@ -9,14 +9,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Components
 import { ListRowComponent } from "./components/list-row/list-row.component";
 import { ModalAlertComponent } from './components/modal-alert/modal-alert.component';
-import { ModalPromptComponent } from './components/modal-prompt/modal-prompt.component';
+import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
 import { MembersListComponent } from './components/member-list/members-list.component';
 
 // Directives
 import { MatImageDirective } from "./directives/mat-image.directive";
 
 // Services
-import { ModalWindowService } from './services/modal-window.service';
+import { DialogService } from './services/dialog.service';
 import { SnackBarService } from './services/snackbar.service';
 import { UploadService } from './services/upload.service';
 
@@ -29,7 +29,8 @@ import { TruncateTextPipe } from './pipes/truncate.pipe';
         FlexLayoutModule,
         MatButtonModule,
         MatListModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDialogModule
     ],
     exports: [
         FlexLayoutModule,
@@ -37,26 +38,26 @@ import { TruncateTextPipe } from './pipes/truncate.pipe';
         MembersListComponent,
         ListRowComponent,
         ModalAlertComponent,
-        ModalPromptComponent,
+        DialogConfirmComponent,
         TruncateTextPipe
     ],
     declarations: [
         MatImageDirective,
         ListRowComponent,
         ModalAlertComponent,
-        ModalPromptComponent,
+        DialogConfirmComponent,
         MembersListComponent,
         TruncateTextPipe
     ],
     providers: [
-        ModalWindowService,
+        DialogService,
         SnackBarService,
         TruncateTextPipe,
         UploadService
     ],
     entryComponents: [
         ModalAlertComponent,
-        ModalPromptComponent
+        DialogConfirmComponent
     ]
 })
 export class SharedModule { }
