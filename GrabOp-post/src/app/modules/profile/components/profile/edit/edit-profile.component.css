@@ -1,3 +1,7 @@
+.edit-profile {
+    width: 500px;
+}
+
 .title {
     color: gray;
     padding-left: 15px;
@@ -83,6 +87,7 @@ div.document-view img {
 
 div.options {
   padding-right: 5px;
+  padding-bottom: 15px;
 }
 
 div.options button {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog, MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material';
 
 import { VOPost } from '../../../../models/vos';
 
@@ -8,8 +8,11 @@ import { VOPost } from '../../../../models/vos';
 import { ModalAlertComponent } from '../../../shared/components/modal-alert/modal-alert.component';
 
 // Services
-import { AuthenticationService } from '../../../account/services/authentication.service';
 import { PostService } from '../../../post/services/post.service';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
+
+// Enums
+import { PostAction } from '../../models/post-action.enum';
 
 @Component({
     selector: 'post-create',
@@ -20,34 +23,33 @@ import { PostService } from '../../../post/services/post.service';
 export class PostCreateComponent implements OnInit {
 
     @Input() sidenav: MatSidenav;
-    model: VOPost = new VOPost({});
+    model: VOPost;
+    action = PostAction.Create;
     selectedIndex = 0;
-
-    // model_id: number = 20;
-
-    // myStep: string;
 
     constructor(
         private postService: PostService,
-        private route: ActivatedRoute,
-        private accountService: AuthenticationService,
-        private matDialog: MatDialog
+        private snackbarService: SnackBarService      
     ) {
+        this.model = new VOPost({});
         this.model.isPublic = true;
+        this.model.isPartnership = false;
+        this.model.isExchange = false;
+        this.model.isDonate = false;
+        this.model.isInternship = false;
+        this.model.isMoney = false;
     }
 
     ngOnInit(): void { }
 
-    onSavePost(): void {
+    onSaveClick(): void {
 
         this.postService.insertPost(this.model)
-            .subscribe(res => {                
-                if (res.id) {
-                    this.matDialog.open(ModalAlertComponent, { data: 'New post saved.' });
+            .subscribe(post => {
+                if (post) {
+                    this.snackbarService.showMessage('Post ' + post.type + ' Created');
+                    this.sidenav.close();
                 }
-            },
-            error => {
-                console.log(error);
             });
 
     }

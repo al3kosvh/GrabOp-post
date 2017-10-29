@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { VOImage, VOPost, VOpost_attachment } from '../../../../models/vos';
+import { VOImage, VOPost, VOPostAttachment } from '../../../../models/vos';
 // import {UploadService} from '../../myservices/upload-service';
 import { PostService } from '../../services/post.service';
-import { UploadService } from '../../../account/services/upload.service';
+import { UploadService } from '../../../shared/services/upload.service';
+
+import * as $ from 'jquery';
 
 @Component({
     selector: 'post-media',
@@ -13,16 +15,17 @@ import { UploadService } from '../../../account/services/upload.service';
 export class PostMediaComponent implements OnInit {
 
     @Input() model: VOPost;
+    @Input() action: number;
     @Output() onCancel = new EventEmitter<number>();
     @Output() onSave = new EventEmitter();
     // images: VOImage[];
-    attachments: VOpost_attachment[] = [];
+    attachments: VOPostAttachment[] = [];
     // attachments_ext: VOpost_attachment_ext[] = [];
 
     currentImage: VOImage;
     // @Output() selected$: EventEmitter<VOImage> = new EventEmitter<VOImage>();
     // private selected: VOImage;
-    image_selected: VOpost_attachment;
+    image_selected: VOPostAttachment;
 
     constructor(
         private uploadService: UploadService,
@@ -44,7 +47,7 @@ export class PostMediaComponent implements OnInit {
         this.uploadService.uploadFile(input.target.files[0])
             .subscribe(res => {
                 console.log('upload res', res);
-                res.parentid = this.model.id;
+                res.parentId = this.model.id;
                 this.attachments[this.attachments.length] = res;
                 this.model.attachments = this.attachments;
                 console.log('model upoad', this.model);
@@ -53,7 +56,7 @@ export class PostMediaComponent implements OnInit {
             });
     }
 
-    onImageClick(image: VOpost_attachment): void {
+    onImageClick(image: VOPostAttachment): void {
         if (this.image_selected) this.image_selected.selected = false;
         image.selected = true;
         this.image_selected = image;
@@ -128,6 +131,18 @@ export class PostMediaComponent implements OnInit {
 
     onCancelClick() {
         this.onCancel.emit();
+    }
+
+    onScrollLeft() {
+        $('.images-container').animate({
+            scrollLeft: '-=200'
+        }, 'slow');
+    }
+
+    onScrollRight() {
+        $('.images-container').animate({
+            scrollLeft: '+=200'
+        }, 'slow');
     }
 
 }

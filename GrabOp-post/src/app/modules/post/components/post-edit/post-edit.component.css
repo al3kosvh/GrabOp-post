@@ -1,3 +1,8 @@
-div.post-edit-main {
-  width: 400px;
+div.post-edit-container {
+    width: 400px;
+    padding: 15px;
 }
+
+    div.post-edit-container > div {
+        margin-bottom: 20px;
+    }

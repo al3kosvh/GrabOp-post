@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { MatCardModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatCardModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -12,12 +12,8 @@ import { UserCommentsComponent } from './components/user-comments/user-comments.
 // Services
 import { HomeService } from './services/home.service';
 
-// Pipes
-import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
-
 // Import App Modules
 import { SharedModule } from '../shared/shared.module';
-import { PipesModule } from '../../pipes/pipes.module';
 import { PostModule } from '../post/post.module';
 import { AccountModule } from '../account/account.module';
 
@@ -34,8 +30,8 @@ const homeRoute: Routes = [
         RouterModule.forChild(homeRoute),
         SharedModule,
         PostModule,
-        PipesModule,
-        AccountModule
+        AccountModule,
+        MatIconModule
     ],
     declarations: [
         HomeComponent,

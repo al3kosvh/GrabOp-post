@@ -53,14 +53,14 @@ export class AuthenticationService {
             let authResponse: Models.SOAuthenticateResponse = response;
 
             let user: Models.VOUser = {
-                id: authResponse.user_id,
-                sessionId: authResponse.session_id,
-                displayName: authResponse.display_name,
-                username: authResponse.user_name,
+                id: authResponse.userId,
+                sessionId: authResponse.sessionId,
+                displayName: authResponse.displayName,
+                username: authResponse.userName,
                 primaryEmail: "",
                 firstName: "",
                 lastName: "",
-                token: { value: authResponse.session_id }
+                token: { value: authResponse.sessionId }
             }
             return user;
         }).flatMap((user: Models.VOUser) => {

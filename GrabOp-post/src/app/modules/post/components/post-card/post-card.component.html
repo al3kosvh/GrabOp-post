@@ -18,7 +18,7 @@
     </div>
 
     <mat-card-content (click)="showOptions($event)">
-        <div class="post-info">{{post.description | truncate: 43 }}</div>
+        <div class="post-info">{{post.summary | truncate: 43 }}</div>
         <div fxLayout="row">            
             <div class="post-info-left" fxLayout="column">
                 <div class="city-province" fxLayout="row">{{post.city}}, {{post.province}}</div>

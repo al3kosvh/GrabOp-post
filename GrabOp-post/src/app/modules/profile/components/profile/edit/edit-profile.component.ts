@@ -4,7 +4,7 @@ import { VOUserExt } from '../../../../account/models/vouser';
 
 // Services
 import { ProfileService } from '../../../services/profile.service';
-import { UploadService } from '../../../../account/services/upload.service';
+import { UploadService } from '../../../../shared/services/upload.service';
 
 @Component({
     selector: 'edit-profile-dialog',

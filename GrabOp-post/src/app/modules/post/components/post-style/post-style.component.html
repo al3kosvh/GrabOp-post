@@ -27,8 +27,9 @@
                 <input matInput [(ngModel)]="model.commissionTo" name="commissionTo" type="text" placeholder="to">
             </mat-form-field>
         </div>
-        <div class="options" fxLayout="row-reverse">
-            <button mat-raised-button color="primary" (click)="onNextClick()">Next</button>
+        <div [ngSwitch]="action" class="options" fxLayout="row-reverse">
+            <button *ngSwitchCase="postAction.Create" mat-raised-button color="primary" (click)="onNextClick()">Next</button>
+            <button *ngSwitchCase="postAction.Update" mat-raised-button color="primary" (click)="onSaveClick()">Update</button>
             <button mat-button (click)="onCancelClick()">Cancel</button>
         </div>
     </div>

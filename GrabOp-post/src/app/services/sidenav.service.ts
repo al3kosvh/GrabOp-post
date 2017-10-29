@@ -121,6 +121,7 @@ export class SidenavService {
             const factory = self.componentFactoryResolver.resolveComponentFactory(PostEditComponent);
             const ref = self.viewContainerRef.createComponent(factory);
             let instance: any = ref.instance;
+            instance.sidenav = self.sidenav;
             instance.post = post;
             self.sidenav.open();
         }, this.getTimerValue());

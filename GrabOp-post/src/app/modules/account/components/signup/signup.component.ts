@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { UsernameTakenValidator } from '../../validators/username-taken.validato
 //App Services
 import { AuthenticationService } from '../../services/authentication.service';
 import { SignUpService } from '../../services/signup.service';
-import { UploadService } from '../../services/upload.service';
+import { UploadService } from '../../../shared/services/upload.service';
 
 @Component({
     selector: 'signup',

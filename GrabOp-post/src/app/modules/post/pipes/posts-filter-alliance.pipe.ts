@@ -1,5 +1,5 @@
-﻿import { Pipe, PipeTransform } from '@angular/core';
-import { VOAllianceMember, VOPost } from '../models/vos';
+import { Pipe, PipeTransform } from '@angular/core';
+import { VOAllianceMember, VOPost } from '../../../models/vos';
 
 @Pipe({
     name: 'postsFilterAlliance'

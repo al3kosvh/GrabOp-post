@@ -1,0 +1,13 @@
+<div *ngIf="posts.length > 0" class="frames" fxLayout="row">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-icon-button (click)="onScrollLeft(container)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    </div>
+    <div fxLayout="row" class="frames-container" #container>
+        <div *ngFor="let item of posts | postsFilter: type; let i=index" class="frame-container">
+            <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-icon-button (click)="onScrollRight(container)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
+</div>

@@ -61,20 +61,20 @@ export class VOImage {
     isDefault: string;
     dirty: boolean;
     selected: boolean;
-    posts_id: number;
+    postsId: number;
 
     constructor(data: any) {
         for (var str in data) this[str] = data[str];
     }
 }
 
-export class VOpost_attachment {
-    parentid?: number;
+export class VOPostAttachment {
+    parentId?: number;
     id?: number;
     name: string;
     type: string;
     prefix: string;
-    is_default?: boolean;
+    isDefault?: boolean;
 
     selected?: boolean;
 
@@ -112,12 +112,12 @@ export class VOpost_attachment {
 export class VOMember {
     id: number;
     role: string;
-    userName: string;
+    username: string;
     primaryEmail: string;
     displayName: string;
     phoneNumber: string;
-    profile_pic: string;
-    jobtitle: string;
+    profilePic: string;
+    jobTitle: string;
     company: string;
     firstName: string;
     lastName: string;
@@ -135,7 +135,7 @@ export class VOMember {
 }
 
 export class VOAllianceMember extends VOMember {
-    allianceid?: number;
+    allianceId?: number;
     membershipStatus: string;
     hasTasks: boolean;
 }
@@ -147,10 +147,10 @@ export class VOAlliance {
     isMemberTotalVisible: boolean;
     isActive: boolean;
     createdDate: Date;
-    offerid: number;
+    offerId: number;
     // members: any;
     // members: VOAllianceMember[];
-    alliance_members_count: number;
+    allianceMembersCount: number;
     constructor(data: any) {
         for (var str in data) this[str] = data[str];
     }
@@ -163,9 +163,8 @@ export class VOPost {
     static OFFER: string = 'offer';
 
     id: number;
-    title: string;
-    // summary: string;     // is it description ???
-    description: string; // is it summary ???
+    title: string;    
+    summary: string; // is it summary ???
     createdDate: Date;
     categoryId: number;
     city: string;
@@ -174,8 +173,6 @@ export class VOPost {
     keywords: string;
     visitCount: number;
     ownerId: number;
-
-
     isPartnership: boolean;
     isExchange: boolean;
     isDonate: boolean;
@@ -194,7 +191,7 @@ export class VOPost {
     commissionTo?: number;
     portfolio?: string;
     status?: number;
-    attachments?: VOpost_attachment[];
+    attachments?: VOPostAttachment[];
     alliance?: VOAlliance;
     allianceMembers?: VOAllianceMember[];
 
@@ -202,8 +199,7 @@ export class VOPost {
     longitude?: number;
 
     isOpenToAllianace: boolean;
-    isVisibleToPublic: boolean;
-
+    //isVisibleToPublic: boolean;
 
     type: string;
     selected: boolean;
@@ -254,20 +250,20 @@ export class VOService extends VOPost {
 
 
 export class VOAccountSettings {
-    connection_requests: boolean;
-    new_messages: boolean;
-    alliance_notifications: boolean;
-    task_notifications: boolean;
-    service_notifications: boolean;
+    connectionRequests: boolean;
+    newMessages: boolean;
+    allianceNotifications: boolean;
+    taskNotifications: boolean;
+    serviceNotifications: boolean;
 
-    phone_number: boolean;
-    email_addres: boolean;
+    phoneNumber: boolean;
+    emailAddres: boolean;
     connections: boolean;
-    profile_views_count: boolean;
-    service_views_count: boolean;
-    total_number_people: boolean;
-    total_number_members: boolean;
-    total_sales: boolean;
+    profileViewsVount: boolean;
+    serviceViewsVount: boolean;
+    totalNumberPeople: boolean;
+    totalNumberMembers: boolean;
+    totalSales: boolean;
 
     constructor(obj: any) {
         for (let str in obj) this[str] = obj[str];
@@ -275,30 +271,30 @@ export class VOAccountSettings {
 }
 
 export class VOOpportunity {
-    is_loged_in: boolean;
-    oportunity_id: number;
-    post_id_by_parent: number;
-    post_id: number[];
-    project_id: number[];
-    business_style_id_by_owner: number[];
+    isLogedIn: boolean;
+    oportunityId: number;
+    postIdByParent: number;
+    postId: number[];
+    projectId: number[];
+    businessStyleIdByOwner: number[];
     // (list) business_style_id [mond]: any;
-    business_style_appropriete: any;
-    business_style_changed: any;
+    businessStyleAppropriete: any;
+    businessStyleChanged: any;
     // monetary:{type,amount}: any;
-    business_style_match: any;
-    monetary_match: any;
-    status_id: number;
-    first_party_status_id: number;
-    second_party_status_id: number;
-    comments_id: number[];
-    last_comment: string;
+    businessStyleMatch: any;
+    monetaryMatch: any;
+    statusId: number;
+    firstPartyStatusId: number;
+    secondPartyStatusId: number;
+    commentsId: number[];
+    lastComment: string;
     notifications: string[];
     // role (owner of opp left side of screen person B): any;
     // (list) person: {person_id, status_id}: any;
     // signed (list) person_id: any;
     // (list)transactions: any;
-    is_post_signed_done: boolean;
-    is_ended: boolean;
+    isPostSignedDone: boolean;
+    isEnded: boolean;
 }
 
 
@@ -307,17 +303,17 @@ export class VOSettings {
     static server: string = 'http://localhost:53822/api/v1';
 
     static checkEmailExistenceUrl: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
-    static connection_GetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
-    static connection_GetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
-    static connection_GetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
-    static connection_MakeRequest: string = VOSettings.server + '/profiles/{{sender}}/connectionsInvite/{{receiver}}?format=json';
+    static connectionGetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
+    static connectionGetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
+    static connectionGetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
+    static connectionMakeRequest: string = VOSettings.server + '/profiles/{{sender}}/connectionsInvite/{{receiver}}?format=json';
     static createNeedPost: string = VOSettings.server + '/services/needs?format=json';
     static createOfferPost: string = VOSettings.server + '/services/offers?format=json';
     static getMyPosts: string = VOSettings.server + '/services/myservices?format=json';
     static getPostById: string = VOSettings.server + '/services/{{id}}?format=json';
     static getPosts: string = VOSettings.server + '/profiles/{{id}}/services?format=json';
     static images: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
-    static images_small: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
+    static imagesSmall: string = 'http://res.cloudinary.com/al3kosvh/image/upload/';
     static myposts: string = 'myservices';
     static myProfile: string = VOSettings.server + '/profiles/me?format=json';
     static need: string = 'needs';

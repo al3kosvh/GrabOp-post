@@ -26,3 +26,7 @@ img.thumbnail {
   width: 90px;
   height: 90px;
 }
+
+div.options button {
+    margin-right: 5px;
+}

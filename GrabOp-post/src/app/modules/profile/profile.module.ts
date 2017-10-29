@@ -34,13 +34,9 @@ import { SettingsService } from './services/settings.service';
 import { AllianceService } from './services/alliance.service';
 import { ProfileGuard } from './services/profile.guard';
 
-// Pipes
-import { PostsFilterPipe } from '../../pipes/posts-filter.pipe';
-import { PipesModule } from '../../pipes/pipes.module';
-
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
-    { path: 'alliance-invite', component: AllianceInviteComponent, outlet: 'aux', data: {animation: 'in'} },
+    { path: 'alliance-invite', component: AllianceInviteComponent, outlet: 'aux', data: { animation: 'in' } },
     { path: 'profile/:id', component: ProfileComponent, canActivate: [ProfileGuard] },
     { path: 'settings/:id', component: SettingsComponent },
 ];
@@ -65,7 +61,6 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        PipesModule,
         PostModule,
         MatExpansionModule,
         SearchModule
@@ -86,7 +81,7 @@ const routes: Routes = [
     ],
     exports: [
         AllianceInviteComponent,
-      SetConnectionComponent
+        SetConnectionComponent
     ],
     providers: [
         ProfileService,
@@ -95,9 +90,9 @@ const routes: Routes = [
         ProfileGuard
     ],
     entryComponents: [
-      EditProfileComponent,
+        EditProfileComponent,
         VideoProfileDialogComponent,
-      SetConnectionComponent
+        SetConnectionComponent
     ]
 })
 

@@ -26,7 +26,6 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './services/auth.guard';
 import { HttpService } from './services/http.service';
 import { SignUpService } from './services/signup.service';
-import { UploadService } from './services/upload.service';
 
 const routes: Routes = [
     { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
@@ -69,8 +68,7 @@ const routes: Routes = [
         AuthenticationService,
         AuthGuard,
         HttpService,
-        SignUpService,
-        UploadService
+        SignUpService
     ],
     entryComponents: [
         AccountRecoverComponent,

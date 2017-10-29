@@ -1,8 +1,8 @@
-import { VOAlliance, VOAllianceMember, VOPost, VOpost_attachment } from '../models/vos';
+import { VOAlliance, VOAllianceMember, VOPost, VOPostAttachment } from '../models/vos';
 import {
-    SOaccount_expanded, SOservice_expanded, Need_CreateNeed, Need_UpdateNeed,
-    Offer_CreateOffer, Offer_UpdateOffer, SOv_account, SOalliance, SOalliance_member,
-    SOupdate_profile_req, SOattachment
+    SOAccountExpanded, SOServiceExpanded, CreateNeed, UpdateNeed,
+    CreateOffer, UpdateOffer, SOvAccount, SOAlliance, SOAllianceMember,
+    SOUpdateProfileReq, SOAttachment
 } from '../models/server-objects';
 import { SONeedUpdateNeed } from '../models/sos';
 //import { VOUserExt, VOUser } from '../modules/account/models/vouser';
@@ -11,28 +11,27 @@ import 'rxjs/add/operator/map';
 // private mapPostSend(post:VOPost): SONeed_UpdateNeed {
 // export function mapPostSend(post: VOPost): any {
 
-export function mapAttachments_req(attachments: VOpost_attachment[]): SOattachment[] {
+export function mapAttachmentsReq(attachments: VOPostAttachment[]): SOAttachment[] {
     if (attachments)
         return attachments.map(function (attachment) {
             return {
-                Id: attachment.id,
-                Name: attachment.name,
-                Type: attachment.type,
-                Prefix: attachment.prefix,
-                IsDefault: attachment.is_default
+                id: attachment.id,
+                name: attachment.name,
+                type: attachment.type,
+                prefix: attachment.prefix,
+                isDefault: attachment.isDefault
             }
         });
 }
 
-export function mapPostSend_CreateNeed(post: VOPost): Need_CreateNeed {
+export function mapPostSendCreateNeed(post: VOPost): CreateNeed {
 
-    let attachments = mapAttachments_req(post.attachments);
+    let attachments = mapAttachmentsReq(post.attachments);
 
     return {
         title: post.title,
-        summary: post.description,
-        // description: post.description,
-        categoryid: post.categoryId,
+        summary: post.summary,
+        categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
         isInternship: post.isInternship,
@@ -51,29 +50,19 @@ export function mapPostSend_CreateNeed(post: VOPost): Need_CreateNeed {
         country: post.country,
         keywords: post.keywords ? post.keywords.split(',') : null,
         attachments: attachments,
-        // keywords:  post.keywords?post.keywords:null,
-        // pictures: [],
-        // videos:[],
-        // documents: [''],
-
-        // ownerid: post.ownerId,
-        // is_available: post.isAvailable,
-        isPublic: post.isVisibleToPublic
-        // portafolio: 'some portfolio',
-        // alliance: post.alliance
+        isPublic: post.isPublic
     }
 }
 
-export function mapPostSend_UpdateNeed(post: VOPost): Need_UpdateNeed {
+export function mapPostSendUpdateNeed(post: VOPost): UpdateNeed {
 
-    let attachments = mapAttachments_req(post.attachments);
+    let attachments = mapAttachmentsReq(post.attachments);
 
     return {
         id: post.id,
         title: post.title,
-        summary: post.description,
-        // description: post.description,
-        categoryid: post.categoryId,
+        summary: post.summary,
+        categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
         isInternship: post.isInternship,
@@ -92,28 +81,18 @@ export function mapPostSend_UpdateNeed(post: VOPost): Need_UpdateNeed {
         country: post.country,
         keywords: post.keywords ? post.keywords.split(',') : null,
         attachments: attachments,
-        // keywords:  post.keywords?post.keywords:null,
-        // pictures: [],
-        // videos:[],
-        // documents: [''],
-
-        // ownerid: post.ownerId,
-        // is_available: post.isAvailable,
-        isPublic: post.isVisibleToPublic
-        // portafolio: 'some portfolio',
-        // alliance: post.alliance
+        isPublic: post.isPublic
     }
 }
 
-export function mapPostSend_CreateOffer(post: VOPost): Offer_CreateOffer {
+export function mapPostSendCreateOffer(post: VOPost): CreateOffer {
 
-    let attachments = mapAttachments_req(post.attachments);
+    let attachments = mapAttachmentsReq(post.attachments);
 
     return {
         title: post.title,
-        summary: post.description,
-        // description: post.description,
-        categoryid: post.categoryId,
+        summary: post.summary,
+        categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
         isInternship: post.isInternship,
@@ -148,16 +127,15 @@ export function mapPostSend_CreateOffer(post: VOPost): Offer_CreateOffer {
     }
 }
 
-export function mapPostSend_UpdateOffer(post: VOPost): Offer_UpdateOffer {
+export function mapPostSendUpdateOffer(post: VOPost): UpdateOffer {
 
-    let attachments = mapAttachments_req(post.attachments);
+    let attachments = mapAttachmentsReq(post.attachments);
 
     return {
         id: post.id,
         title: post.title,
-        summary: post.description,
-        // description: post.description,
-        categoryid: post.categoryId,
+        summary: post.summary,        
+        categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
         isInternship: post.isInternship,
@@ -181,64 +159,63 @@ export function mapPostSend_UpdateOffer(post: VOPost): Offer_UpdateOffer {
         // videos:[],
         // documents: [''],
 
-        ownerid: post.ownerId,
+        ownerId: post.ownerId,
         isAvailable: post.isAvailable,
         // portafolio: 'some portfolio',
         // alliance: post.alliance
     }
 }
 
-export function mapAllianceMember(alliance_members: SOalliance_member[]): VOAllianceMember[] {
+export function mapAllianceMember(allianceMembers: SOAllianceMember[]): VOAllianceMember[] {
     // console.log('mapAllianceMember');
 
-    return alliance_members.map(function (alliance_member) {
+    return allianceMembers.map(function (allianceMember) {
         return {
-            allianceid: alliance_member.allianceid,
-            membershipStatus: alliance_member.membership_status,
-            hasTasks: alliance_member.has_tasks,
-
-            id: alliance_member.id,
-            role: alliance_member.type,
-            userName: alliance_member.user_name,
-            primaryEmail: alliance_member.primary_email,
-            displayName: alliance_member.display_name,
-            phoneNumber: alliance_member.phone_number,
-            profile_pic: alliance_member.profile_pic,
-            jobtitle: alliance_member.jobtitle,
-            company: alliance_member.company,
-            firstName: alliance_member.first_name,
-            lastName: alliance_member.last_name,
-            occupation: alliance_member.occupation,
-            url: alliance_member.url,
-            description: alliance_member.description,
-            offers: alliance_member.offers,
-            needs: alliance_member.needs,
-            numberOfOpps: alliance_member.number_of_opps,
-            distance: alliance_member.distance
+            allianceId: allianceMember.allianceId,
+            membershipStatus: allianceMember.membershipStatus,
+            hasTasks: allianceMember.hasTasks,
+            id: allianceMember.id,
+            role: allianceMember.type,
+            username: allianceMember.userName,
+            primaryEmail: allianceMember.primaryEmail,
+            displayName: allianceMember.displayName,
+            phoneNumber: allianceMember.phoneNumber,
+            profilePic: allianceMember.profilePic,
+            jobTitle: allianceMember.jobTitle,
+            company: allianceMember.company,
+            firstName: allianceMember.firstName,
+            lastName: allianceMember.lastName,
+            occupation: allianceMember.occupation,
+            url: allianceMember.url,
+            description: allianceMember.description,
+            offers: allianceMember.offers,
+            needs: allianceMember.needs,
+            numberOfOpps: allianceMember.numberOfOpps,
+            distance: allianceMember.distance
         };
     });
 }
 
-export function mapAlliance(alliance: SOalliance): VOAlliance {
+export function mapAlliance(alliance: SOAlliance): VOAlliance {
     // console.log('mapAlliance');
 
     return {
         id: alliance.id,
-        isBlackBox: alliance.is_black_box,
-        isOpen: alliance.is_open,
-        isMemberTotalVisible: alliance.is_member_total_visible,
-        isActive: alliance.is_active,
-        createdDate: alliance.created_date,
-        offerid: alliance.offerid,
+        isBlackBox: alliance.isBlackBox,
+        isOpen: alliance.isOpen,
+        isMemberTotalVisible: alliance.isMemberTotalVisible,
+        isActive: alliance.isActive,
+        createdDate: alliance.createdDate,
+        offerId: alliance.offerId,
         // members: alliance.members,
         // members: VOAllianceMember[];
-        alliance_members_count: alliance.alliance_members_count
+        allianceMembersCount: alliance.allianceMembersCount
     }
 }
 
 export function mapGetPost(res): any {
 
-    let service: SOservice_expanded = res;
+    let service: SOServiceExpanded = res;
 
     let alliance: VOAlliance;
     let allianceMember: VOAllianceMember[];
@@ -253,35 +230,34 @@ export function mapGetPost(res): any {
         id: service.id,
         title: service.title,
         type: service.type, // 'need'
-        // summary: service.summary,
-        description: service.summary,
-        createdDate: service.created_date,
-        categoryId: service.category_id,
-        isExchange: service.is_exchange,
-        isDonate: service.is_donation,
-        isInternship: service.is_internship,
-        isPartnership: service.is_partnership,
+        summary: service.summary,
+        createdDate: service.createdDate,
+        categoryId: service.categoryId,
+        isExchange: service.isExchange,
+        isDonate: service.isDonation,
+        isInternship: service.isInternship,
+        isPartnership: service.isPartnership,
         isMoney: true,
-        commissionFrom: service.commission_from,
-        commissionTo: service.commission_to,
-        fixedRateFrom: service.fixed_rate_from,
-        fixedRateTo: service.fixed_rate_to,
-        hourlyRateFrom: service.hourly_rate_from,
-        hourlyRateTo: service.hourly_rate_to,
+        commissionFrom: service.commissionFrom,
+        commissionTo: service.commissionTo,
+        fixedRateFrom: service.fixedRateFrom,
+        fixedRateTo: service.fixedRateTo,
+        hourlyRateFrom: service.hourlyRateFrom,
+        hourlyRateTo: service.hourlyRateTo,
         latitude: service.latitude,
         longitude: service.longitude,
         city: service.city,
         province: service.province,
         country: service.country,
-        isAvailable: service.is_available,
-        isPublic: service.ispublic,
+        isAvailable: service.isAvailable,
+        isPublic: service.isPublic,
         keywords: service.keywords ? service.keywords.join(', ') : null,
         // keywords:  service.keywords?service.keywords.split(','):null,
         // keywords:  service.keywords?service.keywords:null,
         // pictures: [],
         // videos:[],
         // documents: [''],
-        ownerId: service.owner_id,
+        ownerId: service.ownerId,
         portfolio: service.portafolio,
         status: service.status,
         // alliance: service.alliance,  // ??????
@@ -292,13 +268,13 @@ export function mapGetPost(res): any {
         attachments: service.attachments ? service.attachments : [],
         isOpenToAllianace: true,
         isVisibleToPublic: true,
-        visitCount: service.visit_count
+        visitCount: service.visitCount
     }
 }
 
 export function mapGetPosts(res): any[] {
 
-    let services: SOservice_expanded[] = res ? res : [];
+    let services: SOServiceExpanded[] = res ? res : [];
 
     // let posts: any = res;
     // console.log('mapGetMyPosts res.json', res);
@@ -318,34 +294,34 @@ export function mapGetPosts(res): any[] {
             title: service.title,
             type: service.type, // 'need'
             // summary: service.summary,
-            description: service.summary,
-            createdDate: service.created_date,
-            categoryId: service.category_id,
-            isExchange: service.is_exchange,
-            isDonate: service.is_donation,
-            isInternship: service.is_internship,
-            isPartnership: service.is_partnership,
+            summary: service.summary,
+            createdDate: service.createdDate,
+            categoryId: service.categoryId,
+            isExchange: service.isExchange,
+            isDonate: service.isDonation,
+            isInternship: service.isInternship,
+            isPartnership: service.isPartnership,
             isMoney: true,
-            commissionFrom: service.commission_from,
-            commissionTo: service.commission_to,
-            fixedRateFrom: service.fixed_rate_from,
-            fixedRateTo: service.fixed_rate_to,
-            hourlyRateFrom: service.hourly_rate_from,
-            hourlyRateTo: service.hourly_rate_to,
+            commissionFrom: service.commissionFrom,
+            commissionTo: service.commissionTo,
+            fixedRateFrom: service.fixedRateFrom,
+            fixedRateTo: service.fixedRateTo,
+            hourlyRateFrom: service.hourlyRateFrom,
+            hourlyRateTo: service.hourlyRateTo,
             latitude: service.latitude,
             longitude: service.longitude,
             city: service.city,
             province: service.province,
             country: service.country,
-            isAvailable: service.is_available,
-            isPublic: service.ispublic,
+            isAvailable: service.isAvailable,
+            isPublic: service.isPublic,
             keywords: service.keywords ? service.keywords.join(', ') : null,
             // keywords:  service.keywords?service.keywords.split(','):null,
             // keywords:  service.keywords?service.keywords:null,
             // pictures: [],
             // videos:[],
             // documents: [''],
-            ownerId: service.owner_id,
+            ownerId: service.ownerId,
             portfolio: service.portafolio,
             status: service.status,
             // alliance: service.alliance,  // ??????
@@ -357,7 +333,7 @@ export function mapGetPosts(res): any[] {
             attachments: service.attachments ? service.attachments : [],
             isOpenToAllianace: true,
             isVisibleToPublic: true,
-            visitCount: service.visit_count
+            visitCount: service.visitCount
         };
     });
 }
@@ -409,24 +385,24 @@ export function mapGetPosts(res): any[] {
 
 export function mapGetPerson(res): Models.VOUserExt {
 
-    let account: SOaccount_expanded = res;
+    let account: SOAccountExpanded = res;
     //  console.log('mapGetPerson res', res);
     return {
         id: account.id,
         // sessionId: account,
         // userId:account,
         type: account.type,
-        username: account.user_name,
+        username: account.userName,
         // password:account,
-        primaryEmail: account.primary_email,
+        primaryEmail: account.primaryEmail,
         // emailVisible: account,
-        displayName: account.display_name,
+        displayName: account.displayName,
         // token: account,
         // isLogin: account,
-        firstName: account.first_name,
-        lastName: account.last_name,
+        firstName: account.firstName,
+        lastName: account.lastName,
 
-        backgroundImage: account.background_pic,
+        backgroundImage: account.backgroundPic,
         video: account.bideo, // ????? bideo
         resume: account.resume,
         province: account.province,
@@ -436,37 +412,37 @@ export function mapGetPerson(res): Models.VOUserExt {
         longitude: account.longitude,
         skillset: account.skillset,
         interests: account.interests,
-        profileImage: account.profile_pic,
-        jobtitle: account.jobtitle,
+        profileImage: account.profilePic,
+        jobTitle: account.jobTitle,
         company: account.company,
         occupation: account.occupation,
         url: account.url,
         description: account.description,
-        phoneNumber: account.phone_number,
+        phoneNumber: account.phoneNumber,
         // phoneVisible: account,
         distance: account.distance,
         offers: account.offers,
         needs: account.needs,
-        numberOfOpps: account.number_of_opps
+        numberOfOpps: account.numberOfOpps
     }
 }
 
 export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
     const map = {
         id: 'id',
-        sessionId: 'session_id',
-        userId: 'user_id',
+        sessionId: 'sessionId',
+        userId: 'userId',
         role: 'role',
         username: 'name',
         password: 'password',
         primaryEmail: 'email',
-        emailVisible: 'email_visible',
-        displayName: 'display_name',
+        emailVisible: 'emailVisible',
+        displayName: 'displayName',
         token: 'token',
         isLogin: 'isLogin',
-        firstName: 'firstname',
-        lastName: 'lastname',
-        background_pic: 'background_pic',
+        firstName: 'firstName',
+        lastName: 'lastName',
+        backgroundPic: 'backgroundPic',
         video: 'video',
         resume: 'resume',
         province: 'province',
@@ -476,18 +452,18 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
         longitude: 'longitude',
         skillset: 'skillset',
         interests: 'interests',
-        profileImage: 'profile_pic',
-        jobtitle: 'jobtitle',
+        profileImage: 'profilePic',
+        jobTitle: 'jobTitle',
         company: 'company',
         occupation: 'occupation',
         url: 'url',
         description: 'description',
         phoneNumber: 'phone',
-        phoneVisible: 'phone_visible',
+        phoneVisible: 'phoneVisible',
         distance: 'distance',
         offers: 'offers',
         needs: 'needs',
-        numberOfOpps: 'number_of_opps',
+        numberOfOpps: 'numberOfOpps',
         type: 'type',
         post: 'post'
     };
@@ -512,10 +488,10 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
 }
 
 // export function mapUploadRes(res: any): VOpost_attachment_ext{
-export function mapUploadRes(res: any): VOpost_attachment {
+export function mapUploadRes(res: any): VOPostAttachment {
     let result = res;
     return {
-        name: result.public_id + '.' + result.format,
+        name: result.publicId + '.' + result.format,
         type: 'image',
         // prefix: result.url.slice(result.url.indexOf("/upload/")+8, result.url.indexOf("/publicimages/")),
         prefix: 'v' + result.version,
@@ -529,20 +505,20 @@ export function mapUploadRes(res: any): VOpost_attachment {
 export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
     return {
         id: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
-        displayName: user.display_name,
-        primaryEmail: user.primary_email,
-        username: user.user_name,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        displayName: user.displayName,
+        primaryEmail: user.primaryEmail,
+        username: user.username,
         role: user.type,
-        phoneNumber: user.phone_number,
-        profileImage: user.profile_pic,
-        backgroundImage: user.background_pic,
-        jobtitle: user.jobtitle,
+        phoneNumber: user.phoneNumber,
+        profileImage: user.profilePic,
+        backgroundImage: user.backgroundPic,
+        jobTitle: user.jobTitle,
         company: user.company,
         description: user.description,
         distance: user.distance,
-        numberOfOpps: user.number_of_opps,
+        numberOfOpps: user.numberOfOpps,
         occupation: user.occupation,
         needs: user.needs,
         offers: user.offers,
@@ -561,26 +537,26 @@ export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
 
 export function mapAuthResponseToUser(authResponse: Models.SOAuthenticateResponse): Models.VOUser {
     return {
-        id: authResponse.user_id,
-        sessionId: authResponse.session_id,
-        displayName: authResponse.display_name,
-        username: authResponse.user_name,
+        id: authResponse.userId,
+        sessionId: authResponse.sessionId,
+        displayName: authResponse.displayName,
+        username: authResponse.userName,
         primaryEmail: "",
         firstName: "",
         lastName: "",
-        token: { value: authResponse.session_id }
+        token: { value: authResponse.sessionId }
     }
 }
 
 export function mapRegisterParametersVOToSO(rp: Models.VORegisterParameters): Models.SORegisterParameters {
     return {
-        UserName: rp.username,
-        FirstName: rp.firstName,
-        LastName: rp.lastName,
-        DisplayName: rp.displayName,
-        Email: rp.email,
-        Password: rp.password,
-        AutoLogin: rp.autoLogin,
-        Continue: rp.continue,
+        userName: rp.username,
+        firstName: rp.firstName,
+        lastName: rp.lastName,
+        displayName: rp.displayName,
+        email: rp.email,
+        password: rp.password,
+        autoLogin: rp.autoLogin,
+        continue: rp.continue,
     }
 }

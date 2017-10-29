@@ -6,18 +6,12 @@ import { MatSnackBar } from '@angular/material';
 @Injectable()
 export class SnackBarService {
 
-  private subj_notification: Subject<Models.Notification> = new Subject();
+    constructor(
+        private matSnackBar: MatSnackBar
+    ) { }
 
-  constructor(
-    private matSnackBar: MatSnackBar
-  ) {
-    this.subj_notification.subscribe(notification => {
-      matSnackBar.open(notification.message, notification.action, { duration: notification.duration ? notification.duration : 3000 });
-    });
-  }
-
-  showMessage(notification: Models.Notification) {
-    this.subj_notification.next(notification);
-  }
+    showMessage(message: string, action?: string, duration?: number) {
+        this.matSnackBar.open(message, action, {duration: duration ? duration : 3000 });
+    }
 
 }

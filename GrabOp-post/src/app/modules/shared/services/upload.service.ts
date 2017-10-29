@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { mapUploadRes } from '../../../utils/map-functions';
-import { VOpost_attachment } from '../../../models/vos';
-import { HttpService } from './http.service';
+import { VOPostAttachment } from '../../../models/vos';
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class UploadService {
@@ -10,7 +10,7 @@ export class UploadService {
     constructor(private http: HttpService) {
     }
 
-    uploadFile(file: File): Observable<VOpost_attachment> {
+    uploadFile(file: File): Observable<VOPostAttachment> {
         let formData: FormData = new FormData();
         formData.append('file', file, file.name);
         formData.append('upload_preset', 'images');
