@@ -66,14 +66,14 @@ export class PostService {
     hideService(postId: number): Observable<any> {
         let url: string = VOSettings.hideService;
 
-        return this.http.put(url, postId)
+        return this.http.put(url, { id: postId })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
     showService(postId: number): Observable<any> {
         let url: string = VOSettings.showService;
 
-        return this.http.put(url, postId)
+        return this.http.put(url, { id: postId })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 

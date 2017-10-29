@@ -258,6 +258,7 @@ export function mapGetPost(res): any {
         // videos:[],
         // documents: [''],
         ownerId: service.ownerId,
+        creatorId: service.creatorId,
         portfolio: service.portafolio,
         status: service.status,
         // alliance: service.alliance,  // ??????
@@ -322,6 +323,7 @@ export function mapGetPosts(res): any[] {
             // videos:[],
             // documents: [''],
             ownerId: service.ownerId,
+            creatorId: service.creatorId,
             portfolio: service.portafolio,
             status: service.status,
             // alliance: service.alliance,  // ??????

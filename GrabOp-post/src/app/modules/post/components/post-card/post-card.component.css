@@ -10,12 +10,17 @@ mat-card {
     padding-bottom: 5px;
 }
 
+    mat-card.hide {
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+    }
+
 button.options {
-    position: absolute;
-    left: 140px;
-    z-index: 1020;
-    color: white;
-}
+        position: absolute;
+        left: 140px;
+        z-index: 1020;
+        color: white;
+    }
 
 mat-card-content {
     cursor: pointer;

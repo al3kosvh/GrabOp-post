@@ -173,6 +173,7 @@ export class VOPost {
     keywords: string;
     visitCount: number;
     ownerId: number;
+    creatorId: number;
     isPartnership: boolean;
     isExchange: boolean;
     isDonate: boolean;
