@@ -62,6 +62,10 @@ export class SignUpConfirmComponent implements AfterViewInit {
         });
     }
 
+    closeDialog(): void {
+        this.dialogRef.close();
+    }
+
     back() {
         this.router.navigate(['../']);
     }
