@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { VOPost } from '../../../../models/vos';
-import { PostService } from '../../services/post.service';
 import { VOUserExt } from '../../../account/models/vouser';
+
+// Services
+import { PostService } from '../../services/post.service';
 import { ProfileService } from '../../../profile/services/profile.service';
+import { DialogService } from '../../../shared/services/dialog.service';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
 
 @Component({
     selector: 'my-post-view',
@@ -18,13 +22,14 @@ export class MyPostViewComponent implements OnInit {
     person: Models.VOUserExt;
     personLocation: Models.ProfileLocation;
     post: VOPost = new VOPost({});
-    // myPosts: VOPost[];
     personPosts: VOPost[] = [];
 
     constructor(
         private postService: PostService,
         private profileService: ProfileService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private dialog: DialogService,
+        private snackBarService: SnackBarService,
     ) { }
 
     ngOnInit() {
@@ -101,4 +106,22 @@ export class MyPostViewComponent implements OnInit {
     onShareClick() { }
     onReportClick() { }
     onRecommendClick() { }
+
+    onDelete() {
+
+        let data = {
+            title: 'Delete Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.deleteService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service deleted!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
 }

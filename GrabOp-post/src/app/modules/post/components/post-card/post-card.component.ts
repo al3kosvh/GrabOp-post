@@ -71,8 +71,5 @@ export class PostCardComponent implements OnInit {
                 });
             }
         });
-
-
     }
-
 }
