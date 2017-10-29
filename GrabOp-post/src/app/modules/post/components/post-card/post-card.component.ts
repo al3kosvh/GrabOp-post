@@ -2,9 +2,9 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
-// import {ActivatedRoute, Router} from '@angular/router';
 
 // Services
+import { DialogService } from '../../../shared/services/dialog.service';
 import { SidenavService } from '../../../../services/sidenav.service';
 import { PostService } from '../../services/post.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
@@ -33,14 +33,14 @@ export class PostCardComponent implements OnInit {
         private router: Router,
         private sidenavService: SidenavService,
         private snackBarService: SnackBarService,
-        private postService: PostService 
-        // route: ActivatedRoute
+        private postService: PostService,
+        private dialog: DialogService
     ) {
 
     }
 
     ngOnInit() {
-        //console.log(this.post);
+
     }
 
     showOptions(event: MouseEvent) {
@@ -56,10 +56,23 @@ export class PostCardComponent implements OnInit {
     }
 
     onDelete() {
-        this.postService.deleteService(this.post.id).subscribe(result => {
-            if (result)
-                this.snackBarService.showMessage(result);
+
+        let data = {
+            title: 'Delete Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.deleteService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service deleted!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
         });
+
+
     }
 
 }
