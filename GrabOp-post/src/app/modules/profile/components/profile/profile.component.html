@@ -1,108 +1,101 @@
 <mat-sidenav-container class="sidenav-container">
-  <div [ngSwitch]="isMyProfile" class="profile" fxLayout="column">
-    <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse">
-      <div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
-        <div class="profile-banner-info" fxLayout="column" fxLayoutAlign="center center">
-          <span>{{ profile.jobTitle }}</span>
-          <div class="separator"></div>
-          <span class="city">{{ profile.city }}</span>
-        </div>
-        <div class="btn-action-container">
-          <div *ngSwitchCase="true">
-            <button mat-raised-button color="accent" (click)="editProfile()">edit profile</button>
-          </div>
-          <div *ngSwitchCase="false" fxLayout="row">
-            <div fxlayout="column">
-              <!--TODO change this for a button-->
-              <mat-expansion-panel #expansion *ngIf="btnConnectValue !== 'connect'">
-                <mat-expansion-panel-header>
-                  <span>{{ btnConnectValue }}</span>
-                </mat-expansion-panel-header>
-                <div class="retract" (click)="adminConnection(expansion)">{{ btnConnectValue === 'connected' ? 'disconnect' : 'retract'}}</div>
-              </mat-expansion-panel>
-            </div>
-            <div>
-              <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
-              <button mat-raised-button color="accent" (click)="openMessage()">message</button>
-              <button mat-raised-button (click)="inviteToAlliance()" color="accent">invite to alliance</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="profile-container" [style.margin-top.px]="profileContainerMarginTop" fxLayout="row" fxLayoutAlign="space-around">
-      <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
-        <div class="profile-card">
-          <div class="profile-photo">
-            <span class="btn-play-video" (click)="playVideo()"><span></span></span>
-            <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic" />
-          </div>
-          <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
-            <span>{{ shortName | uppercase }}</span>
-          </div>
-          <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-            <small>Phone: {{ profile.phoneNumber }}</small>
-          </div>
-          <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
-            <small>Email: {{ profile.primaryEmail }}</small>
-          </div>
-        </div>
-        <div class="profile-inner">
-          <div class="profile-inner-stats" fxLayout="row-reverse">
-            <div> Total Sales: <span>$10,000</span> Total Alliance Members: <span>72</span> Trusted By: <span>800</span> Page Views: <span>500</span></div>
-          </div>
-          <div fxlayout="row">
-            <div class="profile-inner-info" fxLayout="column" fxFlex="50">
-              <div class="profile-inner-site">
-                "I help people to transform their businesses,
-                their careers and their lives"
-                <br />
-                <span>-Michelle. 7.</span>
-              </div>
-              <div fxLayout="row" fxLayoutAlign="space-beetwing">
-                <img class="bracket" src="assets/img/my-resumen.png" />
-                <div class="skill-set">
-                  <span class="skill-title">My Skills</span>
-                  <ul *ngIf="profile.skillset">
-                    <li *ngFor="let skill of profile.skillset">{{ skill }}</li>
-                  </ul>
+    <div [ngSwitch]="isMyProfile" class="profile" fxLayout="column">
+        <div class="profile-banner" [style.background]="backgroundPic" fxLayout="row-reverse">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlex="40">
+                <div class="profile-banner-info" fxLayout="column" fxLayoutAlign="center center">
+                    <span>{{ profile.jobTitle }}</span>
+                    <div class="separator"></div>
+                    <span class="city">{{ profile.city }}</span>
                 </div>
-              </div>
+                <div class="btn-action-container">
+                    <div *ngSwitchCase="true">
+                        <button mat-raised-button color="accent" (click)="editProfile()">edit profile</button>
+                    </div>
+                    <div *ngSwitchCase="false" fxLayout="row">
+                        <div fxlayout="column">
+                            <!--TODO change this for a button-->
+                            <mat-expansion-panel #expansion *ngIf="btnConnectValue !== 'connect'">
+                                <mat-expansion-panel-header>
+                                    <span>{{ btnConnectValue }}</span>
+                                </mat-expansion-panel-header>
+                                <div class="retract" (click)="adminConnection(expansion)">{{ btnConnectValue === 'connected' ? 'disconnect' : 'retract'}}</div>
+                            </mat-expansion-panel>
+                        </div>
+                        <div>
+                            <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="adminConnection()">{{ btnConnectValue }}</button>
+                            <button mat-raised-button color="accent" (click)="openMessage()">message</button>
+                            <button mat-raised-button (click)="inviteToAlliance()" color="accent">invite to alliance</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="profile-inner-connections" [ngStyle]="{'background-image':'url(./assets/img/map.png)'}" fxLayout="column" fxFlex="50">
-              <div fxlayout="row" fxLayoutAlign="center" class="connections-title" [routerLink]="isMyProfile ? '/connections' : ('/connections/' + profile.id)">
-                {{ profileConnectionsCount }} connection
-              </div>
-              <div fxlayout="row" fxLayoutAlign="center">
-                <img class="bracket" src="assets/img/left-bracket.png" />
-                <img class="user" src="assets/img/1x.jpg" />
-                <img class="user" src="assets/img/2x.jpg" />
-                <img class="user" src="assets/img/3x.jpg" />
-                <img class="user" src="assets/img/3x.jpg" />
-                <img class="bracket" src="assets/img/right-bracket.png" />
-              </div>
-            </div>
-          </div>
-
-          <div class="post-title">offering service</div>
-          <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-            <div *ngFor="let item of profilePosts | postsFilter:'offer'; let i=index">
-              <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
-            </div>
-          </div>
-          <div class="post-title">needs service</div>
-          <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-            <div *ngFor="let item of profilePosts | postsFilter:'need'; let i=index">
-              <post-card (click)="onClickItem(item)" [post]="item" [editButton]="isMyProfile" [viewMyDetailsButton]="true"></post-card>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="profile-container" [style.margin-top.px]="profileContainerMarginTop" fxLayout="row" fxLayoutAlign="space-around">
+            <div fxLayout="column" fxFlex.xs="100" fxFlex.gt-sm="70" fxFlex.lg="60">
+                <div class="profile-card">
+                    <div class="profile-photo">
+                        <span class="btn-play-video" (click)="playVideo()"><span></span></span>
+                        <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic" />
+                    </div>
+                    <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
+                        <span>{{ shortName | uppercase }}</span>
+                    </div>
+                    <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
+                        <small>Phone: {{ profile.phoneNumber }}</small>
+                    </div>
+                    <div class="profile-info" fxLayout="row" fxLayoutAlign="center">
+                        <small>Email: {{ profile.primaryEmail }}</small>
+                    </div>
+                </div>
+                <div class="profile-inner">
+                    <div class="profile-inner-stats" fxLayout="row-reverse">
+                        <div> Total Sales: <span>$10,000</span> Total Alliance Members: <span>72</span> Trusted By: <span>800</span> Page Views: <span>500</span></div>
+                    </div>
+                    <div fxlayout="row">
+                        <div class="profile-inner-info" fxLayout="column" fxFlex="50">
+                            <div class="profile-inner-site">
+                                "I help people to transform their businesses,
+                                their careers and their lives"
+                                <br />
+                                <span>-Michelle. 7.</span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-beetwing">
+                                <img class="bracket" src="assets/img/my-resumen.png" />
+                                <div class="skill-set">
+                                    <span class="skill-title">My Skills</span>
+                                    <ul *ngIf="profile.skillset">
+                                        <li *ngFor="let skill of profile.skillset">{{ skill }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-inner-connections" [ngStyle]="{'background-image':'url(./assets/img/map.png)'}" fxLayout="column" fxFlex="50">
+                            <div fxlayout="row" fxLayoutAlign="center" class="connections-title" [routerLink]="isMyProfile ? '/connections' : ('/connections/' + profile.id)">
+                                {{ profileConnectionsCount }} connection
+                            </div>
+                            <div fxlayout="row" fxLayoutAlign="center">
+                                <img class="bracket" src="assets/img/left-bracket.png" />
+                                <img class="user" src="assets/img/1x.jpg" />
+                                <img class="user" src="assets/img/2x.jpg" />
+                                <img class="user" src="assets/img/3x.jpg" />
+                                <img class="user" src="assets/img/3x.jpg" />
+                                <img class="bracket" src="assets/img/right-bracket.png" />
+                            </div>
+                        </div>
+                    </div>
 
-  <!--<mat-sidenav #sidenav position="end" class="sidenav-content">
-    <alliance-invite [sidenav]="sidenav" [person]="profile"></alliance-invite>
-  </mat-sidenav>-->
+                    <div class="post-title">offering service</div>
+                    <post-frames [posts]="profilePosts" [type]="'offer'"></post-frames>
+
+                    <div class="post-title">needs service</div>
+                    <post-frames [posts]="profilePosts" [type]="'need'"></post-frames>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<mat-sidenav #sidenav position="end" class="sidenav-content">
+      <alliance-invite [sidenav]="sidenav" [person]="profile"></alliance-invite>
+    </mat-sidenav>-->
 
 </mat-sidenav-container>
