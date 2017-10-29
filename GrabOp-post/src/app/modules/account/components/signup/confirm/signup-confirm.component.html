@@ -1,14 +1,16 @@
 <ng-template>
-  <mat-dialog-content>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <p>{{message}}</p>
-      <p *ngIf="verified">
-        Try to <span><account-signin-launcher [asLink]="true" (click)="closeDialog()" ></account-signin-launcher></span>
-      </p>
+  <div mat-dialog-content>
+    <div *ngIf="verified" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px" >
+      <div>Congratz! You have confirmed your account</div>
+      <div>Now go <strong class="blue">Grab</strong> <strong class="orange">Opportunities</strong></div>
+      <div class="cursive">Good luck from your GrabOp team!</div>
     </div>
-  </mat-dialog-content>
 
-  <div fxLayout="row" fxLayoutAlign="center">
+    <div *ngIf="!verified" fxLayout="row" fxLayoutAlign="center">
+      {{message}}
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
   </div>
 </ng-template>

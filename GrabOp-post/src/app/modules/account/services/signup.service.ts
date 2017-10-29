@@ -67,7 +67,7 @@ export class SignUpService {
     checkEmailExistence(email: string) {
         let url: string = VOSettings.checkEmailExistenceUrl.replace("{{email}}", email);
         return this.http.get(url).map(res => {
-            return res.exists == "existing";
+            return res.exists == "existing" || res.exists == "EXISTING";
         });
     }
 

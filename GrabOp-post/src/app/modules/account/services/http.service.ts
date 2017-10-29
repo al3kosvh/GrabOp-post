@@ -70,15 +70,13 @@ export class HttpService {
         return options;
     }
 
-    public get(url: string, options?: RequestOptions): Observable<any> {
-        console.log('Someone make a GET request: ', url);
+    public get(url: string, options?: RequestOptions): Observable<any> {        
         return this.http.get(url, this.getHeaders(options))
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
 
     public post(url: string, body: any, options?: RequestOptions): Observable<any> {
-        console.log('Someone make a POST request: ', url);
         return this.http.post(url, body, this.getHeaders(options))
             .map(response => response.json())
             .catch(error => this.handleError(error));
