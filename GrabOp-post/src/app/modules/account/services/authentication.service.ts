@@ -56,7 +56,7 @@ export class AuthenticationService {
                 id: authResponse.userId,
                 sessionId: authResponse.sessionId,
                 displayName: authResponse.displayName,
-                username: authResponse.username,
+                username: authResponse.userName,
                 primaryEmail: "",
                 firstName: "",
                 lastName: "",

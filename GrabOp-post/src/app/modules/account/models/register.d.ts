@@ -12,7 +12,7 @@ declare module Models {
     }
 
     interface SORegisterParameters {
-        username: string;
+        userName: string;
         firstName: string;
         lastName: string;
         displayName: string;

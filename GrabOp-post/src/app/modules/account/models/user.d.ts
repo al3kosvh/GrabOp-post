@@ -65,7 +65,7 @@ declare module Models {
         skillset?: string[];
         interests?: string[];
         profileImage?: string;
-        jobtitle?: string;
+        jobTitle?: string;
         company?: string;
         occupation?: number;
         url?: string;
@@ -115,7 +115,7 @@ declare module Models {
         displayName: string;
         phoneNumber: string;
         profilePic: string;
-        jobtitle: string;
+        jobTitle: string;
         company: string;
         firstName: string;
         lastName: string;
@@ -130,7 +130,7 @@ declare module Models {
 
 
     interface SOvAccountExpanded extends SOvAccount {
-        background_pic: string;
+        backgroundPic: string;
         video: string;
         resume: string;
         province: string;

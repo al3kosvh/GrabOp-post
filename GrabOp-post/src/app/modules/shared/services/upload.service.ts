@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { mapUploadRes } from '../../../utils/map-functions';
 import { VOPostAttachment } from '../../../models/vos';
-import { HttpService } from './http.service';
+import { HttpService } from '../../account/services/http.service';
 
 @Injectable()
 export class UploadService {

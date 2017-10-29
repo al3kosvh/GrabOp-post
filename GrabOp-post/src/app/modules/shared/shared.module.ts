@@ -18,6 +18,8 @@ import { MatImageDirective } from "./directives/mat-image.directive";
 // Services
 import { ModalWindowService } from './services/modal-window.service';
 import { SnackBarService } from './services/snackbar.service';
+import { UploadService } from './services/upload.service';
+
 // Pipes
 import { TruncateTextPipe } from './pipes/truncate.pipe';
 
@@ -49,7 +51,8 @@ import { TruncateTextPipe } from './pipes/truncate.pipe';
     providers: [
         ModalWindowService,
         SnackBarService,
-        TruncateTextPipe
+        TruncateTextPipe,
+        UploadService
     ],
     entryComponents: [
         ModalAlertComponent,

@@ -64,10 +64,10 @@ export class PostService {
     }
 
     updatePost(post: VOPost): Observable<VOPost> {
+        
         let url: string;
         if (post.type == 'need') url = VOSettings.updateNeedPost.replace(<any>'{{id}}', post.id.toString());
         if (post.type == 'offer') url = VOSettings.updateOfferPost.replace(<any>'{{id}}', post.id.toString());
-        console.log('updatePost', url);
 
         return this.http.put(url, post)
             .map(mapGetPost)

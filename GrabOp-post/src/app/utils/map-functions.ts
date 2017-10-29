@@ -30,8 +30,7 @@ export function mapPostSendCreateNeed(post: VOPost): CreateNeed {
 
     return {
         title: post.title,
-        summary: post.description,
-        // description: post.description,
+        summary: post.summary,
         categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
@@ -62,7 +61,7 @@ export function mapPostSendUpdateNeed(post: VOPost): UpdateNeed {
     return {
         id: post.id,
         title: post.title,
-        summary: post.description,
+        summary: post.summary,
         categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
@@ -92,8 +91,7 @@ export function mapPostSendCreateOffer(post: VOPost): CreateOffer {
 
     return {
         title: post.title,
-        summary: post.description,
-        // description: post.description,
+        summary: post.summary,
         categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
@@ -136,8 +134,7 @@ export function mapPostSendUpdateOffer(post: VOPost): UpdateOffer {
     return {
         id: post.id,
         title: post.title,
-        summary: post.description,
-        // description: post.description,
+        summary: post.summary,        
         categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
@@ -174,18 +171,17 @@ export function mapAllianceMember(allianceMembers: SOAllianceMember[]): VOAllian
 
     return allianceMembers.map(function (allianceMember) {
         return {
-            allianceid: allianceMember.allianceId,
+            allianceId: allianceMember.allianceId,
             membershipStatus: allianceMember.membershipStatus,
             hasTasks: allianceMember.hasTasks,
-
             id: allianceMember.id,
             role: allianceMember.type,
-            userName: allianceMember.userName,
+            username: allianceMember.userName,
             primaryEmail: allianceMember.primaryEmail,
             displayName: allianceMember.displayName,
             phoneNumber: allianceMember.phoneNumber,
-            profile_pic: allianceMember.profilePic,
-            jobtitle: allianceMember.jobTitle,
+            profilePic: allianceMember.profilePic,
+            jobTitle: allianceMember.jobTitle,
             company: allianceMember.company,
             firstName: allianceMember.firstName,
             lastName: allianceMember.lastName,
@@ -234,8 +230,7 @@ export function mapGetPost(res): any {
         id: service.id,
         title: service.title,
         type: service.type, // 'need'
-        // summary: service.summary,
-        description: service.summary,
+        summary: service.summary,
         createdDate: service.createdDate,
         categoryId: service.categoryId,
         isExchange: service.isExchange,
@@ -299,7 +294,7 @@ export function mapGetPosts(res): any[] {
             title: service.title,
             type: service.type, // 'need'
             // summary: service.summary,
-            description: service.summary,
+            summary: service.summary,
             createdDate: service.createdDate,
             categoryId: service.categoryId,
             isExchange: service.isExchange,
@@ -418,7 +413,7 @@ export function mapGetPerson(res): Models.VOUserExt {
         skillset: account.skillset,
         interests: account.interests,
         profileImage: account.profilePic,
-        jobtitle: account.jobTitle,
+        jobTitle: account.jobTitle,
         company: account.company,
         occupation: account.occupation,
         url: account.url,
@@ -445,9 +440,9 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
         displayName: 'displayName',
         token: 'token',
         isLogin: 'isLogin',
-        firstName: 'firstname',
-        lastName: 'lastname',
-        background_pic: 'backgroundPic',
+        firstName: 'firstName',
+        lastName: 'lastName',
+        backgroundPic: 'backgroundPic',
         video: 'video',
         resume: 'resume',
         province: 'province',
@@ -458,7 +453,7 @@ export function mapUpdateProfileClientToServer(user: Models.VOUserExt): any {
         skillset: 'skillset',
         interests: 'interests',
         profileImage: 'profilePic',
-        jobtitle: 'jobtitle',
+        jobTitle: 'jobTitle',
         company: 'company',
         occupation: 'occupation',
         url: 'url',
@@ -519,7 +514,7 @@ export function mapUserExtended(user: Models.SOUser): Models.VOUserExt {
         phoneNumber: user.phoneNumber,
         profileImage: user.profilePic,
         backgroundImage: user.backgroundPic,
-        jobtitle: user.jobTitle,
+        jobTitle: user.jobTitle,
         company: user.company,
         description: user.description,
         distance: user.distance,
@@ -545,7 +540,7 @@ export function mapAuthResponseToUser(authResponse: Models.SOAuthenticateRespons
         id: authResponse.userId,
         sessionId: authResponse.sessionId,
         displayName: authResponse.displayName,
-        username: authResponse.username,
+        username: authResponse.userName,
         primaryEmail: "",
         firstName: "",
         lastName: "",
@@ -555,7 +550,7 @@ export function mapAuthResponseToUser(authResponse: Models.SOAuthenticateRespons
 
 export function mapRegisterParametersVOToSO(rp: Models.VORegisterParameters): Models.SORegisterParameters {
     return {
-        username: rp.username,
+        userName: rp.username,
         firstName: rp.firstName,
         lastName: rp.lastName,
         displayName: rp.displayName,

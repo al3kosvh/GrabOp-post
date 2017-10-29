@@ -13,7 +13,7 @@
             <input matInput [(ngModel)]="model.city" name="city" placeholder="City" required>
         </mat-form-field>
         <mat-form-field>
-            <mat-select [(ngModel)]="model.categoryId" name="categoryid" placeholder="Category">
+            <mat-select [(ngModel)]="model.categoryId" name="categoryId" placeholder="Category">
                 <mat-option *ngFor="let category of categories" [value]="category.id">
                     {{category.name}}
                 </mat-option>
@@ -23,7 +23,7 @@
             <textarea matInput [(ngModel)]="model.keywords" name="keywords" placeholder="Keywords"></textarea>
         </mat-form-field>
         <mat-form-field>
-            <textarea matInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
+            <textarea matInput [(ngModel)]="model.summary" name="summary" placeholder="Summary"></textarea>
         </mat-form-field>
     </div>
     <div [ngSwitch]="action" class="options" fxLayout="row-reverse">

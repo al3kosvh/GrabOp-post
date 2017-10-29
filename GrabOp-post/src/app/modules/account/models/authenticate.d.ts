@@ -17,7 +17,7 @@ declare module Models {
     interface SOAuthenticateResponse {
         userId: number;
         sessionId: string;
-        username: string;
+        userName: string;
         displayName: string;
         bearerToken: string;
         responseStatus: SOResponseStatus;

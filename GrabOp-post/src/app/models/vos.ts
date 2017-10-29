@@ -112,12 +112,12 @@ export class VOPostAttachment {
 export class VOMember {
     id: number;
     role: string;
-    userName: string;
+    username: string;
     primaryEmail: string;
     displayName: string;
     phoneNumber: string;
-    profile_pic: string;
-    jobtitle: string;
+    profilePic: string;
+    jobTitle: string;
     company: string;
     firstName: string;
     lastName: string;
@@ -163,9 +163,8 @@ export class VOPost {
     static OFFER: string = 'offer';
 
     id: number;
-    title: string;
-    // summary: string;     // is it description ???
-    description: string; // is it summary ???
+    title: string;    
+    summary: string; // is it summary ???
     createdDate: Date;
     categoryId: number;
     city: string;
@@ -174,8 +173,6 @@ export class VOPost {
     keywords: string;
     visitCount: number;
     ownerId: number;
-
-
     isPartnership: boolean;
     isExchange: boolean;
     isDonate: boolean;

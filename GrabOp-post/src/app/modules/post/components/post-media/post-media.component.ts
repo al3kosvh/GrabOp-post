@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOImage, VOPost, VOPostAttachment } from '../../../../models/vos';
 // import {UploadService} from '../../myservices/upload-service';
 import { PostService } from '../../services/post.service';
-import { UploadService } from '../../../account/services/upload.service';
+import { UploadService } from '../../../shared/services/upload.service';
 
 import * as $ from 'jquery';
 
