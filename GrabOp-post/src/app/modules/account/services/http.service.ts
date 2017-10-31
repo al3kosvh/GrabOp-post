@@ -70,7 +70,7 @@ export class HttpService {
         return options;
     }
 
-    public get(url: string, options?: RequestOptions): Observable<any> {        
+    public get(url: string, options?: RequestOptions): Observable<any> {
         return this.http.get(url, this.getHeaders(options))
             .map(response => response.json())
             .catch(error => this.handleError(error));
@@ -114,6 +114,11 @@ export class HttpService {
         } else {
             this.snackBarService.showMessage(this.errors[error.status].reason);
         }
+        
+        if (error.status == "401") {
+            this.storage.clearStorage();
+        }
+
         return Observable.throw(error);
     }
 }
