@@ -2,9 +2,9 @@
   <div fxLayout="row-reverse">
     <button class="close" mat-icon-button (click)="closeDialog()"><mat-icon>close</mat-icon></button>
   </div>
-  <h3>We are here to help you</h3>
+  <h3>{{ activeTitle }}</h3>
 
-  <div *ngIf="message">{{ message }}</div>
+  <div *ngIf="message">{{ activeMessage }}</div>
 
   <form *ngIf="!emailSent" #fE="ngForm" autocomplete="off" fxLayout="column">
     <mat-form-field>
@@ -31,6 +31,12 @@
       </button>
     </div>
     <div *ngIf="codeValid">
+      <div>
+        Your Email is
+      </div>
+      <div>
+          Your Username is
+        </div>
       <mat-form-field>
         <input matInput placeholder="New Password" [(ngModel)]="newPassword" name="newPassword" formControlName="password" />
       </mat-form-field>
@@ -38,7 +44,7 @@
         <input matInput placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" />
       </mat-form-field>
       <div *ngIf="formGroup.get('confirmPassword').errors?.matchPassword">
-        {{ messages.passwordMismatchMessage }}
+        {{ texts.passwordMismatchMessage }}
       </div>
 
       <div fxLayout="column" fxLayoutGap="10px">
