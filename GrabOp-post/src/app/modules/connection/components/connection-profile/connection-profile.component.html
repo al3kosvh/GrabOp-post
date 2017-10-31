@@ -10,8 +10,8 @@
           <mat-icon matPrefix>search</mat-icon>
           <input matInput placeholder="Search" name="search" aria-label="Search..." [matAutocomplete]="auto" [(ngModel)]="search">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let connection of connections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
-              <span>{{ connection.display_name }}</span>
+            <mat-option *ngFor="let connection of connections | connectionFilter: 1 | connectionSearch: search" [value]="connection.displayName">
+              <span>{{ connection.displayName }}</span>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
