@@ -11,7 +11,7 @@ export class SnackBarService {
     ) { }
 
     showMessage(message: string, action?: string, duration?: number) {
-        this.matSnackBar.open(message, action, {duration: duration ? duration : 3000 });
+        return this.matSnackBar.open(message, action, {duration: duration ? duration : 3000 });
     }
 
 }

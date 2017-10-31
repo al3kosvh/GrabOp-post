@@ -1,4 +1,4 @@
-<div *ngIf="posts.length > 0" class="frames" fxLayout="row">
+<div *ngIf="posts && posts.length > 0" class="frames" fxLayout="row">
     <div fxLayout="column" fxLayoutAlign="center center">
         <button mat-icon-button (click)="onScrollLeft(container)"><mat-icon>keyboard_arrow_left</mat-icon></button>
     </div>

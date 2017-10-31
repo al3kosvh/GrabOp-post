@@ -2,12 +2,13 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
-// import {ActivatedRoute, Router} from '@angular/router';
 
 // Services
+import { DialogService } from '../../../shared/services/dialog.service';
 import { SidenavService } from '../../../../services/sidenav.service';
 import { PostService } from '../../services/post.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { AuthenticationService } from '../../../account/services/authentication.service';
 
 @Component({
     selector: 'post-card',
@@ -22,10 +23,19 @@ export class PostCardComponent implements OnInit {
     @Input() viewDetailsButton: boolean;
     @Input() viewMyDetailsButton: boolean;
 
-    @Input() idPerson: string;
+    @Input() userViewId: string;
 
     postImage = 'assets/img/pic05-300x195.jpg';
     accountImage = 'assets/img/temp-users-img/6.jpg';
+
+    canHide: boolean = false;
+    canShow: boolean = false;
+    canEdit: boolean = false;
+    canDuplicate: boolean = true;
+    canShare: boolean = true;
+    canEditAlliance: boolean;
+    canDelete: boolean = false;
+    canJoinAlliance: boolean = false;
 
     accountIMG = '';
     // imgURL = 'url(img/img-girl.jpg)';
@@ -33,33 +43,95 @@ export class PostCardComponent implements OnInit {
         private router: Router,
         private sidenavService: SidenavService,
         private snackBarService: SnackBarService,
-        private postService: PostService 
-        // route: ActivatedRoute
+        private postService: PostService,
+        private dialog: DialogService,
+        private authService: AuthenticationService,
     ) {
 
     }
 
     ngOnInit() {
-        //console.log(this.post);
+        this.checkPermissions();
     }
 
-    showOptions(event: MouseEvent) {
-        this.trigger.openMenu();
-    }
+    checkPermissions(): void {
+        this.authService.getUser().subscribe(user => {
+            if (user.id == this.post.creatorId) {
+                this.canEdit = true;
+                this.canEditAlliance = true;
+                this.canDelete = true;
+                this.post.status == 1 ? this.canHide = true : this.canShow = true;
+                if (this.post.type != 'need' ) this.canEditAlliance = true;                
+            } else {
+                this.canJoinAlliance = true;
+            }
 
-    onViewDetails() {
-        this.router.navigate(['myposts/view/', this.post.id]);
-    }
-
-    onEdit() {
-        this.sidenavService.onEditPost(this.post);
-    }
-
-    onDelete() {
-        this.postService.deleteService(this.post.id).subscribe(result => {
-            if (result)
-                this.snackBarService.showMessage(result);
         });
     }
 
+    showOptions(event: MouseEvent): void {
+        this.trigger.openMenu();
+    }
+
+    onViewDetails(): void {
+        this.router.navigate(['myposts/view/', this.post.id]);
+    }
+
+    onEdit(): void {
+        this.sidenavService.onEditPost(this.post);
+    }
+
+    onDelete(): void {
+
+        let data = {
+            title: 'Delete Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.deleteService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service deleted!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
+
+    onHide(): void {
+
+        let data = {
+            title: 'Hide Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.hideService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service hidden!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
+
+    onShow(): void {
+
+        let data = {
+            title: 'Show Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.showService(this.post.id).subscribe(result => {
+                    this.snackBarService.showMessage('Service show!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
 }

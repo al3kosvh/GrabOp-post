@@ -1,18 +1,19 @@
-<mat-card [class.selected]="post.isSelected">
+<mat-card [class.hide]="canShow">
     <mat-menu #appMenu="matMenu" xPosition="before">
         <button mat-menu-item (click)="onViewDetails()"> View Details </button>
-        <button mat-menu-item (click)="onEdit()"> Edit </button>
-        <button mat-menu-item> Edit Alliance </button>
-        <button mat-menu-item> Duplicate </button>
-        <button mat-menu-item> Share </button>
-        <button mat-menu-item> Hide </button>
-        <button mat-menu-item (click)="onDelete()"> Delete Services </button>
+        <button mat-menu-item *ngIf="canEdit" (click)="onEdit()"> Edit </button>
+        <button mat-menu-item *ngIf="canEditAlliance"> Edit Alliance </button>
+        <button mat-menu-item *ngIf="canDuplicate"> Duplicate </button>
+        <button mat-menu-item *ngIf="canShare"> Share </button>      
+        <button mat-menu-item *ngIf="canShow" (click)="onShow()"> Show </button>
+        <button mat-menu-item *ngIf="canHide" (click)="onHide()"> Hide </button>
+        <button mat-menu-item *ngIf="canDelete" (click)="onDelete()"> Delete Services </button>
     </mat-menu>
     <button mat-icon-button class="options" [matMenuTriggerFor]="appMenu"><mat-icon>more_vert</mat-icon></button>
     <img (click)="showOptions($event)" class="post-image" src="{{postImage}}" />
     <div class="account-image-container" fxLayout="row-reverse">
         <img class="account-image" src="{{accountImage}}" />
-        <button class="join-alliance" mat-raised-button color="warn">join alliance</button>
+        <button *ngIf="canJoinAlliance" class="join-alliance" mat-raised-button color="warn">join alliance</button>
         <div fxFlex></div>
         <div class="count">{{post.allianceMembers.length}}</div>
     </div>
