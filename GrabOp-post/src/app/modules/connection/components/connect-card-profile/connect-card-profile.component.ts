@@ -63,7 +63,7 @@ export class ConnectCardProfileComponent implements OnInit {
 
   decline() {
     this.checkUser(() => {
-      this.connectionService.confirmConnection(this.myConnections[this.indexConnection].connectionId, false).subscribe(
+      this.connectionService.deleteConnection(this.myConnections[this.indexConnection].connectionId).subscribe(
         respond => {
           this.btnConnectValue = respond.status === 1 ? this.btnConnectValue : 'connect';
         }

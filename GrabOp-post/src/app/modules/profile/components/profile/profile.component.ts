@@ -170,7 +170,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
   adminConnection(expansion: MatExpansionPanel) {
-      expansion.close();
+      // expansion.close();
     if (this.btnConnectValue === 'connect') {
       this.checkUser(
         () => {
@@ -179,7 +179,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
       this.checkUser(
         () => {
-          this.confirmConnection();
+            this.connectionService.deleteConnection(this.myConnections[this.indexConnection].connectionId).subscribe(
+                respond => {
+                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+                }
+            )
         })
     }
   }
@@ -194,14 +198,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
       }
     );
-  }
-
-  private confirmConnection() {
-    this.connectionService.confirmConnection(this.myConnections[this.indexConnection].connectionId, false).subscribe(
-      respond => {
-        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-      }
-    )
   }
 
   checkUser(cb) {

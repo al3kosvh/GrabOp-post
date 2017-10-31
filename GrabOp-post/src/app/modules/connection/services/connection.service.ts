@@ -34,14 +34,14 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-    confirmConnection(idConnection: number, accept: boolean): Observable<any> {
-        let url = VOSettings.connectionConfirmConnection.replace(<any>'{{id}}', idConnection.toString());
-        return this.http.put(url, { accept: accept })
+    confirmConnection(connectionId: number, accept: boolean): Observable<any> {
+        let url = VOSettings.connectionConfirmConnection.replace(<any>'{{connectionid}}', connectionId.toString());
+        return this.http.put(url, { connectionId: connectionId, accept: accept })
             .catch(this.handleError);
     }
 
-    deleteConnection(idConnection: number): Observable<any> {
-        let url = VOSettings.connectionDeleteConnection.replace(<any>'{{id}}', idConnection.toString());
+    deleteConnection(connectionId: number): Observable<any> {
+        let url = VOSettings.connectionDeleteConnection.replace(<any>'{{connectionid}}', connectionId.toString());
         return this.http.delete(url)
             .catch(this.handleError);
     }

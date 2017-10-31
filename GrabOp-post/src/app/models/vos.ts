@@ -304,8 +304,8 @@ export class VOSettings {
     static server: string = 'http://localhost:53822/api/v1';
 
     static checkEmailExistenceUrl: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
-    static connectionConfirmConnection: string = VOSettings.server + '/connections/{{id}}/?format=json';
-    static connectionDeleteConnection: string = VOSettings.server + '/connections/{{id}}/?format=json';
+    static connectionConfirmConnection: string = VOSettings.server + '/connections/{{connectionid}}/?format=json';
+    static connectionDeleteConnection: string = VOSettings.server + '/connections/{{connectionid}}/?format=json';
     static connectionGetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connectionGetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
     static connectionGetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
