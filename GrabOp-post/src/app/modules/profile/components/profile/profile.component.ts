@@ -197,7 +197,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private confirmConnection() {
-    this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connectionId, 0, false).subscribe(
+    this.connectionService.confirmConnection(this.myConnections[this.indexConnection].connectionId, false).subscribe(
       respond => {
         this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
       }

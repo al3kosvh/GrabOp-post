@@ -49,7 +49,7 @@ export class ConnectCardComponent implements OnInit {
     }
 
     private adminConnection(accept) {
-        this.connectionService.confirmConnection(this.user.id, this.connection.id, this.connection.connectionId, 0, accept)
+        this.connectionService.confirmConnection(this.connection.connectionId, accept)
             .subscribe(
             res => {
                 console.log('Respond Connection', res);
