@@ -34,10 +34,15 @@ export class ConnectionService {
             .catch(this.handleError);
     }
 
-    confirmConnection(sender: number, receiver: number, connectionId: number, confirmer: number, accept: boolean): Observable<any> {
-        // TODO api url to make a connection request on profile and confirm request, is the same with different params, but not working
-        let url = VOSettings.connectionMakeRequest.replace(<any>'{{sender}}', sender.toString()).replace(<any>'{{receiver}}', receiver.toString());
-        return this.http.post(url, { accept: accept, connectionid: connectionId, confirmer })
+    confirmConnection(idConnection: number, accept: boolean): Observable<any> {
+        let url = VOSettings.connectionConfirmConnection.replace(<any>'{{id}}', idConnection.toString());
+        return this.http.put(url, { accept: accept })
+            .catch(this.handleError);
+    }
+
+    deleteConnection(idConnection: number): Observable<any> {
+        let url = VOSettings.connectionDeleteConnection.replace(<any>'{{id}}', idConnection.toString());
+        return this.http.delete(url)
             .catch(this.handleError);
     }
 
