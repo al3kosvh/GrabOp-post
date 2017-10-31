@@ -32,10 +32,10 @@
     </div>
     <div *ngIf="codeValid">
       <div>
-        Your Email is
+        Your Email is <strong>{{email}}</strong>
       </div>
       <div>
-          Your Username is
+          Your Username is <strong>{{userName}}</strong>
         </div>
       <mat-form-field>
         <input matInput placeholder="New Password" [(ngModel)]="newPassword" name="newPassword" formControlName="password" />

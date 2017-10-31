@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //App Validators
 import { MatchPasswordValidator } from '../../validators/password-match.validator';
@@ -23,13 +24,15 @@ export class AccountRecoverComponent implements OnInit {
     private loading: boolean;
     private emailSent: boolean;
     private codeValid: boolean;
+    private userName: string;
+    private email: string;
 
     private activeMessage: string;
     private activeTitle: string;
     private texts = {
-        titleStart:"We are here to help you",
-        titleCodeOk:"Success!",
-        messageCodeOk:"We have verified your account. Please enter your new password",
+        titleStart: "We are here to help you",
+        titleCodeOk: "Success!",
+        messageCodeOk: "We have verified your account. Please enter your new password",
         emailSent: "You will recive an email with an 8 digits code. Please enter the code in the box",
         smsSent: "You will recive a text with an 8 digits code. Please enter the code in the box",
         passwordChanged: "Password changed. Please try to sign in",
@@ -39,7 +42,8 @@ export class AccountRecoverComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         public matDialogRef: MatDialogRef<AccountRecoverComponent>,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private router: Router
     ) {
         this.loading = false;
         this.emailSent = false;
@@ -72,9 +76,14 @@ export class AccountRecoverComponent implements OnInit {
         this.authenticationService.resetPassword(this.code, this.emailOrPhone).subscribe(
             value => {
                 this.activeMessage = this.texts.passwordChanged;
-                console.log(value);
                 this.loading = false;
-                //api must login the user, redirect to home
+                this.authenticationService.signIn({
+                    username: this.userName,
+                    password: this.newPassword,
+                    rememberMe: false
+                }).subscribe(value=>{
+                    this.router.navigate(['home']);
+                });
             },
             error => {
                 this.loading = false;
@@ -86,6 +95,9 @@ export class AccountRecoverComponent implements OnInit {
         this.codeValid = true;
         this.activeTitle = this.texts.titleCodeOk;
         this.activeMessage = this.texts.messageCodeOk;
+        //TODO: values returned by a service
+        this.userName = "";
+        this.email = "";
     }
 
     private closeDialog(): void {
