@@ -51,17 +51,17 @@ export class PostCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.checkPermissions();
+        this.checkPermissions();        
     }
 
     checkPermissions(): void {
         this.authService.getUser().subscribe(user => {
-            if (user.id == this.post.creatorId) {
+
+            if (user && user.id == this.post.creatorId) {
                 this.canEdit = true;
                 this.canEditAlliance = true;
-                this.canDelete = true;
-                this.post.status == 1 ? this.canHide = true : this.canShow = true;
-                if (this.post.type != 'need' ) this.canEditAlliance = true;                
+                this.canDelete = true;                
+                if (this.post.type != 'need') this.canEditAlliance = true;
             } else {
                 this.canJoinAlliance = true;
             }

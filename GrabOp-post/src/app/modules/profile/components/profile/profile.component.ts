@@ -29,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     allianceInviteState: string = 'out';
 
-    profilePosts: VOPost[];
+    profileOfferPosts: VOPost[];
+    profileNeedPosts: VOPost[];
     shortName: string;
     backgroundPic = "#969696";
     profilePic = "assets/img/avatar.png";
@@ -109,7 +110,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.postService.getPersonPosts(this.profile.id).subscribe(
             posts => {
                 if (posts) {
-                    this.profilePosts = posts;
+                    this.profileNeedPosts = posts.filter(post => post.type == 'need');
+                    this.profileOfferPosts = posts.filter(post => post.type == 'offer');
                 }
             });
 

@@ -60,8 +60,8 @@
     </div>
 </div>
 
-<span *ngIf="myPosts.length > 0" class="posts-title">People offering what you need:</span>
-<post-frames [posts]="myPosts" [type]="'need'"></post-frames>
+<span *ngIf="myPostsNeed.length > 0" class="posts-title">People offering what you need:</span>
+<post-frames [posts]="myPostsNeed"></post-frames>
 
-<span *ngIf="myPosts.length > 0" class="posts-title">People who need what your offering:</span>
-<post-frames [posts]="myPosts" [type]="'offer'"></post-frames>
+<span *ngIf="myPostsOffer.length > 0" class="posts-title">People who need what your offering:</span>
+<post-frames [posts]="myPostsOffer"></post-frames>

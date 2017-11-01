@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="onScrollLeft(container)"><mat-icon>keyboard_arrow_left</mat-icon></button>
     </div>
     <div fxLayout="row" class="frames-container" #container>
-        <div *ngFor="let item of posts | postsFilter: type; let i=index" class="frame-container">
+        <div *ngFor="let item of posts; let i=index" class="frame-container">
             <post-card [post]="item" [editButton]="true" [viewMyDetailsButton]="true"></post-card>
         </div>
     </div>

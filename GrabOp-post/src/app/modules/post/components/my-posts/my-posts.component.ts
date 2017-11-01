@@ -32,7 +32,7 @@ export class MyPostsComponent implements OnInit {
                 this.user = profile;
             });
 
-        this.postService.getMyPosts().subscribe(posts => {
+        this.postService.myPosts$.subscribe(posts => {
             this.postsNeed = posts.filter(post => post.type == "need");
             this.postsOffer = posts.filter(post => post.type == "offer");
         });

@@ -13,7 +13,6 @@ import * as $ from 'jquery';
 export class PostsFramesComponent {
 
     @Input() posts: VOPost[];
-    @Input() type?: string;
     canAnimation = true;
 
     constructor() { }
