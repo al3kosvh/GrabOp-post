@@ -160,19 +160,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id) {
                             this.indexConnection = i;
-                            this.btnConnectValue = this.myConnections[i].connectionStatus === 1 ? 'connection request sent' : 'connected';
                             break;
                         }
                     }
 
                     this.btnConnectValue = 'connect';
-                    this.checkUser(() => {
-                        if(this.indexConnection != -1 && this.myUser.id == this.myConnections[this.indexConnection].id) {
-                            this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request send' : 'connected';
-                        } else if (this.indexConnection != -1) {
-                            this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request received' : 'connected';
-                        }
-                    });
+                    if(this.indexConnection != -1 && this.profile.id == this.myConnections[this.indexConnection].id) {
+                        this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request send' : 'connected';
+                    } else if (this.indexConnection != -1) {
+                        this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request received' : 'connected';
+                    }
                 }
             );
         }
