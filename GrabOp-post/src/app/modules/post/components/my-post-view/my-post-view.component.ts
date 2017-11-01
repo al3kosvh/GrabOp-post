@@ -22,7 +22,8 @@ export class MyPostViewComponent implements OnInit {
     person: Models.VOUserExt;
     personLocation: Models.ProfileLocation;
     post: VOPost = new VOPost({});
-    personPosts: VOPost[] = [];
+    personNeedPosts: VOPost[] = [];
+    personOfferPosts: VOPost[] = [];
 
     constructor(
         private postService: PostService,
@@ -44,7 +45,10 @@ export class MyPostViewComponent implements OnInit {
                             this.person = profile;
                             this.profileService.getProfileLocation(profile.id, 1).subscribe(location => this.personLocation = location);                            
                         });
-                        this.postService.getPersonPosts(16).subscribe(posts => { this.personPosts = posts });
+                        this.postService.getPersonPosts(16).subscribe(posts => {
+                            this.personNeedPosts = posts.filter(post => post.type == 'need');
+                            this.personOfferPosts = posts.filter(post => post.type == 'offer');
+                        });
                     });
 
             }

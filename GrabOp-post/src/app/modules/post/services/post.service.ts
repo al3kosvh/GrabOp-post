@@ -7,9 +7,11 @@ import {
     mapGetPosts, mapGetPost, mapPostSendCreateNeed, mapPostSendCreateOffer,
     mapPostSendUpdateNeed, mapPostSendUpdateOffer
 } from '../../../utils/map-functions';
+import { asEnumerable } from "linq-es5";
 
 // Services
 import { HttpService } from "../../account/services/http.service";
+import { AuthenticationService } from '../../account/services/authentication.service';
 
 @Injectable()
 export class PostService {
@@ -21,19 +23,22 @@ export class PostService {
     //private selectedMyPostSub: BehaviorSubject<VOPost>;
     //private selectedMyPost: VOPost;
 
+    private myPostsSubject = new BehaviorSubject<VOPost[]>([]);
+    public myPosts$ = this.myPostsSubject.asObservable();
+    private myPosts: VOPost[]; 
 
     constructor(
-        private http: HttpService
+        private http: HttpService,
+        private authService: AuthenticationService
     ) {
-        //this.myPostsSub = new BehaviorSubject<VOPost[]>(null);
-        //this.myPosts$ = this.myPostsSub.asObservable();
-        ///// this.getMyPosts().subscribe(res=>{
-        ////  console.log(res);
-        //// this.setPosts(res);
-        //// });
-
-        //this.selectedMyPostSub = new BehaviorSubject(null);
-        //this.selectedMyPost$ = this.selectedMyPostSub.asObservable();
+        this.authService.isLoggedIn().subscribe(isLoggedIn => {
+            if (isLoggedIn) {
+                this.getMyPosts().subscribe(posts => {
+                    this.myPosts = posts;
+                    this.myPostsSubject.next(this.myPosts);
+                });
+            }
+        });        
     }
 
     getPersonPosts(personId: number): Observable<VOPost[]> {
@@ -60,6 +65,10 @@ export class PostService {
         let url: string = VOSettings.deleteService;
 
         return this.http.delete(url.replace(<any>'{{id}}', postId.toString()))
+            .map((res) => {
+                this.myPosts = asEnumerable(this.myPosts).Where(p => p.id != res).ToArray();
+                this.myPostsSubject.next(this.myPosts);
+            })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -67,6 +76,15 @@ export class PostService {
         let url: string = VOSettings.hideService;
 
         return this.http.put(url, { id: postId })
+            .map((res) => {
+                this.myPosts = this.myPosts.map(post => {
+                    if (post.id == res) {
+                        post.status = 2;
+                    }
+                    return post;
+                });
+                this.myPostsSubject.next(this.myPosts);
+            })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -74,6 +92,15 @@ export class PostService {
         let url: string = VOSettings.showService;
 
         return this.http.put(url, { id: postId })
+            .map((res) => {
+                this.myPosts = this.myPosts.map(post => {
+                    if (post.id == res) {
+                        post.status = 1;
+                    }                    
+                    return post;                    
+                });
+                this.myPostsSubject.next(this.myPosts);
+            })
             .catch((error: any) => Observable.throw(error || 'Server error'));
     }
 
@@ -84,7 +111,17 @@ export class PostService {
         if (post.type == 'offer') url = VOSettings.updateOfferPost.replace(<any>'{{id}}', post.id.toString());
 
         return this.http.put(url, post)
-            .map(mapGetPost)
+            .map((res) => {
+                let mapPost = mapGetPost(res);
+                this.myPosts = this.myPosts.map(post => {
+                    if (post.id == res.id) {
+                        post = mapPost;
+                    }
+                    return post;
+                });
+                this.myPostsSubject.next(this.myPosts);
+                return mapPost
+            })
             .catch((error: any) => Observable.throw(error));
     }
 
@@ -244,7 +281,12 @@ export class PostService {
         console.log(reqData);
 
         return this.http.post(url, reqData)
-            .map(mapGetPost)
+            .map((res) => {
+                let post = mapGetPost(res);
+                this.myPosts.push(post);
+                this.myPostsSubject.next(this.myPosts)
+                return post;
+            })
             .catch((error: any) => Observable.throw(error));
     }
 

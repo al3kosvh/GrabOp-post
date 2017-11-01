@@ -213,7 +213,7 @@ export function mapAlliance(alliance: SOAlliance): VOAlliance {
     }
 }
 
-export function mapGetPost(res): any {
+export function mapGetPost(res): VOPost {
 
     let service: SOServiceExpanded = res;
 
@@ -268,7 +268,7 @@ export function mapGetPost(res): any {
         // allianceMembers: mapAllianceMember(service.alliance.members),
         attachments: service.attachments ? service.attachments : [],
         isOpenToAllianace: true,
-        isVisibleToPublic: true,
+        selected: true,
         visitCount: service.visitCount
     }
 }
