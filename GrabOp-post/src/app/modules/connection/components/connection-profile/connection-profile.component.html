@@ -21,7 +21,7 @@
 
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
     <app-connect-card-profile
-      *ngFor="let connection of connections | connectionFilter: 1 | connectionSearch: search"
+      *ngFor="let connection of connections | connectionSearch: search"
       [connection]="connection" [myConnections]="myConnections"></app-connect-card-profile>
   </div>
 </div>

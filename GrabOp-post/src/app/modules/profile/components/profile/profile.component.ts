@@ -152,11 +152,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     private validateConnection() {
-        this.btnConnectValue = 'connect';
         if (!this.isMyProfile) {
             this.connectionService.getMyConnections().subscribe(
                 connections => {
                     this.myConnections = connections;
+                    this.indexConnection = -1;
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id) {
                             this.indexConnection = i;
@@ -164,38 +164,56 @@ export class ProfileComponent implements OnInit, OnDestroy {
                             break;
                         }
                     }
+
+                    this.btnConnectValue = 'connect';
+                    this.checkUser(() => {
+                        if(this.indexConnection != -1 && this.myUser.id == this.myConnections[this.indexConnection].id) {
+                            this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request send' : 'connected';
+                        } else if (this.indexConnection != -1) {
+                            this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request received' : 'connected';
+                        }
+                    });
                 }
             );
         }
     }
 
-  adminConnection(expansion: MatExpansionPanel) {
-      // expansion.close();
-    if (this.btnConnectValue === 'connect') {
+  confirmConnection(accept: boolean, expansion: MatExpansionPanel) {
+      if (expansion) {
+          expansion.close();
+      }
       this.checkUser(
         () => {
-          this.setConnection();
+            this.connectionService.confirmConnection(this.myConnections[this.indexConnection].connectionId, accept).subscribe(
+                respond => {
+                    this.btnConnectValue = respond.status === 3 ? 'connected' : 'connect';
+                }
+            )
         })
-    } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
+  }
+
+  deleteConnection(expansion: MatExpansionPanel) {
+      if (expansion) {
+          expansion.close();
+      }
       this.checkUser(
         () => {
             this.connectionService.deleteConnection(this.myConnections[this.indexConnection].connectionId).subscribe(
                 respond => {
-                    this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+                    this.btnConnectValue = 'connect';
                 }
             )
         })
-    }
   }
 
-  private setConnection() {
+  setConnection() {
     let me = this;
     this.sidenavService.setConnection(
       this.myUser.id,
       this.profile.id,
       this.profile.displayName,
       respond => {
-        me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+        me.btnConnectValue = respond.status === 1 ? 'request send' : 'connect';
       }
     );
   }
