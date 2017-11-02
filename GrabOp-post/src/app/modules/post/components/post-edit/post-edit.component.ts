@@ -37,8 +37,6 @@ export class PostEditComponent implements OnInit, OnChanges {
     ngOnChanges(): void { }
 
     ngOnInit(): void {
-
-        console.log(this.post);
         this.model = JSON.parse(JSON.stringify(this.post));
     }
 
@@ -47,7 +45,7 @@ export class PostEditComponent implements OnInit, OnChanges {
         this.postService.updatePost(this.model)
             .subscribe(post => {
                 if (post) {
-                    this.snackbarService.showMessage('Post ' + post.type + ' Update');
+                    this.snackbarService.showMessage('Post Updated');
                     this.sidenav.close();
                 }
             });

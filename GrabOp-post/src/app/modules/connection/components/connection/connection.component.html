@@ -1,5 +1,5 @@
 <mat-tab-group position="center" dynamicHeight="true">
-  <mat-tab label="Active Connections ({{myConnections.length}})">
+  <mat-tab label="Active Connections ({{activeConnectionCount}})">
 
     <div fxLayout="row" fxLayoutAlign="center">
       <div class="search-container" fxFlex="35" fxFlex.xs="60">
@@ -8,8 +8,8 @@
             <mat-icon matPrefix>search</mat-icon>
             <input matInput placeholder="Search" name="search" aria-label="Search..." [matAutocomplete]="auto" [(ngModel)]="search">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search" [value]="connection.display_name">
-                <span>{{ connection.display_name }}</span>
+              <mat-option *ngFor="let connection of myConnections | connectionFilter: 3 | connectionSearch: search" [value]="connection.displayName">
+                <span>{{ connection.displayName }}</span>
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
@@ -19,24 +19,24 @@
 
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
       <app-connect-card
-        *ngFor="let connection of myConnections | connectionFilter: 1 | connectionSearch: search"
+        *ngFor="let connection of myConnectionsActive | connectionSearch: search"
         [tab]='tab[0]'
         [connection]="connection"></app-connect-card>
     </div>
 
   </mat-tab>
-  <mat-tab label="Received Requests ({{myConnections.length}})">
+  <mat-tab label="Received Requests ({{receivedRequestsCount}})">
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
       <app-connect-card
-        *ngFor="let connection of myConnections | connectionFilter: 1"
+        *ngFor="let connection of myConnectionsReceived"
         [tab]='tab[1]'
         [connection]="connection"></app-connect-card>
     </div>
   </mat-tab>
-  <mat-tab label="Send Requests ({{myConnections.length}})">
+  <mat-tab label="Send Requests ({{sendRequestsCount}})">
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
       <app-connect-card
-        *ngFor="let connection of myConnections | connectionFilter: 1"
+        *ngFor="let connection of myConnectionsSend"
         [tab]='tab[2]'
         [connection]="connection"></app-connect-card>
     </div>

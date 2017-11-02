@@ -29,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     allianceInviteState: string = 'out';
 
-    profilePosts: VOPost[];
+    profileOfferPosts: VOPost[];
+    profileNeedPosts: VOPost[];
     shortName: string;
     backgroundPic = "#969696";
     profilePic = "assets/img/avatar.png";
@@ -109,7 +110,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.postService.getPersonPosts(this.profile.id).subscribe(
             posts => {
                 if (posts) {
-                    this.profilePosts = posts;
+                    this.profileNeedPosts = posts.filter(post => post.type == 'need');
+                    this.profileOfferPosts = posts.filter(post => post.type == 'offer');
                 }
             });
 
@@ -152,56 +154,67 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     private validateConnection() {
-        this.btnConnectValue = 'connect';
         if (!this.isMyProfile) {
             this.connectionService.getMyConnections().subscribe(
                 connections => {
                     this.myConnections = connections;
+                    this.indexConnection = -1;
                     for (let i in this.myConnections) {
                         if (this.profile.id == this.myConnections[i].id) {
                             this.indexConnection = i;
-                            this.btnConnectValue = this.myConnections[i].connectionStatus === 1 ? 'connection request sent' : 'connected';
                             break;
                         }
+                    }
+
+                    this.btnConnectValue = 'connect';
+                    if(this.indexConnection != -1 && this.profile.id == this.myConnections[this.indexConnection].id) {
+                        this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request send' : 'connected';
+                    } else if (this.indexConnection != -1) {
+                        this.btnConnectValue = this.myConnections[this.indexConnection].connectionStatus == 1 ? 'request received' : 'connected';
                     }
                 }
             );
         }
     }
 
-  adminConnection(expansion: MatExpansionPanel) {
-      expansion.close();
-    if (this.btnConnectValue === 'connect') {
+  confirmConnection(accept: boolean, expansion: MatExpansionPanel) {
+      if (expansion) {
+          expansion.close();
+      }
       this.checkUser(
         () => {
-          this.setConnection();
+            this.connectionService.confirmConnection(this.myConnections[this.indexConnection].connectionId, accept).subscribe(
+                respond => {
+                    this.btnConnectValue = respond.status === 3 ? 'connected' : 'connect';
+                }
+            )
         })
-    } else if (this.btnConnectValue === 'connected' || this.btnConnectValue === 'connection request sent') {
-      this.checkUser(
-        () => {
-          this.confirmConnection();
-        })
-    }
   }
 
-  private setConnection() {
+  deleteConnection(expansion: MatExpansionPanel) {
+      if (expansion) {
+          expansion.close();
+      }
+      this.checkUser(
+        () => {
+            this.connectionService.deleteConnection(this.myConnections[this.indexConnection].connectionId).subscribe(
+                respond => {
+                    this.btnConnectValue = 'connect';
+                }
+            )
+        })
+  }
+
+  setConnection() {
     let me = this;
     this.sidenavService.setConnection(
       this.myUser.id,
       this.profile.id,
       this.profile.displayName,
       respond => {
-        me.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
+        me.btnConnectValue = respond.status === 1 ? 'request send' : 'connect';
       }
     );
-  }
-
-  private confirmConnection() {
-    this.connectionService.confirmConnection(this.myUser.id, this.profile.id, this.myConnections[this.indexConnection].connectionId, 0, false).subscribe(
-      respond => {
-        this.btnConnectValue = respond.status === 1 ? 'connection request sent' : 'connect';
-      }
-    )
   }
 
   checkUser(cb) {

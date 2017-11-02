@@ -163,7 +163,7 @@ export class VOPost {
     static OFFER: string = 'offer';
 
     id: number;
-    title: string;    
+    title: string;
     summary: string; // is it summary ???
     createdDate: Date;
     categoryId: number;
@@ -304,9 +304,11 @@ export class VOSettings {
     static server: string = 'http://localhost:53822/api/v1';
 
     static checkEmailExistenceUrl: string = VOSettings.server + '/checkforemailexistence/{{email}}?format=json';
-    static connectionGetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
+    static connectionConfirmConnection: string = VOSettings.server + '/connections/{{connectionid}}/?format=json';
+    static connectionDeleteConnection: string = VOSettings.server + '/connections/{{connectionid}}/?format=json';
     static connectionGetMyConnections: string = VOSettings.server + '/myconnections/?format=json';
     static connectionGetProfileConnections: string = VOSettings.server + '/profiles/{{id}}/connections/?format=json';
+    static connectionGetProfileConnectionsCount: string = VOSettings.server + '/profiles/{{id}}/connectionsCount/?format=json';
     static connectionMakeRequest: string = VOSettings.server + '/profiles/{{sender}}/connectionsInvite/{{receiver}}?format=json';
     static createNeedPost: string = VOSettings.server + '/services/needs?format=json';
     static createOfferPost: string = VOSettings.server + '/services/offers?format=json';

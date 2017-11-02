@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VOPost } from '../../../../models/vos';
 import { VOUserExt } from "../../../account/models/vouser";
+import { asEnumerable } from "linq-es5";
 
 // Components
 import { UserCommentsComponent } from '../user-comments/user-comments.component';
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
     stats: any;
     connectionsCount: number;
     person: Models.VOUserExt;    
-    myPosts: VOPost[];
+    myPostsNeed: VOPost[];
+    myPostsOffer: VOPost[];
 
     constructor(
         private postService: PostService,
@@ -36,7 +38,8 @@ export class HomeComponent implements OnInit {
             'Alliance Members': 188,
             'Total Sales': 20000
         };
-        this.myPosts = [];
+        this.myPostsNeed = [];
+        this.myPostsOffer = [];
     }
 
     ngOnInit(): void {
@@ -49,8 +52,9 @@ export class HomeComponent implements OnInit {
                 });
             });
 
-        this.postService.getMyPosts().subscribe(posts => {
-            this.myPosts = posts;
+        this.postService.myPosts$.subscribe(posts => {
+            this.myPostsNeed = asEnumerable(posts).Where(p => p.type == 'need').ToArray();
+            this.myPostsOffer = asEnumerable(posts).Where(p => p.type == 'offer').ToArray();
         });
     }
 

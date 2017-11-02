@@ -23,15 +23,25 @@ export class ConnectCardComponent implements OnInit {
 
     disconnect() {
         this.checkUser(() => {
-            this.adminConnection(false)
-        }
+            this.connectionService.deleteConnection(this.connection.connectionId)
+                .subscribe(
+                    res => {
+                        console.log('Respond Connection', res);
+                    }
+                )
+            }
         )
     }
 
     accept() {
         this.checkUser(() => {
-            this.adminConnection(true)
-        }
+            this.connectionService.confirmConnection(this.connection.connectionId, true)
+                .subscribe(
+                    res => {
+                        console.log('Respond Connection', res);
+                    }
+                )
+            }
         )
     }
 
@@ -48,23 +58,14 @@ export class ConnectCardComponent implements OnInit {
         }
     }
 
-    private adminConnection(accept) {
-        this.connectionService.confirmConnection(this.user.id, this.connection.id, this.connection.connectionId, 0, accept)
-            .subscribe(
-            res => {
-                console.log('Respond Connection', res);
-            }
-            )
-    }
-
     openMessage() {
         this.checkUser(
             () => {
-              this.sidenavService.onMessage({
-                id: this.user.id,
-                senderid: this.connection.id,
-                senderName: this.connection.displayName
-              });
+                this.sidenavService.onMessage({
+                    id: this.user.id,
+                    senderid: this.connection.id,
+                    senderName: this.connection.displayName
+                });
             })
     }
 

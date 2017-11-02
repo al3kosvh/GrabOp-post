@@ -13,32 +13,29 @@ import * as $ from 'jquery';
 export class PostsFramesComponent {
 
     @Input() posts: VOPost[];
-    @Input() type?: string;
     canAnimation = true;
 
-    constructor() {
-        
-    }
+    constructor() { }
 
     onScrollLeft(container) {
         if (this.canAnimation) {
             this.canAnimation = false;
             $(container).animate({
-                scrollLeft: '-=200'
+                scrollLeft: '-=' + (window.innerWidth / 2)
             }, 'slow', null, () => {
                 this.canAnimation = true;
             });
-        }        
+        }
     }
 
     onScrollRight(container) {
         if (this.canAnimation) {
             this.canAnimation = false;
             $(container).animate({
-                scrollLeft: '+=200'
+                scrollLeft: '+=' + (window.innerWidth / 2)
             }, 'slow', null, () => {
                 this.canAnimation = true;
             });
-        }   
+        }
     }
 }
