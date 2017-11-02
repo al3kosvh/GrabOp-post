@@ -5,3 +5,9 @@
 .orange{
     color: orange;
 }
+
+.cursive {
+    font-family: Segoe Script, cursive;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
