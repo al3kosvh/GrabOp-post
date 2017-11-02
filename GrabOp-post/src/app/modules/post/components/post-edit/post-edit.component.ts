@@ -29,6 +29,8 @@ export class PostEditComponent implements OnInit, OnChanges {
 
     postType: string;
 
+    selectedIndex: number = 0;
+
     constructor(
         private postService: PostService,
         private snackbarService: SnackBarService

@@ -114,15 +114,16 @@ export class SidenavService {
         }, this.getTimerValue());
     }
 
-    onEditPost(post: VOPost) {
+    onEditPost(post: VOPost, selectedIndex?: number) {
         let self = this;
         setTimeout(function () {
             self.viewContainerRef.clear();
             const factory = self.componentFactoryResolver.resolveComponentFactory(PostEditComponent);
             const ref = self.viewContainerRef.createComponent(factory);
-            let instance: any = ref.instance;
+            let instance: PostEditComponent = ref.instance;
             instance.sidenav = self.sidenav;
             instance.post = post;
+            if (selectedIndex) instance.selectedIndex = selectedIndex;
             self.sidenav.open();
         }, this.getTimerValue());
     }
