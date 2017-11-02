@@ -1,4 +1,9 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+
+// Services
+import { PostService } from '../../services/post.service';
+
+// Models
 import { VOPost } from '../../../../models/vos';
 
 @Component({
@@ -7,14 +12,32 @@ import { VOPost } from '../../../../models/vos';
     styleUrls: ['./post-alliance.component.css']
 })
 
-export class PostAllianceComponent implements OnInit, OnChanges {
+export class PostAllianceComponent implements OnInit {
+    
     @Input() model: VOPost;
-    // @Input() model_id: number;
+    @Output() onCancel = new EventEmitter();
+    @Output() onNext = new EventEmitter<number>();
+    @Output() onSave = new EventEmitter();
+    categories: Models.Category[];
 
-    constructor() { }
+    constructor(
+        private postService: PostService
+    ) { }
 
-    ngOnChanges(obj: any): void { }
+    ngOnInit(): void {
+      this.postService.getCategories().subscribe(categories => this.categories = categories);        
+    }
 
-    ngOnInit(): void { }
+    onNextClick() {
+        this.onNext.emit(1);
+    }
+
+    onCancelClick() {        
+        this.onCancel.emit();
+    }
+
+    onSaveClick() {       
+        this.onSave.emit();
+    }
 
 }
