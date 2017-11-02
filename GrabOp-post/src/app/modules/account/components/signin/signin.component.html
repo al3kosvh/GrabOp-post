@@ -5,7 +5,7 @@
   <h3>Sign In</h3>
   <form #f="ngForm" autocomplete="off" novalidate fxLayout="column">
     <mat-form-field>
-      <input matInput placeholder="Username" name="username" [(ngModel)]="signinData.username" required #username="ngModel" />
+      <input matInput placeholder="Username or Email" name="username" [(ngModel)]="signinData.username" required #username="ngModel" />
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Password" name="password" [(ngModel)]="signinData.password" type="password" required #password="ngModel"
