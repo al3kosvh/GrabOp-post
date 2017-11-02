@@ -106,19 +106,19 @@ export class HttpService {
         return this.http.options(url, this.getHeaders(options));
     }
 
-    private handleError(error: any): Observable<any> {
+    private handleError(error: any): Observable<any> {        
 
         if (typeof error._body == 'string') {
             let body = JSON.parse(error._body);
-            this.snackBarService.showMessage(body.response_status.message);
+            this.snackBarService.showMessage(body.responseStatus.message, "Ok");
         } else {
-            this.snackBarService.showMessage(this.errors[error.status].reason);
+            this.snackBarService.showMessage(this.errors[error.status].reason, "Ok");
         }
-        
+
         if (error.status == "401") {
             this.storage.clearStorage();
         }
 
-        return Observable.throw(error);
+        return Observable.create(error);
     }
 }
