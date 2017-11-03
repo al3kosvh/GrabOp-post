@@ -134,4 +134,21 @@ export class PostCardComponent implements OnInit {
             }
         });
     }
+
+    onDuplicate(): void {
+        let data = {
+            title: 'Duplicate Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.duplicatePost(this.post).subscribe(result => {
+                    this.snackBarService.showMessage('Service duplicated!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
 }
