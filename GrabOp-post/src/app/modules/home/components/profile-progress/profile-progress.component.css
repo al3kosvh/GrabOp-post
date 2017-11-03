@@ -5,40 +5,20 @@ span.title {
 }
 
 div.start {
-  position: relative;
-}
-
-div.star img {
-  margin: 5px;
-  width: 100px;
-  z-index: 60;
+  position: relative;  
 }
 
 div.star div.percent {
-  position: relative;
-  font-size: 12px;
-  margin-top: -55px;
-  z-index: 60;
-  font-weight: 700;
+    position: relative;
+    font-size: 12px;
+    margin-top: -55px;
+    z-index: 60;
+    font-weight: 700;
+    margin-bottom: 40px;
 }
 
 div.percent {
   height: 14px;
-}
-
-div.background-container {
-  z-index: 20;
-  margin-top: -53px;
-  position: relative;
-  width: 90px;
-  height: 86px;
-  margin-bottom: 25px;
-}
-
-div.background {
-  z-index: 20;
-  background-color: #ffb426;
-  width: 90px;
 }
 
 a {

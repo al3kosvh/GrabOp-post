@@ -3,7 +3,7 @@ mat-sidenav.fixed {
 }
 
 mat-sidenav.left {
-  background-color: #272727;
+  background-color: rgb(140, 140, 140);
 }
 
 mat-sidenav.left mat-list a {

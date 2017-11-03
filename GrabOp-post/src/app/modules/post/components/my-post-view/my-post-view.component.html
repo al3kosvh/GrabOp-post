@@ -26,10 +26,10 @@
                     {{post?.description}}
                 </p>
             </div>
-            <span *ngIf="personPosts.length" class="posts-title">Similar Services Others are Offering:</span>
+            <span *ngIf="personNeedPosts.length > 0" class="posts-title">Similar Services Others are Offering:</span>
             <post-frames [posts]="personNeedPosts"></post-frames>
 
-            <span *ngIf="personPosts.length != 0" class="posts-title">Similar Services Others Need:</span>
+            <span *ngIf="personOfferPosts.length > 0" class="posts-title">Similar Services Others Need:</span>
             <post-frames [posts]="personOfferPosts"></post-frames>
         </div>
         <div class="post-info-container" fxLayout="column" fxFlexOffset="10">
