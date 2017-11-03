@@ -9,6 +9,7 @@ import { PostService } from '../../services/post.service';
 import { ProfileService } from '../../../profile/services/profile.service';
 import { DialogService } from '../../../shared/services/dialog.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { SidenavService } from '../../../../services/sidenav.service';
 
 @Component({
     selector: 'my-post-view',
@@ -32,6 +33,7 @@ export class MyPostViewComponent implements OnInit {
         private router: Router,
         private dialog: DialogService,
         private snackBarService: SnackBarService,
+        private sidenavService: SidenavService,
     ) { }
 
     ngOnInit() {
@@ -164,5 +166,9 @@ export class MyPostViewComponent implements OnInit {
                 });
             }
         });
+    }
+
+    onEdit(): void {
+        this.sidenavService.onEditPost(this.post);
     }
 }
