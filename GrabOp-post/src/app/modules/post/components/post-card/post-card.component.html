@@ -11,11 +11,11 @@
     </mat-menu>
     <button mat-icon-button class="options" [matMenuTriggerFor]="appMenu"><mat-icon>more_vert</mat-icon></button>
     <img (click)="showOptions($event)" class="post-image" src="{{postImage}}" />
-    <div class="account-image-container" fxLayout="row-reverse">
-        <img class="account-image" src="{{accountImage}}" />
-        <button *ngIf="canJoinAlliance" class="join-alliance" mat-raised-button color="warn">join alliance</button>
-        <div fxFlex></div>
+    <div class="account-image-container" fxLayout="row" fxLayoutAlign="end">
         <div *ngIf="post.allianceMembers.length > 0" class="count" title="Alliance Menbers">{{post.allianceMembers.length}}</div>
+        <div fxFlex></div>
+        <button *ngIf="canJoinAlliance" class="join-alliance" mat-raised-button color="warn">join alliance</button>
+        <img class="account-image" src="{{accountImage}}" />
     </div>
 
     <mat-card-content (click)="showOptions($event)">
