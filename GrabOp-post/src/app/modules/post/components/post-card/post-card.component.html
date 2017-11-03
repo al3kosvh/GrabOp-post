@@ -2,7 +2,7 @@
     <mat-menu #appMenu="matMenu" xPosition="before">
         <button mat-menu-item (click)="onViewDetails()"> View Details </button>
         <button mat-menu-item *ngIf="canEdit" (click)="onEdit()"> Edit </button>
-        <button mat-menu-item *ngIf="canEditAlliance"> Edit Alliance </button>
+        <button mat-menu-item *ngIf="canEditAlliance" (click)="onEditAlliance()"> Edit Alliance </button>
         <button mat-menu-item *ngIf="canDuplicate" (click)="onDuplicate()"> Duplicate </button>
         <button mat-menu-item *ngIf="canShare"> Share </button>      
         <button mat-menu-item *ngIf="post.status == 2" (click)="onShow()"> Show </button>
