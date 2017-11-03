@@ -1,11 +1,33 @@
 <div class="completeness" fxLayout="column" fxLayoutAlign="center center">
-  <span class="title">Your Profile Completeness</span>
-  <div class="star" fxLayout="column" fxLayoutAlign="center center">
-    <img src='assets/img/star.png' />
-    <div class="percent"><span *ngIf="visible">{{percent}}%</span></div>
-    <div class="background-container" fxLayout="column-reverse">
-      <div *ngIf="visible" [ngStyle]="{'height.px': (0.7 * percent)}" class="background"></div>
-    </div>    
-  </div>
-  <a [routerLink]="['/profile']">Enhance your Profile</a>
+    <span class="title">Your Profile Completeness</span>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <svg height="130" width="130" viewBox="0 0 130 130">
+            <title>SVG Preview Star - 5 Points</title>
+            <path fill="url(#grad)" stroke-width="2" fill-rule="evenodd" stroke="#ffb426" d="
+M 64.550 94.450
+L 103.206 122.586
+L 88.776 77.725
+L 126.819 49.914
+L 79.695 49.775
+L 65.000 5.000
+L 50.305 49.775
+L 3.181 49.914
+L 41.224 77.725
+L 26.794 122.586
+L 65.550 94.450
+" />
+            <text id="percentText" x="66" y="75" text-anchor="middle"                 
+                  font-size="12"
+                  font-weight="700">
+                0%
+            </text>
+            <defs>
+                <linearGradient y2="0%" x2="100%" y1="100%" x1="100%" id="grad">
+                    <stop stop-color="#ffb426" offset="0%" id="fillStar"/>
+                    <stop stop-color="#fafafa" offset="0%"/>
+                </linearGradient>
+            </defs>
+        </svg>               
+    </div>
+    <a [routerLink]="['/profile']">Enhance your Profile</a>
 </div>

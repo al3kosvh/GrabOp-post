@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     profileNeedPosts: VOPost[];
     shortName: string;
     backgroundPic = "#969696";
-    profilePic = "assets/img/avatar.png";
+    profilePic = "assets/img/avatar.gif";
     profileContainerMarginTop = -212;
     btnConnectValue: string;
     myConnections: Models.VOConnection[];
@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.sidenavService.inviteToAlliance(this.profile);
     }
 
-    loadProfile(id: string) {
+    loadProfile(id: number) {
         this.profileService.getProfileById(id).subscribe(
             profile => {
                 this.initProfile(profile);

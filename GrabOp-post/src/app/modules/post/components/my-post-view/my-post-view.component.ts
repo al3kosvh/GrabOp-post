@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VOPost } from '../../../../models/vos';
 import { VOUserExt } from '../../../account/models/vouser';
@@ -9,6 +9,7 @@ import { PostService } from '../../services/post.service';
 import { ProfileService } from '../../../profile/services/profile.service';
 import { DialogService } from '../../../shared/services/dialog.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { SidenavService } from '../../../../services/sidenav.service';
 
 @Component({
     selector: 'my-post-view',
@@ -29,8 +30,10 @@ export class MyPostViewComponent implements OnInit {
         private postService: PostService,
         private profileService: ProfileService,
         private route: ActivatedRoute,
+        private router: Router,
         private dialog: DialogService,
         private snackBarService: SnackBarService,
+        private sidenavService: SidenavService,
     ) { }
 
     ngOnInit() {
@@ -145,5 +148,27 @@ export class MyPostViewComponent implements OnInit {
                 });
             }
         });
+    }
+
+    onDuplicate(): void {
+        let data = {
+            title: 'Duplicate Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.duplicatePost(this.post).subscribe(result => {
+                    this.snackBarService.showMessage('Service duplicated!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                    this.router.navigate(['myposts/view/', result.id]);
+                });
+            }
+        });
+    }
+
+    onEdit(): void {
+        this.sidenavService.onEditPost(this.post);
     }
 }

@@ -1,8 +1,13 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { VOImage, VOPost, VOPostAttachment } from '../../../../models/vos';
+
+// Services
 // import {UploadService} from '../../myservices/upload-service';
 import { PostService } from '../../services/post.service';
 import { UploadService } from '../../../shared/services/upload.service';
+
+// Enums
+import { PostAction } from '../../models/post-action.enum';
 
 import * as $ from 'jquery';
 
@@ -26,6 +31,8 @@ export class PostMediaComponent implements OnInit {
     // @Output() selected$: EventEmitter<VOImage> = new EventEmitter<VOImage>();
     // private selected: VOImage;
     image_selected: VOPostAttachment;
+
+    postAction = PostAction;
 
     constructor(
         private uploadService: UploadService,

@@ -26,8 +26,7 @@ export class PostEditComponent implements OnInit, OnChanges {
     @Input() post: VOPost;
     action = PostAction.Update;
     model: VOPost = new VOPost({});
-
-    postType: string;
+    canEditAlliance: boolean = false;
 
     selectedIndex: number = 0;
 
@@ -40,6 +39,11 @@ export class PostEditComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.model = JSON.parse(JSON.stringify(this.post));
+        this.checkPermissions();
+    }
+
+    checkPermissions(): void {
+        if (this.model.type == 'offer') this.canEditAlliance = true;
     }
 
     onSaveClick(): void {

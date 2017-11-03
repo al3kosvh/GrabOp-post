@@ -278,8 +278,6 @@ export class PostService {
             // url = VOSettings.server + VOSettings.posts + VOSettings.offer + VOSettings.format_json;
         }
 
-        console.log(reqData);
-
         return this.http.post(url, reqData)
             .map((res) => {
                 let post = mapGetPost(res);
@@ -288,6 +286,11 @@ export class PostService {
                 return post;
             })
             .catch((error: any) => Observable.throw(error));
+    }
+
+    duplicatePost(post: VOPost): Observable<VOPost> {
+        post.title = post.title + ' (Duplicated)';
+        return this.insertPost(post);
     }
 
     deleteAttachment(psot_id: number, id: number) {

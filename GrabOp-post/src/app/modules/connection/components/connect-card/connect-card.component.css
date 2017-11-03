@@ -7,8 +7,7 @@
   margin: auto;
 }
 
-mat-card {
-  border: 1px solid lightslategrey;
+mat-card {  
   width: 170px;
   margin: 5px;
   padding-left: 10px;

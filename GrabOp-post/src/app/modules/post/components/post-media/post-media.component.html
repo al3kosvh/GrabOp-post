@@ -58,8 +58,9 @@
             </div>
         </div>
     </div>
-    <div class="options" fxLayout="row-reverse">
-        <button mat-raised-button color="primary" (click)="onSaveClick()">Create</button>
+    <div [ngSwitch]="action" class="options" fxLayout="row" fxLayoutAlign="end">
         <button mat-button (click)="onCancelClick()">Cancel</button>
+        <button *ngSwitchCase="postAction.Create" mat-raised-button color="primary" (click)="onSaveClick()">Create</button>
+        <button *ngSwitchCase="postAction.Update" mat-raised-button color="primary" (click)="onSaveClick()">Update</button>
     </div>
 </form>

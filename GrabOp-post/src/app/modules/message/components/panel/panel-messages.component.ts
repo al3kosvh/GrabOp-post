@@ -35,7 +35,7 @@ export class PanelMassagesComponent {
         },
         {
             name: 'Susan D.',
-            img: 'assets/img/avatar.png',
+            img: 'assets/img/avatar.gif',
             lastConversation: {
                 body: 'I have to leave, see you latter',
                 date: 'Apr 3, 2017'

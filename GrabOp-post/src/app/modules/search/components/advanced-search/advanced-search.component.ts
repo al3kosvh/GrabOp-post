@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { VOPost } from "../../../../models/vos";
+import { asEnumerable } from 'linq-es5';
+
+// Services
 import { PostService } from "../../../post/services/post.service";
 import { ConnectionService } from "../../../connection/services/connection.service";
 
@@ -12,12 +15,10 @@ import { ConnectionService } from "../../../connection/services/connection.servi
 export class AdvancedSearchComponent implements OnInit {
 
     @Input() filters: Models.Filters;
-    offeringsCant = 0;
-    needsCant = 0;
-    peopleCant = 0;
-    posts: VOPost[];
-    myConnections: Models.VOConnection[];
-    connections: Models.VOConnection[];
+    postsOffer: VOPost[] = [];
+    postsNeed: VOPost[] = [];
+    myConnections: Models.VOConnection[] = [];
+    connections: Models.VOConnection[] = [];
 
     constructor(private postService: PostService,
         private connectionService: ConnectionService,
@@ -89,9 +90,7 @@ export class AdvancedSearchComponent implements OnInit {
 
         this.postService.getPersonPosts(16).subscribe(posts => {
             if (posts) {
-                let result = [];
-                this.offeringsCant = 0;
-                this.needsCant = 0;
+                let result: VOPost[] = [];
                 for (let i in posts) {
                     if (this.checkFilters()
                         || this.match(search, posts[i].country)
@@ -112,14 +111,10 @@ export class AdvancedSearchComponent implements OnInit {
                         || this.ranger(this.filters.commission.start, this.filters.commission.end, posts[i].commissionTo, posts[i].commissionFrom)
                     ) {
                         result.push(posts[i]);
-                        if (posts[i].type == "offer") {
-                            this.offeringsCant++;
-                        } else if (posts[i].type == "need") {
-                            this.needsCant++;
-                        }
                     }
                 }
-                this.posts = result;
+                this.postsOffer = asEnumerable(result).Where(p => p.type == 'offer').ToArray();
+                this.postsNeed = asEnumerable(result).Where(p => p.type == 'need').ToArray();
             }
         });
 
@@ -129,7 +124,6 @@ export class AdvancedSearchComponent implements OnInit {
 
         this.connectionService.getProfileConnections('17').subscribe(
             connections => {
-                this.peopleCant = 0;
                 let result = [];
                 for (let i in connections) {
                     if (
@@ -143,7 +137,6 @@ export class AdvancedSearchComponent implements OnInit {
                         || this.match(search, connections[i].lastName)
                     ) {
                         result.push(connections[i]);
-                        this.peopleCant++;
                     }
                 }
                 this.connections = result;

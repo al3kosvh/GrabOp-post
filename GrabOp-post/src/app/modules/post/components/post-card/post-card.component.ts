@@ -9,6 +9,7 @@ import { SidenavService } from '../../../../services/sidenav.service';
 import { PostService } from '../../services/post.service';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
+import { ProfileService } from '../../../profile/services/profile.service';
 
 @Component({
     selector: 'post-card',
@@ -22,11 +23,9 @@ export class PostCardComponent implements OnInit {
     @Input() editButton: boolean;
     @Input() viewDetailsButton: boolean;
     @Input() viewMyDetailsButton: boolean;
-
-    @Input() userViewId: string;
-
+    
     postImage = 'assets/img/pic05-300x195.jpg';
-    accountImage = 'assets/img/temp-users-img/6.jpg';
+    accountImage = 'assets/img/avatar.gif';
 
     canHide: boolean = false;
     canShow: boolean = false;
@@ -36,8 +35,7 @@ export class PostCardComponent implements OnInit {
     canEditAlliance: boolean;
     canDelete: boolean = false;
     canJoinAlliance: boolean = false;
-
-    accountIMG = '';
+    
     // imgURL = 'url(img/img-girl.jpg)';
     constructor(
         private router: Router,
@@ -46,6 +44,7 @@ export class PostCardComponent implements OnInit {
         private postService: PostService,
         private dialog: DialogService,
         private authService: AuthenticationService,
+        private profileService: ProfileService
     ) {
 
     }
@@ -57,13 +56,16 @@ export class PostCardComponent implements OnInit {
     checkPermissions(): void {
         this.authService.getUser().subscribe(user => {
 
-            if (user && user.id == this.post.creatorId) {
+            if (user && (user.id == this.post.creatorId)) {
+                if (user.profileImage) this.accountImage = user.profileImage;
                 this.canEdit = true;
-                this.canEditAlliance = true;
-                this.canDelete = true;
-                if (this.post.type != 'need') this.canEditAlliance = true;
+                this.canDelete = true;               
+                if (this.post.type == 'offer') this.canEditAlliance = true;
             } else {
-                this.canJoinAlliance = true;
+                this.profileService.getProfileById(this.post.ownerId).subscribe(person => {
+                    if (person.profileImage) this.accountImage = person.profileImage;
+                });
+                if (this.post.type == 'offer') this.canJoinAlliance = true;
             }
 
         });
@@ -132,6 +134,23 @@ export class PostCardComponent implements OnInit {
             if (res == true) {
                 this.postService.showService(this.post.id).subscribe(result => {
                     this.snackBarService.showMessage('Service show!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                });
+            }
+        });
+    }
+
+    onDuplicate(): void {
+        let data = {
+            title: 'Duplicate Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.duplicatePost(this.post).subscribe(result => {
+                    this.snackBarService.showMessage('Service duplicated!', 'Undo').onAction().subscribe(() => {
                         console.log('Undo');
                     });
                 });

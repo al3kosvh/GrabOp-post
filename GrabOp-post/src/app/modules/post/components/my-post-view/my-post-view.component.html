@@ -14,7 +14,9 @@
                     <div>Page Views: <span class="views-value">{{post?.visitCount}}</span></div>
                 </div>
             </div>
-            <div class="post-background" fxLayout="row"></div>
+            <div class="post-background" fxLayout="row">
+                <img fxFlex src="assets/img/pic05-300x195.jpg"/>
+            </div>
             <div class="images-container" fxLayout="row" fxLayoutAlign="space-between">
                 <div class="image-container" fxFlex="24"></div>
                 <div class="image-container" fxFlex="24"></div>
@@ -26,17 +28,17 @@
                     {{post?.description}}
                 </p>
             </div>
-            <span *ngIf="personPosts.length" class="posts-title">Similar Services Others are Offering:</span>
+            <span *ngIf="personNeedPosts.length > 0" class="posts-title">Similar Services Others are Offering:</span>
             <post-frames [posts]="personNeedPosts"></post-frames>
 
-            <span *ngIf="personPosts.length != 0" class="posts-title">Similar Services Others Need:</span>
+            <span *ngIf="personOfferPosts.length > 0" class="posts-title">Similar Services Others Need:</span>
             <post-frames [posts]="personOfferPosts"></post-frames>
         </div>
         <div class="post-info-container" fxLayout="column" fxFlexOffset="10">
             <div class="post-options" fxLayout="column">
-                <button mat-raised-button color="primary" (click)="onRequestClick()">edit</button>
-                <button mat-raised-button color="primary" (click)="onShareClick()">duplicate</button>
-                <button mat-raised-button color="primary" (click)="onReportClick()">share</button>
+                <button mat-raised-button color="primary" (click)="onEdit()">edit</button>
+                <button mat-raised-button color="primary" (click)="onDuplicate()">duplicate</button>
+                <button mat-raised-button color="primary" (click)="onShareClick()">share</button>
                 <button mat-raised-button *ngIf="post?.status == 1" color="primary" (click)="onHide()">hide service</button>
                 <button mat-raised-button *ngIf="post?.status == 2" color="primary" (click)="onShow()">show service</button>
                 <button mat-raised-button color="warn" (click)="onDelete()">delete service</button>
