@@ -41,7 +41,7 @@
     <a mat-menu-item (click)="onCreatePost('need')">Post need</a>
     <a mat-menu-item (click)="onCreatePost('offer')">Post offer</a>
   </mat-menu>
-  <img (click)="goToProfile()" class="avatar" src="assets/img/temp-users-img/6.jpg">
+  <img (click)="goToProfile()" class="avatar" src="{{user.profileImage ? user.profileImage : 'assets/img/avatar.gif'}}">
   <span class="username" (click)="goToProfile()">{{user.firstName + user.lastName}}</span>
   <span class="separator"></span>
   <button mat-icon-button>

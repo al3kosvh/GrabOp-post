@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.sidenavService.inviteToAlliance(this.profile);
     }
 
-    loadProfile(id: string) {
+    loadProfile(id: number) {
         this.profileService.getProfileById(id).subscribe(
             profile => {
                 this.initProfile(profile);

@@ -39,8 +39,8 @@ export class ProfileService {
         return this.http.get(this.url + id.toString() + '/location?format=json&type=' + type);
     }
 
-    public getProfileById(id: string): Observable<Models.VOUserExt> {
-        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id));
+    public getProfileById(id: number): Observable<Models.VOUserExt> {
+        return this.http.get(VOSettings.profile.replace(<any>'{{id}}', id.toString()));
     }
 
     public updateProfile(person: Models.VOUserExt): Observable<Models.VOUserExt> {
