@@ -19,7 +19,7 @@
       </ng-template>
       <post-media [model]="model" [action]="action" (onSave)="onSaveClick()" (onCancel)="onCancel()"></post-media>
     </mat-tab>
-    <mat-tab>
+    <mat-tab *ngIf="canEditAlliance">
       <ng-template mat-tab-label>
         Alliance
       </ng-template>
