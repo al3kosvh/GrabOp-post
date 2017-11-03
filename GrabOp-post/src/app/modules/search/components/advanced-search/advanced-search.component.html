@@ -96,27 +96,27 @@
   <div class="result-container" fxLayout="column" fxFlex="80">
 
     <div fxlayout="row" class="full-width">
-      <span class="result">Result: {{ offeringsCant + needsCant + peopleCant }}</span>
+      <span class="result">Result: {{ postsOffer.length + postsNeed.length + connections.length }}</span>
     </div>
 
     <mat-tab-group dynamicHeight="true">
-      <mat-tab [label]="'Offerings (' + offeringsCant + ')'">
+      <mat-tab [label]="'Offerings (' + postsOffer.length + ')'">
         <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-          <div *ngFor="let item of posts | postsFilter:'offer'; let i=index">
-            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          <div *ngFor="let item of postsOffer">
+            <post-card [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
           </div>
         </div>
       </mat-tab>
 
-      <mat-tab [label]="'Needs (' + needsCant + ')'">
+      <mat-tab [label]="'Needs (' + postsNeed.length + ')'">
         <div class="posts" fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
-          <div *ngFor="let item of posts | postsFilter:'need'; let i=index">
-            <post-card (click)="onClickItem(item)" [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
+          <div *ngFor="let item of postsNeed">
+            <post-card [post]="item" [editButton]="false" [viewMyDetailsButton]="true"></post-card>
           </div>
         </div>
       </mat-tab>
 
-      <mat-tab [label]="'People (' + peopleCant + ')'">
+      <mat-tab [label]="'People (' + connections.length + ')'">
         <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap>
           <app-connect-card-profile
             *ngFor="let connection of connections"
