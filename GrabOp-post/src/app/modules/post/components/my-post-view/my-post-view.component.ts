@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VOPost } from '../../../../models/vos';
 import { VOUserExt } from '../../../account/models/vouser';
@@ -29,6 +29,7 @@ export class MyPostViewComponent implements OnInit {
         private postService: PostService,
         private profileService: ProfileService,
         private route: ActivatedRoute,
+        private router: Router,
         private dialog: DialogService,
         private snackBarService: SnackBarService,
     ) { }
@@ -142,6 +143,24 @@ export class MyPostViewComponent implements OnInit {
                     this.snackBarService.showMessage('Service hidden!', 'Undo').onAction().subscribe(() => {
                         console.log('Undo');
                     });
+                });
+            }
+        });
+    }
+
+    onDuplicate(): void {
+        let data = {
+            title: 'Duplicate Service',
+            body: 'Are you sure?'
+        }
+
+        this.dialog.openConfirm(data, res => {
+            if (res == true) {
+                this.postService.duplicatePost(this.post).subscribe(result => {
+                    this.snackBarService.showMessage('Service duplicated!', 'Undo').onAction().subscribe(() => {
+                        console.log('Undo');
+                    });
+                    this.router.navigate(['myposts/view/', result.id]);
                 });
             }
         });
