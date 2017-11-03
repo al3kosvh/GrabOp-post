@@ -28,6 +28,8 @@ export class PostEditComponent implements OnInit, OnChanges {
     model: VOPost = new VOPost({});
     canEditAlliance: boolean = false;
 
+    selectedIndex: number = 0;
+
     constructor(
         private postService: PostService,
         private snackbarService: SnackBarService

@@ -50,7 +50,7 @@ export class PostCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.checkPermissions();        
+        this.checkPermissions();
     }
 
     checkPermissions(): void {
@@ -81,6 +81,10 @@ export class PostCardComponent implements OnInit {
 
     onEdit(): void {
         this.sidenavService.onEditPost(this.post);
+    }
+
+    onEditAlliance(): void {
+        this.sidenavService.onEditPost(this.post, 3);
     }
 
     onDelete(): void {
