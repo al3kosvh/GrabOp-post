@@ -193,8 +193,7 @@ export class VOPost {
     portfolio?: string;
     status?: number;
     attachments?: VOPostAttachment[];
-    alliance?: VOAlliance;
-    allianceMembers?: VOAllianceMember[];
+    alliance?: Models.AllianceExtended;
 
     latitude?: number;
     longitude?: number;
