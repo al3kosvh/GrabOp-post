@@ -1,37 +1,37 @@
-<form #postAlliance="ngForm">
+<form #postAllianceForm="ngForm">
   <mat-list>
     <mat-list-item>
-      <mat-slide-toggle [(ngModel)]="model.isOpenToAllianace" name="openToAllianace" color="warn">
-        I am open to alliance join requests for this service
+      <mat-slide-toggle [(ngModel)]="model.alliance.isOpen" name="isOpen" color="warn">
+        I am open to join requests for this service
       </mat-slide-toggle>
     </mat-list-item>
+
     <mat-list-item>
-      <mat-slide-toggle [(ngModel)]="model.isVisibleToPublic" name="visibleToPublic" color="warn">
-        Make your alliance members visible to the public
+      <mat-slide-toggle [(ngModel)]="model.alliance.isBlackBox" name="isBlackBox" color="warn">
+        Make members visible to the public
+      </mat-slide-toggle>
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-slide-toggle [(ngModel)]="model.alliance.isMemberTotalVisible" name="isMemberTotalVisible" color="warn">
+        Make number of members visible to the public
       </mat-slide-toggle>
     </mat-list-item>
   </mat-list>
-  <!--<div class="form-group has-danger m-b-0">-->
-  <!--<label class="custom-control custom-checkbox">-->
-  <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.openToAllianace" name="openToAllianace">-->
-  <!--<span class="custom-control-indicator"></span>-->
-  <!--<span class="custom-control-description">Open to join</span>-->
-  <!--</label>-->
-  <!--</div>-->
-  <!--<div class="form-group has-danger m-b-0">-->
-  <!--<label class="custom-control custom-checkbox">-->
-  <!--<input type="checkbox" class="custom-control-input" [(ngModel)]="model.visibleToPublic" name="visibleToPublic">-->
-  <!--<span class="custom-control-indicator"></span>-->
-  <!--<span class="custom-control-description">Visible to public</span>-->
-  <!--</label>-->
-  <!--</div>-->
+
+  <mat-input-container>
+    <input matInput name="ivite" class="form-control" color="form" placeholder="Invite people to your alliance">
+  </mat-input-container>
 </form>
 
-<mat-input-container>
-  <input matInput name="ivite" class="form-control" color="form" placeholder="Invite people to your alliance">
-</mat-input-container>
+<mat-list>
+  List of Members
+  <mat-list-item ngFor="member in model.alliance.members">
+    <img src="{{ member.profilePic }}" /> {{ member.displayName }} {{ member.membershipStatus }}
+  </mat-list-item>
+</mat-list>
 
 <div class="options" fxLayout="row-reverse">
-  <button mat-raised-button color="primary" [disabled]="!postAlliance.form.valid" (click)="onSaveClick()">Update</button>
+  <button mat-raised-button color="primary" [disabled]="!postAllianceForm.valid" (click)="onSaveClick()">Update</button>
   <button mat-button (click)="onCancelClick()">Cancel</button>
 </div>
