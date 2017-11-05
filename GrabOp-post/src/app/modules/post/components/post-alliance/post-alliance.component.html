@@ -19,14 +19,20 @@
     </mat-list-item>
   </mat-list>
 
-  <mat-input-container>
-    <input matInput name="ivite" class="form-control" color="form" placeholder="Invite people to your alliance">
-  </mat-input-container>
+  <mat-form-field>
+    <input matInput [formControl]="searchPeople" [matAutocomplete]="auto" name="ivite" color="form" placeholder="Invite people to your alliance">
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let user of filteredPeople | async" [value]="user.id">
+      <img src="{{ user.profilePic }}" /> {{ user.displayName }}
+    </mat-option>
+  </mat-autocomplete>
+
 </form>
 
 <mat-list>
   List of Members
-  <mat-list-item ngFor="member in model.alliance.members">
+  <mat-list-item *ngFor="let member of model.alliance.members">
     <img src="{{ member.profilePic }}" /> {{ member.displayName }} {{ member.membershipStatus }}
   </mat-list-item>
 </mat-list>
