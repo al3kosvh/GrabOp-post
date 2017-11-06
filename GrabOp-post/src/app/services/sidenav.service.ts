@@ -112,6 +112,7 @@ export class SidenavService {
             instance.cb = cb;
             self.sidenav.open();
         }, this.getTimerValue());
+        return self;
     }
 
     onEditPost(post: VOPost, selectedIndex?: number) {
