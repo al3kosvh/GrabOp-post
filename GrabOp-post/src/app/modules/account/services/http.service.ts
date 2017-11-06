@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 //App Services
 import { AccountStorageService } from './account-storage.service';
@@ -42,7 +43,8 @@ export class HttpService {
     constructor(
         private http: Http,
         private storage: AccountStorageService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private router: Router
     ) {
         this.setHeaders();
     }
@@ -106,17 +108,23 @@ export class HttpService {
         return this.http.options(url, this.getHeaders(options));
     }
 
-    private handleError(error: any): Observable<any> {        
+    private handleError(error: any): Observable<any> {
 
         if (typeof error._body == 'string') {
-            let body = JSON.parse(error._body);
-            this.snackBarService.showMessage(body.responseStatus.message, "Ok");
+            try {
+                let body = JSON.parse(error._body);
+                this.snackBarService.showMessage(body.responseStatus.message, "Ok");
+            } catch (Error) {
+            }
         } else {
             this.snackBarService.showMessage(this.errors[error.status].reason, "Ok");
         }
 
+        console.log("error ", error.status)
         if (error.status == "401") {
+            console.log("error 401")
             this.storage.clearStorage();
+            return Observable.fromPromise(this.router.navigate(['guest']));
         }
 
         return Observable.create(error);
