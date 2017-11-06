@@ -42,6 +42,7 @@ export class MessageSideNavComponent implements OnInit {
             res => {
                 console.log('Respond Message success', res);
                 // add Message success
+                this.sidenav.close();
             },
             err => {
                 console.log('Respond Message err: ', err)

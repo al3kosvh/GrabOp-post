@@ -36,7 +36,7 @@ export class ConnectionComponent implements OnInit {
                         if (this.myConnections[i].connectionStatus == 2) {
                             this.myConnectionsActive.push(this.myConnections[i]);
                             this.activeConnectionCount++;
-                        } else if (this.myConnections[i].connectionStatus == 1) {
+                        } else if (this.myConnections[i].connectionStatus == 1) {console.log('this.user.id == this.myConnections[i].id', this.user.id, this.myConnections[i].id)
                             if (this.user.id == this.myConnections[i].id) {
                                 this.myConnectionsReceived.push(this.myConnections[i]);
                                 this.receivedRequestsCount++;

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatExpansionPanel } from '@angular/material';
 // Services
@@ -7,13 +7,11 @@ import { PostService } from '../../../post/services/post.service';
 import { AuthenticationService } from '../../../account/services/authentication.service';
 import { ConnectionService } from '../../../connection/services/connection.service';
 import { SidenavService } from '../../../../services/sidenav.service';
-//import { MyPostsService } from '../../../post/services/my-posts.service';
-
 import { VOUserExt } from "../../../account/models/vouser";
 import { VOPost } from '../../../../models/vos';
-
-import { EditProfileComponent } from './edit/edit-profile.component';
 import { VideoProfileDialogComponent } from './video/video-profile-dialog.component';
+
+//import { MyPostsService } from '../../../post/services/my-posts.service';
 
 @Component({
     selector: 'app-profile',
@@ -206,15 +204,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   setConnection() {
-    let me = this;
-    this.sidenavService.setConnection(
-      this.myUser.id,
-      this.profile.id,
-      this.profile.displayName,
-      respond => {
-        me.btnConnectValue = respond.status === 1 ? 'request send' : 'connect';
-      }
-    );
+      let me = this,
+          cmp = this.sidenavService.setConnection(
+              this.myUser.id,
+              this.profile.id,
+              this.profile.displayName,
+              respond => {
+                  me.btnConnectValue = respond.status === 1 ? 'request send' : 'connect';
+                  cmp.sidenav.close();
+              }
+          );
   }
 
   checkUser(cb) {

@@ -36,7 +36,7 @@
             <mat-tab label="Professional">
                 <div class="tab-content">
                     <mat-form-field>
-                        <input matInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobtitle" required #jobtitle="ngModel"/>
+                        <input matInput placeholder="Job Title" name="jobtitle" [(ngModel)]="profile.jobTitle" required #jobtitle="ngModel"/>
                     </mat-form-field>
                     <mat-form-field *ngIf="profile.occupation === 2">
                         <input matInput placeholder="Company" name="company" [(ngModel)]="profile.company" required #company="ngModel"/>
