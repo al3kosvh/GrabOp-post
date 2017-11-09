@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { VOAllianceMember, VOPost } from '../../../models/vos';
+import { VOPost } from '../../../models/vos';
 
 @Pipe({
     name: 'postsFilterAlliance'
@@ -8,7 +8,7 @@ export class PostsFilterAlliancePipe implements PipeTransform {
 
     allianceMember(post: VOPost, filterParamId: number, filterParamStatus: string): boolean {
         let AM: boolean = false;
-        post.allianceMembers.forEach(allianceMember => {
+        post.alliance.members.forEach(allianceMember => {
             if (allianceMember.id == filterParamId && allianceMember.membershipStatus === filterParamStatus) {
                 AM = true;
             }
@@ -18,7 +18,7 @@ export class PostsFilterAlliancePipe implements PipeTransform {
 
     notAllianceMember(post: VOPost, filterParamId: number) {
         let NAM: boolean = true;
-        post.allianceMembers.forEach(allianceMember => {
+        post.alliance.members.forEach(allianceMember => {
             if (allianceMember.id == filterParamId) {
                 NAM = false;
             }

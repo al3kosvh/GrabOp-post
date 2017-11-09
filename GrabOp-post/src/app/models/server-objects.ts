@@ -163,7 +163,7 @@ export interface SOService {
 
 export interface SOServiceExpanded extends SOService {
     portafolio?: string;
-    alliance?: SOAlliance;
+    alliance?: Models.AllianceExtended;
     keywords?: string[];
     isExchange: boolean;
     isDonation: boolean;

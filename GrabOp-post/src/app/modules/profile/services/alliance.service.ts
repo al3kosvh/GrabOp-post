@@ -5,26 +5,22 @@ import { Response, RequestOptions } from '@angular/http';
 // Services
 import { HttpService } from '../../account/services/http.service';
 
-import { VOAlliance, VOSettings } from '../../../models/vos';
+import { VOSettings } from '../../../models/vos';
 import { mapGetPerson, mapUpdateProfileClientToServer } from '../../../utils/map-functions';
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class AllianceService {
 
-    private url: string;
-
     constructor(
         private http: HttpService
-    ) {
-        this.url = VOSettings.server + '/profiles/';
-    }
+    ) { }
 
-    public createAlliance(alliance: VOAlliance): Observable<VOAlliance> {
+    public createAlliance(alliance: Models.Alliance): Observable<Models.AllianceExtended> {
         return this.http.post(VOSettings.createAlliance, alliance);
     }
 
-    public updateAlliance(alliance: VOAlliance): Observable<VOAlliance> {
+    public updateAlliance(alliance: Models.AllianceExtended): Observable<Models.AllianceExtended> {
         return this.http.put(VOSettings.updateAlliance, alliance);
     }
 
@@ -32,11 +28,11 @@ export class AllianceService {
         return this.http.delete(VOSettings.terminateAlliance.replace(<any>'{{id}}', id.toString()));
     }
 
-    public getAlliance(id: number): Observable<VOAlliance> {
+    public getAlliance(id: number): Observable<Models.AllianceExtended> {
         return this.http.get(VOSettings.getAlliance.replace(<any>'{{id}}', id.toString()));
     }
 
-    public getMyAlliances(): Observable<VOAlliance[]> {
+    public getMyAlliances(): Observable<Models.AllianceExtended[]> {
         return this.http.get(VOSettings.getMyAlliances);
     }
 

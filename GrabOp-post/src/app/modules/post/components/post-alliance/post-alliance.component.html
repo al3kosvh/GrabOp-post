@@ -18,18 +18,30 @@
       </mat-slide-toggle>
     </mat-list-item>
   </mat-list>
-
-  <mat-input-container>
-    <input matInput name="ivite" class="form-control" color="form" placeholder="Invite people to your alliance">
-  </mat-input-container>
 </form>
 
-<mat-list>
-  List of Members
-  <mat-list-item ngFor="member in model.alliance.members">
-    <img src="{{ member.profilePic }}" /> {{ member.displayName }} {{ member.membershipStatus }}
-  </mat-list-item>
-</mat-list>
+<form>
+  <mat-form-field>
+    <!--[formControl]="formControl" [matAutocomplete]="auto"-->
+    <input matInput [formControl]="formControl" [matAutocomplete]="auto" name="ivite" placeholder="Invite people to your alliance">
+  </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let user of filteredPeople | async" [value]="user.id">
+      <img src="{{ user.profilePic }}" /> {{ user.displayName }}
+    </mat-option>
+  </mat-autocomplete>
+</form>
+<div>
+  <h5>List of Members</h5>
+  {{model.alliance|json}}
+  <mat-list>
+    <mat-list-item *ngFor="let member of model.alliance.members">
+      <img src="assets/img/temp-users-img/6.jpg }}" />
+      <span> Name:{{ member.displayName }} </span>
+      <span> Membership Status: {{ member.membershipStatus }} </span>
+    </mat-list-item>
+  </mat-list>
+</div>
 
 <div class="options" fxLayout="row-reverse">
   <button mat-raised-button color="primary" [disabled]="!postAllianceForm.valid" (click)="onSaveClick()">Update</button>

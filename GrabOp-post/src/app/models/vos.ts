@@ -140,23 +140,6 @@ export class VOAllianceMember extends VOMember {
     hasTasks: boolean;
 }
 
-export class VOAlliance {
-    id: number;
-    isBlackBox: boolean;
-    isOpen: boolean;
-    isMemberTotalVisible: boolean;
-    isActive: boolean;
-    createdDate: Date;
-    offerId: number;
-    // members: any;
-    // members: VOAllianceMember[];
-    allianceMembersCount: number;
-    constructor(data: any) {
-        for (var str in data) this[str] = data[str];
-    }
-}
-
-
 export class VOPost {
 
     static NEED: string = 'need';
@@ -214,7 +197,7 @@ export class VOPost {
 
 export class VOService extends VOPost {
 
-    alliance: VOAlliance;
+    alliance: Models.AllianceExtended;
 
 
     /*
@@ -240,7 +223,7 @@ export class VOService extends VOPost {
     constructor(obj: any) {
         super(obj);
 
-        if (this.alliance) this.alliance = new VOAlliance(this.alliance);
+        //if (this.alliance) this.alliance = new VOAlliance(this.alliance);
         if (this.recommenderUser) this.recommenderUser = new VOMember(this.recommenderUser);
         if (this.user) this.user = new VOMember(this.user);
     }

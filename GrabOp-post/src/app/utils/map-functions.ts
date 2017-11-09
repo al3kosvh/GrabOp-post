@@ -1,4 +1,4 @@
-import { VOAlliance, VOAllianceMember, VOPost, VOPostAttachment } from '../models/vos';
+import { VOAllianceMember, VOPost, VOPostAttachment } from '../models/vos';
 import {
     SOAccountExpanded, SOServiceExpanded, CreateNeed, UpdateNeed,
     CreateOffer, UpdateOffer, SOvAccount, SOAlliance, SOAllianceMember,
@@ -134,7 +134,7 @@ export function mapPostSendUpdateOffer(post: VOPost): UpdateOffer {
     return {
         id: post.id,
         title: post.title,
-        summary: post.summary,        
+        summary: post.summary,
         categoryId: post.categoryId,
         isExchange: post.isExchange,
         isDonation: post.isDonate,
@@ -196,35 +196,9 @@ export function mapAllianceMember(allianceMembers: SOAllianceMember[]): VOAllian
     });
 }
 
-export function mapAlliance(alliance: SOAlliance): VOAlliance {
-    // console.log('mapAlliance');
-
-    return {
-        id: alliance.id,
-        isBlackBox: alliance.isBlackBox,
-        isOpen: alliance.isOpen,
-        isMemberTotalVisible: alliance.isMemberTotalVisible,
-        isActive: alliance.isActive,
-        createdDate: alliance.createdDate,
-        offerId: alliance.offerId,
-        // members: alliance.members,
-        // members: VOAllianceMember[];
-        allianceMembersCount: alliance.allianceMembersCount
-    }
-}
-
 export function mapGetPost(res): VOPost {
 
     let service: SOServiceExpanded = res;
-
-    let alliance: VOAlliance;
-    let allianceMember: VOAllianceMember[];
-
-    if (service.alliance) {
-        alliance = mapAlliance(service.alliance);
-        if (service.alliance.members) allianceMember = mapAllianceMember(service.alliance.members);
-        // if(service.alliance.members.length) allianceMember = mapAllianceMember(service.alliance.members);
-    }
 
     return {
         id: service.id,
@@ -262,8 +236,11 @@ export function mapGetPost(res): VOPost {
         portfolio: service.portafolio,
         status: service.status,
         // alliance: service.alliance,  // ??????
-        alliance: alliance,
-        allianceMembers: allianceMember ? allianceMember : [],
+        alliance: service.alliance,
+
+        //Alliance members are inside alliance: alliance.members        
+        //allianceMembers: allianceMember ? allianceMember : [],
+
         // alliance: mapAlliance(service.alliance),
         // allianceMembers: mapAllianceMember(service.alliance.members),
         attachments: service.attachments ? service.attachments : [],
@@ -281,14 +258,6 @@ export function mapGetPosts(res): any[] {
     // console.log('mapGetMyPosts res.json', res);
     return services.map(function (service) {
         // console.log('remap posts 2', service);
-        let alliance: VOAlliance;
-        let allianceMember: VOAllianceMember[];
-
-        if (service.alliance) {
-            alliance = mapAlliance(service.alliance);
-            if (service.alliance.members) allianceMember = mapAllianceMember(service.alliance.members);
-            // if(service.alliance.members.length) allianceMember = mapAllianceMember(service.alliance.members);
-        }
 
         return {
             id: service.id,
@@ -327,9 +296,9 @@ export function mapGetPosts(res): any[] {
             portfolio: service.portafolio,
             status: service.status,
             // alliance: service.alliance,  // ??????
-            alliance: alliance,
+            alliance: service.alliance,
             // allianceMembers: allianceMember,
-            allianceMembers: allianceMember ? allianceMember : [],
+            //allianceMembers: allianceMember ? allianceMember : [],
             // alliance: mapAlliance(service.alliance),
             // allianceMembers: mapAllianceMember(service.alliance.members),
             attachments: service.attachments ? service.attachments : [],

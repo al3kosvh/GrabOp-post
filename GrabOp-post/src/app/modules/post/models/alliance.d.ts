@@ -15,7 +15,7 @@ declare module Models {
         isOpen: boolean;
         isMemberTotalVisible: boolean;
         isActive: boolean;
-        createdDate: string;
+        createdDate: Date;
         offerId: number;
         members: Member[];
         allianceMembersCount: number;

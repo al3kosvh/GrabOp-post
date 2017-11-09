@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatSlideToggleModule,
+    MatAutocompleteModule, MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatSlideToggleModule,
     MatTabsModule, MatInputModule, MatSelectModule, MatCheckboxModule, MatMenuModule
 } from '@angular/material';
 
@@ -47,14 +47,16 @@ const myRoute: Routes = [
     //{ path: ':id/:type', component: PostEditComponent },
     //{ path: 'post-edit', component: PostEditComponent, outlet: 'slideRight' },
     //{ path: 'post-edit/:id', component: PostEditComponent, outlet: 'slideRight' },
-    
+
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        SharedModule,
+        ReactiveFormsModule,
+        SharedModule,        
+        MatAutocompleteModule,
         MatGridListModule,
         MatCardModule,
         MatButtonModule,
