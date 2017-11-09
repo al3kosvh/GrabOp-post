@@ -24,22 +24,17 @@
 
     <div fxLayout="row" class="margin-top-10">
       <div class="center" fxLayout="column" fxLayoutAlign="center">
-        <!--<mat-expansion-panel *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
-          <mat-expansion-panel-header>
-            {{ btnConnectValue }}
-          </mat-expansion-panel-header>
-          <div class="retract" *ngIf="btnConnectValue == 'connection sent'" (click)="accept()">retract</div>
-          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="accept()">accept</div>
-          <div class="retract" *ngIf="btnConnectValue != 'connection sent'" (click)="decline()">decline</div>
-        </mat-expansion-panel>-->
+        
         <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">connect</button>
 
         <div class="container-btn-connection-option" *ngIf="btnConnectValue !== 'connect' && btnConnectValue !== 'connected'">
-          <button mat-raised-button color="accent" [matMenuTriggerFor]="appConnectionOption">
+          <button class="btn-connection-option" mat-raised-button color="accent" [matMenuTriggerFor]="appConnectionOption" (click)="openTriggerConnection()" #btnConnectionOption>
             {{ btnConnectValue }}
-            | V
           </button>
-          <mat-menu #appConnectionOption="matMenu" [overlapTrigger]="false">
+          <button class="pinned" mat-raised-button color="accent" (click)="openTriggerConnection()">
+              <span class="expansion-indicator" [class.rotate]="rotate"></span>
+          </button>
+          <mat-menu #appConnectionOption="matMenu" [overlapTrigger]="false" (close)="closeMenuConnection()">
             <a mat-menu-item  *ngIf="btnConnectValue == 'request send'" (click)="accept()">
               retract
             </a>

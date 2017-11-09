@@ -12,8 +12,31 @@
                         <button mat-raised-button color="accent" (click)="editProfile()">edit profile</button>
                     </div>
                     <div *ngSwitchCase="false" fxLayout="row">
-                        <div fxlayout="column">
-                            <!--TODO change this for a button-->
+                        <div>
+                            <div class="container-btn-connection-option">
+                                <button class="btn-connection-option" mat-raised-button color="accent" [matMenuTriggerFor]="appConnectionOption" (click)="openTriggerConnection()" #btnConnectionOption>
+                                    {{ btnConnectValue }}
+                                </button>
+                                <button class="pinned" mat-raised-button color="accent" (click)="openTriggerConnection()">
+                                    <span class="expansion-indicator" [class.rotate]="rotate"></span>
+                                </button>
+                                <mat-menu #appConnectionOption="matMenu" [overlapTrigger]="false" (close)="closeMenuConnection()">
+                                    <a mat-menu-item (click)="confirmConnection(false, expansion)" *ngIf="btnConnectValue === 'request send'">
+                                        retract
+                                    </a>
+                                    <a mat-menu-item (click)="confirmConnection(true, expansion)" *ngIf="btnConnectValue === 'request received'">
+                                        accept
+                                    </a>
+                                    <a mat-menu-item (click)="confirmConnection(false, expansion)" *ngIf="btnConnectValue === 'request received'">
+                                        decline
+                                    </a>
+                                    <a mat-menu-item (click)="deleteConnection(expansion)" *ngIf="btnConnectValue === 'connected'">
+                                        disconnect
+                                    </a>
+                                </mat-menu>
+                            </div>
+                        </div>
+                        <!--<div fxlayout="column">
                             <mat-expansion-panel #expansion *ngIf="btnConnectValue !== 'connect'">
                                 <mat-expansion-panel-header>
                                     <span>{{ btnConnectValue }}</span>
@@ -23,7 +46,7 @@
                                 <div class="retract" (click)="confirmConnection(false, expansion)" *ngIf="btnConnectValue === 'request received'">decline</div>
                                 <div class="retract" (click)="deleteConnection(expansion)" *ngIf="btnConnectValue === 'connected'">disconnect</div>
                             </mat-expansion-panel>
-                        </div>
+                        </div>-->
                         <div>
                             <button mat-raised-button color="accent" *ngIf="btnConnectValue === 'connect'" (click)="setConnection()">{{ btnConnectValue }}</button>
                             <button mat-raised-button color="accent" (click)="openMessage()">message</button>
@@ -38,7 +61,7 @@
                 <div class="profile-card">
                     <div class="profile-photo">
                         <span class="btn-play-video" (click)="playVideo()"><span></span></span>
-                        <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic" />
+                        <img [alt]="profile.firstName + ' ' + profile.lastName" [src]="profilePic"/>
                     </div>
                     <div class="profile-name" fxLayout="row" fxLayoutAlign="center">
                         <span>{{ shortName | uppercase }}</span>
@@ -59,11 +82,11 @@
                             <div class="profile-inner-site">
                                 "I help people to transform their businesses,
                                 their careers and their lives"
-                                <br />
+                                <br/>
                                 <span>-Michelle. 7.</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-beetwing">
-                                <img class="bracket" src="assets/img/my-resumen.png" />
+                                <img class="bracket" src="assets/img/my-resumen.png"/>
                                 <div class="skill-set">
                                     <span class="skill-title">My Skills</span>
                                     <ul *ngIf="profile.skillset">
@@ -77,26 +100,26 @@
                                 {{ profileConnectionsCount }} connection
                             </div>
                             <div fxlayout="row" fxLayoutAlign="center">
-                                <img class="bracket" src="assets/img/left-bracket.png" />
-                                <img class="user" src="assets/img/1x.jpg" />
-                                <img class="user" src="assets/img/2x.jpg" />
-                                <img class="user" src="assets/img/3x.jpg" />
-                                <img class="user" src="assets/img/3x.jpg" />
-                                <img class="bracket" src="assets/img/right-bracket.png" />
+                                <img class="bracket" src="assets/img/left-bracket.png"/>
+                                <img class="user" src="assets/img/1x.jpg"/>
+                                <img class="user" src="assets/img/2x.jpg"/>
+                                <img class="user" src="assets/img/3x.jpg"/>
+                                <img class="user" src="assets/img/3x.jpg"/>
+                                <img class="bracket" src="assets/img/right-bracket.png"/>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="post-title">offering service</div>
                     <post-frames [posts]="profileOfferPosts"></post-frames>
-
+                    
                     <div class="post-title">needs service</div>
                     <post-frames [posts]="profileNeedPosts"></post-frames>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!--<mat-sidenav #sidenav position="end" class="sidenav-content">
       <alliance-invite [sidenav]="sidenav" [person]="profile"></alliance-invite>
     </mat-sidenav>-->

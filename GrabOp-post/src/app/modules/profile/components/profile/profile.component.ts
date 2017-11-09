@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { MatDialog, MatDialogConfig, MatExpansionPanel } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatExpansionPanel, MatMenuTrigger } from '@angular/material';
 // Services
 import { ProfileService } from '../../services/profile.service';
 import { PostService } from '../../../post/services/post.service';
@@ -36,6 +36,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     btnConnectValue: string;
     myConnections: Models.VOConnection[];
     indexConnection: any;
+    @ViewChild(MatMenuTrigger) toggleTrigger: MatMenuTrigger;
+    rotate = false;
 
     constructor(
         private userService: AuthenticationService,
@@ -62,6 +64,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
 
+    }
+
+    openTriggerConnection() {
+        this.rotate = true;
+        this.toggleTrigger.openMenu();
+    }
+
+    closeMenuConnection() {
+        this.rotate = false;
     }
 
     inviteToAlliance() {

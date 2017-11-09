@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { MatMenuTrigger } from "@angular/material";
 // Services
 import { ConnectionService } from "../../services/connection.service";
 import { AuthenticationService } from "../../../account/services/authentication.service";
@@ -15,6 +16,8 @@ export class ConnectCardProfileComponent implements OnInit {
     btnConnectValue: string;
     private indexConnection: any;
     user: Models.VOUserExt;
+    @ViewChild(MatMenuTrigger) toggleTrigger: MatMenuTrigger;
+    rotate = false;
 
     constructor(private connectionService: ConnectionService,
                 private userService: AuthenticationService,
@@ -23,6 +26,15 @@ export class ConnectCardProfileComponent implements OnInit {
 
     ngOnInit() {
         this.validateConnection();
+    }
+
+    openTriggerConnection() {
+        this.rotate = true;
+        this.toggleTrigger.openMenu();
+    }
+
+    closeMenuConnection() {
+        this.rotate = false;
     }
 
     private validateConnection() {
